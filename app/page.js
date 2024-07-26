@@ -1,175 +1,127 @@
-import Image from "next/image";
+// import { getData, getMoviesId,urlImage } from "./libs/DataFetching"
+// import { Card, CardContent } from "@/components/ui/card"
+// import {
+//   Carousel,
+//   CarouselContent,
+//   CarouselItem,
+//   CarouselNext,
+//   CarouselPrevious,
+// } from "@/components/ui/carousel"
+// import Image from "next/image"
+// import Link from "next/link"
+import MoviesCard from "./Components/MoviesCard/MoviesCard"
 
-import Link from "next/link"
-import { Card, CardContent } from "@/components/ui/card";
-import { Star } from 'lucide-react';
-import MoviesId from "./Components/MoviesId/MoviesId";
-import MovieDetails from "./Components/MovieDetails/MovieDetails";
-import { GrLineChart } from "react-icons/gr";
-import { LuFlame } from "react-icons/lu";
-import { Separator } from "@/components/ui/separator"
+import MoviePopular from "./Components/MoviePopular/MoviePopular"
+import { SlScreenDesktop } from "react-icons/sl"
 
-import GenresList from "./Components/BtnList/GenresList";
-import { Suspense } from "react";
-import LoadingGenreButton from "./Components/LoadingUi/LoadingGenreList";
-import MoviePopular from "./Components/MoviePoopular/MoviePopular";
-// import SelectPage from "./Components/SelectedPage/SelectPage";
-import { LiaTvSolid } from "react-icons/lia";
-// import TrailerMovie from "./Components/MoviesVideos/TrailerMovie";
-import SelectTvPage from "./Components/SelectedPage/SelectTvPage";
-import { ScreenShare } from 'lucide-react';
-import TvPopular from "./Components/Tv/TvPopular";
-import CoverImage from "./Components/BackGroundImage/CoverImage";
-// import CompanyMovies from "./Components/Companies/CompanyMovies";
-import PersonPopular from "./Components/PersonList/PersonPopular";
-import MoviesCredits from "./Components/PersonList/MoviesCredits";
+import DiscoverTv from "./(tv)/Components/DiscoverTv/DiscoverTv"
+// import NavigateBars from "./(tv)/Components/NavigateBars/NavigateBars"
+// import { Suspense } from "react"
+import GenresList from "./Components/BtnList/GenresList"
+import TvSeries from "./(tv)/Components/DiscoverTv/TvSeries"
+import TvGenres from "./(tv)/Components/TvGenres/TvGenres"
+import { getDiscoverMovies, getPopularMovies } from "./libs/DataFetching"
+import { getDiscoverTv } from "./libs/DataFetchingTv"
 
 
-async function getData() {
-  const res = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.NEXT_API_KEY}`,{}, {
-    headers: {
-      Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`
-    }
-  })
-  if (!res.ok) {
-    throw new Error("failed to fetch data")
-  }
-  return res.json()
-}
+
+
+
+
 
 export default async function Home() {
-  const urlImage = 'https://image.tmdb.org/t/p/original'
-  const data = await getData()
-  const dataResults = data.results.slice(1, 2)
-  // const dataId = data.results.id
-  // console.log(data)
-
-
+  const data = await getDiscoverMovies()
+  const popularData = await getPopularMovies()
+  const tvData = await getDiscoverTv()
+  
+  const [dataDiscoverMovies,dataPopular,dataTv] = await Promise.all([data,popularData,tvData])
+  
   return (
-    <main className="    w-full h-auto md:h-auto  ">
+    <main className="w-full h-auto text-white ">
+            <div className="scroll-m-20 text-4xl  tracking-tight lg:text-5xl ml-6  title underline decoration-yellow-600 title   bg-gradient-to-br from-[white] via-[#18ffe0] to-[black] bg-clip-text text-transparent font-extrabold md:flex md:justify-center md:items-center   mt-7 md:mt-3">
+        <h1>Discover on Magix</h1>
+      </div>
+      <section className="   mt-7 flex justify-center w-full ">
+        <MoviesCard dataDiscoverMovies={dataDiscoverMovies.results}/>
+      </section>
 
-      <div className=" " >
+     <div className=" scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl ml-6  title  bg-gradient-to-br from-[#f40000] underline decoration-red-600 to-[black] bg-clip-text text-transparent  md:flex md:justify-center md:items-center items-center mt-14 lg:mt-11 md:mt-3">
+        <h1>Popular on Magix</h1>
+      </div>
+      <section>
+        <MoviePopular dataPopular={dataPopular.results}/>
+      </section>
 
-          {/* map data */}
-          {dataResults.map((item, index) => (
-            <div className=" flex  justify-center items-start hero md:flex-col" key={index} >
-              <div className=" md:pb-[8rem]  w-full z-[1] relative bg-white/30 backdrop-blur p-4 md:p-[1.6rem]   ">
-                <div className="  text-zinc-800  hero-content items-start md:items-center md:flex-col md:pt-20">
-                  <Image className="rounded-md order-2 md:hidden static" 
-                  src={`${urlImage}${item.poster_path}`} 
-                  alt={item.original_title} width={250} height={250}  
-                  style={{width:"auto", height:"auto"}} 
-                  priority={true}  
-                  />
-                  <div className=" order-1 ">
-                    <h1 className=" text-4xl font-extrabold  leading-loose md:text-2xl"> {item.original_title} </h1>
-                    <p className="pt-2 pb-2 font-extrabold text-[1.5rem] text-red-800"> {item.release_date} </p>
-                    <div className=" flex gap-1 mb-4 ">
-                      <Star size={25}  className=" text-yellow-600 outline-yellow-300 font-extrabold tex-[1.5rem]"/>
-                      <span className=" font-extrabold">
-                        Vote&nbsp;
-                        {item.vote_average.toFixed(1)}
-                      </span>
-                    </div>
-                    <div className=" font-bold text-[1.2rem]">
-                      <p> {item.overview} </p>
-                    </div>
-                    <MovieDetails movie_Id={item.id} />
-                    <div>
-                    <PersonPopular movie_Id={item.id} urlImage={urlImage} />
-                    </div>
-                  </div>
-                </div>
-                <div>
-                  {/* <TrailerMovie movie_Id={item.id} /> */}
-                </div>
-                <div className=" flex justify-center">
-                <MoviesId movie_Id={item.id} />
-              </div>
-              <div>
-                {/* <CompanyMovies company_id={item.id} urlImage={urlImage} /> */}
-              </div>
-              </div>
-               {/* <div className=" " style={{position:"absolute", width:"100%", height:"100%", }} >
-               <Image className=" blur " 
-               src={`${urlImage}${item.backdrop_path}`} 
-               alt={item.original_title} 
-               fill={true}
-               sizes="(max-width: 768px) 100vw, 33vw"
-               style={{ objectFit: "cover", zIndex: "0",   }}  />
-               </div> */}
-               <CoverImage data={data} urlImage={urlImage} />
-            </div>
-          ))}
-          <div className="">
-          <div className=" md:text-2xl md:items-center md:gap-3 md:justify-center relative p-4  text-2xl font-bold flex w-56 items-center justify-between">
-            <h1>Trends Now 
-              </h1>
-              <div className=" ">
-              <GrLineChart className="text-[2rem] text-orange-600" />
-              </div>
-          </div>  
-          <div className="flex justify-center">
-          <Separator className="my-4 w-3/4 " />
-          </div>
-          </div>
+      <div className=" ml-6 mt-7">
+        <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">Movies by Genre</h1>
+      </div>
 
-          <Suspense fallback={<p>Loading...</p>}>
-          <div>
-            <GenresList />
-          </div>
-          </Suspense>
-          <div className=" p-4 md:text-4xl  text-2xl font-bold flex  items-center justify-start md:justify-center ">
-            <h1>Popular
-              </h1>
-              <div className=" ">
-              <LuFlame  className="text-[2.5rem] text-red-700 " />
-              </div>
-          </div> 
-          <div className="flex justify-center">
-          <Separator className="my-4 w-3/4 " />
-          </div>
-          <div>
-            <MoviePopular />
-          </div>
-          <div className="flex justify-center">
-          <Separator className="my-4 w-3/4 " />
-          </div>
-          <div className=" md:text-4xl bg-gradient-to-r from-green-400 via-blue-600  to-blue-500  bg-clip-text text-transparent p-4  text-2xl font-bold flex  items-center justify-start gap-3 md:justify-center">
-            <h1>Top Tv</h1>
-            <div>
-            <LiaTvSolid className="text-[2.5rem] text-blue-600" />
-            </div>
-          </div>
-          <div className="flex justify-center">
-          <Separator className="my-4 w-3/4 " />
-          </div>
-          <div className="">
-          <SelectTvPage />
-          </div>
-          <div className="flex justify-center">
-          <Separator className="my-4 w-3/4 " />
-          </div>
+      <section className=" mt-7">
+        <GenresList/>
+      </section>
+      {/* <div className=" mb-3  gap-4 flex justify-start ml-6  title text-3xl bg-gradient-to-br from-red-700 via-white to-[red] bg-clip-text text-transparent font-bold md:flex md:justify-center md:items-center items-center mt-7 md:mt-3">
+        <h1>
+          Tv Show
+        </h1>
+        <SlScreenDesktop className="text-white" size={28} />
+      </div>
+      <section>
+        <DiscoverTv/>
+      </section> */}
 
-          <div className=" text-transparent bg-clip-text bg-gradient-to-tr from-gray-900 to-red-900 to-10%   p-4  gap-3 text-2xl md:text-4xl font-bold flex  items-center justify-start md:justify-center ">
-            <h1>On the air
-              </h1>
-              <div className="">
-              <ScreenShare size={30}  className=" text-red-700 " />
-              </div>
-          </div> 
-          <div className="flex justify-center">
-          <Separator className="my-4 w-3/4 " />
+          <div className=" ml-6 mt-7">
+            <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
+              Tv Show
+            </h1>
           </div>
-          <div>
-            <TvPopular />
+        <section className="mt-7">
+          <TvSeries dataTv={dataTv.results}/>
+        </section>
 
+          <div className=" ml-6 mt-7">
+            <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
+              Tv by Genre
+            </h1>
           </div>
-        </div>
+        <section className="mt-7">
+          <TvGenres/>
+        </section>
 
 
+{/* 
+      <div className="title text-4xl bg-gradient-to-br from-[#4f48ec] to-[white] bg-clip-text text-transparent font-bold md:flex md:justify-center md:items-center flex justify-center items-center mt-7 md:mt-3">
+        <h1>Discover</h1>
+      </div>
+      <section className="   mt-7 flex justify-center w-full xl:bg-linear-gradient(126deg, rgba(255,191,24,1) 0%, rgba(16,14,52,1) 32%, rgba(79,72,236,1) 74%,">
+        <MoviesCard/>
+      </section>
+      <div className=" flex justify-start ml-6  title text-3xl bg-gradient-to-br from-[#4f48ec] to-[red] bg-clip-text text-transparent font-bold md:flex md:justify-center md:items-center items-center mt-7 md:mt-3">
+        <h1>Popular Movies</h1>
+      </div>
+      <section>
+        <MoviePopular/>
+      </section>
+      <div className=" mb-3  gap-4 flex justify-start ml-6  title text-3xl bg-gradient-to-br from-red-700 via-white to-[red] bg-clip-text text-transparent font-bold md:flex md:justify-center md:items-center items-center mt-7 md:mt-3">
+        <h1>
+          Tv Show
+        </h1>
+        <SlScreenDesktop className="text-white" size={28} />
+      </div>
+      <section>
+        <DiscoverTv/>
+      </section>
+      <section className=" mt-7">
+        <GenresList/>
+      </section> */}
+      {/* <section className="mt-7">
+        <Suspense fallback={<p>Loading...</p>}>
 
-
+        <NavigateBars />
+        </Suspense>
+      </section> */}
+      {/* <section className="mt-7 flex justify-center w-full">
+      <LinkMovies/>
+      </section> */}
 
 
 
@@ -179,5 +131,5 @@ export default async function Home() {
 
 
     </main>
-  );
+  )
 }

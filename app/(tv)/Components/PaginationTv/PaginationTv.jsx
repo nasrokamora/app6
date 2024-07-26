@@ -1,0 +1,47 @@
+"use client"
+
+import { Button } from "@/components/ui/button"
+import { useState } from "react"
+import DetailsSeasonTv from "../DetailsSeasonTv/DetailsSeasonTv"
+
+
+
+export default function PaginationTv({ dataSeason, itemsPerPage }) {
+    const [currentPage, setCurrentPage] = useState(1)
+
+    const sortedItems = dataSeason.sort((a, b) => a.season_number - b.season_number)
+
+    const totalPages = Math.ceil(sortedItems.length  / itemsPerPage)
+
+    const handleClick = (pageNumber) => {
+        setCurrentPage(pageNumber)
+    }
+    const startIndex = (currentPage - 1) * itemsPerPage
+    // const endIndex = startIndex + itemsPerPage
+    const currentItems = sortedItems.slice(startIndex, startIndex + itemsPerPage)
+    return (
+        <div>
+            <div className=" h-2/5 w-full">
+                {currentItems.map((season,index) => (
+                    <DetailsSeasonTv key={index} season={season} />
+                ))}
+            </div>
+            {/* pagination */}
+            <div className=" h-2/4 p-10 flex justify-center items-center gap-6">
+                <Button onClick={() => handleClick(currentPage - 1)} disabled={currentPage === 1}>
+                    Previous
+                </Button>
+                {[...Array(totalPages)].map((_, index) => (
+                    <Button key={index} onClick={() => handleClick(index + 1)} className={currentPage === index + 1 ? "active" : " md:hidden"}>
+                        {index + 1}
+                    </Button>
+                ))}
+                <Button onClick={() => handleClick(currentPage + 1)} disabled={currentPage === totalPages}>
+                    Next
+                </Button>
+            </div>
+        </div>
+    )
+
+
+}

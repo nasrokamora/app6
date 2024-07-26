@@ -1,46 +1,36 @@
-"use client"
 
-import { Skeleton } from "@/components/ui/skeleton"
-import { useEffect, useState } from "react"
+
+
 import {
     HoverCard,
     HoverCardContent,
     HoverCardTrigger,
 } from "@/components/ui/hover-card"
 
-export default function TrailerMovie({ movie_Id }) {
+async function getVideoMovies(movie_Id){
+    const response = await fetch(`https://api.themoviedb.org/3/movie/${movie_Id}/videos?api_key=${process.env.NEXT_API_KEY}`)
+    if(!response.ok){
+        throw new Error('failed fetch data videos')
+    }
+    return response.json()
+}
 
-    const [dataVideo, setDataVideo] = useState([])
-    const [isLoading, setIsLoading] = useState(true)
 
-    useEffect(() => {
-        const fetchVideo = async () => {
-            try {
-                const response = await fetch(`https://api.themoviedb.org/3/movie/${movie_Id}/videos?api_key=${process.env.NEXT_PUBLIC_API_KEY}`, {
-                    headers: {
-                        Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`
-                    }
-                })
-                const data = await response.json()
-                setDataVideo(data.results.slice(9,10))
-                setIsLoading(false)
-            } catch (error) {
-                console.error(error, "Error")
-            }
-        }
-        fetchVideo()
-    }, [])
+export default async function TrailerMovie({ movie_Id }) {
+    const data = await getVideoMovies(movie_Id)
+    const dataVideo = data.results.slice(0,1)
+
+
     
     return (
         <div className=" ">
-            {isLoading ? (
-
-                <Skeleton />
-
-            ) : (
+ 
                 <>
                     {dataVideo.map((video) => (
                         <div key={video.key} className="w-fit">
+                            <p>{video.name}</p>
+                            <h1>{video.site}</h1>
+                            <h1>{video.type}</h1>
                             <iframe
                                 width="300"
                                 height="250"
@@ -48,12 +38,13 @@ export default function TrailerMovie({ movie_Id }) {
                                 title="YouTube video player"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                 allowFullScreen
+                                SameSite="Strict"
                             ></iframe>
                         </div>
                     ))}
                 </>
-            )
-            }
+            
+
 
         </div>
     )

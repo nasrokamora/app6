@@ -13,8 +13,9 @@ module.exports = {
     screens: {
       "md": {"min":"280px","max":"768px"},
       "lg": {"min":"769px","max":"1024px"},
-      "xl":{"min":"1025px","max":"1400px"},
-      "2xl": "1400px",
+      "xl":{"min":"1025px","max":"1250px"},
+      "2xl":{"min":"1251px"},
+
     },
     container: {
       center: true,

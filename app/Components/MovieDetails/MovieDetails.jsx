@@ -28,26 +28,9 @@ async function getDetail(movie_Id) {
 export default async function MovieDetails({ movie_Id }) {
     const data = await getDetail(movie_Id)
     const detail = data
-    // const [detail, setDetail] = useState([])
-    // const [isLoading, setIsLoading] = useState(true)
-    // const urlImage = 'https://image.tmdb.org/t/p/original'
 
-    // useEffect(() => {
-    //     async function getDetail() {
-    //         const response = await fetch(`https://api.themoviedb.org/3/movie/${movie_Id}?api_key=${process.env.NEXT_PUBLIC_API_KEY}`, {
-    //             headers: {
-    //                 Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`
-    //             }
-    //         })
-    //         const data = await response.json()
-    //         setDetail(data)
-    //         setIsLoading(false)
-    //     }
-    //     getDetail()
-    // }, [])
-    // console.log(detail)
     return (
-        // isLoading ? <SkeletonDetail /> :
+
             <div>
                 <div className="  flex gap-4 justify-start items-center  mt-5 flex-wrap">
 

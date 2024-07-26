@@ -15,6 +15,7 @@ import {
 import { FaRegStar } from "react-icons/fa";
 import LoadingGenreButton from "../LoadingUi/LoadingGenreList"
 import LoadingGenreCarousel from "../LoadingUi/LoadingGenreCarousel"
+import Link from "next/link"
 
 
 
@@ -66,9 +67,10 @@ export default function GenresList() {
             console.error(error)
         }
     }
-    const handleClick = (genreId) => {
-        setSelectedGenre(genreId)
-        fetchMovies(genreId)
+
+async function handleClick(genreId){    
+            setSelectedGenre(genreId)
+            fetchMovies(genreId)
     }
 
     //    Nas@Dev
@@ -86,8 +88,8 @@ export default function GenresList() {
                         <CarouselContent>
                             {genres.map((genre,index) => (
                                 <CarouselItem key={index} className=" basis-1/7 lg:basis-1/5 md:basis-1/2">
-                                    <Button variant="outline"
-                                        style={{ color: selectedGenre === genre.id ? 'red' : '' }}
+                                    <Button variant="outline" className={` 2xl:text-2xl 2xl:font-bold ${selectedGenre === genre.id ? 'text-red-700' : ' text-zinc-500'}`}
+                                        style={{ color: selectedGenre === genre.id ? 'text-red-500' : ' text-zinc-800' }}
                                         onClick={() => handleClick(genre.id)}>{genre.name}</Button>
                                 </CarouselItem>
                             ))}
@@ -97,7 +99,7 @@ export default function GenresList() {
                     </Carousel>
                 </div>
                             {isLoading ? <LoadingGenreCarousel /> : null}
-                <div className=" mt-8 flex justify-center w-full">
+                <div className=" mt-8 flex justify-center w-full 2xl:text-2xl">
                     <Carousel opts={{
                         align: "start",
                         loop: true,
@@ -106,21 +108,24 @@ export default function GenresList() {
                             {movieList.map((movie,index) => (
 
                                 <CarouselItem key={index} className="  basis-1/7 lg:basis-1/5 md:basis-1/1  ">
-                                    <div className="">
-
+                                    <div className=" overflow-hidden relative lg:hover:scale-90 lg:hover:duration-500 xl:hover:scale-90 xl:hover:duration-500  2xl:hover:scale-90 2xl:hover:duration-500">
+                                        <Link href={`/Movies/List/${movie.id}`}>
                                         <Image
                                             src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
                                             alt={movie.title}
-                                            width={100} height={100}
-                                            className=" md:w-[150px] h-[170px] lg:w-[200px] lg:h-[180px] xl:w-[120px] xl:h-[150px] 2xl:w-[150px] 2xl:h-[150px]  "
-                                            priority={true}
-                                        />
+                                            width={180} height={180}
+                                            className="  md:w-[200px]  lg:w-[200px] lg:h-[200px] xl:w-[150px] xl:h-[150px] 2xl:w-[250px] 2xl:h-[150px]  "
+                                            priority
+                                            style={{height:"auto"}}
+                                            
+                                            
+                                            />
                                         <p className=" font-bold flex justify-start  pt-2 mb-1">{movie.title.length > 14 ? movie.title.slice(0, 14) + "..." : movie.title}</p>
                                         <div className=" flex justify-between items-center w-full">
-                                            <p className=" fonb flex justify-between items-center w-full">
+                                            <p className=" font-semibold flex justify-between items-center w-full 2xl:text-2xl">
                                                 {new Date(movie.release_date).getFullYear()}
                                             </p>
-                                            <div className=" ">
+                                            <div className=" 2xl:font-bold 2xl:text-2xl">
                                                 <div className=" space-x-1 flex justify-between items-center">
                                                 <FaRegStar className="text-[#FFC300]" /> 
                                                 <span className="">
@@ -130,6 +135,7 @@ export default function GenresList() {
                                             </div>
 
                                         </div>
+                                            </Link>
 
                                     </div>
                                 </CarouselItem>

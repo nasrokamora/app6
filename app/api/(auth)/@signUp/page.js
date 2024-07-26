@@ -7,8 +7,8 @@ export default  function LogIn() {
     
     return (
         <div className=" flex gap-8">
-            <LoginLink target="blank">Sign in</LoginLink>
-            <RegisterLink target="blank">Sign up</RegisterLink>
+            <LoginLink target="_blank">Sign in</LoginLink>
+            <RegisterLink target="_blank">Sign up</RegisterLink>
         </div>
     )
 }

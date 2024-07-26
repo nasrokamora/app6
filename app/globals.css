@@ -74,5 +74,8 @@
     @apply bg-background text-foreground;
     scroll-behavior: smooth;
     box-sizing:border-box;
+    @apply font-normal;
+    
+  
   }
 }

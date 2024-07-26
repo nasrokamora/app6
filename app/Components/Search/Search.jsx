@@ -48,7 +48,7 @@ export default function Search() {
 
 
     return (
-        <form onSubmit={handleSubmit} className=" form-control  md:hidden ">
+        <form onSubmit={handleSubmit} className=" form-control  md:hidden lg:hidden ">
 
             {/* <button type="submit" onClick={handleSubmit}>Search</button> */}
             <input type="text"

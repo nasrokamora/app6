@@ -1,5 +1,6 @@
 
 
+
 // import { useEffect, useState } from "react"
 import Image from "next/image";
 import {
@@ -88,6 +89,7 @@ const CarouselTvPopular = ({ dataPopular, isLoading }) => {
 export default async function TvPopular() {
     const data = await fetchDataTv()
     const dataPopular = data.results
+
     // const [dataPopular, setDataPopular] = useState([])
     // const [isLoading, setIsLoading] = useState(true)
 

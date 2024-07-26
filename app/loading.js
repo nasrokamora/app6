@@ -6,10 +6,10 @@ export default function Loading() {
 
     
     <div className="flex flex-col space-y-3">
-      <Skeleton className="h-[250px] w-[500px] rounded-xl" />
+      <Skeleton className="h-[250px] w-[500px] rounded-xl md:w-[100px] md:h-[100px]" />
       <div className="space-y-2">
-        <Skeleton className="h-4 w-[250px]" />
-        <Skeleton className="h-4 w-[200px]" />
+        <Skeleton className="h-4 w-[250px] md:h-[150px]" />
+        <Skeleton className="h-4 w-[200px] md:w-[100px]" />
       </div>
     </div>
     </div>

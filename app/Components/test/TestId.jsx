@@ -16,3 +16,5 @@ export default function TestId({movie, data}) {
         </div>
     )
 }
+
+toLowerCase().replace(/ /g, "_").replace(/[^\w-]+/g, "").replace(/--+/g, "_").replace(/\./g, "")

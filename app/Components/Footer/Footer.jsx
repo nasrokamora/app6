@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Footer() {
     return (
-        <footer className="footer footer-center p-10 bg-inherit text-base-content rounded">
+        <footer className="footer  z-0  footer-center p-10 bg-inherit text-base-content rounded">
             <nav className="grid grid-flow-col gap-4">
                 {DataLink.map((item, index) => (
                     <Link  key={index} href={item.link} className="link link-hover">{item.name}</Link>

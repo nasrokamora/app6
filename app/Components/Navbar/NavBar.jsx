@@ -35,7 +35,7 @@ export default function Navbar() {
     return (
         <header className=" z-[10] relative  md:w-full md:fixed  ">
             <nav className="  navbar  flex justify-between items-center   glass font-semibold ">
-                <div className=" lg:hidden xl:hiden 2xl:hidden 3xl:hidden">
+                <div className=" ">
                     <Link href={'/'} className=" text-[1.5rem] font-bold ml-6">
                         Magix&nbsp;Movies
                     </Link>
@@ -53,11 +53,13 @@ export default function Navbar() {
                     </div>
                 </div>
 
-                <Search />
+                <Search  />
                 <div className=" mr-6 flex gap-4 lg:hidden xl:hidden 2xl:hidden 3xl:hidden">
                     {IconMD.map((icon)=> (
                         <div key={icon.id} className=" flex items-center gap3">
+                            <Link href={icon.path} className=" hover:scale-150 duration-300">
                             {icon.icon}
+                            </Link>
                         </div>
                     ))}
                 </div>

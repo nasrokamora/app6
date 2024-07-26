@@ -61,7 +61,8 @@ export default async function MoviesId({ movie_Id }) {
                 width={300}
                 height={300}
                 style={{ width: "auto", height: "auto" }}
-                priority={true}
+                priority={false}
+                loading = 'lazy'
               />
             </div>
           </CarouselItem>

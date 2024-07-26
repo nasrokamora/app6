@@ -80,7 +80,7 @@ export default  function DetailsSeasonTv({ season, id, season_number }) {
                         <h1 className="scroll-m-20 text-xl font-semibold tracking-tight">
                             {data.air_date ? data.air_date.replace(/-/g, '/') : "Undefined"}
                         </h1>
-                        {data.vote_average}
+                        
                     </div>
                 </div>
             </div>

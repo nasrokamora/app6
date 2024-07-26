@@ -96,9 +96,9 @@ export default async function PersonDetailsTv({ person_id, urlImageTv, character
 
 
                                 <div className=" pt-2 ">
-                                    <AlertDialog className=" md:h-screen " >
+                                    <AlertDialog className=" " >
                                         <AlertDialogTrigger className="hover:bg-info hover:duration-300 alert-info text-white hover:text-slate-950 border p-2 font-bold rounded-lg">Biography</AlertDialogTrigger>
-                                        <AlertDialogContent>
+                                        <AlertDialogContent className="md:h-screen  max-w-2xl xl:max-w-5xl">
                                             <AlertDialogHeader>
                                                 <AlertDialogTitle> {dataPerson.name}</AlertDialogTitle>
                                                 <AlertDialogDescription>

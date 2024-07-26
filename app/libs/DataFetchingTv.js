@@ -165,6 +165,21 @@ export async function getTopTv(){
 
 /** end fetching  */
 
+export async function getDetailsSeasonTv(id,season_number){
+
+    const res = await fetch(`https://api.themoviedb.org/3/tv/${id}/season/${season_number}?api_key=${process.env.NEXT_PUBLIC_API_KEY}`,
+                    {
+                        headers:{
+                        Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
+                        accept:"application/json"
+                        }
+                    }
+                )
+            if(!res.ok){
+                throw new Error("failed to fetch data DetailsSeasonTv")
+            }
+            return res.json()
+}
 
 export async function getDetailsEpisodesTv(id,season_number,episode_number){
     const res = await fetch(`https://api.themoviedb.org/3/tv/${id}/season/${season_number}/episode/${episode_number}?api_key=${process.env.NEXT_PUBLIC_API_KEY}`,

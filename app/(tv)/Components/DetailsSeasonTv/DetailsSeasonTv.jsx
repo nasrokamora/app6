@@ -1,4 +1,4 @@
-"use client"
+
 
 
 import Image from "next/image"
@@ -25,29 +25,33 @@ import {
 } from "@/components/ui/alert-dialog"
 import DetailsEpisodesTv from "../DetailsEpisodesTv/DetailsEpisodesTv"
 import { useEffect, useState } from "react"
+import { Separator } from "@/components/ui/separator"
+import { getDetailsSeasonTv } from "@/app/libs/DataFetchingTv"
 
 
-export default  function DetailsSeasonTv({ season, id, season_number }) {
+export default async function DetailsSeasonTv({ season, id, season_number }) {
+    const data = await getDetailsSeasonTv(id, season_number)
+    console.log(data)
 
-
-    const [data,setData] = useState([])
+    // const [data,setData] = useState()
     
-    useEffect(()=>{
-        const fetchSeasonDetails = async (id,season_number)=>{
-                const res = await fetch(`https://api.themoviedb.org/3/tv/${id}/season/${season_number}?api_key=${process.env.NEXT_PUBLIC_API_KEY}`,
-                {
-                    headers:{
-                    Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
-                    accept:"application/json"
-                    }
-                }
-            )
-            const results = await res.json()
-            setData(results)
-        }
-        fetchSeasonDetails(id,season_number)
-    },[])
-    // console.log(data)
+    // useEffect(()=>{
+    //     const fetchSeasonDetails = async (id,season_number)=>{
+    //             const res = await fetch(`https://api.themoviedb.org/3/tv/${id}/season/${season_number}?api_key=${process.env.NEXT_PUBLIC_API_KEY}`,
+    //             {
+    //                 headers:{
+    //                 Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
+    //                 accept:"application/json"
+    //                 }
+    //             }
+    //         )
+    //         const results = await res.json()
+    //         setData(results)
+    //     }
+    //     fetchSeasonDetails(id,season_number)
+    // },[])
+
+    // // console.log(data)
 
 
     return (
@@ -70,18 +74,22 @@ export default  function DetailsSeasonTv({ season, id, season_number }) {
                         priority />
                 </div>
                 <div className="">
-                    <div>
-                        <h1>
-                            {season.name}
-                        </h1>
-                    </div>
                     <div className=" flex gap-1 flex-wrap justify-start items-center">
                         <strong className="text-[#52525b] font-bold text-2xl md:text-xl">Air Date :</strong>
                         <h1 className="scroll-m-20 text-xl font-semibold tracking-tight">
-                            {data.air_date ? data.air_date.replace(/-/g, '/') : "Undefined"}
+                            {season.air_date ? season.air_date.replace(/-/g, '/') : "Undefined"}
                         </h1>
-                        
                     </div>
+                    <div>
+                        <h2>
+                            {season.episode_count}
+                        </h2>
+                    </div>
+                    <Separator className="my-2" />
+                    
+
+
+                    
                 </div>
             </div>
         </div>

@@ -6,7 +6,7 @@ import DetailsSeasonTv from "../DetailsSeasonTv/DetailsSeasonTv"
 
 
 
-export default function PaginationTv({ dataSeason, itemsPerPage }) {
+export default function PaginationTv({ dataSeason, itemsPerPage, id }) {
     const [currentPage, setCurrentPage] = useState(1)
 
     const sortedItems = dataSeason.sort((a, b) => a.season_number - b.season_number)
@@ -23,7 +23,7 @@ export default function PaginationTv({ dataSeason, itemsPerPage }) {
         <div>
             <div className=" h-2/5 w-full">
                 {currentItems.map((season,index) => (
-                    <DetailsSeasonTv key={index} season={season} />
+                    <DetailsSeasonTv key={index} season={season} season_number={season.season_number} id={id} />
                 ))}
             </div>
             {/* pagination */}

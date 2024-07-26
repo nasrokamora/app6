@@ -5,8 +5,8 @@ import Image from "next/image"
 
 
 
-export default async function DetailsSeasonTv({season,id,}) {
-//    const data = await getSeasonTvDetails(id,season.season_number)
+export default async function DetailsSeasonTv({season,id,season_number}) {
+   const data = await getSeasonTvDetails(id,season_number)
 
     // console.log(data)
    
@@ -20,7 +20,7 @@ export default async function DetailsSeasonTv({season,id,}) {
             <div className="pt-2 flex justify-center items-center text-[#52525b] itelic scroll-m-20 text-xl font-semibold tracking-tight">
                 <h3>{season.air_date  ? season.air_date.replace( /-/g ,'/') : "Undefined"}</h3>
             </div>
-            <div>
+            <div className=" flex justify-start gap-2 md:flex-col">
                 <div className=" relative overflow-hidden md:flex md:justify-center md:items-center md:pt-2">
                     <Image src={`https://image.tmdb.org/t/p/original${season.poster_path ? season.poster_path : "Undefined"}`} 
                     alt={season.name} 
@@ -29,6 +29,18 @@ export default async function DetailsSeasonTv({season,id,}) {
                     className=" rounded-md"
                     style={{height:"auto"}}
                     priority />
+                </div>
+                <div className="">
+                    <div className="">
+                        <strong>Overview :</strong>
+                        <h1>{data.overview ? data.overview : "Undefined"}</h1>
+                    </div>
+                    <div className=" flex gap-1 flex-wrap justify-start items-center">
+                        <strong className="text-[#52525b] font-bold text-2xl md:text-xl">Air Date :</strong>
+                        <h1 className="scroll-m-20 text-xl font-semibold tracking-tight">
+                            {data.air_date ? data.air_date.replace( /-/g ,'/') : "Undefined"}
+                        </h1>
+                    </div>
                 </div>
             </div>
         </div>

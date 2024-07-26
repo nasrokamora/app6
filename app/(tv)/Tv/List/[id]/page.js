@@ -182,7 +182,12 @@ export default async function DynamicTvListPage({params}) {
                 {/* Credits  and cast and crew  and people */}
             </div>
                 <div>
-                    <CreditsDetailsTv credits={creditsTv.cast} dataImageTv={imageTv} dataSeasonTv={detailTv.seasons} />
+                    <CreditsDetailsTv 
+                    credits={creditsTv.cast} 
+                    dataImageTv={imageTv} 
+                    dataSeasonTv={detailTv.seasons} 
+                    id={detailTv.id}
+                    />
                 </div>
         </div>
     )

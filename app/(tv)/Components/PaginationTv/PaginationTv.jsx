@@ -6,6 +6,7 @@ import DetailsSeasonTv from "../DetailsSeasonTv/DetailsSeasonTv"
 
 
 
+
 export default function PaginationTv({ dataSeason, itemsPerPage, id }) {
     const [currentPage, setCurrentPage] = useState(1)
 
@@ -32,7 +33,7 @@ export default function PaginationTv({ dataSeason, itemsPerPage, id }) {
                     Previous
                 </Button>
                 {[...Array(totalPages)].map((_, index) => (
-                    <Button key={index} onClick={() => handleClick(index + 1)} className={currentPage === index + 1 ? "active" : " md:hidden"}>
+                    <Button key={index} onClick={() => handleClick(index + 1)} className={currentPage === index + 1  ? "active" : " hidden"}>
                         {index + 1}
                     </Button>
                 ))}

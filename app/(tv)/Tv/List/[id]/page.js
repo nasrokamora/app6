@@ -12,6 +12,7 @@ import { BsTwitterX } from "react-icons/bs";
 import { SiWikidata } from "react-icons/si";
 import { FaFacebook } from "react-icons/fa6";
 import Link from "next/link"
+import PaginationTv from "@/app/(tv)/Components/PaginationTv/PaginationTv";
 
 
 export async function generateMetadata({params}) {

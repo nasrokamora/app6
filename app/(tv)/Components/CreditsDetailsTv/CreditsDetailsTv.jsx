@@ -8,7 +8,7 @@ import { ScrollArea,ScrollBar  } from "@/components/ui/scroll-area"
 import PaginationTv from "../PaginationTv/PaginationTv"
 
 // import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
-export default function CreditsDetailsTv({credits,dataImageTv,dataSeasonTv,id}) {
+export default function CreditsDetailsTv({credits,dataImageTv}) {
     // const SortedDataSeason = dataSeasonTv.sort((a, b) => a.season_number - b.season_number )
     // console.log(SortedDataSeason)
     return (
@@ -41,7 +41,7 @@ export default function CreditsDetailsTv({credits,dataImageTv,dataSeasonTv,id}) 
 
                 {/* Season */}
                 <TabsContent value="seasons" className="  pt-4  items-center rounded-md h-auto w-full ">
-                        <PaginationTv dataSeason={dataSeasonTv} itemsPerPage={1} id={id}/>
+                        {/* <PaginationTv dataSeason={dataSeasonTv} itemsPerPage={1} id={id}/> */}
                 </TabsContent>
                
                

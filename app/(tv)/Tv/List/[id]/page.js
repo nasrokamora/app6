@@ -185,9 +185,12 @@ export default async function DynamicTvListPage({params}) {
                     <CreditsDetailsTv 
                     credits={creditsTv.cast} 
                     dataImageTv={imageTv} 
-                    dataSeasonTv={detailTv.seasons} 
-                    id={detailTv.id}
                     />
+                </div>
+                <Separator className="mt-4" />
+
+                <div>
+                <PaginationTv dataSeason={detailTv.seasons} itemsPerPage={1} />
                 </div>
         </div>
     )

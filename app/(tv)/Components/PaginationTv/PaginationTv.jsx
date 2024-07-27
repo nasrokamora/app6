@@ -22,11 +22,11 @@ export default function PaginationTv({ dataSeason, itemsPerPage, id }) {
     const currentItems = sortedItems.slice(startIndex, startIndex + itemsPerPage)
     return (
         <div>
-            <div className=" h-2/5 w-full">
+            {/* <div className=" h-2/5 w-full">
                 {currentItems.map((season,index) => (
                     <DetailsSeasonTv key={index} season={season} season_number={season.season_number} id={id} />
                 ))}
-            </div>
+            </div> */}
             {/* pagination */}
             <div className=" h-2/4 p-10 flex justify-center items-center gap-6">
                 <Button onClick={() => handleClick(currentPage - 1)} disabled={currentPage === 1}>

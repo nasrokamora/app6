@@ -31,7 +31,7 @@ import { getDetailsSeasonTv } from "@/app/libs/DataFetchingTv"
 
 export default async function DetailsSeasonTv({ season, id, season_number }) {
     const data = await getDetailsSeasonTv(id, season_number)
-    console.log(data)
+    // console.log(data)
 
     // const [data,setData] = useState()
     
@@ -87,7 +87,16 @@ export default async function DetailsSeasonTv({ season, id, season_number }) {
                     </div>
                     <Separator className="my-2" />
                     
-
+                    <div>
+                        {data.episodes.map((item)=>(
+                            <div>
+                                <h1>
+                                    {item.air_date}
+                                </h1>
+                                {item.overview}
+                            </div>
+                        ))}
+                    </div>
 
                     
                 </div>

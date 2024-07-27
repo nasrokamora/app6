@@ -1,4 +1,4 @@
-import { getDetailsTv, getExternalIdTv, getImageTv, getTvCredits, urlImageTv } from "@/app/libs/DataFetchingTv"
+import { getDetailsSeasonTv, getDetailsTv, getExternalIdTv, getImageTv, getTvCredits, urlImageTv } from "@/app/libs/DataFetchingTv"
 import Image from "next/image"
 import { IoTimerOutline } from "react-icons/io5";
 import { PiShootingStarLight } from "react-icons/pi";
@@ -13,6 +13,7 @@ import { SiWikidata } from "react-icons/si";
 import { FaFacebook } from "react-icons/fa6";
 import Link from "next/link"
 import PaginationTv from "@/app/(tv)/Components/PaginationTv/PaginationTv";
+import PaginationImageTv from "@/app/(tv)/Components/PaginationTv/PaginationImageTv";
 
 
 export async function generateMetadata({params}) {
@@ -33,6 +34,7 @@ export default async function DynamicTvListPage({params}) {
     const dataImage = await getImageTv(id)
     const dataCredits = await getTvCredits(id)    
     const dataExt = await getExternalIdTv(id)
+
     const [detailTv,imageTv, creditsTv,externalData] = await Promise.all([data,dataImage,dataCredits,dataExt])
     
     // console.log(detailTv);
@@ -191,7 +193,12 @@ export default async function DynamicTvListPage({params}) {
                 <Separator className="mt-4" />
 
                 <div>
-                <PaginationTv dataSeason={detailTv.seasons} itemsPerPage={1} />
+                    <div className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl mt-4">
+
+                    <h1>Season :</h1>
+                    </div>
+                {/* <PaginationTv dataSeason={detailTv.seasons} itemsPerPage={1} id={id} /> */}
+                <PaginationImageTv perPages={3} imageTv={imageTv.backdrops} />
                 </div>
         </div>
     )

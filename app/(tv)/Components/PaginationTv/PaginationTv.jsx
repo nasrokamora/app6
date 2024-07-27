@@ -1,8 +1,40 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import DetailsSeasonTv from "../DetailsSeasonTv/DetailsSeasonTv"
+
+export  function SeasonDetailsTv({id,season_number}){
+const [dataSeason,setDataSeason] = useState([])
+
+    useEffect(() => {
+        const fetchSeasonDetails = async (id,season_number) =>{
+            const response = await fetch(`https://api.themoviedb.org/3/tv/${id}/season/${season_number}?api_key=${process.env.NEXT_PUBLIC_API_KEY}`,{
+                headers:{
+                    Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
+                    accept:"application/json"
+                    }
+            })
+            const data = await response.json()
+            
+            setDataSeason(data.episodes.filter(episode => episode.season_number === season_number))
+        }
+        fetchSeasonDetails(id,season_number)
+    },[])
+    console.log(dataSeason)
+
+    return(
+        <div>
+
+        </div>
+    )
+}
+
+
+
+
+
+
 
 
 
@@ -20,11 +52,12 @@ export default function PaginationTv({ dataSeason, itemsPerPage, id }) {
     const startIndex = (currentPage - 1) * itemsPerPage
     // const endIndex = startIndex + itemsPerPage
     const currentItems = sortedItems.slice(startIndex, startIndex + itemsPerPage)
+    // console.log(currentItems);
     return (
         <div>
             {/* <div className=" h-2/5 w-full">
                 {currentItems.map((season,index) => (
-                    <DetailsSeasonTv key={index} season={season} season_number={season.season_number} id={id} />
+                    <SeasonDetailsTv key={index}  season_number={season.season_number} id={id} />
                 ))}
             </div> */}
             {/* pagination */}

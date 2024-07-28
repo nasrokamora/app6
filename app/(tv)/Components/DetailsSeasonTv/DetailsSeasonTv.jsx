@@ -1,106 +1,42 @@
-
-
-
+import { getDetailsSeasonTv, urlImageTv } from "@/app/libs/DataFetchingTv"
 import Image from "next/image"
-import {
-    Select,
-    SelectContent,
-    SelectGroup,
-    SelectItem,
-    SelectLabel,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/ui/select"
 
 import {
-    AlertDialog,
-    AlertDialogAction,
-    AlertDialogCancel,
-    AlertDialogContent,
-    AlertDialogDescription,
-    AlertDialogFooter,
-    AlertDialogHeader,
-    AlertDialogTitle,
-    AlertDialogTrigger,
-} from "@/components/ui/alert-dialog"
-import DetailsEpisodesTv from "../DetailsEpisodesTv/DetailsEpisodesTv"
-import { useEffect, useState } from "react"
-import { Separator } from "@/components/ui/separator"
-import { getDetailsSeasonTv } from "@/app/libs/DataFetchingTv"
+    Carousel,
+    CarouselContent,
+    CarouselItem,
+    CarouselNext,
+    CarouselPrevious,
+} from "@/components/ui/carousel"
 
 
-export default async function DetailsSeasonTv({ season, id, season_number }) {
-    const data = await getDetailsSeasonTv(id, season_number)
-    // console.log(data)
 
-    // const [data,setData] = useState()
-    
-    // useEffect(()=>{
-    //     const fetchSeasonDetails = async (id,season_number)=>{
-    //             const res = await fetch(`https://api.themoviedb.org/3/tv/${id}/season/${season_number}?api_key=${process.env.NEXT_PUBLIC_API_KEY}`,
-    //             {
-    //                 headers:{
-    //                 Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
-    //                 accept:"application/json"
-    //                 }
-    //             }
-    //         )
-    //         const results = await res.json()
-    //         setData(results)
-    //     }
-    //     fetchSeasonDetails(id,season_number)
-    // },[])
-
-    // // console.log(data)
-
+async function SeasonTv({ id, season_number }) {
+    const dataSeason = await getDetailsSeasonTv(id, season_number)
+    // console.log(dataSeason)
 
     return (
-        <div className="">
-            <div className=" flex justify-center items-center gap-2 scroll-m-20  text-3xl font-semibold tracking-tight first:mt-0">
-                <strong className="text-[#123eac]" >Season :</strong>
-                <h1 className="text-[#ecb329] underline decoration-yellow-500">{season.name}</h1>
-            </div>
-            <div className="pt-2 flex justify-center items-center text-[#52525b] itelic scroll-m-20 text-xl font-semibold tracking-tight">
-                <h3>{season.air_date ? season.air_date.replace(/-/g, '/') : "Undefined"}</h3>
-            </div>
-            <div className=" flex justify-start gap-2 md:flex-col">
-                <div className=" w-fit relative overflow-hidden md:flex md:justify-center md:items-center md:pt-2">
-                    <Image src={`https://image.tmdb.org/t/p/original${season.poster_path ? season.poster_path : "Undefined"}`}
-                        alt={season.name}
-                        width={250}
-                        height={150}
-                        className=" rounded-md"
-                        style={{ height: "auto" }}
-                        priority />
-                </div>
-                <div className="">
-                    <div className=" flex gap-1 flex-wrap justify-start items-center">
-                        <strong className="text-[#52525b] font-bold text-2xl md:text-xl">Air Date :</strong>
-                        <h1 className="scroll-m-20 text-xl font-semibold tracking-tight">
-                            {season.air_date ? season.air_date.replace(/-/g, '/') : "Undefined"}
-                        </h1>
-                    </div>
-                    <div>
-                        <h2>
-                            {season.episode_count}
-                        </h2>
-                    </div>
-                    <Separator className="my-2" />
-                    
-                    <div>
-                        {data.episodes.map((item)=>(
-                            <div>
-                                <h1>
-                                    {item.air_date}
-                                </h1>
-                                {item.overview}
-                            </div>
-                        ))}
-                    </div>
+        <div>
+            <Carousel className=" w-full max-w-sm" opts={{align:"start", loop:true}}>
+                <CarouselContent className=" -ml-1">
+                    <CarouselItem>...</CarouselItem>
 
-                    
-                </div>
-            </div>
+                </CarouselContent>
+                <CarouselPrevious />
+                <CarouselNext />
+            </Carousel>
+        </div>
+    )
+}
+
+
+export default async function DetailsSeasonTv({ id, season }) {
+
+    return (
+        <div>
+            {season.map((item) => (
+                <SeasonTv id={id} season_number={item.season_number} key={item.id} />
+            ))}
         </div>
     )
 }

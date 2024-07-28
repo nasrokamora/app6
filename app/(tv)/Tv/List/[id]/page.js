@@ -14,6 +14,7 @@ import { FaFacebook } from "react-icons/fa6";
 import Link from "next/link"
 import PaginationTv from "@/app/(tv)/Components/PaginationTv/PaginationTv";
 import PaginationImageTv from "@/app/(tv)/Components/PaginationTv/PaginationImageTv";
+import DetailsSeasonTv from "@/app/(tv)/Components/DetailsSeasonTv/DetailsSeasonTv";
 
 
 export async function generateMetadata({params}) {
@@ -198,7 +199,8 @@ export default async function DynamicTvListPage({params}) {
                     <h1>Season :</h1>
                     </div>
                 {/* <PaginationTv dataSeason={detailTv.seasons} itemsPerPage={1} id={id} /> */}
-                <PaginationImageTv perPages={3} imageTv={imageTv.backdrops} />
+                {/* <PaginationImageTv perPages={3} imageTv={imageTv.backdrops} /> */}
+                <DetailsSeasonTv id={detailTv.id} season={detailTv.seasons} />
                 </div>
         </div>
     )

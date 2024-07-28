@@ -39,8 +39,8 @@ export default  function MoviesCard({dataDiscoverMovies}) {
                     <CarouselContent className="-ml-1">
                         {dataDiscoverMovies.map((movie, index) => (
                             <CarouselItem key={index} className="pl-1 md:basis-1/3 lg:basis-1/3 xl:basis-1/4  2xl:basis1/1 basis-1/6">
-                                <Link varient="link" className="flex gap-2 items-center font-semibold   md:gap-1 lg:text-[#00f3d6]" href={`/Title/${movie.original_title.toLowerCase().replace(/ /g, "_").replace(/[^\w-]+/g, "").replace(/--+/g, "_").replace(/\./g, "")}`}> 
-                                <div className="  p-1 w-full  flex flex-col">
+                                <div className="  p-1 w-full  flex flex-col hover:scale-90 hover:duration-500 ">
+                                <Link varient="link" className="" href={`/Movies/List/${movie.id}`}> 
                                     <div className=' relative'>
                                         <Image
                                             src={`${urlImage}/${movie.poster_path}`}
@@ -58,8 +58,8 @@ export default  function MoviesCard({dataDiscoverMovies}) {
                                         </div>
 
 
-                                </div>
                                 </Link>
+                                </div>
 
                             </CarouselItem>
                         ))}

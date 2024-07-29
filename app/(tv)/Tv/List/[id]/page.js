@@ -200,7 +200,7 @@ export default async function DynamicTvListPage({params}) {
                     </div>
                 {/* <PaginationTv dataSeason={detailTv.seasons} itemsPerPage={1} id={id} /> */}
                 {/* <PaginationImageTv perPages={3} imageTv={imageTv.backdrops} /> */}
-                <DetailsSeasonTv id={detailTv.id} season={detailTv.seasons} />
+                <DetailsSeasonTv  season={detailTv.seasons} />
                 </div>
         </div>
     )

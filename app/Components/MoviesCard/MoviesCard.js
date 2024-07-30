@@ -38,7 +38,7 @@ export default  function MoviesCard({dataDiscoverMovies}) {
                 <Carousel className="w-full max-w-sm lg:max-w-2xl xl:max-w-4xl 2xl:max-w-6xl text-black" opts={{ loop: true, align: "start" }}>
                     <CarouselContent className="-ml-1">
                         {dataDiscoverMovies.map((movie, index) => (
-                            <CarouselItem key={index} className="pl-1 md:basis-1/3 lg:basis-1/3 xl:basis-1/4  2xl:basis1/1 basis-1/6">
+                            <CarouselItem key={index} className="pl-1 md:basis-1/3 lg:basis-1/3 xl:basis-1/5   basis-1/6 2xl:basis-1/7">
                                 <div className="  p-1 w-full  flex flex-col hover:scale-90 hover:duration-500 ">
                                 <Link varient="link" className="" href={`/Movies/List/${movie.id}`}> 
                                     <div className=' relative'>

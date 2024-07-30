@@ -88,7 +88,7 @@ async function handleClick(genreId){
                         <CarouselContent>
                             {genres.map((genre,index) => (
                                 <CarouselItem key={index} className=" basis-1/7 lg:basis-1/5 md:basis-1/2">
-                                    <Button variant="outline" className={` 2xl:text-2xl 2xl:font-bold ${selectedGenre === genre.id ? 'text-red-700' : ' text-zinc-500'}`}
+                                    <Button variant="outline" className={`  ${selectedGenre === genre.id ? 'text-red-700' : ' text-zinc-500'}`}
                                         style={{ color: selectedGenre === genre.id ? 'text-red-500' : ' text-zinc-800' }}
                                         onClick={() => handleClick(genre.id)}>{genre.name}</Button>
                                 </CarouselItem>
@@ -114,7 +114,7 @@ async function handleClick(genreId){
                                             src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
                                             alt={movie.title}
                                             width={180} height={180}
-                                            className="  md:w-[200px]  lg:w-[200px] lg:h-[200px] xl:w-[150px] xl:h-[150px] 2xl:w-[250px] 2xl:h-[150px]  "
+                                            className="  md:w-[200px]  lg:w-[200px] lg:h-[200px] xl:w-[150px] xl:h-[150px] 2xl:w-[250px]   "
                                             priority
                                             style={{height:"auto"}}
                                             

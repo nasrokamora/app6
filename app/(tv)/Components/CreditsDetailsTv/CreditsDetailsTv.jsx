@@ -5,7 +5,7 @@ import Image from "next/image"
 import { urlImageTv } from "@/app/libs/DataFetchingTv"
 import PersonDetailsTv from "./PersonDetailsTv/PersonDetailsTv"
 import { ScrollArea,ScrollBar  } from "@/components/ui/scroll-area"
-import PaginationTv from "../PaginationTv/PaginationTv"
+
 
 // import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 export default function CreditsDetailsTv({credits,dataImageTv}) {
@@ -41,7 +41,7 @@ export default function CreditsDetailsTv({credits,dataImageTv}) {
 
                 {/* Season */}
                 <TabsContent value="seasons" className="  pt-4  items-center rounded-md h-auto w-full ">
-                        {/* <PaginationTv dataSeason={dataSeasonTv} itemsPerPage={1} id={id}/> */}
+
                 </TabsContent>
                
                

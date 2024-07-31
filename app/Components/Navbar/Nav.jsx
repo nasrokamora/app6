@@ -15,6 +15,7 @@ import Link from "next/link"
 import { DataLink } from "@/app/libs/DataLink";
 import TrendingMovies from "@/app/(movies)/Components/TrendingMovies/TrendingMovies";
 import SearchMultiPage from "@/app/(movies)/Components/SearchMulti/SearchMultiPage";
+import LogIn from "@/app/api/(auth)/@signUp/page";
 export default function NavBar() {
   return (
     <div className=" px-6 z-10 navbar  border-b md:flex  md:items-center flex justify-between items-center">
@@ -22,6 +23,9 @@ export default function NavBar() {
         <Link href={'/'}>Magix Movies</Link>
       </div>
       <div className=" flex justify-between items-center gap-6">
+        <div>
+          <LogIn />
+        </div>
         <div className=" order-2">
 
       <Sheet className="">

@@ -2,10 +2,10 @@ import {RegisterLink, LoginLink} from "@kinde-oss/kinde-auth-nextjs/components";
 
 
 export default async function LogIn() {
-    const {getUser} = getKindeServerSession();
-    const user = await getUser();
+    // const {getUser} = getKindeServerSession();
+    // const user = await getUser();
     
-    console.log(user);
+    // console.log(user);
 
     
     return (

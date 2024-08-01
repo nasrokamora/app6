@@ -63,15 +63,16 @@ export default function DetailsSeasonTv({ season,id }) {
                                                     </div> */}
                                                     <AlertDialog>
                                                         <AlertDialogTrigger className=" p-2 border border-blue-700 rounded-lg hover:border-black hover:bg-blue-700 hover:text-black hover:duration-500 font-bold">Details</AlertDialogTrigger>
-                                                        <AlertDialogContent className=" max-w-5xl md:h-screen md:overflow-y-scroll flex justify-center flex-col items-center overflow-y-scroll h-screen">
+                                                        <AlertDialogContent className=" max-w-3xl md:h-screen md:overflow-y-scroll  overflow-y-scroll ">
                                                             <AlertDialogHeader>
                                                                 <AlertDialogTitle> {item.name} </AlertDialogTitle>
                                                                 <AlertDialogDescription>
                                                                     Episode count : {item.episode_count}
-                                                                    <SeasonTvDetails season_number={item.season_number} id={id} />
                                                                 </AlertDialogDescription>
                                                             </AlertDialogHeader>
-                                                            <div className=" relative overflow-hidden w-fit lg:order-2 ">
+                                                            <div className=" w-full flex justify-start gap-3">
+
+                                                            <div className=" relative overflow-hidden  lg:order-2 ">
                                                         <Image src={`${urlImageTv}${item.poster_path ? item.poster_path : "no-image.png"}`} 
                                                             width={250} height={200}
                                                             priority
@@ -79,6 +80,8 @@ export default function DetailsSeasonTv({ season,id }) {
                                                             style={{ hieght: 'auto' }}
                                                             alt={item.name}
                                                         />
+                                                            </div>
+                                                                    <SeasonTvDetails season_number={item.season_number} id={id} />
                                                     </div>
                                                     <p>{item.overview ? item.overview : "Undefined"}</p>
                                                             <AlertDialogFooter>

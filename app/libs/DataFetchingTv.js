@@ -165,7 +165,7 @@ export async function getTopTv(){
 
 /** end fetching  */
 
-export async function getDetailsSeasonTv(id,season_number){
+export async function getDetailsSeasonCreditsTv(id,season_number){
 
     const res = await fetch(`https://api.themoviedb.org/3/tv/${id}/season/${season_number}/credits?api_key=${process.env.NEXT_API_KEY}`,
                     {
@@ -211,3 +211,18 @@ export async function getRecommendationsTv(id) {
     }
     return res.json()
 }
+
+// Trending tv
+
+export async function getTrendingTv(){
+    const res = await fetch(`https://api.themoviedb.org/3/trending/tv/day?api_key=${process.env.NEXT_API_KEY}`,{
+        headers:{
+            Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
+            accept:"application/json"
+            }
+    })
+    if(!res.ok){
+        throw new Error('failed to fetch TrendingTv')
+    }
+    return res.json()
+}   

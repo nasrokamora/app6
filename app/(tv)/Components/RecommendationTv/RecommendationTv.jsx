@@ -3,7 +3,7 @@
 
 
 export default async function RecommendationTv({dataRecommend}) {
-console.log(dataRecommend)
+// console.log(dataRecommend)
 
 
     return(

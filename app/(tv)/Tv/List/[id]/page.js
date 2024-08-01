@@ -1,4 +1,4 @@
-import { getDetailsSeasonTv, getDetailsTv, getExternalIdTv, getImageTv, getTvCredits, urlImageTv } from "@/app/libs/DataFetchingTv"
+import { getDetailsSeasonTv, getDetailsTv, getExternalIdTv, getImageTv, getRecommendationsTv, getTvCredits, urlImageTv } from "@/app/libs/DataFetchingTv"
 import Image from "next/image"
 import { IoTimerOutline } from "react-icons/io5";
 import { PiShootingStarLight } from "react-icons/pi";
@@ -206,7 +206,8 @@ export default async function DynamicTvListPage({params}) {
 
 
                 <div>
-                    <RecommendationTv />
+                    <h1>Recommendatoions on Magix</h1>
+                    <RecommendationTv dataRecommend={dataRecommend.results} />
                 </div>
         </div>
     )

@@ -23,9 +23,9 @@ export default function NavBar() {
         <Link href={'/'}>Magix Movies</Link>
       </div>
       <div className=" flex justify-between items-center gap-6">
-        {/* <div>
+        <div>
           <LogIn />
-        </div> */}
+        </div>
         <div className=" order-2">
 
       <Sheet className="">

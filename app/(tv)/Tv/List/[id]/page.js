@@ -15,6 +15,7 @@ import Link from "next/link"
 import PaginationTv from "@/app/(tv)/Components/PaginationTv/PaginationTv";
 import PaginationImageTv from "@/app/(tv)/Components/PaginationTv/PaginationImageTv";
 import DetailsSeasonTv from "@/app/(tv)/Components/DetailsSeasonTv/DetailsSeasonTv";
+import RecommendationTv from "@/app/(tv)/Components/RecommendationTv/RecommendationTv";
 
 
 export async function generateMetadata({params}) {
@@ -35,8 +36,8 @@ export default async function DynamicTvListPage({params}) {
     const dataImage = await getImageTv(id)
     const dataCredits = await getTvCredits(id)    
     const dataExt = await getExternalIdTv(id)
-
-    const [detailTv,imageTv, creditsTv,externalData] = await Promise.all([data,dataImage,dataCredits,dataExt])
+    const dataRecommendation = await getRecommendationsTv(id)
+    const [detailTv,imageTv, creditsTv,externalData,dataRecommend] = await Promise.all([data,dataImage,dataCredits,dataExt,dataRecommendation])
     
     // console.log(detailTv);
     return(
@@ -201,6 +202,11 @@ export default async function DynamicTvListPage({params}) {
                 {/* <PaginationTv dataSeason={detailTv.seasons} itemsPerPage={1} id={id} /> */}
                 {/* <PaginationImageTv perPages={3} imageTv={imageTv.backdrops} /> */}
                 <DetailsSeasonTv  season={detailTv.seasons} id={detailTv.id} />
+                </div>
+
+
+                <div>
+                    <RecommendationTv />
                 </div>
         </div>
     )

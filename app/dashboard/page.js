@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 
 
 export default async function Dashboard() {
-    const season = await getKindeServerSession(req)
+    // const session = await getKindeServerSession(req)
     
     return (
         <div className=" w-full h-screen text-3xl flex justify-center items-center flex-col gap-3">

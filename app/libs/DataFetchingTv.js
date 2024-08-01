@@ -193,3 +193,21 @@ export async function getDetailsEpisodesTv(id,season_number,episode_number){
     )
     return res.json()
 }
+
+
+
+// recommendations
+export async function getRecommendationsTv(id) {
+    const res = await fetch(`https://api.themoviedb.org/3/tv/${id}/recommendations?api_key=${process.env.NEXT_API_KEY}`,
+        {
+            headers:{
+            Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
+            accept:"application/json"
+            }
+        }
+    )
+    if (!res.ok) {
+        throw new Error("failed to fetch data RecommendationsTv")
+    }
+    return res.json()
+}

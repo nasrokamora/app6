@@ -5,7 +5,7 @@ import { getDetailsSeasonCreditsTv } from "@/app/libs/DataFetchingTv";
 
 export default async function SeasonTvDetails({id,season_number}){
     const data = await getDetailsSeasonCreditsTv(id,season_number)
-    // console.log(data)
+    console.log(data)
     return(
         <div className=''>
 

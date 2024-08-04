@@ -1,5 +1,5 @@
 import Image from "next/image"
-
+import { Suspense } from 'react'
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 
 export default function ImageTvSeries({ urlImageTv, dataImage }) {
@@ -8,9 +8,10 @@ export default function ImageTvSeries({ urlImageTv, dataImage }) {
         <div className=" flex justify-center items-center">
 
         <ScrollArea className="max-w-4xl whitespace-nowrap rounded-md border">
+        <Suspense fallback={<p>Loading feed...</p>}>
             <div className="flex w-max space-x-4 p-4">
                 {dataImage.length > 0 ? (
-
+                    
                     dataImage.map((imgs, index) => (
                         <figure key={index} className="shrink-0">
                         <div className="overflow-hidden rounded-md">
@@ -36,6 +37,7 @@ export default function ImageTvSeries({ urlImageTv, dataImage }) {
             )
         }
                 </div>
+        </Suspense>
             <ScrollBar orientation="horizontal" />
         </ScrollArea>
         </div>

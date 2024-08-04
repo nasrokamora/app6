@@ -89,7 +89,7 @@ export default function DetailsSeasonTv({ season,id }) {
                                                             alt={item.name}
                                                         />
                                                             </div>
-                                                                    <SeasonTvDetails season_number={item.season_number} id={id} />
+                                                                    {/* <SeasonTvDetails season_number={item.season_number} id={id} /> */}
                                                     </div>
                                                     <p>{item.overview ? item.overview : "Undefined"}</p>
                                                             <AlertDialogFooter>

@@ -50,7 +50,7 @@ export default async function DynamicTvListPage({params}) {
             </div>
 
             <div className="flex justify-start gap-4 mt-8 md:flex-col">
-                <div className="  overflow-hidden relative md:flex md:justify-center md:items-center">
+                <div className="  overflow-hidden w-full md:flex md:justify-center md:items-center">
                     <Image src={`${urlImageTv}${detailTv.poster_path}`}
                     priority
                     width={400}

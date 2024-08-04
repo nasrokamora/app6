@@ -5,18 +5,19 @@ import Image from "next/image"
 import { urlImageTv } from "@/app/libs/DataFetchingTv"
 import PersonDetailsTv from "./PersonDetailsTv/PersonDetailsTv"
 import { ScrollArea,ScrollBar  } from "@/components/ui/scroll-area"
+import ImageTvSeries from "../ImageTV/ImageTvSeries"
 
 
 // import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 export default function CreditsDetailsTv({credits,dataImageTv}) {
     // const SortedDataSeason = dataSeasonTv.sort((a, b) => a.season_number - b.season_number )
-    // console.log(SortedDataSeason)
+    // console.log(dataImageTv)
     return (
         <div className=" flex justify-center items-center mt-6 ">
             <Tabs defaultValue="cast" className="w-full flex justify-center flex-col">
                 <TabsList>
                     <TabsTrigger value="cast">Cast</TabsTrigger>
-                    <TabsTrigger value="seasons">Seasons</TabsTrigger>
+                    <TabsTrigger value="image">Images</TabsTrigger>
                     <TabsTrigger value="credits">Credits</TabsTrigger>
                 </TabsList>
 
@@ -40,8 +41,8 @@ export default function CreditsDetailsTv({credits,dataImageTv}) {
                 </TabsContent>
 
                 {/* Season */}
-                <TabsContent value="seasons" className="  pt-4  items-center rounded-md h-auto w-full ">
-
+                <TabsContent value="image" className="  pt-4  items-center rounded-md h-auto w-full ">
+                        <ImageTvSeries urlImageTv={urlImageTv} dataImage={dataImageTv.backdrops} />
                 </TabsContent>
                
                

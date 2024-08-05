@@ -49,13 +49,13 @@ export default async function DynamicTvListPage({params}) {
             <div className=" border-b-2 w-48 md:border-none border-b-blue-700 flex flex-col"/>
             </div>
 
-            <div className="flex justify-start gap-4 mt-8 md:flex-col">
-                <div className="  overflow-hidden w-full md:flex md:justify-center md:items-center">
+            <div className="flex justify-start w-full gap-4 mt-8 md:flex-col">
+                <div className=" max-w-min  overflow-hidden md:flex md:justify-center md:items-center">
                     <Image src={`${urlImageTv}${detailTv.poster_path}`}
                     priority
                     width={400}
                     height={250}
-                    stryle={{height:'auto'}}
+                    stryle={{maxWidth:"100%"}}
                     className="rounded-md  md:w-[200px] lg:w-[350px] 2xl:w-[400px] ]"
                     draggable="false"
                     alt={data.name}

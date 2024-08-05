@@ -197,7 +197,7 @@ export async function getDetailsEpisodesTv(id,season_number,episode_number){
 
 
 // recommendations
-export async function getRecommendationsTv(id) {
+export async function getRecommendationsTv(id){
     const res = await fetch(`https://api.themoviedb.org/3/tv/${id}/recommendations?api_key=${process.env.NEXT_API_KEY}`,
         {
             headers:{

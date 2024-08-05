@@ -22,6 +22,8 @@ export default function ImageTvSeries({ urlImageTv, dataImage }) {
                                 width={300}
                                 height={400}
                                 style={{width:"auto"}}
+                                loading="eager"
+                                blurDataURL='data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=='
                                 />
                         </div>
                         <figcaption className="pt-2 text-xs text-muted-foreground">

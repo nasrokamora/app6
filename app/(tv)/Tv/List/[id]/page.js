@@ -18,6 +18,7 @@ import DetailsSeasonTv from "@/app/(tv)/Components/DetailsSeasonTv/DetailsSeason
 import RecommendationTv from "@/app/(tv)/Components/RecommendationTv/RecommendationTv";
 
 
+
 export async function generateMetadata({params}) {
     const {id} = params
     const data = await getDetailsTv(id)
@@ -41,7 +42,9 @@ export default async function DynamicTvListPage({params}) {
     
     // console.log(detailTv);
     return(
-        <div className=" w-full h-auto px-6 pt-6">
+        <div className=" w-full h-auto px-6 pt-6 ">
+
+
             <div className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-4xl flex justify-center  items-center flex-col">
             <h1 className=" tracking-wide md:decoration-blue-700 md:underline-offset-4 md:underline">
                 {detailTv.name}
@@ -50,7 +53,7 @@ export default async function DynamicTvListPage({params}) {
             </div>
 
             <div className="flex justify-start w-full gap-4 mt-8 md:flex-col">
-                <div className=" h-fit w-[60%]   overflow-hidden md:flex md:justify-center md:items-center">
+                <div className=" h-fit w-[40%]   overflow-hidden md:flex md:justify-center md:items-center">
                     <Image src={`${urlImageTv}${detailTv.poster_path}`}
                     priority
                     width={400}
@@ -205,8 +208,8 @@ export default async function DynamicTvListPage({params}) {
                 </div>
 
 
-                <div>
-                    <h1>Recommendatoions on Magix</h1>
+                <div className="">
+                    <h1 className="scroll-m-20 text-2xl font-extrabold tracking-tight lg:text-5xl mt-4">Recommendation on Magix</h1>
                     <RecommendationTv dataRecommend={dataRecommend.results} />
                 </div>
         </div>

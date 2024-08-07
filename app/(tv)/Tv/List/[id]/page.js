@@ -208,7 +208,7 @@ export default async function DynamicTvListPage({params}) {
                 </div>
 
 
-                <div className="">
+                <div className="mt-4">
                     <h1 className="scroll-m-20 text-2xl font-extrabold tracking-tight lg:text-5xl mt-4">Recommendation on Magix</h1>
                     <RecommendationTv dataRecommend={dataRecommend.results} />
                 </div>

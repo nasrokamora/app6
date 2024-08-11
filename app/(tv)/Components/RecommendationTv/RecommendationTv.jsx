@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/carousel"
 import Image from "next/image"
 import { Suspense } from "react"
-
+import Link from "next/link"
 
 
 export default async function RecommendationTv({dataRecommend}) {
@@ -29,7 +29,8 @@ export default async function RecommendationTv({dataRecommend}) {
       <CarouselContent className="-mt-1 ">
         {dataRecommend.map((data, index) => (
           <CarouselItem key={index} className="pt-1 md:basis-1/2 basis-1/6 lg:basis-1/5">
-            <div className="p-1">
+            <Link href={`/Tv/List/${data.id}`}>
+            <div className="p-1 hover:scale-90 hover:duration-500">
                 <div className=" ">
                     <div className=" overflow-hidden relative">
                         <Image 
@@ -44,6 +45,7 @@ export default async function RecommendationTv({dataRecommend}) {
                     </div>
                 </div>
             </div>
+        </Link>
           </CarouselItem>
         ))}
       </CarouselContent>

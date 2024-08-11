@@ -16,6 +16,7 @@ import PaginationTv from "@/app/(tv)/Components/PaginationTv/PaginationTv";
 import PaginationImageTv from "@/app/(tv)/Components/PaginationTv/PaginationImageTv";
 import DetailsSeasonTv from "@/app/(tv)/Components/DetailsSeasonTv/DetailsSeasonTv";
 import RecommendationTv from "@/app/(tv)/Components/RecommendationTv/RecommendationTv";
+import ToggleButton from "@/app/(movies)/Components/ToggleButton/ToggleButton";
 
 
 
@@ -157,6 +158,8 @@ export default async function DynamicTvListPage({params}) {
                 </div>
 
                 <Separator className="mt-4" />
+
+                {/* external data link social media */}
                 <div className=" flex justify-center gap-2 items-center pt-4 flex-wrap">
                     <strong className=" font-bold text-2xl text-zinc-600 md:text-xl">Social Media Information : </strong>
                     <ul className=" flex justify-center items-center gap-6">
@@ -183,6 +186,7 @@ export default async function DynamicTvListPage({params}) {
                     ))}
                     
                     </div>
+                    <ToggleButton />
                     <Separator className="mt-4" />
                 </div>
 
@@ -207,7 +211,7 @@ export default async function DynamicTvListPage({params}) {
                 <DetailsSeasonTv  season={detailTv.seasons} id={detailTv.id} />
                 </div>
 
-
+                {/* recommend section */}
                 <div className="mt-4">
                     <h1 className="scroll-m-20 text-2xl font-extrabold tracking-tight lg:text-5xl mt-4">Recommendation on Magix</h1>
                     <RecommendationTv dataRecommend={dataRecommend.results} />

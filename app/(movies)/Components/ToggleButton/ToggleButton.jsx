@@ -1,14 +1,14 @@
 "use client"
 
 import { useEffect, useState } from "react";
-
+import { useRouter } from 'next/navigation'
 
 
 
 export default function ToggleButton(){
 
     const [isVisible, setIsVisible] = useState(false);
-
+    const router = useRouter();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -30,9 +30,9 @@ export default function ToggleButton(){
 
 
     return(
-        <div>
+        <div className=" relative">
             {isVisible && (
-                <button className="fixed bottom-10 right-10 bg-red-500 text-white font-bold py-2 px-4 rounded-full shadow-md hover:bg-red-600">Toggle Button</button>
+                <button className="fixed bottom-10 right-10 bg-red-500 text-white font-bold py-2 px-4 rounded-full shadow-md hover:bg-red-600" onClick={() => router.back()}>back</button>
             )
             }
         </div>

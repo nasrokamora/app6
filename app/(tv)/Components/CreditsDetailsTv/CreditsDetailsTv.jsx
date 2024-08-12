@@ -6,10 +6,11 @@ import { urlImageTv } from "@/app/libs/DataFetchingTv"
 import PersonDetailsTv from "./PersonDetailsTv/PersonDetailsTv"
 import { ScrollArea,ScrollBar  } from "@/components/ui/scroll-area"
 import ImageTvSeries from "../ImageTV/ImageTvSeries"
+import DetailsSeasonTv from "../DetailsSeasonTv/DetailsSeasonTv"
 
 
 // import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
-export default function CreditsDetailsTv({credits,dataImageTv}) {
+export default function CreditsDetailsTv({credits,dataImageTv,detailTv}) {
     // const SortedDataSeason = dataSeasonTv.sort((a, b) => a.season_number - b.season_number )
     // console.log(dataImageTv)
     return (
@@ -18,7 +19,7 @@ export default function CreditsDetailsTv({credits,dataImageTv}) {
                 <TabsList>
                     <TabsTrigger value="cast">Cast</TabsTrigger>
                     <TabsTrigger value="image">Images</TabsTrigger>
-                    <TabsTrigger value="credits">Credits</TabsTrigger>
+                    <TabsTrigger value="season">Season</TabsTrigger>
                 </TabsList>
 
                 {/* Cast */}
@@ -42,20 +43,23 @@ export default function CreditsDetailsTv({credits,dataImageTv}) {
 
                 {/* Season */}
                 <TabsContent value="image" className="  pt-4  items-center rounded-md h-auto w-full ">
+
                         <ImageTvSeries 
                         urlImageTv={urlImageTv} 
                         dataImage={dataImageTv.backdrops} 
                         />
+
                 </TabsContent>
                
-               
-               
-               
-               
-               
-               
-               
-                <TabsContent value="credits">Change your password here.</TabsContent>
+
+                <TabsContent value="season" className=" pt-4   rounded-md h-auto w-full">
+{/* 
+                <DetailsSeasonTv  
+                season={detailTv.seasons} 
+                id={detailTv.id} 
+                /> */}
+
+                </TabsContent>
 
             </Tabs>
         </div>

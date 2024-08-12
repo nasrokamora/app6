@@ -226,3 +226,16 @@ export async function getTrendingTv(){
     }
     return res.json()
 }   
+// Latest Tv
+export async function getLatestTv(){
+    const response = await fetch(`https://api.themoviedb.org/3/tv/latest?api_key=${process.env.NEXT_API_KEY}`,{
+        headers:{
+            Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
+            accept:"application/json"
+            }
+    })
+    if(!response.ok){
+        throw new Error('failed to fetch LatestTv')
+    }
+    return response.json()
+}

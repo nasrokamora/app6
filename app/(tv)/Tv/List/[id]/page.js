@@ -1,4 +1,4 @@
-import { getDetailsSeasonTv, getDetailsTv, getExternalIdTv, getImageTv, getRecommendationsTv, getTvCredits, urlImageTv } from "@/app/libs/DataFetchingTv"
+import { getDetailsSeasonTv, getDetailsTv, getExternalIdTv, getImageTv, getLatestTv, getRecommendationsTv, getTrendingTv, getTvCredits, urlImageTv } from "@/app/libs/DataFetchingTv"
 import Image from "next/image"
 import { IoTimerOutline } from "react-icons/io5";
 import { PiShootingStarLight } from "react-icons/pi";
@@ -17,6 +17,8 @@ import PaginationImageTv from "@/app/(tv)/Components/PaginationTv/PaginationImag
 import DetailsSeasonTv from "@/app/(tv)/Components/DetailsSeasonTv/DetailsSeasonTv";
 import RecommendationTv from "@/app/(tv)/Components/RecommendationTv/RecommendationTv";
 import ToggleButton from "@/app/(movies)/Components/ToggleButton/ToggleButton";
+import LatestTv from "@/app/(tv)/Components/LatestTv/LatestTv";
+import TrendingTv from "@/app/(tv)/Components/TrendingTv/TrendingTv";
 
 
 
@@ -39,9 +41,10 @@ export default async function DynamicTvListPage({params}) {
     const dataCredits = await getTvCredits(id)    
     const dataExt = await getExternalIdTv(id)
     const dataRecommendation = await getRecommendationsTv(id)
-    const [detailTv,imageTv, creditsTv,externalData,dataRecommend] = await Promise.all([data,dataImage,dataCredits,dataExt,dataRecommendation])
+    const dataTrend = await getTrendingTv()
+    const [detailTv,imageTv, creditsTv,externalData,dataRecommend,dataTrending] = await Promise.all([data,dataImage,dataCredits,dataExt,dataRecommendation,dataTrend])
     
-    // console.log(detailTv);
+    // console.log(dataTrending);
     return(
         <div className=" w-full h-auto px-6 pt-6 ">
 
@@ -197,6 +200,7 @@ export default async function DynamicTvListPage({params}) {
                     <CreditsDetailsTv 
                     credits={creditsTv.cast} 
                     dataImageTv={imageTv} 
+                    detailTv={detailTv}
                     />
                 </div>
                 <Separator className="mt-4" />
@@ -204,17 +208,24 @@ export default async function DynamicTvListPage({params}) {
                 <div>
                     <div className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl mt-4">
 
-                    <h1>Season :</h1>
+                    {/* <h1>Season :</h1> */}
                     </div>
                 {/* <PaginationTv dataSeason={detailTv.seasons} itemsPerPage={1} id={id} /> */}
                 {/* <PaginationImageTv perPages={3} imageTv={imageTv.backdrops} /> */}
-                <DetailsSeasonTv  season={detailTv.seasons} id={detailTv.id} />
+                {/* <DetailsSeasonTv  season={detailTv.seasons} id={detailTv.id} /> */}
                 </div>
 
                 {/* recommend section */}
                 <div className="mt-4">
-                    <h1 className="scroll-m-20 text-2xl font-extrabold tracking-tight lg:text-5xl mt-4">Recommendation on Magix</h1>
+                    <h1 className="scroll-m-20 text-2xl font-extrabold tracking-tight lg:text-5xl mt-4 ">Recommended for You</h1>
                     <RecommendationTv dataRecommend={dataRecommend.results} />
+                </div>
+                    
+                <Separator className="mt-4" />
+                {/* trending */}
+                <div className="mt-8">
+                    <h1 className='scroll-m-20 text-2xl font-extrabold tracking-tight lg:text-5xl '>Trending Now</h1>
+                    <TrendingTv dataTrending={dataTrending.results} />
                 </div>
         </div>
     )

@@ -85,7 +85,7 @@ export default function DetailsSeasonTv({ season,id }) {
                                                             width={250} height={200}
                                                             priority
                                                             className=" rounded-md md:w-[250px] md:h-[350px]"
-                                                            style={{ hieght: 'auto' }}
+                                                            style={{ width: 'auto' }}
                                                             alt={item.name}
                                                         />
                                                             </div>

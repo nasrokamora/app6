@@ -26,7 +26,7 @@ export async function PersonDetails({person_id}) {
                 <AlertDialog >
 
   <AlertDialogTrigger className=" border border-zinc-600 px-3 bg-black text-white font-semibold hover:duration-500 hover:bg-zinc-700 rounded-md" variant="outline">Biography</AlertDialogTrigger>
-  <AlertDialogContent className=" max-w-2xl md:h-screen xl:max-w-6xl md:overflow-y-scroll md:touch-pan-y lg:overflow-y-scroll lg:touch-pan-y">
+  <AlertDialogContent className=" max-w-2xl md:h-screen xl:max-w-6xl md:overflow-y-scroll md:touch-pan-y lg:overflow-y-scroll lg:touch-pan-y overflow-y-scroll">
     <AlertDialogHeader >
       <AlertDialogTitle>{data.name}</AlertDialogTitle>
       <AlertDialogDescription>

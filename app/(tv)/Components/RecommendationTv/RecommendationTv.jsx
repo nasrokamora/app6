@@ -24,11 +24,11 @@ export default function RecommendationTv({dataRecommend}) {
       opts={{
         align: "start",
       }}
-      className="w-full max-w-5xl "
+      className="w-full max-w-5xl md:max-w-lg 2xl:max-w-6xl"
     >
       <CarouselContent className="-mt-1 ">
         {dataRecommend.map((data, index) => (
-          <CarouselItem key={index} className="pt-1 md:basis-1/2 basis-1/6 lg:basis-1/5">
+          <CarouselItem key={index} className="md:basis-1/2 basis-1/6 lg:basis-1/5">
             <Link href={`/Tv/List/${data.id}`}>
             <div className="p-1 hover:scale-90 hover:duration-500">
                 <div className=" ">

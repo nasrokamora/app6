@@ -92,7 +92,8 @@ export async function ReviewsList({ dataReview }) {
             <ScrollArea className="  w-full  whitespace-nowrap  lg:w-3/4 xl:w-4/5">
             <div className="flex w-max space-x-4 p-4">
 
-            {dataReview.results.map((review) => (
+            {dataReview.results &&
+            dataReview.results.map((review) => (
                 <div key={review.author}>
                     <div className="  border p-4 rounded-md">
                         <div className="flex items-center justify-start gap-2">
@@ -112,7 +113,10 @@ export async function ReviewsList({ dataReview }) {
                         </div>
                     </div>
                 </div>
-            ))}
+            ))
+
+    }
+
             </div>
             {/* <AlertDialog>
       <AlertDialogTrigger asChild>

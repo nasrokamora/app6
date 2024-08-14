@@ -22,7 +22,12 @@ import TvSeries from "./(tv)/Components/DiscoverTv/TvSeries"
 import TvGenres from "./(tv)/Components/TvGenres/TvGenres"
 import { getDiscoverMovies, getPopularMovies } from "./libs/DataFetching"
 import { getDiscoverTv } from "./libs/DataFetchingTv"
-
+import {LogoutLink} from "@kinde-oss/kinde-auth-nextjs/components";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@/components/ui/avatar"
 
 
 
@@ -30,6 +35,10 @@ import { getDiscoverTv } from "./libs/DataFetchingTv"
 
 
 export default async function Home() {
+
+
+
+
   const data = await getDiscoverMovies()
   const popularData = await getPopularMovies()
   const tvData = await getDiscoverTv()

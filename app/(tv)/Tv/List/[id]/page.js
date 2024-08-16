@@ -1,4 +1,4 @@
-import { getDetailsSeasonTv, getDetailsTv, getExternalIdTv, getImageTv, getLatestTv, getRecommendationsTv, getTrendingTv, getTvCredits, urlImageTv } from "@/app/libs/DataFetchingTv"
+import { getDetailsSeasonTv, getDetailsTv, getExternalIdTv, getImageTv, getLatestTv, getRecommendationsTv, getTrendingTv, getTvCredits, getVideosTv, urlImageTv } from "@/app/libs/DataFetchingTv"
 import Image from "next/image"
 import { IoTimerOutline } from "react-icons/io5";
 import { PiShootingStarLight } from "react-icons/pi";
@@ -19,6 +19,7 @@ import RecommendationTv from "@/app/(tv)/Components/RecommendationTv/Recommendat
 import ToggleButton from "@/app/(movies)/Components/ToggleButton/ToggleButton";
 import LatestTv from "@/app/(tv)/Components/LatestTv/LatestTv";
 import TrendingTv from "@/app/(tv)/Components/TrendingTv/TrendingTv";
+import TrailerTv from "@/app/(tv)/Components/TrailerTV/TrailerTv";
 
 
 
@@ -42,9 +43,10 @@ export default async function DynamicTvListPage({params}) {
     const dataExt = await getExternalIdTv(id)
     const dataRecommendation = await getRecommendationsTv(id)
     const dataTrend = await getTrendingTv()
-    const [detailTv,imageTv, creditsTv,externalData,dataRecommend,dataTrending] = await Promise.all([data,dataImage,dataCredits,dataExt,dataRecommendation,dataTrend])
+    const videosTv = await getVideosTv(id)
+    const [detailTv,imageTv, creditsTv,externalData,dataRecommend,dataTrending,dataVideosTv] = await Promise.all([data,dataImage,dataCredits,dataExt,dataRecommendation,dataTrend,videosTv])
     
-    // console.log(dataTrending);
+    // console.log(videosTv);
     return(
         <div className=" w-full h-auto px-6 pt-6 ">
 
@@ -57,7 +59,9 @@ export default async function DynamicTvListPage({params}) {
             </div>
 
             <div className="flex justify-start w-full gap-4 mt-8 md:flex-col">
-                <div className=" h-fit w-[40%]   overflow-hidden md:flex md:justify-center md:items-center">
+                
+
+                <div className=" h-fit w-[40%] md:w-full  overflow-hidden md:flex md:justify-center md:items-center">
                     <Image src={`${urlImageTv}${detailTv.poster_path}`}
                     priority
                     width={400}
@@ -67,7 +71,9 @@ export default async function DynamicTvListPage({params}) {
                     draggable="false"
                     alt={data.name}
                     />
-                </div>
+                    </div>
+                    
+
 
                 <div className=" flex justify-start items-start gap-1 flex-col">
 
@@ -166,14 +172,25 @@ export default async function DynamicTvListPage({params}) {
                 <div className=" flex justify-center gap-2 items-center pt-4 flex-wrap">
                     <strong className=" font-bold text-2xl text-zinc-600 md:text-xl">Social Media Information : </strong>
                     <ul className=" flex justify-center items-center gap-6">
-                        <li>
-                            <Link href={`https://www.facebook.com/${externalData.facebook_id}`} rel="noopener noreferrer" target='_blank'><FaFacebook size={34}/></Link>
+                        <li className="">
+                            <Link 
+                            href={`https://www.facebook.com/${externalData.facebook_id}`} 
+                            rel="noopener noreferrer" 
+                            target='_blank'
+                            className=''
+                            >
+                            <FaFacebook size={34} className="  hover:bg-blue-600 hover:duration-500 hover:rounded-full hover:bg-clip-content hover:scale-105"/>
+                            </Link>
                         </li>
                         <li>
-                        <Link href={`https://www.twitter.com/${externalData.twitter_id}`} rel="noopener noreferrer" target='_blank'><BsTwitterX size={34}/></Link>
+                        <Link href={`https://www.twitter.com/${externalData.twitter_id}`} rel="noopener noreferrer" target='_blank'>
+                        <BsTwitterX size={34} className="hover:bg-black hover:duration-500  hover:bg-clip-content hover:scale-105"/>
+                        </Link>
                         </li>
                         <li>
-                            <Link href={`https://www.instagram.com/${externalData.instagram_id}`} rel="noopener noreferrer" target='_blank'><SlSocialInstagram size={34}/></Link>
+                            <Link href={`https://www.instagram.com/${externalData.instagram_id}`} rel="noopener noreferrer" target='_blank'>
+                            <SlSocialInstagram size={34} className="hover:bg-orange-600 hover:duration-500 hover:rounded-xl hover:bg-clip-content hover:scale-105"/>
+                            </Link>
                         </li>
                     </ul>
                 </div>
@@ -189,13 +206,20 @@ export default async function DynamicTvListPage({params}) {
                     ))}
                     
                     </div>
+                    <Separator className="mt-4" />
+
+                    {/* Trailer */}
+                    <div className=" mt-6">
+                    <TrailerTv dataVideos={dataVideosTv.results.slice(0,1)}/>
+                    </div>
                     <ToggleButton />
                     <Separator className="mt-4" />
+
                 </div>
 
 
-                {/* Credits  and cast and crew  and people */}
             </div>
+                {/* Credits  and cast and crew  and people */}
                 <div>
                     <CreditsDetailsTv 
                     credits={creditsTv.cast} 

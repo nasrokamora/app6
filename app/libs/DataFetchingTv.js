@@ -239,3 +239,19 @@ export async function getLatestTv(){
     }
     return response.json()
 }
+
+
+// videos tv
+
+export async function getVideosTv(id) {
+    const response = await fetch(`https://api.themoviedb.org/3/tv/${id}/videos?api_key=${process.env.NEXT_API_KEY}`, {
+        headers: {
+            Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
+            accept: "application/json"
+        }
+    })
+    if (!response.ok) {
+        throw new Error("failed to fetch data VideosTv")
+    }
+    return response.json()
+}

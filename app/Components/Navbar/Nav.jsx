@@ -18,17 +18,26 @@ import SearchMultiPage from "@/app/(movies)/Components/SearchMulti/SearchMultiPa
 import LogIn from "@/app/api/(auth)/@signUp/page";
 import { getKindeServerSession, LogoutLink } from "@kinde-oss/kinde-auth-nextjs/server";
 import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from "@/components/ui/hover-card"
+  LogOut,
+} from "lucide-react"
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
 } from "@/components/ui/avatar"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+// import UserAvatar from "../HoverAvatarUser/UserAuth";
+
+
 export default async function NavBar() {
-  const {isAuthenticated, getUser} = getKindeServerSession();
+  const {isAuthenticated, getUser} =  getKindeServerSession();
   const user = await getUser()
   
   return (
@@ -37,43 +46,81 @@ export default async function NavBar() {
         <Link href={'/'}>Magix Movies</Link>
       </div>
       <div className=" flex justify-between items-center gap-6">
+      {!(await isAuthenticated()) ? (
+        <LogIn/>
+      ):(
+        
+    <DropdownMenu>
+      <DropdownMenuTrigger>My Account</DropdownMenuTrigger>
+      <DropdownMenuContent className="w-auto">
+        {user?.picture && (
+          <div>
 
-        {!(await isAuthenticated()) ? (
+          <DropdownMenuLabel className=" flex justify-between items-center gap-4">
+            
+            <Avatar>
+              <AvatarImage src={user?.picture} />
+              <AvatarFallback>
+                {user?.given_name.slice(0, 3)}
+              </AvatarFallback>
+            </Avatar>
+            {user?.given_name}
+            {user?.family_name}
+          </DropdownMenuLabel>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem>
+          <LogoutLink className="text-subtle p-1 flex">
+          <LogOut className="mr-2 h-4 w-4" />
+            LOGOUT
+            </LogoutLink>
+
+
+          </DropdownMenuItem>
+          </div>  
+        )}
+
+      </DropdownMenuContent>
+    </DropdownMenu>
+      )}
+        {/* {!(await isAuthenticated()) ? (
           <>
         <div>
           <LogIn />
         </div>
           </>
         ):(
-          <HoverCard className=" w-full h-fit">
+          <DropdownMenu className=" w-full h-fit">
+              <DropdownMenuContent className="w-80 h-fit">
+              <DropdownMenuLabel>
+                My Account
+              </DropdownMenuLabel>
+              <DropdownMenuSeparator />
           {user?.picture ? (
-            <HoverCardTrigger asChild>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline">
+                My Account
+              </Button>
 
-      <Button variant="link">
-    <Avatar>
+              <Avatar>
 
     <AvatarImage src={user?.picture} alt="user profile avatar" />
     <AvatarFallback> {user?.given_name[0].slice(0,3)} </AvatarFallback>
   </Avatar>
-      </Button>
-            </HoverCardTrigger>
+            </DropdownMenuTrigger>
             
             ):(
               // <div className="">
               //   {user?.given_name[0]}
               //   {user?.family_name[0]}
               // </div>
-              <HoverCardContent className="w-80 h-fit">
-              
-                {user?.given_name} {user?.family_name}
+                {user?.given_name}-{user?.family_name}
              
 
               <LogoutLink className="text-subtle p-1 border">Log out</LogoutLink>
-            </HoverCardContent>
             )}
-            </HoverCard>
-        )}
- <LogoutLink className="text-subtle p-1 border">Log out</LogoutLink>
+            </DropdownMenuContent>
+            </DropdownMenu>
+        )} */}
         <div className=" order-2">
 
       <Sheet className="">

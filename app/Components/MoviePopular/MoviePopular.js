@@ -35,7 +35,7 @@ export default  function MoviePopular({dataPopular}) {
                 {dataPopular.map((movie,index) => (
 
                     <CarouselItem key={index} className="  basis-1/5 lg:basis-1/4 md:basis-1/2 2xl:basis-1/7">
-                        <Link className=" hover:scale-105" href={`/Movies/${movie.original_title.toLowerCase().replace(/ /g, "_").replace(/[^\w-]+/g, "").replace(/--+/g, "_").replace(/\./g, "")}`}>
+                        <Link className=" hover:scale-105" href={`/Movies/List/${movie.id}`}>
 
                             <Image
                                 src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}

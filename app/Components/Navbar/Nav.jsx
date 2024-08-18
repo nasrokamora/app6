@@ -33,7 +33,10 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-// import UserAvatar from "../HoverAvatarUser/UserAuth";
+import { VscAccount } from "react-icons/vsc";
+import LogoIcon from '../../../public/icon/Icon.png'
+import Image from "next/image"
+
 
 
 export default async function NavBar() {
@@ -41,17 +44,28 @@ export default async function NavBar() {
   const user = await getUser()
   
   return (
-    <div className=" px-6  navbar  border-b md:flex  md:items-center flex justify-between items-center">
-      <div className=" scroll-m-20 text-2xl font-extrabold underline-offset-2 underline decoration-red-900 bg-clip-text text-transparent bg-gradient-to-tl from-blue-600 via-white-[30%] to-red-500 tracking-tight">
-        <Link href={'/'}>Magix Movies</Link>
-      </div>
+    <div className=" px-6  navbar border-b   md:flex  md:items-center flex justify-between items-center">
+
+
+            <Link href={'/'} className=" flex justify-center items-center ">
+          <Image 
+          src={LogoIcon}
+          width={54}
+          hieght={32}
+          alt="Magix_Movies_Logo"
+          className=""
+          placeholder="blur"
+          />
+            <h1 className="scroll-m-20 text-2xl font-extrabold underline-offset-2 underline decoration-red-900 bg-clip-text text-transparent bg-gradient-to-tl from-blue-600 via-white-[30%] to-red-500 tracking-tight">Magix Movies</h1>
+      </Link>
+
       <div className=" flex justify-between items-center gap-6">
       {!(await isAuthenticated()) ? (
         <LogIn/>
       ):(
         
-    <DropdownMenu>
-      <DropdownMenuTrigger>My Account</DropdownMenuTrigger>
+    <DropdownMenu className=" ">
+      <DropdownMenuTrigger className=" rounded-full  border"><VscAccount size={23} className="" /></DropdownMenuTrigger>
       <DropdownMenuContent className="w-auto">
         {user?.picture && (
           <div>

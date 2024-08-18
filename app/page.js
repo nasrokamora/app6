@@ -1,33 +1,16 @@
-// import { getData, getMoviesId,urlImage } from "./libs/DataFetching"
-// import { Card, CardContent } from "@/components/ui/card"
-// import {
-//   Carousel,
-//   CarouselContent,
-//   CarouselItem,
-//   CarouselNext,
-//   CarouselPrevious,
-// } from "@/components/ui/carousel"
-// import Image from "next/image"
-// import Link from "next/link"
+import Image from "next/image"
+
 import MoviesCard from "./Components/MoviesCard/MoviesCard"
 
 import MoviePopular from "./Components/MoviePopular/MoviePopular"
-import { SlScreenDesktop } from "react-icons/sl"
-
-import DiscoverTv from "./(tv)/Components/DiscoverTv/DiscoverTv"
-// import NavigateBars from "./(tv)/Components/NavigateBars/NavigateBars"
-// import { Suspense } from "react"
 import GenresList from "./Components/BtnList/GenresList"
 import TvSeries from "./(tv)/Components/DiscoverTv/TvSeries"
 import TvGenres from "./(tv)/Components/TvGenres/TvGenres"
 import { getDiscoverMovies, getPopularMovies } from "./libs/DataFetching"
 import { getDiscoverTv } from "./libs/DataFetchingTv"
-import {LogoutLink} from "@kinde-oss/kinde-auth-nextjs/components";
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "@/components/ui/avatar"
+
+import Icon from '@/public/icon/Icon.png'
+import AnimateScroll from "./Animations/AnimationNumber/AnimateScroll/AnimationScroll"
 
 
 
@@ -47,9 +30,12 @@ export default async function Home() {
   
   return (
     <main className="w-full h-auto text-white ">
-            <div className="scroll-m-20 text-4xl  tracking-tight lg:text-5xl ml-6  title underline decoration-yellow-600 title   bg-gradient-to-br from-[white] via-[#18ffe0] to-[black] bg-clip-text text-transparent font-extrabold md:flex md:justify-center md:items-center   mt-7 md:mt-3">
-        <h1>Discover on Magix</h1>
-      </div>
+        <AnimateScroll />
+  
+          <div className="scroll-m-20 text-4xl  tracking-tight lg:text-5xl ml-6  title underline decoration-yellow-600 title   bg-gradient-to-br from-[white] via-[#18ffe0] to-[black] bg-clip-text text-transparent font-extrabold md:flex md:justify-center md:items-center   mt-7 md:mt-3">
+      <h1>Discover on Magix</h1>
+    </div>
+
       <section className="   mt-7 flex justify-center w-full ">
         <MoviesCard dataDiscoverMovies={dataDiscoverMovies.results}/>
       </section>

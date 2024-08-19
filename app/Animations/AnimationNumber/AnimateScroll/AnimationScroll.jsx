@@ -4,8 +4,8 @@
 
 import { motion, useScroll, useSpring } from "framer-motion"
 
-export default function AnimateScroll({ children }) {
-  const { scrollYProgress } = useScroll();
+export default function AnimateScroll() {
+  const {scrollYProgress  } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
@@ -13,6 +13,6 @@ export default function AnimateScroll({ children }) {
   })
   
   return (
-    <motion.div style={{scaleX }} className='fixed top-0 left-0 right-0 h-3 bg-purple-500 will-change-transform' />  
+    <motion.div style={{scaleX}} className='fixed top-0 left-0  right-0 origin-left h-1 bg-yellow-500 ' />  
   )
 }

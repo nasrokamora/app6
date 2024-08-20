@@ -70,6 +70,7 @@ export default async function DynamicTvListPage({params}) {
                     className="rounded-md  md:w-[200px] lg:w-[350px] 2xl:w-[400px] ]"
                     draggable="false"
                     alt={data.name}
+                    loading="eager"
                     />
                     </div>
                     
@@ -197,19 +198,25 @@ export default async function DynamicTvListPage({params}) {
                 {/* created by */}
                 <div className=" mt-6 flex justify-start gap-2 items-center flex-wrap">
                     <strong className=" font-bold text-2xl text-zinc-600 md:text-xl">Created by : </strong>
-                {detailTv.created_by.map((creator) => (
+                {detailTv.created_by && detailTv.created_by.length > 0 ? (
+                detailTv.created_by.map((creator) => (
                     <div key={creator.id} className=" badge badge-outline border-red-700 shadow-sm shadow-red-700">
                         
                         <h1 className="  scroll-m-20   font-semibold text-error">{creator.name}</h1>
                         
                     </div>
-                    ))}
+                    ))
+                ):(
+                    <h1 className="font-bold text-2xl text-error rounded-xl  md:text-xl">unknown !</h1>
+                )
+}
                     
                     </div>
                     <Separator className="mt-4" />
 
                     {/* Trailer */}
-                    <div className=" mt-6">
+                    <div className=" mt-6 flex justify-center items-center w-full ">
+                        
                     <TrailerTv dataVideos={dataVideosTv.results.slice(0,1)}/>
                     </div>
                     <ToggleButton />

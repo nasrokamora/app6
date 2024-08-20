@@ -27,7 +27,8 @@ export default function RecommendationTv({dataRecommend}) {
       className="w-full max-w-5xl md:max-w-lg 2xl:max-w-6xl"
     >
       <CarouselContent className="-mt-1 ">
-        {dataRecommend.map((data, index) => (
+        {dataRecommend && dataRecommend.length > 0 ? (
+        dataRecommend.map((data, index) => (
           <CarouselItem key={index} className="md:basis-1/2 basis-1/6 lg:basis-1/5">
             <Link href={`/Tv/List/${data.id}`}>
             <div className="p-1 hover:scale-90 hover:duration-500">
@@ -41,14 +42,24 @@ export default function RecommendationTv({dataRecommend}) {
                         style={{width:"auto"}}
                         className="rounded-md "
                         loading="eager"
+                        priority
                         />
                     </div>
                 </div>
             </div>
         </Link>
           </CarouselItem>
-        ))}
-      </CarouselContent>
+        ))
+      ):(
+        <div className="flex justify-items-center w-full">
+
+        <h1 className=" text-xl text-error font-bold">
+            Unknown !
+          </h1>
+        </div>
+        )
+}
+        </CarouselContent>
       <div className=" absolute top-[-2rem] left-[93%] md:left-[85%] ">
       <CarouselPrevious />
       <CarouselNext />

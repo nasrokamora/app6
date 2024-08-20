@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/alert-dialog"
 import { Button } from "@/components/ui/button"
 import VideosTrailerPalyer from "./VideoPlayer/VideosTrailerPlayer"
+import { YouTubeEmbed } from '@next/third-parties/google'
 
 
 
@@ -23,8 +24,9 @@ export default async function TrailerTv({ dataVideos }) {
                 <AlertDialogTrigger asChild>
                     <Button variant="outline" className="cursor-pointer">Trailer</Button>
                 </AlertDialogTrigger>
-                <AlertDialogContent className="max-w-4xl">
-                    {dataVideos.map((item) => (
+                <AlertDialogContent className=" lg:max-w-xl md:h-screen md:max-w-3xl md:flex md:justify-center md:items-center md:gap-2">
+                    {dataVideos && dataVideos.length > 0 ?(
+                    dataVideos.map((item) => (
                         <div key={item.id}>
                             <AlertDialogHeader>
                                 <AlertDialogTitle>
@@ -34,28 +36,27 @@ export default async function TrailerTv({ dataVideos }) {
                                     {item.published_at}
                                 </AlertDialogDescription>
                             </AlertDialogHeader>
-                            <VideosTrailerPalyer item={item} />
-                            {/* <ReactPlayer 
-                            url={`https://www.youtube.com/watch?v=${item.key}`} 
-                            width="100%" 
-                            height="300px" 
-                            controls={true} 
-                            /> */}
-                         
-                            {/* <iframe 
-                                src={`https://www.youtube.com/embed/${item.key}`}
-                                width="100%"
-                                height="300px"
-                                cookie="false"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            <YouTubeEmbed
+                                videoId={item.key}
+                                height={300}
+                                params='controls=1'
+                                style=""
+                                className=" object-fill rounded-md"
+                            />
                             
-                            /> */}
                             <AlertDialogFooter>
                                 <AlertDialogCancel>Cancel</AlertDialogCancel>
 
                             </AlertDialogFooter>
                         </div>
-                    ))}
+                    ))
+                    ):(
+                        <div className="  flex justify-center items-center flex-col">
+                            <h1 className="text-xl font-bold text-error">Undefined</h1>
+                            <AlertDialogCancel>Cancel</AlertDialogCancel>
+                        </div>
+                    )
+}
 
                 </AlertDialogContent>
             </AlertDialog>

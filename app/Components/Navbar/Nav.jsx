@@ -96,45 +96,7 @@ export default async function NavBar() {
       </DropdownMenuContent>
     </DropdownMenu>
       )}
-        {/* {!(await isAuthenticated()) ? (
-          <>
-        <div>
-          <LogIn />
-        </div>
-          </>
-        ):(
-          <DropdownMenu className=" w-full h-fit">
-              <DropdownMenuContent className="w-80 h-fit">
-              <DropdownMenuLabel>
-                My Account
-              </DropdownMenuLabel>
-              <DropdownMenuSeparator />
-          {user?.picture ? (
-            <DropdownMenuTrigger asChild>
-              <Button variant="outline">
-                My Account
-              </Button>
 
-              <Avatar>
-
-    <AvatarImage src={user?.picture} alt="user profile avatar" />
-    <AvatarFallback> {user?.given_name[0].slice(0,3)} </AvatarFallback>
-  </Avatar>
-            </DropdownMenuTrigger>
-            
-            ):(
-              // <div className="">
-              //   {user?.given_name[0]}
-              //   {user?.family_name[0]}
-              // </div>
-                {user?.given_name}-{user?.family_name}
-             
-
-              <LogoutLink className="text-subtle p-1 border">Log out</LogoutLink>
-            )}
-            </DropdownMenuContent>
-            </DropdownMenu>
-        )} */}
         <div className=" order-2">
 
       <Sheet className="">

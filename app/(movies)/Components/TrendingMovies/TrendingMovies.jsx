@@ -40,6 +40,7 @@ export default async function TrendingMovies() {
                                         width={180} height={180}
                                         className=" md:w-[200px]  lg:w-[200px] lg:h-[200px] xl:w-[150px] xl:h-[150px] 2xl:w-[250px] 2xl:h-[150px]  " style={{ height: "auto" }}
                                         priority={true}
+                                        loading="eager"
 
                                     />
                                     <p className=" font-bold flex justify-start  pt-2 mb-1">{movie.title.length > 14 ? movie.title.slice(0, 14) + "..." : movie.title}

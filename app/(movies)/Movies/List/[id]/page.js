@@ -13,28 +13,15 @@ import {
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog"
-
 import { IoPlayCircleOutline } from "react-icons/io5";
-import { LuLink } from "react-icons/lu";
 import Link from "next/link"
 import { TbExternalLink } from "react-icons/tb";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Button } from "@/components/ui/button"
-import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardFooter,
-    CardHeader,
-    CardTitle,
-} from "@/components/ui/card"
 import {
     Avatar,
     AvatarFallback,
     AvatarImage,
 } from "@/components/ui/avatar"
-
 import {
     AlertDialogDescription,
     AlertDialogHeader,
@@ -49,6 +36,7 @@ import MoviesSimilar from "@/app/(movies)/Components/MoviesSimilar/MoviesSimilar
 import MoviesCredits from "@/app/(movies)/Components/MoviesCredits/MoviesCredits"
 import ToggleButton from "@/app/(movies)/Components/ToggleButton/ToggleButton"
 import no_image from '../../../../../public/image/no_image.webp'
+
 export async function generateMetadata({ params }) {
     const data = await getMoviesLoad(params.id)
     return {
@@ -56,10 +44,8 @@ export async function generateMetadata({ params }) {
     }
 }
 
-async function ReviewContent({ review }) {
+function ReviewContent({ review }) {
     return (
-
-
         <AlertDialog>
             <AlertDialogTrigger >
                 <p variant="outline" className="text-base text-white mt-3 rounded-lg p-4 border hover:border-l-orange-700 hover:duration-500 hover:border-r-red-800 after:border-l-amber-600 hover:border-b-red-800 hover:border-orange-700"> {review.content.slice(0, 10)} <span className=" bg-gradient-to-tr from-orange-600 to-red-800 text-transparent bg-clip-text ">read more... </span> </p>
@@ -81,9 +67,8 @@ async function ReviewContent({ review }) {
 
 
 
-export async function ReviewsList({ dataReview }) {
-    // const dataReview = await getReviewsMovies(id)
-    // console.log(dataReview)
+export  function ReviewsList({ dataReview }) {
+
     return (
         <div className=" w-full h-auto">
             <div>
@@ -137,10 +122,8 @@ export async function ReviewsList({ dataReview }) {
 
 
 
-export async function ImageList({ dataImageList }) {
-    // const data = await getImageMoviesId(id)
-    // const dataImageList = data.backdrops
-    // console.log(dataImageList)
+export  function ImageList({ dataImageList }) {
+
 
     return (
 
@@ -193,7 +176,7 @@ export default async function DynamicMoviesList({ params }) {
     const reviewData = await getReviewsMovies(id)
     const dataCreditsId = await getCriditsMovies(id)
     const [data, similar, dataImageList, dataReview, credits] = await Promise.all([dataLoad, similarData, dataImage, reviewData, dataCreditsId])
-    // console.log(similarData)
+
 
     return (
         <div className="w-full h-auto p-5">

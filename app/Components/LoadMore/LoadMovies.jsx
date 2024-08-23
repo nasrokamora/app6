@@ -58,8 +58,8 @@ export default function LoadMovies() {
             dataLength={dataMovies.length}
             next={fetchMoreMovies}
             hasMore={hasMore}
-            loader={<h4>Loading...</h4>}
-            endMessage={<p>No more movies to show</p>}
+            loader={<h4 className="">Loading...</h4>}
+            endMessage={<p className="text-center text-2xl">No more movies to show</p>}
         >
             <div className="grid grid-cols-6 gap-8 p-8">
                 {dataMovies.map((movie, index) => (

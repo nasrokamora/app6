@@ -1,8 +1,7 @@
 import { getCreditsId, getPersonsId, urlImage } from "@/app/libs/DataFetching"
-import { Button } from "@/components/ui/button"
 import {
     AlertDialog,
-    AlertDialogAction,
+
     AlertDialogCancel,
     AlertDialogContent,
     AlertDialogDescription,
@@ -12,30 +11,31 @@ import {
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 import Image from "next/image"
-
+import no_image from '../../../../public/image/no_image2.webp'
 
 export async function PersonDetails({person_id}) {
     const data = await getPersonsId(person_id)
-  //  console.log(data)
+
     return (
         <section>
-            {/* <h1 className="text-black">
-                <strong>Birthday </strong> 
-                {data.birthday? data.birthday : "Unknown"}
-                </h1> */}
                 <AlertDialog >
 
   <AlertDialogTrigger className=" border border-zinc-600 px-3 bg-black text-white font-semibold hover:duration-500 hover:bg-zinc-700 rounded-md" variant="outline">Biography</AlertDialogTrigger>
-  <AlertDialogContent className=" max-w-2xl md:h-screen xl:max-w-6xl md:overflow-y-scroll md:touch-pan-y lg:overflow-y-scroll lg:touch-pan-y overflow-y-scroll">
+  <AlertDialogContent className=" max-w-max md:h-screen xl:h-screen md:overflow-y-scroll md:touch-pan-y lg:h-screen lg:touch-pan-y overflow-y-scroll">
     <AlertDialogHeader >
-      <AlertDialogTitle>{data.name}</AlertDialogTitle>
+      <AlertDialogTitle>{data?.name}</AlertDialogTitle>
       <AlertDialogDescription>
         {data.also_known_as.join(", ")}
       </AlertDialogDescription>
     </AlertDialogHeader>
     <div className=" flex justify-start gap-3 items-start lg:items-center xl:max-w-5xl md:flex-col md:items-start ">
         <div className=" relative">
-        <Image src={`${urlImage}${data.profile_path}`} 
+        <Image 
+        src={data.profile_path?
+          `${urlImage}${data.profile_path}`
+        :
+        no_image
+        } 
         width={300} 
         height={300} 
         alt={data.name} 

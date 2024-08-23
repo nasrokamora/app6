@@ -29,12 +29,12 @@ export default async function MoviesSimilar({ similar }) {
             align: "start",
             loop: true,
         }} className=" md:max-w-sm xl:max-w-4xl   w-[80%] 2xl:max-w-6xl" >
-            <CarouselContent className="   ">
+            <CarouselContent className="  -ml-1">
                 {similar.results && similar.results.length > 0 ? (
                 similar.results.map((movie,index) => (
 
                     <CarouselItem key={index} className="  basis-1/5 lg:basis-1/5 md:basis-1/2 2xl:basis-1/7">
-                        <Link className=" relative" href={`/Movies/List/${movie.id}`}>
+                        <Link className="  hover:scale-105 " href={`/Movies/List/${movie.id}`}>
 
                             <Image
                                 src={movie.poster_path ?`
@@ -44,7 +44,7 @@ export default async function MoviesSimilar({ similar }) {
                                 }
                                 alt={movie.title}
                                 width={180} height={180}
-                                className=" md:w-[200px]  lg:w-[200px] lg:h-[200px] xl:w-[150px] xl:h-[150px] 2xl:w-[250px] 2xl:h-[150px]  " style={{height:"auto"}}
+                                className=" rounded-md md:w-[200px]  lg:w-[200px] lg:h-[200px] xl:w-[150px] xl:h-[150px] 2xl:w-[250px] 2xl:h-[150px]  " style={{height:"auto"}}
                                 priority={true}
                                 loading="eager"
                                 
@@ -72,8 +72,8 @@ export default async function MoviesSimilar({ similar }) {
                     </CarouselItem>
                 ))
                 ):(
-                    <div className=" flex justify-center items-center font-bold text-xl text-error">
-                        <h1 className="">No data </h1>
+                    <div className=" flex justify-center items-center w-full">
+                        <h1 className="font-bold text-2xl text-error md:text-xl italic">No data </h1>
                     </div>
                 )
 }

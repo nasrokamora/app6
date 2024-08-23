@@ -10,19 +10,10 @@ import {
     CarouselPrevious,
 } from "@/components/ui/carousel"
 import { FaRegStar } from "react-icons/fa";
-import { Suspense } from "react";
-import LoadingGenreCarousel from "../LoadingUi/LoadingGenreCarousel";
-import getPopularMovies from "@/app/libs/DataFetching";
 import Link from "next/link";
 
 
 export default  function MoviePopular({dataPopular}) {
-    // const data = await getPopularMovies()
-    // const dataPopular = data.results
-    // console.log(dataPopular)
-
-
-
 
     return (
         
@@ -35,16 +26,18 @@ export default  function MoviePopular({dataPopular}) {
                 {dataPopular.map((movie,index) => (
 
                     <CarouselItem key={index} className="  basis-1/5 lg:basis-1/4 md:basis-1/2 2xl:basis-1/7">
-                        <Link className=" hover:scale-105" href={`/Movies/List/${movie.id}`}>
+                        <div className="hover:scale-105  hover:duration-500 w-full ">
+
+                        <Link className=" " href={`/Movies/List/${movie.id}`}>
 
                             <Image
                                 src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
                                 alt={movie.title}
                                 width={180} height={180}
-                                className=" rounded-md  md:w-[200px]  lg:w-[200px] lg:h-[250px] xl:w-[200px] xl:h-[150px] 2xl:w-[250px] 2xl:h-[150px]  " style={{height:"auto"}}
+                                className=" hover:saturate-50 hover:duration-500 rounded-md  md:w-[200px]  lg:w-[200px] lg:h-[250px] xl:w-[200px] xl:h-[150px] 2xl:w-[250px] 2xl:h-[150px]  " style={{height:"auto"}}
                                 priority={true}
-                                
-                            />
+                                loading="eager"
+                                />
                             <p className=" font-bold flex justify-start  pt-2 mb-1 2xl:text-2xl ">{movie.title.length > 14 ? movie.title.slice(0, 14) + "..." : movie.title}
                             </p>
                             <div className=" flex justify-between items-center w-full font-semibold 2xl:text-2xl 2xl:font-bold">
@@ -63,6 +56,7 @@ export default  function MoviePopular({dataPopular}) {
                             </div>
 
                         </Link>
+                                </div>
                     </CarouselItem>
                 ))}
             </CarouselContent>

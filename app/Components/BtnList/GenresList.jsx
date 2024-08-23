@@ -3,7 +3,6 @@
 import { Button } from "@/components/ui/button"
 import { useEffect, useState } from "react"
 import Image from "next/image"
-import { Card, CardContent } from "@/components/ui/card"
 import {
     Carousel,
     CarouselContent,
@@ -11,7 +10,6 @@ import {
     CarouselNext,
     CarouselPrevious,
 } from "@/components/ui/carousel"
-
 import { FaRegStar } from "react-icons/fa";
 import LoadingGenreButton from "../LoadingUi/LoadingGenreList"
 import LoadingGenreCarousel from "../LoadingUi/LoadingGenreCarousel"
@@ -105,7 +103,8 @@ async function handleClick(genreId){
                         loop: true,
                     }} className=" md:w-[60%] xl:w-[80%]   w-[80%]" >
                         <CarouselContent className="   ">
-                            {movieList.map((movie,index) => (
+                            {movieList && movieList.length > 0 ? (
+                            movieList.map((movie,index) => (
 
                                 <CarouselItem key={index} className="  basis-1/7 lg:basis-1/5 md:basis-1/1  ">
                                     <div className=" overflow-hidden relative lg:hover:scale-90 lg:hover:duration-500 xl:hover:scale-90 xl:hover:duration-500  2xl:hover:scale-90 2xl:hover:duration-500">
@@ -140,7 +139,13 @@ async function handleClick(genreId){
 
                                     </div>
                                 </CarouselItem>
-                            ))}
+                            ))
+                            ):(
+                                <div className="font-bold text-xl flex justify-center items-center text-error">
+                                    <h1>No Movie Found</h1>
+                                </div>
+                            )
+}
                         </CarouselContent>
                         <CarouselPrevious />
                         <CarouselNext />

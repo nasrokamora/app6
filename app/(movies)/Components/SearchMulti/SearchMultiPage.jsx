@@ -60,7 +60,7 @@ export default function SearchMultiPage() {
                 <SheetTrigger><IoSearch size={25} /></SheetTrigger>
                 <SheetContent className="" side={"top"}>
                     <SheetHeader>
-                        <SheetTitle>Explorer Multi on Magix</SheetTitle>
+                        <SheetTitle>Explorer Movies on Magix</SheetTitle>
                         <SheetDescription>
                             Search for your favorite movies
                         </SheetDescription>

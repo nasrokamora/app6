@@ -1,27 +1,18 @@
-import Image from "next/image"
-
 import MoviesCard from "./Components/MoviesCard/MoviesCard"
-
 import MoviePopular from "./Components/MoviePopular/MoviePopular"
 import GenresList from "./Components/BtnList/GenresList"
 import TvSeries from "./(tv)/Components/DiscoverTv/TvSeries"
 import TvGenres from "./(tv)/Components/TvGenres/TvGenres"
 import { getDiscoverMovies, getPopularMovies } from "./libs/DataFetching"
 import { getDiscoverTv } from "./libs/DataFetchingTv"
-
-import Icon from '@/public/icon/Icon.png'
 import AnimateScroll from "./Animations/AnimationNumber/AnimateScroll/AnimationScroll"
-
+import styles from './styles/Animat.module.css'
 
 
 
 
 
 export default async function Home() {
-
-
-
-
   const data = await getDiscoverMovies()
   const popularData = await getPopularMovies()
   const tvData = await getDiscoverTv()
@@ -32,8 +23,8 @@ export default async function Home() {
     <main className="w-full h-auto text-white ">
         <AnimateScroll />
   
-          <div className="scroll-m-20 text-4xl  tracking-tight lg:text-5xl ml-6  title underline decoration-yellow-600 title   bg-gradient-to-br from-[white] via-[#18ffe0] to-[black] bg-clip-text text-transparent font-extrabold md:flex md:justify-center md:items-center   mt-7 md:mt-3">
-      <h1>Discover on Magix</h1>
+          <div className={`scroll-m-20 text-4xl  tracking-tight lg:text-3xl ml-6  title font-extrabold md:flex md:justify-center md:items-center   mt-7 md:mt-3 text-red-700 `  }>
+      <h1 className={styles.effect}>Discover on Magix</h1>
     </div>
 
       <section className="   mt-7 flex justify-center w-full ">
@@ -54,16 +45,8 @@ export default async function Home() {
       <section className=" mt-7">
         <GenresList/>
       </section>
-      {/* <div className=" mb-3  gap-4 flex justify-start ml-6  title text-3xl bg-gradient-to-br from-red-700 via-white to-[red] bg-clip-text text-transparent font-bold md:flex md:justify-center md:items-center items-center mt-7 md:mt-3">
-        <h1>
-          Tv Show
-        </h1>
-        <SlScreenDesktop className="text-white" size={28} />
-      </div>
-      <section>
-        <DiscoverTv/>
-      </section> */}
 
+                                      {/*   section Tv & series & season */}
           <div className=" ml-6 mt-7">
             <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
               Tv Show
@@ -81,50 +64,6 @@ export default async function Home() {
         <section className="mt-7">
           <TvGenres/>
         </section>
-
-
-{/* 
-      <div className="title text-4xl bg-gradient-to-br from-[#4f48ec] to-[white] bg-clip-text text-transparent font-bold md:flex md:justify-center md:items-center flex justify-center items-center mt-7 md:mt-3">
-        <h1>Discover</h1>
-      </div>
-      <section className="   mt-7 flex justify-center w-full xl:bg-linear-gradient(126deg, rgba(255,191,24,1) 0%, rgba(16,14,52,1) 32%, rgba(79,72,236,1) 74%,">
-        <MoviesCard/>
-      </section>
-      <div className=" flex justify-start ml-6  title text-3xl bg-gradient-to-br from-[#4f48ec] to-[red] bg-clip-text text-transparent font-bold md:flex md:justify-center md:items-center items-center mt-7 md:mt-3">
-        <h1>Popular Movies</h1>
-      </div>
-      <section>
-        <MoviePopular/>
-      </section>
-      <div className=" mb-3  gap-4 flex justify-start ml-6  title text-3xl bg-gradient-to-br from-red-700 via-white to-[red] bg-clip-text text-transparent font-bold md:flex md:justify-center md:items-center items-center mt-7 md:mt-3">
-        <h1>
-          Tv Show
-        </h1>
-        <SlScreenDesktop className="text-white" size={28} />
-      </div>
-      <section>
-        <DiscoverTv/>
-      </section>
-      <section className=" mt-7">
-        <GenresList/>
-      </section> */}
-      {/* <section className="mt-7">
-        <Suspense fallback={<p>Loading...</p>}>
-
-        <NavigateBars />
-        </Suspense>
-      </section> */}
-      {/* <section className="mt-7 flex justify-center w-full">
-      <LinkMovies/>
-      </section> */}
-
-
-
-
-
-
-
-
     </main>
   )
 }

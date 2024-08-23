@@ -34,7 +34,7 @@ export default async function MoviesCredits({ credits }) {
             <Carousel className="w-full max-w-xs xl:max-w-4xl lg:max-w-[40rem]" opts={{ loop: true, align: "start" }}>
                 <CarouselContent>
                     
-                    {dataCredit ? (dataCredit.map((item) => (
+                    {dataCredit && dataCredit.length > 0 ? (dataCredit.map((item) => (
                         <CarouselItem className="md:basis-1/1 lg:basis-1/3 xl:basis-1/3 2xl:basis-1/4" key={item.id}>
                             <div>
                                 <Card className=" xl:aspect-[3/2]  bg-transparent overflow-hidden ">
@@ -58,13 +58,13 @@ export default async function MoviesCredits({ credits }) {
 
                                     </CardHeader>
                                     <CardContent>
-                                        <CreditsId credit_id={item.credit_id} />
+                                        <CreditsId credit_id={item?.credit_id} />
                                     </CardContent>
                                 </Card>
                             </div>
                         </CarouselItem>
                     ))):(
-                        alert("no data")
+                        <h1>No Data</h1>
                     )}
                 </CarouselContent>
                 <CarouselPrevious className="md:hidden" />

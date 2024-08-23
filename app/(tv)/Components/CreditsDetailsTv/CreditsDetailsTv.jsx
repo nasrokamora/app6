@@ -27,7 +27,7 @@ export default function CreditsDetailsTv({credits,dataImageTv,detailTv}) {
                <div className="  w-full ">
                 <ScrollArea className="w-full whitespace-nowrap rounded-md  xl:w-full ">
                 <div className="flex w-max space-x-2 p-4">
-                        {credits && credits.length > 0 ? (
+                        {
                         credits.map((credit) => (   
                             <PersonDetailsTv 
                             person_id={credit.id} 
@@ -36,11 +36,7 @@ export default function CreditsDetailsTv({credits,dataImageTv,detailTv}) {
                             character={credit.character}
                             />
                         ))
-                        ):(
-                        <h1 className=" flex justify-center items-center font-bold text-gray-600">
-                            Undefined
-                            </h1>
-                    )
+
 
                         }
                             <ScrollBar orientation="horizontal" />

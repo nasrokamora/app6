@@ -35,18 +35,20 @@ import {
     AvatarImage,
 } from "@/components/ui/avatar"
 
-import { AlertDialogDescription, 
-    AlertDialogHeader, 
+import {
+    AlertDialogDescription,
+    AlertDialogHeader,
     AlertDialogTrigger,
-    AlertDialogContent, 
-    AlertDialogTitle, 
-    AlertDialog, 
-    AlertDialogFooter, 
+    AlertDialogContent,
+    AlertDialogTitle,
+    AlertDialog,
+    AlertDialogFooter,
     AlertDialogCancel
 } from "@/components/ui/alert-dialog"
 import MoviesSimilar from "@/app/(movies)/Components/MoviesSimilar/MoviesSimilar"
 import MoviesCredits from "@/app/(movies)/Components/MoviesCredits/MoviesCredits"
-
+import ToggleButton from "@/app/(movies)/Components/ToggleButton/ToggleButton"
+import no_image from '../../../../../public/image/no_image.webp'
 export async function generateMetadata({ params }) {
     const data = await getMoviesLoad(params.id)
     return {
@@ -54,26 +56,26 @@ export async function generateMetadata({ params }) {
     }
 }
 
- async function ReviewContent({review}){
-    return(
-            
+async function ReviewContent({ review }) {
+    return (
 
-             <AlertDialog>
-      <AlertDialogTrigger >
-      <p variant="outline" className="text-base text-white mt-3 rounded-lg p-4 border hover:border-l-orange-700 hover:duration-500 hover:border-r-red-800 after:border-l-amber-600 hover:border-b-red-800 hover:border-orange-700"> {review.content.slice(0, 10)} <span className=" bg-gradient-to-tr from-orange-600 to-red-800 text-transparent bg-clip-text ">read more... </span> </p>
-      </AlertDialogTrigger>
-      <AlertDialogContent className=" md:h-screen md:overflow-y-scroll max-w-2xl">
-      <AlertDialogHeader>
-      <AlertDialogTitle > {review.created_at} </AlertDialogTitle>
-      <AlertDialogDescription>
-                {review.content}
-      </AlertDialogDescription>
-        </AlertDialogHeader>
-        <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
-          </AlertDialogFooter>
-          </AlertDialogContent>
-          </AlertDialog> 
+
+        <AlertDialog>
+            <AlertDialogTrigger >
+                <p variant="outline" className="text-base text-white mt-3 rounded-lg p-4 border hover:border-l-orange-700 hover:duration-500 hover:border-r-red-800 after:border-l-amber-600 hover:border-b-red-800 hover:border-orange-700"> {review.content.slice(0, 10)} <span className=" bg-gradient-to-tr from-orange-600 to-red-800 text-transparent bg-clip-text ">read more... </span> </p>
+            </AlertDialogTrigger>
+            <AlertDialogContent className=" md:h-screen md:overflow-y-scroll max-w-4xl">
+                <AlertDialogHeader>
+                    <AlertDialogTitle > {review.created_at} </AlertDialogTitle>
+                    <AlertDialogDescription>
+                        {review.content}
+                    </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                </AlertDialogFooter>
+            </AlertDialogContent>
+        </AlertDialog>
     )
 }
 
@@ -89,55 +91,44 @@ export async function ReviewsList({ dataReview }) {
             </div>
             <div className=" flex justify-center pt-5">
 
-            <ScrollArea className="  w-full  whitespace-nowrap  lg:w-3/4 xl:w-4/5">
-            <div className="flex w-max space-x-4 p-4">
+                <ScrollArea className="  w-full  whitespace-nowrap  lg:w-3/4 xl:w-4/5">
+                    <div className="flex w-max space-x-4 p-4">
 
-            {dataReview.results &&
-            dataReview.results.map((review) => (
-                <div key={review.author}>
-                    <div className="  border p-4 rounded-md">
-                        <div className="flex items-center justify-start gap-2">
+                        {dataReview.results && dataReview.results.length > 0 ? (
+                            dataReview.results.map((review) => (
+                                <div key={review.author}>
+                                    <div className="  border p-4 rounded-md">
+                                        <div className="flex items-center justify-start gap-2">
 
-                        <Avatar>
-                        <AvatarImage src={review.author_details.avatar_path} />
-                        <AvatarFallback>
-                            {review.author.slice(0, 3)}
-                        </AvatarFallback>
-                        </Avatar>
-                        <h1> {review.author} </h1>
-                        </div>
-                        <div className=" text-sm text-zinc-500 pt-2">
-                            <h3> Created at : {review.created_at}</h3>
-                            <h3> Updated at :{review.updated_at}</h3>
-                            <ReviewContent review={review} key={review.author} />
-                        </div>
+                                            <Avatar>
+                                                <AvatarImage src={review.author_details.avatar_path} />
+                                                <AvatarFallback>
+                                                    {review.author.slice(0, 3)}
+                                                </AvatarFallback>
+                                            </Avatar>
+                                            <h1> {review.author} </h1>
+                                        </div>
+                                        <div className=" text-sm text-zinc-500 pt-2">
+                                            <h3> Created at : {review.created_at}</h3>
+                                            <h3> Updated at :{review.updated_at}</h3>
+                                            <ReviewContent review={review} key={review.author} />
+                                        </div>
+                                    </div>
+                                </div>
+                            ))
+                        ):(
+                            <div className="flex justify-center items-center font-bold text-xl text-error w-full">
+                                <h1>Unknown!</h1>
+                            </div>
+                        )
+
+
+                        }
+
                     </div>
-                </div>
-            ))
-
-    }
-
+                    <ScrollBar orientation="horizontal" />
+                </ScrollArea>
             </div>
-            {/* <AlertDialog>
-      <AlertDialogTrigger asChild>
-      <Button variant="outline">Show Dialog</Button>
-      </AlertDialogTrigger>
-      <AlertDialogContent>
-      <AlertDialogHeader>
-      <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-      <AlertDialogDescription>
-      This action cannot be undone. This will permanently delete your
-      account and remove your data from our servers.
-      </AlertDialogDescription>
-        </AlertDialogHeader>
-        <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
-          </AlertDialogFooter>
-          </AlertDialogContent>
-          </AlertDialog> */}
-          <ScrollBar orientation="horizontal" />
-            </ScrollArea>
-          </div>
         </div>
     )
 
@@ -158,7 +149,11 @@ export async function ImageList({ dataImageList }) {
                 {/* scroll image content */}
                 {dataImageList.backdrops.map((data) => (
                     <div key={data.file_path} className=" rounded-md relative overflow-hidden " >
-                        <Image src={`${urlImage}${data.file_path}`}
+                        <Image src={data.file_path ?
+                            `${urlImage}${data.file_path}`
+                        :
+                        no_image
+                        }
                             width={250}
                             height={150}
                             className="  rounded-md  "
@@ -197,12 +192,12 @@ export default async function DynamicMoviesList({ params }) {
     const dataImage = await getImageMoviesId(id)
     const reviewData = await getReviewsMovies(id)
     const dataCreditsId = await getCriditsMovies(id)
-    const [data,similar,dataImageList,dataReview,credits] = await Promise.all([dataLoad,similarData,dataImage,reviewData,dataCreditsId])
+    const [data, similar, dataImageList, dataReview, credits] = await Promise.all([dataLoad, similarData, dataImage, reviewData, dataCreditsId])
     // console.log(similarData)
 
     return (
         <div className="w-full h-auto p-5">
-
+            <ToggleButton />
 
             <div className=" flex justify-between items-center pb-4" >
 
@@ -233,8 +228,8 @@ export default async function DynamicMoviesList({ params }) {
                             </DialogContent>
                         </Dialog>
                         <div>
-                            <Link target="_blank" rel="noopener noreferrer" href={data.homepage}> 
-                            <TbExternalLink size={45} className="text-[#f8e325] hover:scale-110 duration-300" />
+                            <Link target="_blank" rel="noopener noreferrer" href={data.homepage}>
+                                <TbExternalLink size={45} className="text-[#f8e325] hover:scale-110 duration-300" />
 
                             </Link>
                         </div>
@@ -247,7 +242,7 @@ export default async function DynamicMoviesList({ params }) {
                         Overview :
 
                     </h1>
-                    <blockquote className="mt-6 border-l-2 md:border-l-white pl-6 font-semibold md:rounded-md md:bg-zinc-800">{data.overview}</blockquote>
+                    <blockquote className="mt-6 border-l-2 border-l-red-700 md:border-l-white pl-6 font-semibold md:rounded-md md:bg-zinc-800">{data.overview}</blockquote>
 
                     <Separator className="mt-8" />
 
@@ -315,7 +310,7 @@ export default async function DynamicMoviesList({ params }) {
             <div className="mt-5">
                 <ReviewsList dataReview={dataReview} />
             </div>
-            
+
             {/* section Cast of movies */}
             <div>
                 <MoviesCredits credits={credits} />

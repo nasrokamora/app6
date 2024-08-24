@@ -102,7 +102,7 @@ async function handleClick(genreId){
                         align: "start",
                         loop: true,
                     }} className=" md:w-[60%] xl:w-[80%]   w-[80%]" >
-                        <CarouselContent className="   ">
+                        <CarouselContent className=" -ml-1">
                             {movieList && movieList.length > 0 ? (
                             movieList.map((movie,index) => (
 
@@ -113,7 +113,7 @@ async function handleClick(genreId){
                                             src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
                                             alt={movie.title}
                                             width={180} height={180}
-                                            className="  md:w-[200px]  lg:w-[200px] lg:h-[200px] xl:w-[150px] xl:h-[150px] 2xl:w-[250px]   "
+                                            className=" hover:sepia hover:duration-500 rounded-md  md:w-[200px]  lg:w-[200px] lg:h-[200px] xl:w-[150px] xl:h-[150px] 2xl:w-[250px]   "
                                             priority
                                             loading="eager"
                                             style={{height:"auto"}}
@@ -141,7 +141,7 @@ async function handleClick(genreId){
                                 </CarouselItem>
                             ))
                             ):(
-                                <div className="font-bold text-xl flex justify-center items-center text-error">
+                                <div className="font-bold text-xl flex justify-center items-center text-error w-full">
                                     <h1>No Movie Found</h1>
                                 </div>
                             )

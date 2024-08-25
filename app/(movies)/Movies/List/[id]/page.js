@@ -70,11 +70,11 @@ function ReviewContent({ review }) {
 export  function ReviewsList({ dataReview }) {
 
     return (
-        <div className=" w-full h-auto">
+        <div className=" w-full h-auto ">
             <div>
-                <h1 className="md:text-slate-500 text-slate-600  mt-10 scroll-m-20 md:text-xl  text-3xl font-bold tracking-tight transition-colors first:mt-0">Reviews :</h1>
+                <h1 className="md:text-slate-500 text-slate-600  mt-10 scroll-m-20 md:text-xl  text-3xl font-bold tracking-tight transition-colors first:mt-0 ">Reviews :</h1>
             </div>
-            <div className=" flex justify-center pt-5">
+            <div className=" flex justify-center pt-5  ">
 
                 <ScrollArea className="  w-full  whitespace-nowrap  lg:w-3/4 xl:w-4/5">
                     <div className="flex w-max space-x-4 p-4">
@@ -82,7 +82,7 @@ export  function ReviewsList({ dataReview }) {
                         {dataReview.results && dataReview.results.length > 0 ? (
                             dataReview.results.map((review) => (
                                 <div key={review.author}>
-                                    <div className="  border p-4 rounded-md">
+                                    <div className="  border p-4 rounded-md border-[#ff1818]">
                                         <div className="flex items-center justify-start gap-2">
 
                                             <Avatar>

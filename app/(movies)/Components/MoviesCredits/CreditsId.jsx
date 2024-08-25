@@ -11,8 +11,8 @@ import {
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 import Image from "next/image"
-import no_image from '../../../../public/image/no_image2.webp'
-
+import no_image from '../../../../public/image/no_image4.webp'
+import { MdOutlineImageNotSupported } from "react-icons/md";
 export async function PersonDetails({person_id}) {
     const data = await getPersonsId(person_id)
 

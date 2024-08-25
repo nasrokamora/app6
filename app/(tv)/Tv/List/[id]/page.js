@@ -50,17 +50,13 @@ export default async function DynamicTvListPage({params}) {
     return(
         <div className=" w-full h-auto px-6 pt-6 ">
 
-
             <div className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-4xl flex justify-center  items-center flex-col">
             <h1 className=" tracking-wide md:decoration-blue-700 md:underline-offset-4 md:underline">
                 {detailTv.name}
             </h1>
             <div className=" border-b-2 w-48 md:border-none border-b-blue-700 flex flex-col"/>
             </div>
-
             <div className="flex justify-start w-full gap-4 mt-8 md:flex-col">
-                
-
                 <div className=" h-fit w-[40%] md:w-full  overflow-hidden md:flex md:justify-center md:items-center">
                     <Image src={`${urlImageTv}${detailTv.poster_path}`}
                     priority
@@ -226,7 +222,7 @@ export default async function DynamicTvListPage({params}) {
 
 
             </div>
-                {/* Credits  and cast and crew  and people */}
+                {/* Credits  and cast and crew  and people && Reviews */}
                 <div>
                     <CreditsDetailsTv 
                     credits={creditsTv.cast} 

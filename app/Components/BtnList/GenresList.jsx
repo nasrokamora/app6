@@ -66,91 +66,96 @@ export default function GenresList() {
         }
     }
 
-async function handleClick(genreId){    
-            setSelectedGenre(genreId)
-            fetchMovies(genreId)
+    async function handleClick(genreId) {
+        setSelectedGenre(genreId)
+        fetchMovies(genreId)
     }
 
     //    Nas@Dev
     return (
-        
-            <div className="">
-                {isLoading ? <LoadingGenreButton /> : null}
-                <div className=" flex justify-center ">
-                    <Carousel
-                        opts={{
-                            align: "start",
-                            loop: true,
-                        }}
-                        className=" md:w-[60%] w-[80%] md:pl-8">
-                        <CarouselContent>
-                            {genres.map((genre,index) => (
-                                <CarouselItem key={index} className=" basis-1/7 lg:basis-1/5 md:basis-1/2">
-                                    <Button variant="outline" className={`  ${selectedGenre === genre.id ? 'text-red-700' : ' text-zinc-500'}`}
-                                        style={{ color: selectedGenre === genre.id ? 'text-red-500' : ' text-zinc-800' }}
-                                        onClick={() => handleClick(genre.id)}>{genre.name}</Button>
-                                </CarouselItem>
-                            ))}
-                        </CarouselContent>
-                        <CarouselPrevious />
-                        <CarouselNext />
-                    </Carousel>
-                </div>
-                            {isLoading ? <LoadingGenreCarousel /> : null}
-                <div className=" mt-8 flex justify-center w-full 2xl:text-2xl">
-                    <Carousel opts={{
+
+        <div className="">
+            {isLoading ? <LoadingGenreButton /> : null}
+            <div className=" flex justify-center ">
+                <Carousel
+                    opts={{
                         align: "start",
                         loop: true,
-                    }} className=" md:w-[60%] xl:w-[80%]   w-[80%]" >
-                        <CarouselContent className=" -ml-1">
-                            {movieList && movieList.length > 0 ? (
-                            movieList.map((movie,index) => (
+                    }}
+                    className=" md:w-[60%] w-[80%] md:pl-8">
+                    <CarouselContent>
+                        {genres.map((genre, index) => (
+                            <CarouselItem key={index} className=" basis-1/7 lg:basis-1/5 md:basis-1/2">
+                                <Button variant="outline" className={`  ${selectedGenre === genre.id ? 'text-red-700' : ' text-zinc-500'}`}
+                                    style={{ color: selectedGenre === genre.id ? 'text-red-500' : ' text-zinc-800' }}
+                                    onClick={() => handleClick(genre.id)}>{genre.name}</Button>
+                            </CarouselItem>
+                        ))}
+                    </CarouselContent>
+                    <CarouselPrevious />
+                    <CarouselNext />
+                </Carousel>
+            </div>
+            {/* {isLoading ? <LoadingGenreCarousel /> : null} */}
+            <div className=" mt-8 flex justify-center w-full 2xl:text-2xl">
+                <Carousel opts={{
+                    align: "start",
+                    loop: true,
+                }} className=" md:w-[60%] xl:w-[80%]   w-[80%]" >
+                    <CarouselContent className=" -ml-1">
+                        {isLoading ? (
+                            <div className=" flex justify-center items-center w-full">
 
-                                <CarouselItem key={index} className="  basis-1/7 lg:basis-1/5 md:basis-1/1  ">
-                                    <div className=" overflow-hidden relative lg:hover:scale-90 lg:hover:duration-500 xl:hover:scale-90 xl:hover:duration-500  2xl:hover:scale-90 2xl:hover:duration-500">
-                                        <Link href={`/Movies/List/${movie.id}`}>
-                                        <Image
-                                            src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
-                                            alt={movie.title}
-                                            width={180} height={180}
-                                            className=" hover:sepia hover:duration-500 rounded-md  md:w-[200px]  lg:w-[200px] lg:h-[200px] xl:w-[150px] xl:h-[150px] 2xl:w-[250px]   "
-                                            priority
-                                            loading="eager"
-                                            style={{height:"auto"}}
-                                            
-                                            
-                                            />
-                                        <p className=" font-bold flex justify-start  pt-2 mb-1">{movie.title.length > 14 ? movie.title.slice(0, 14) + "..." : movie.title}</p>
-                                        <div className=" flex justify-between items-center w-full">
-                                            <p className=" font-semibold flex justify-between items-center w-full 2xl:text-2xl">
-                                                {new Date(movie.release_date).getFullYear()}
-                                            </p>
-                                            <div className=" 2xl:font-bold 2xl:text-2xl">
-                                                <div className=" space-x-1 flex justify-between items-center">
-                                                <FaRegStar className="text-[#FFC300]" /> 
-                                                <span className="">
-                                                {movie.vote_average.toFixed(1)}
-                                                    </span>
+                                <LoadingGenreCarousel />
+                            </div>
+                        ) : movieList && movieList.length > 0 ? (
+                                movieList.map((movie, index) => (
+
+                                    <CarouselItem key={index} className="  basis-1/7 lg:basis-1/5 md:basis-1/1  ">
+                                        <div className=" overflow-hidden relative lg:hover:scale-90 lg:hover:duration-500 xl:hover:scale-90 xl:hover:duration-500  2xl:hover:scale-90 2xl:hover:duration-500">
+                                            <Link href={`/Movies/List/${movie.id}`}>
+                                                <Image
+                                                    src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
+                                                    alt={movie.title}
+                                                    width={180} height={180}
+                                                    className=" hover:sepia hover:duration-500 rounded-md  md:w-[200px]  lg:w-[200px] lg:h-[200px] xl:w-[150px] xl:h-[150px] 2xl:w-[250px]   "
+                                                    priority
+                                                    loading="eager"
+                                                    style={{ height: "auto" }}
+
+
+                                                />
+                                                <p className=" font-bold flex justify-start  pt-2 mb-1">{movie.title.length > 14 ? movie.title.slice(0, 14) + "..." : movie.title}</p>
+                                                <div className=" flex justify-between items-center w-full">
+                                                    <p className=" font-semibold flex justify-between items-center w-full 2xl:text-2xl">
+                                                        {new Date(movie.release_date).getFullYear()}
+                                                    </p>
+                                                    <div className=" 2xl:font-bold 2xl:text-2xl">
+                                                        <div className=" space-x-1 flex justify-between items-center">
+                                                            <FaRegStar className="text-[#FFC300]" />
+                                                            <span className="">
+                                                                {movie.vote_average.toFixed(1)}
+                                                            </span>
+                                                        </div>
+                                                    </div>
+
                                                 </div>
-                                            </div>
-
-                                        </div>
                                             </Link>
 
-                                    </div>
-                                </CarouselItem>
-                            ))
-                            ):(
+                                        </div>
+                                    </CarouselItem>
+                                ))
+                            ) : (
                                 <div className="font-bold text-xl flex justify-center items-center text-error w-full">
                                     <h1>No Movie Found</h1>
                                 </div>
                             )
-}
-                        </CarouselContent>
-                        <CarouselPrevious />
-                        <CarouselNext />
-                    </Carousel>
-                </div>
+                        }
+                    </CarouselContent>
+                    <CarouselPrevious />
+                    <CarouselNext />
+                </Carousel>
             </div>
+        </div>
     )
 }

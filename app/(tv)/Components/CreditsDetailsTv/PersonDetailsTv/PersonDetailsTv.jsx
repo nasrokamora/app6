@@ -18,7 +18,7 @@ import { FaXTwitter } from "react-icons/fa6";
 import { FaInstagram } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
 import Link from "next/link"
-
+import no_image from '../../../../../public/image/no_image4.webp'
 
 export default async function PersonDetailsTv({ person_id, urlImageTv, character }) {
 
@@ -38,7 +38,11 @@ export default async function PersonDetailsTv({ person_id, urlImageTv, character
                     <CardContent className="">
                         <div className="flex justify-start gap-2 pt-4 md:flex-grow">
                             <div className=' relative overflow-hidden'>
-                                <Image src={`${urlImageTv}${dataPerson.profile_path}`}
+                                <Image src={dataPerson.profile_path ?
+                                    `${urlImageTv}${dataPerson.profile_path}`
+                                :
+                                no_image
+                                }
                                     width={100} height={100}
                                     priority
                                     alt={dataPerson.name}
@@ -136,51 +140,6 @@ export default async function PersonDetailsTv({ person_id, urlImageTv, character
                 </Card>
             </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-            {/* <div className=" flex items-start justify-center gap-2 scroll-m-20 text-2xl font-semibold tracking-tight">
-                    <strong className="text-[#52525b]">Name : </strong>
-                    <h1>{dataPerson.name}</h1>
-                </div>
-                <div className=" flex gap-1 flex-wrap">
-                    <strong className="text-[#52525b]">Also Known As : </strong>
-                    {dataPerson.also_known_as && dataPerson.also_known_as.length > 0 ?(
-                        dataPerson.also_known_as.map((data,index)=>{
-                            return(
-                                <div key={index} className=" flex flex-col justify-center">
-                                    <h1 className=" underline underline-offset-1 decoration-blue-600">{data}</h1>
-                                </div>
-                            )
-                        })):(
-                        <div>No Data</div>
-                    )}
-                </div>
-                <div className=" flex gap-1 flex-wrap pt-2">
-                    <strong className="text-[#52525b]">birthday :</strong>
-                    <h1 className=" font-semibold">{dataPerson.birthday}</h1>
-                </div>
-                <div>
-                    <Accordion type="single" collapsible className=" w-full">
-            <AccordionItem value="item-1">
-          <AccordionTrigger className="text-[#52525b]">Biography : </AccordionTrigger>
-            <AccordionContent>
-                <p>{dataPerson.biography}</p>
-            </AccordionContent>
-            </AccordionItem>
-            </Accordion>
-
-                </div> */}
         </div>
 
     )

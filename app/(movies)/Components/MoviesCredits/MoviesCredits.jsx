@@ -66,7 +66,7 @@ export default async function MoviesCredits({ credits }) {
                             </div>
                         </CarouselItem>
                     ))):(
-                        <h1>No Data</h1>
+                        <h1>No Data Found</h1>
                     )}
                 </CarouselContent>
                 <CarouselPrevious className="md:hidden" />

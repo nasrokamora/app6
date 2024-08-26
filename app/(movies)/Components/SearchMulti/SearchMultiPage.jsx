@@ -65,7 +65,7 @@ export default function SearchMultiPage() {
                             Search for your favorite movies
                         </SheetDescription>
                     </SheetHeader>
-                    <main className="  py-2 w-full" onClick={handleClose} >
+                    <main className="  py-2 w-full" onClick={()=>handleClose()} >
 
 
 

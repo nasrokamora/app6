@@ -20,7 +20,7 @@ export default function CardResults({ movie, handleClick, handleClose }) {
     <div key={movie.id} className=" overflow-hidden">
         <div onClick={() => handleClick(movie)} className=" hover:scale-105 h-fit hover:duration-300 ">
             <Link href={`/Movies/List/${movie.id}`}>
-            <div className="  overflow-hidden  flex justify-center items-center flex-col " >
+            <div className="  overflow-hidden  flex justify-center items-center flex-col " onClick={()=> handleClose()} >
                 <Image src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`} alt={movie.title} 
                 width={150} 
                 height={150} 

@@ -35,7 +35,7 @@ import {
 import MoviesSimilar from "@/app/(movies)/Components/MoviesSimilar/MoviesSimilar"
 import MoviesCredits from "@/app/(movies)/Components/MoviesCredits/MoviesCredits"
 import ToggleButton from "@/app/(movies)/Components/ToggleButton/ToggleButton"
-import no_image from '../../../../../public/image/no_image.webp'
+import no_image from '../../../../../public/image/no_image4.webp'
 
 export async function generateMetadata({ params }) {
     const data = await getMoviesLoad(params.id)
@@ -65,9 +65,7 @@ function ReviewContent({ review }) {
     )
 }
 
-
-
-export  function ReviewsList({ dataReview }) {
+export function ReviewsList({ dataReview }) {
 
     return (
         <div className=" w-full h-auto ">
@@ -84,7 +82,6 @@ export  function ReviewsList({ dataReview }) {
                                 <div key={review.author}>
                                     <div className="  border p-4 rounded-md border-[#ff1818]">
                                         <div className="flex items-center justify-start gap-2">
-
                                             <Avatar>
                                                 <AvatarImage src={review.author_details.avatar_path} />
                                                 <AvatarFallback>
@@ -100,16 +97,12 @@ export  function ReviewsList({ dataReview }) {
                                         </div>
                                     </div>
                                 </div>
-                            ))
-                        ):(
-                            <div className="flex justify-center items-center font-bold text-xl text-error w-full">
-                                <h1>Unknown!</h1>
-                            </div>
-                        )
-
-
-                        }
-
+                            )))
+                            : (
+                                <div className="flex justify-center items-center font-bold text-xl text-error w-full">
+                                    <h1>Unknown!</h1>
+                                </div>
+                            )}
                     </div>
                     <ScrollBar orientation="horizontal" />
                 </ScrollArea>
@@ -122,7 +115,7 @@ export  function ReviewsList({ dataReview }) {
 
 
 
-export  function ImageList({ dataImageList }) {
+export function ImageList({ dataImageList }) {
 
 
     return (
@@ -134,8 +127,8 @@ export  function ImageList({ dataImageList }) {
                     <div key={data.file_path} className=" rounded-md relative overflow-hidden " >
                         <Image src={data.file_path ?
                             `${urlImage}${data.file_path}`
-                        :
-                        no_image
+                            :
+                            no_image
                         }
                             width={250}
                             height={150}
@@ -181,10 +174,7 @@ export default async function DynamicMoviesList({ params }) {
     return (
         <div className="w-full h-auto p-5">
             <ToggleButton />
-
             <div className=" flex justify-between items-center pb-4" >
-
-
                 <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl md:text-3xl  text-base-100 drop-shadow-[0_5px_10px_rgba(255,145,0,10.25)]">{data.original_title}</h1>
             </div>
             <div className=" mt-4 flex justify-start items-start gap-3 md:flex-col  ">
@@ -219,7 +209,7 @@ export default async function DynamicMoviesList({ params }) {
                     </div>
                 </div>
 
-
+                {/* section overview */}
                 <div className="">
                     <h1 className=" text-slate-500  md:text-slate-500   mt-10 scroll-m-20 md:text-xl  text-3xl font-bold tracking-tight transition-colors first:mt-0">
                         Overview :
@@ -261,6 +251,7 @@ export default async function DynamicMoviesList({ params }) {
                     <div>
 
                         <Separator className="mt-4" />
+                        {/* section popularity & vote average & vote count & status */}
                         <div className=" flex justify-start gap-5 md:justify-stretch items-center flex-wrap ">
 
                             <div className="mt-5 flex justify-start items-center gap-3  md:flex-wrap">

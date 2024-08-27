@@ -1,4 +1,11 @@
-import { getCriditsMovies, getImageMoviesId, getMoviesSimilar, getReviewsMovies, urlImage } from "@/app/libs/DataFetching"
+import {
+    getCriditsMovies,
+    getImageMoviesId,
+    getMoviesNowPlaying,
+    getMoviesSimilar,
+    getReviewsMovies,
+    urlImage
+} from "@/app/libs/DataFetching"
 import { Badge } from "@/components/ui/badge"
 import { cn } from "@/lib/utils"
 import Image from "next/image"
@@ -36,6 +43,14 @@ import MoviesSimilar from "@/app/(movies)/Components/MoviesSimilar/MoviesSimilar
 import MoviesCredits from "@/app/(movies)/Components/MoviesCredits/MoviesCredits"
 import ToggleButton from "@/app/(movies)/Components/ToggleButton/ToggleButton"
 import no_image from '../../../../../public/image/no_image4.webp'
+import {
+    Alert,
+    AlertDescription,
+    AlertTitle,
+} from "@/components/ui/alert"
+import { AlertCircle } from "lucide-react"
+import NowPlayingMovies from "@/app/(movies)/Components/NowPlaying/NowPlayingMovies"
+// import RecommendationMovies from "@/app/(movies)/Components/RecommendationMovies/RecommendationMovies"
 
 export async function generateMetadata({ params }) {
     const data = await getMoviesLoad(params.id)
@@ -99,9 +114,13 @@ export function ReviewsList({ dataReview }) {
                                 </div>
                             )))
                             : (
-                                <div className="flex justify-center items-center font-bold text-xl text-error w-full">
-                                    <h1>Unknown!</h1>
-                                </div>
+                                <Alert variant="destructive">
+                                    <AlertCircle className="h-4 w-4" />
+                                    <AlertTitle>Error</AlertTitle>
+                                    <AlertDescription>
+                                        There are no reviews in this movie.
+                                    </AlertDescription>
+                                </Alert>
                             )}
                     </div>
                     <ScrollBar orientation="horizontal" />
@@ -123,24 +142,36 @@ export function ImageList({ dataImageList }) {
         <ScrollArea className="w-full whitespace-nowrap rounded-md border md:w-2/3 lg:w-3/4 xl:w-4/5 transition-none">
             <div className="flex w-max space-x-4 p-4">
                 {/* scroll image content */}
-                {dataImageList.backdrops.map((data) => (
-                    <div key={data.file_path} className=" rounded-md relative overflow-hidden " >
-                        <Image src={data.file_path ?
-                            `${urlImage}${data.file_path}`
-                            :
-                            no_image
-                        }
-                            width={250}
-                            height={150}
-                            className="  rounded-md  "
-                            priority
-                            style={{ width: "auto" }}
-                            draggable={false}
-                            alt={data.file_path}
-                            loading="eager"
-                        />
-                    </div>
-                ))}
+                {dataImageList.backdrops && dataImageList.backdrops.length > 0 ? (
+                    dataImageList.backdrops.map((data) => (
+                        <div key={data.file_path} className=" rounded-md relative overflow-hidden " >
+                            <Image src={data.file_path ?
+                                `${urlImage}${data.file_path}`
+                                :
+                                no_image
+                            }
+                                width={250}
+                                height={150}
+                                className="  rounded-md  "
+                                priority
+                                style={{ width: "auto" }}
+                                draggable={false}
+                                alt={data.file_path}
+                                loading="eager"
+                            />
+                        </div>
+                    ))
+                ) : (
+
+                    <Alert variant="destructive">
+                        <AlertCircle className="h-4 w-4" />
+                        <AlertTitle>Error</AlertTitle>
+                        <AlertDescription>
+                            There are no images in this movie.
+                        </AlertDescription>
+                    </Alert>
+                )
+                }
             </div>
             <ScrollBar orientation="horizontal" />
         </ScrollArea>
@@ -168,7 +199,8 @@ export default async function DynamicMoviesList({ params }) {
     const dataImage = await getImageMoviesId(id)
     const reviewData = await getReviewsMovies(id)
     const dataCreditsId = await getCriditsMovies(id)
-    const [data, similar, dataImageList, dataReview, credits] = await Promise.all([dataLoad, similarData, dataImage, reviewData, dataCreditsId])
+    const nowData = await getMoviesNowPlaying()
+    const [data, similar, dataImageList, dataReview, credits,dataPlaying] = await Promise.all([dataLoad, similarData, dataImage, reviewData, dataCreditsId,nowData])
 
 
     return (
@@ -180,7 +212,11 @@ export default async function DynamicMoviesList({ params }) {
             <div className=" mt-4 flex justify-start items-start gap-3 md:flex-col  ">
                 <div className=" relative overflow-hidden w-full  flex flex-col justify-center items-center">
 
-                    <Image src={`${urlImage}${data.poster_path}`}
+                    <Image src={data.poster_path ?
+                        `${urlImage}${data.poster_path}`
+                        :
+                        no_image
+                    }
                         width={300}
                         height={300}
                         className="rounded-md md:h-[250px] lg:h-[290px] xl:h-[350px] "
@@ -292,6 +328,13 @@ export default async function DynamicMoviesList({ params }) {
 
             <Separator className="my-4" />
 
+            {/* section of movies now playing */}
+            <div>
+                <NowPlayingMovies dataPlaying={dataPlaying.results}  />
+            </div>
+
+            <Separator className="my-4" />
+            {/* section Similar movies */}
             <div>
                 <MoviesSimilar similar={similar} />
             </div>

@@ -45,7 +45,7 @@ export async function PersonDetails({ person_id }) {
               <p className="   pt-2 font-semibold">{data.biography ? data.biography : <span className="font-bold">Unknown</span>}</p>
               <div className="">
                 <h1 className=" font-bold text-xl underline decoration-yellow-600 pt-3">Birthday :</h1>
-                <p className="pt-2 font-semibold"> {data.birthday ? data.birthday.replace(/-/g, '.') : "Unknown"}</p>
+                <p className="pt-2 font-semibold"> {data.birthday ? data.birthday.replace(/-/g, '.') : <span className="font-bold">Unknown</span>}</p>
                 <h1 className=" font-bold text-xl underline decoration-yellow-600 pt-3">Place of Birth : </h1>
                 <p className="pt-2 font-semibold">
                   {data.place_of_birth ? data.place_of_birth : "Unknown"}

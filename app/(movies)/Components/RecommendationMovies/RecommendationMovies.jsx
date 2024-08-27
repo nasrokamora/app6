@@ -12,13 +12,12 @@ import { Suspense } from "react"
 import Link from "next/link"
 import no_image from '../../../../public/image/no_image4.webp'
 
-export default function RecommendationTv({dataRecommend}) {
+export default function RecommendationMovies({dataRecommend}) {
 // console.log(dataRecommend)
 
 
     return(
-      <Suspense fallback={<p className=" flex justify-center items-center">Loading feed...</p>}>
-
+      <>
         <div className="w-full pt-10 flex justify-center items-center relative h-fit md:mt-4">
         <Carousel
       opts={{
@@ -30,7 +29,7 @@ export default function RecommendationTv({dataRecommend}) {
         {dataRecommend && dataRecommend.length > 0 ? (
         dataRecommend.map((data, index) => (
           <CarouselItem key={index} className="md:basis-1/2 basis-1/6 lg:basis-1/5">
-            <Link href={`/Tv/List/${data.id}`}>
+            <Link href={`/Movies/List/${data.id}`}>
             <div className="p-1 hover:scale-90 hover:duration-500">
                 <div className=" ">
                     <div className=" overflow-hidden relative">
@@ -70,6 +69,6 @@ export default function RecommendationTv({dataRecommend}) {
       </div>
     </Carousel>
         </div>
-        </Suspense>
+        </>
     )
 }

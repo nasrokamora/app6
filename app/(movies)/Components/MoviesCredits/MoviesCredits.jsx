@@ -1,4 +1,9 @@
-
+import {
+    Alert,
+    AlertDescription,
+    AlertTitle,
+} from "@/components/ui/alert"
+import { AlertCircle } from "lucide-react"
 import {
     Card,
     CardContent,
@@ -32,7 +37,7 @@ export default async function MoviesCredits({ credits }) {
             <div className=" flex justify-center items-center text-white pt-5">
 
             <Carousel className="w-full max-w-xs xl:max-w-4xl lg:max-w-[40rem]" opts={{ loop: true, align: "start" }}>
-                <CarouselContent>
+                <CarouselContent className="-ml-1">
                     
                     {dataCredit && dataCredit.length > 0 ? (
                         dataCredit.map((item) => (
@@ -59,14 +64,19 @@ export default async function MoviesCredits({ credits }) {
 
                                     </CardHeader>
                                     <CardContent>
-                                        <CreditsId credit_id={item && item.credit_id ?
-                                            item.credit_id : "Problem Credit"} />
+                                        <CreditsId credit_id={item.credit_id} />
                                     </CardContent>
                                 </Card>
                             </div>
                         </CarouselItem>
                     ))):(
-                        <h1>No Data Found</h1>
+                        <Alert variant="destructive">
+                        <AlertCircle className="h-4 w-4" />
+                        <AlertTitle>Error</AlertTitle>
+                        <AlertDescription>
+                            There are no cast in this movie
+                        </AlertDescription>
+                      </Alert>
                     )}
                 </CarouselContent>
                 <CarouselPrevious className="md:hidden" />

@@ -10,7 +10,7 @@ import { FaRegStar } from "react-icons/fa";
 import Link from "next/link"
 import no_image from '../../../../public/image/no_image4.webp'
 
-export default  function MoviesSimilar({ similar }) {
+export default function MoviesSimilar({ similar }) {
 
 
     return (
@@ -23,48 +23,48 @@ export default  function MoviesSimilar({ similar }) {
                 <Carousel opts={{
                     align: "start",
                     loop: true,
-                }} className=" md:max-w-sm xl:max-w-4xl   w-[80%] 2xl:max-w-6xl" >
+                }} className=" md:max-w-lg xl:max-w-4xl w-full max-w-5xl 2xl:max-w-full" >
                     <CarouselContent className="  -ml-1">
                         {similar.results && similar.results.length > 0 ? (
-                            similar.results.map((movie, index) => (
+                            similar.results.map((movie) => (
 
-                                <CarouselItem key={index} className="  basis-1/5 lg:basis-1/5 md:basis-1/2 2xl:basis-1/7">
+                                <CarouselItem key={movie.id} className="  basis-1/5 lg:basis-1/5 md:basis-1/2 2xl:basis-1/7">
                                     <div className="  hover:scale-105 hover:duration-500 hover:saturate-50 hover:grayscale  ">
-                                    <Link className="   " href={`/Movies/List/${movie.id}`}>
+                                        <Link className="   " href={`/Movies/List/${movie.id}`}>
 
-                                        <Image
-                                            src={movie.poster_path ? `
+                                            <Image
+                                                src={movie.poster_path ? `
                                     https://image.tmdb.org/t/p/original${movie.poster_path}`
-                                                :
-                                                no_image
-                                            }
-                                            alt={movie.title}
-                                            width={250} height={180}
-                                            className=" rounded-md md:w-[200px]  lg:w-[200px] lg:h-[200px]  xl:h-[250px] 2xl:w-[250px] 2xl:h-[150px]  " 
-                                            style={{ width: "auto" }}
-                                            priority={true}
-                                            loading="eager"
-                                        />
-                                        <div>
-                                            <p className=" font-bold flex justify-start  pt-2 mb-1">{movie.title.length > 14 ? movie.title.slice(0, 14) + "..." : movie.title}
-                                            </p>
-                                        </div>
-                                        <div className=" flex justify-between items-center w-full font-semibold">
-                                            <p className=" fonb flex justify-between items-center w-full">
-                                                {new Date(movie.release_date).getFullYear()}
-                                            </p>
-                                            <div className=" ">
-                                                <div className=" space-x-1 flex justify-between items-center">
-                                                    <FaRegStar className="text-[#FFC300]" />
-                                                    <span className="">
-                                                        {movie.vote_average.toFixed(1)}
-                                                    </span>
+                                                    :
+                                                    no_image
+                                                }
+                                                alt={movie.title}
+                                                width={250} height={180}
+                                                className=" rounded-md "
+                                                style={{ width: "auto" }}
+                                                priority={true}
+                                                loading="eager"
+                                            />
+                                            <div>
+                                                <p className=" font-bold flex justify-start  pt-2 mb-1">{movie.title.length > 14 ? movie.title.slice(0, 14) + "..." : movie.title}
+                                                </p>
+                                            </div>
+                                            <div className=" flex justify-between items-center w-full font-semibold">
+                                                <p className=" fonb flex justify-between items-center w-full">
+                                                    {new Date(movie.release_date).getFullYear()}
+                                                </p>
+                                                <div className=" ">
+                                                    <div className=" space-x-1 flex justify-between items-center">
+                                                        <FaRegStar className="text-[#FFC300]" />
+                                                        <span className="">
+                                                            {movie.vote_average.toFixed(1)}
+                                                        </span>
+                                                    </div>
                                                 </div>
+
                                             </div>
 
-                                        </div>
-
-                                    </Link>
+                                        </Link>
                                     </div>
                                 </CarouselItem>
                             ))
@@ -75,8 +75,10 @@ export default  function MoviesSimilar({ similar }) {
                         )
                         }
                     </CarouselContent>
-                    <CarouselPrevious className=" md:hidden" />
-                    <CarouselNext className=" md:hidden" />
+                    <div className=" absolute top-[-2rem] left-[93%] md:left-[85%]">
+                        <CarouselPrevious />
+                        <CarouselNext />
+                    </div>
                 </Carousel>
             </div>
         </div>

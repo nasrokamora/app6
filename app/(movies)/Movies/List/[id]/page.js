@@ -92,9 +92,9 @@ export function ReviewsList({ dataReview }) {
                 <ScrollArea className="  w-full  whitespace-nowrap  lg:w-3/4 xl:w-4/5">
                     <div className="flex w-max space-x-4 p-4">
 
-                        {dataReview.results && dataReview.results.length > 0 ? (
+                        {dataReview && dataReview.results.length > 0 ? (
                             dataReview.results.map((review) => (
-                                <div key={review.author}>
+                                <div key={review.id}>
                                     <div className="  border p-4 rounded-md border-[#ff1818]">
                                         <div className="flex items-center justify-start gap-2">
                                             <Avatar>
@@ -221,7 +221,8 @@ export default async function DynamicMoviesList({ params }) {
                         height={300}
                         className="rounded-md md:h-[250px] lg:h-[290px] xl:h-[350px] "
                         style={{ width: "auto" }}
-                        priority alt={data.original_title} />
+                        priority 
+                        alt={data.title ? data.title : "image not found"} />
 
                     <div className=" pt-5 flex justify-center gap-3">
                         <Dialog>

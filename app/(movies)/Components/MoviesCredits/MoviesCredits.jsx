@@ -36,52 +36,54 @@ export default async function MoviesCredits({ credits }) {
             </div>
             <div className=" flex justify-center items-center text-white pt-5">
 
-            <Carousel className="w-full max-w-xs xl:max-w-4xl lg:max-w-[40rem]" opts={{ loop: true, align: "start" }}>
-                <CarouselContent className="-ml-1">
-                    
-                    {dataCredit && dataCredit.length > 0 ? (
-                        dataCredit.map((item) => (
-                        <CarouselItem className="md:basis-1/1 lg:basis-1/3 xl:basis-1/3 2xl:basis-1/4" key={item.id}>
-                            <div>
-                                <Card className=" xl:aspect-[3/2]  bg-transparent overflow-hidden ">
-                                    <CardHeader >
-                                        <CardTitle className=" flex justify-between items-center md:flex-wrap md:py-3">
-                                            {item.name}
-                                            <div className="md:pt-4">
-                                                <Avatar className=" h-15 w-15 ">
-                                                    <AvatarImage src={`https://image.tmdb.org/t/p/original${item.profile_path}`} className=" size-12" />
-                                                    <AvatarFallback>
-                                                        {item.name.slice(0, 3)}
-                                                    </AvatarFallback>
-                                                </Avatar>
-                                            </div>
+                <Carousel className="w-full md:max-w-sm max-w-5xl 2xl:max-w-full" opts={{ loop: true, align: "start" }}>
+                    <CarouselContent className="-ml-1">
 
-                                        </CardTitle>
+                        {dataCredit && dataCredit.length > 0 ? (
+                            dataCredit.map((item) => (
+                                <CarouselItem className="md:basis-1/1 lg:basis-1/3 xl:basis-1/3 2xl:basis-1/4" key={item.id}>
+                                    <div>
+                                        <Card className=" xl:aspect-[3/2]  bg-transparent overflow-hidden aspect-auto">
+                                            <CardHeader >
+                                                <CardTitle className=" flex justify-between items-center md:flex-wrap md:py-3">
+                                                    {item.name}
+                                                    <div className="md:pt-4">
+                                                        <Avatar className=" h-15 w-15 ">
+                                                            <AvatarImage src={`https://image.tmdb.org/t/p/original${item.profile_path}`} className=" size-12" />
+                                                            <AvatarFallback>
+                                                                {item.name.slice(0, 3)}
+                                                            </AvatarFallback>
+                                                        </Avatar>
+                                                    </div>
 
-                                        <CardDescription className="">
-                                            <strong>Character</strong>  {item.character}
-                                        </CardDescription>
+                                                </CardTitle>
 
-                                    </CardHeader>
-                                    <CardContent>
-                                        <CreditsId credit_id={item.credit_id} />
-                                    </CardContent>
-                                </Card>
-                            </div>
-                        </CarouselItem>
-                    ))):(
-                        <Alert variant="destructive">
-                        <AlertCircle className="h-4 w-4" />
-                        <AlertTitle>Error</AlertTitle>
-                        <AlertDescription>
-                            There are no cast in this movie
-                        </AlertDescription>
-                      </Alert>
-                    )}
-                </CarouselContent>
-                <CarouselPrevious className="md:hidden" />
-                <CarouselNext className="md:hidden" />
-            </Carousel>
+                                                <CardDescription className="">
+                                                    <strong>Character</strong>  {item.character}
+                                                </CardDescription>
+
+                                            </CardHeader>
+                                            <CardContent>
+                                                <CreditsId credit_id={item.credit_id} />
+                                            </CardContent>
+                                        </Card>
+                                    </div>
+                                </CarouselItem>
+                            ))) : (
+                            <Alert variant="destructive">
+                                <AlertCircle className="h-4 w-4" />
+                                <AlertTitle>Error</AlertTitle>
+                                <AlertDescription>
+                                    There are no cast in this movie.
+                                </AlertDescription>
+                            </Alert>
+                        )}
+                    </CarouselContent>
+                    <div className=" absolute top-[-2rem] left-[93%] md:left-[85%]">
+                        <CarouselPrevious />
+                        <CarouselNext />
+                    </div>
+                </Carousel>
             </div>
         </div>
     )

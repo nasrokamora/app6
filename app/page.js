@@ -13,6 +13,19 @@ import styles from './styles/Animat.module.css'
 
 
 export default async function Home() {
+
+  const FontSizeHieght = {
+    fontSize: "1.5rem",
+  }
+
+  // const ChangeFontIfHieght = () => {
+  //   if(window.innerHeight >= 1024){
+  //   return FontSizeHieght.fontSize = "1.5rem";
+  //   }  
+  // }
+  
+
+
   const data = await getDiscoverMovies()
   const popularData = await getPopularMovies()
   const tvData = await getDiscoverTv()
@@ -20,7 +33,7 @@ export default async function Home() {
   const [dataDiscoverMovies,dataPopular,dataTv] = await Promise.all([data,popularData,tvData])
   
   return (
-    <main className="w-full h-auto text-white ">
+    <main className={`w-full h-auto text-white `}>
         <AnimateScroll />
   
           <div className={`scroll-m-20 text-4xl  tracking-tight lg:text-3xl ml-6  title font-extrabold md:flex md:justify-center md:items-center   mt-7 md:mt-3 text-red-700 `  }>

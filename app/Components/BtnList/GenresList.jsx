@@ -74,34 +74,44 @@ export default function GenresList() {
     //    Nas@Dev
     return (
 
-        <div className="">
-            {isLoading ? <LoadingGenreButton /> : null}
+        <div className=" md:mt-16">
+            {/* {isLoading ? <LoadingGenreButton /> : null} */}
             <div className=" flex justify-center ">
                 <Carousel
                     opts={{
                         align: "start",
                         loop: true,
                     }}
-                    className=" md:w-[60%] w-[80%] md:pl-8">
-                    <CarouselContent>
-                        {genres.map((genre, index) => (
-                            <CarouselItem key={index} className=" basis-1/7 lg:basis-1/5 md:basis-1/2">
-                                <Button variant="outline" className={`  ${selectedGenre === genre.id ? 'text-red-700' : ' text-zinc-500'}`}
-                                    style={{ color: selectedGenre === genre.id ? 'text-red-500' : ' text-zinc-800' }}
-                                    onClick={() => handleClick(genre.id)}>{genre.name}</Button>
-                            </CarouselItem>
-                        ))}
+                    className="w-full md:max-w-xl max-w-5xl 2xl:max-w-7xl lg:max-w-4xl">
+                    <CarouselContent className="-ml-1">
+                        {isLoading ? (
+                            <div className='flex justify-center items-center w-full'>
+                                <LoadingGenreButton /> 
+                            </div> 
+                        ):(
+                            genres.map((genre, index) => (
+                                <CarouselItem key={index} className=" p-1 basis-1/7 lg:basis-1/8 md:basis-1/7 ">
+                                    <Button variant="outline" className={`2xl:text-xl  ${selectedGenre === genre.id ? 'text-red-700' : ' text-zinc-500'}`}
+                                        style={{ color: selectedGenre === genre.id ? 'text-red-500' : ' text-zinc-800' }}
+                                        onClick={() => handleClick(genre.id)}>{genre.name}</Button>
+                                </CarouselItem>
+                            ))
+                        )
+                    }
+ 
                     </CarouselContent>
-                    <CarouselPrevious />
-                    <CarouselNext />
+                    <div className=" absolute top-[-2rem] left-[93%] md:left-[82%] ">
+                        <CarouselPrevious />
+                        <CarouselNext />
+                    </div>
                 </Carousel>
             </div>
             {/* {isLoading ? <LoadingGenreCarousel /> : null} */}
-            <div className=" mt-8 flex justify-center w-full 2xl:text-2xl">
+            <div className=" mt-8 flex justify-center items-center 2xl:text-2xl w-full">
                 <Carousel opts={{
-                    align: "start",
+                    align: "center",
                     loop: true,
-                }} className=" md:w-[60%] xl:w-[80%]   w-[80%]" >
+                }} className="w-full md:max-w-xl  max-w-5xl 2xl:max-w-7xl lg:max-w-4xl" >
                     <CarouselContent className=" -ml-1">
                         {isLoading ? (
                             <div className=" flex justify-center items-center w-full">
@@ -109,51 +119,53 @@ export default function GenresList() {
                                 <LoadingGenreCarousel />
                             </div>
                         ) : movieList && movieList.length > 0 ? (
-                                movieList.map((movie, index) => (
+                            movieList.map((movie, index) => (
 
-                                    <CarouselItem key={index} className="  basis-1/7 lg:basis-1/5 md:basis-1/1  ">
-                                        <div className=" overflow-hidden relative lg:hover:scale-90 lg:hover:duration-500 xl:hover:scale-90 xl:hover:duration-500  2xl:hover:scale-90 2xl:hover:duration-500">
-                                            <Link href={`/Movies/List/${movie.id}`}>
-                                                <Image
-                                                    src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
-                                                    alt={movie.title}
-                                                    width={180} height={180}
-                                                    className=" hover:sepia hover:duration-500 rounded-md  md:w-[200px]  lg:w-[200px] lg:h-[200px] xl:w-[150px] xl:h-[150px] 2xl:w-[250px]   "
-                                                    priority
-                                                    loading="eager"
-                                                    style={{ height: "auto" }}
+                                <CarouselItem key={index} className=" p-2  md:basis-1/2 basis-1/6 lg:basis-1/5">
+                                    <div className=" overflow-hidden relative lg:hover:scale-90 lg:hover:duration-500 xl:hover:scale-90 xl:hover:duration-500  2xl:hover:scale-90 2xl:hover:duration-500">
+                                        <Link href={`/Movies/List/${movie.id}`}>
+                                            <Image
+                                                src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
+                                                alt={movie.title}
+                                                width={300} height={250}
+                                                className=" hover:sepia hover:duration-500 rounded-md  "
+                                                priority
+                                                loading="eager"
+                                                style={{ width: "auto" }}
 
 
-                                                />
-                                                <p className=" font-bold flex justify-start  pt-2 mb-1">{movie.title.length > 14 ? movie.title.slice(0, 14) + "..." : movie.title}</p>
-                                                <div className=" flex justify-between items-center w-full">
-                                                    <p className=" font-semibold flex justify-between items-center w-full 2xl:text-2xl">
-                                                        {new Date(movie.release_date).getFullYear()}
-                                                    </p>
-                                                    <div className=" 2xl:font-bold 2xl:text-2xl">
-                                                        <div className=" space-x-1 flex justify-between items-center">
-                                                            <FaRegStar className="text-[#FFC300]" />
-                                                            <span className="">
-                                                                {movie.vote_average.toFixed(1)}
-                                                            </span>
-                                                        </div>
+                                            />
+                                            <p className=" font-bold flex justify-start  pt-2 mb-1">{movie.title.length > 14 ? movie.title.slice(0, 14) + "..." : movie.title}</p>
+                                            <div className=" flex justify-between items-center w-full">
+                                                <p className=" font-semibold flex justify-between items-center w-full 2xl:text-2xl">
+                                                    {new Date(movie.release_date).getFullYear()}
+                                                </p>
+                                                <div className=" 2xl:font-bold 2xl:text-2xl">
+                                                    <div className=" space-x-1 flex justify-between items-center">
+                                                        <FaRegStar className="text-[#FFC300]" />
+                                                        <span className="">
+                                                            {movie.vote_average.toFixed(1)}
+                                                        </span>
                                                     </div>
-
                                                 </div>
-                                            </Link>
 
-                                        </div>
-                                    </CarouselItem>
-                                ))
-                            ) : (
-                                <div className="font-bold text-xl flex justify-center items-center text-error w-full">
-                                    <h1>No Movie Found</h1>
-                                </div>
-                            )
+                                            </div>
+                                        </Link>
+
+                                    </div>
+                                </CarouselItem>
+                            ))
+                        ) : (
+                            <div className="font-bold text-xl flex justify-center items-center text-error w-full">
+                                <h1>No Movie Found</h1>
+                            </div>
+                        )
                         }
                     </CarouselContent>
-                    <CarouselPrevious />
-                    <CarouselNext />
+                    <div className=" absolute top-[-2rem] left-[93%] md:left-[82%] hidden ">
+                        <CarouselPrevious />
+                        <CarouselNext />
+                    </div>
                 </Carousel>
             </div>
         </div>

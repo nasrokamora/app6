@@ -16,7 +16,7 @@ import {
   AlertDescription,
   AlertTitle,
 } from "@/components/ui/alert"
-
+import no_image from '../../../../public/image/no_image4.webp'
 
 export default function NowPlayingMovies({dataPlaying }) {
 
@@ -28,29 +28,34 @@ export default function NowPlayingMovies({dataPlaying }) {
         opts={{
           align: "start",
         }}
-        className="w-full max-w-5xl "
+        className="w-full md:max-w-sm max-w-5xl 2xl:max-w-full"
       >
         <CarouselContent className="-mt-1 ">
           {dataPlaying && dataPlaying.length > 0 ? (
-            dataPlaying.map((data, index) => (
-              <CarouselItem key={index} className="pt-1 md:basis-1/2 basis-1/6 lg:basis-1/5">
-                <Link href={`/Movies/List/${data.id}`}>
+            dataPlaying.map((data) => (
+              <CarouselItem key={data.id} className="pt-1 md:basis-1/2 basis-1/6 lg:basis-1/5 ">
                   <div className="p-1 hover:scale-90 hover:duration-500">
+                <Link href={`/Movies/List/${data.id}`}>
                     <div className=" ">
                       <div className=" overflow-hidden relative">
                         <Image
-                          src={`${urlImageTv}${data.poster_path}`}
-                          alt={data.name}
-                          width={400}
+                          src={data.poster_path ?
+                            `${urlImageTv}${data.poster_path}`
+                          :
+                          no_image
+                          }
+                          alt={data.title? data.title : "image not found"}
+                          width={300}
                           height={250}
                           style={{ width: "auto" }}
                           className="rounded-md"
                           loading="eager"
+                          priority
                         />
                       </div>
                     </div>
-                  </div>
                 </Link>
+                  </div>
               </CarouselItem>
             ))
           ) : (

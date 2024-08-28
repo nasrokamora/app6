@@ -75,7 +75,6 @@ export default function GenresList() {
     return (
 
         <div className=" md:mt-16">
-            {/* {isLoading ? <LoadingGenreButton /> : null} */}
             <div className=" flex justify-center ">
                 <Carousel
                     opts={{

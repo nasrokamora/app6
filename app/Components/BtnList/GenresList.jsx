@@ -97,7 +97,6 @@ export default function GenresList() {
                             ))
                         )
                     }
- 
                     </CarouselContent>
                     <div className=" absolute top-[-2rem] left-[93%] md:left-[82%] hidden">
                         <CarouselPrevious />

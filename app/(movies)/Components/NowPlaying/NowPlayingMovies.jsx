@@ -26,9 +26,6 @@ export default function NowPlayingMovies({dataPlaying }) {
         <h1 className=" text-red-800 mt-10 scroll-m-20 md:text-xl  text-2xl font-bold tracking-tight transition-colors first:mt-0">Now Playing on Magix</h1>
       </div>
     <div className="w-full pt-10 flex justify-center items-center relative">
-      
-
-
       <Carousel
         opts={{
           align: "center",

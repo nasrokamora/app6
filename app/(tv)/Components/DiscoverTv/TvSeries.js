@@ -10,60 +10,60 @@ import Image from "next/image"
 import { FaRegStar } from "react-icons/fa6"
 
 
-export default  function TvSeries({dataTv}) {
+export default function TvSeries({ dataTv }) {
 
     return (
         <div className=" mt-10 flex justify-center w-full bg-gradient-to-br from-[black] to-[#318ffa] p-6 2xl:text-lg ">
-        <Carousel opts={{
-            align: "center",
-            loop: true,
-        }} className="w-full md:max-w-xl  max-w-5xl 2xl:max-w-7xl lg:max-w-4xl" >
-            <CarouselContent className="   ">
-                {dataTv.map((tv,index) => (
+            <Carousel opts={{
+                align: "center",
+                loop: true,
+            }} className="w-full md:max-w-xl  max-w-5xl 2xl:max-w-7xl lg:max-w-4xl" >
+                <CarouselContent className="   ">
+                    {dataTv.map((tv, index) => (
 
-                    <CarouselItem key={index} className="md:basis-1/2 basis-1/6 lg:basis-1/5">
-                        <div className="lg:hover:scale-90 lg:hover:duration-500 xl:hover:scale-90 xl:hover:duration-500  2xl:hover:scale-90 2xl:hover:duration-500 relative overflow-hidden">
+                        <CarouselItem key={index} className="md:basis-1/2 basis-1/6 lg:basis-1/5">
+                            <div className="lg:hover:scale-90 lg:hover:duration-500 xl:hover:scale-90 xl:hover:duration-500  2xl:hover:scale-90 2xl:hover:duration-500 relative overflow-hidden">
 
-                        <Link className=" hover:scale-105" href={`/Tv/List/${tv.id}`}>
-                            <div className="relative overflow-hidden ">
+                                <Link className=" hover:scale-105" href={`/Tv/List/${tv.id}`}>
+                                    <div className="relative overflow-hidden ">
 
-                            <Image
-                                src={`https://image.tmdb.org/t/p/original${tv.poster_path}`}
-                                alt="image_tv_Show"
-                                width={300} height={250}
-                                className="  rounded-md " 
-                                style={{width:"auto"}}
-                                priority
-                                />
-                                </div>
-                            <p className=" font-bold flex justify-start  pt-2 mb-1">{tv.original_name.length > 14 ? tv.original_name.slice(0, 14) + "..." : tv.original_name}
-                            </p>
-                            <div className="  flex justify-between items-center w-full font-semibold">
-                                <p className=" fonb flex justify-between items-center w-full">
-                                    {new Date(tv.first_air_date).getFullYear()}
-                                </p>
-                                <div className=" ">
-                                    <div className=" space-x-1 flex justify-between items-center">
-                                    <FaRegStar className="text-[#FFC300]" /> 
-                                    <span className="">
-                                    {tv.vote_average.toFixed(1)}
-                                        </span>
+                                        <Image
+                                            src={`https://image.tmdb.org/t/p/original${tv.poster_path}`}
+                                            alt="image_tv_Show"
+                                            width={300} height={250}
+                                            className="  rounded-md "
+                                            style={{ width: "auto" }}
+                                            priority
+                                        />
                                     </div>
-                                </div>
+                                    <p className=" font-bold flex justify-start  pt-2 mb-1">{tv.original_name.length > 14 ? tv.original_name.slice(0, 14) + "..." : tv.original_name}
+                                    </p>
+                                    <div className="  flex justify-between items-center w-full font-semibold">
+                                        <p className=" fonb flex justify-between items-center w-full">
+                                            {new Date(tv.first_air_date).getFullYear()}
+                                        </p>
+                                        <div className=" ">
+                                            <div className=" space-x-1 flex justify-between items-center">
+                                                <FaRegStar className="text-[#FFC300]" />
+                                                <span className="">
+                                                    {tv.vote_average.toFixed(1)}
+                                                </span>
+                                            </div>
+                                        </div>
 
+                                    </div>
+
+                                </Link>
                             </div>
-
-                        </Link>
-                        </div>
-                    </CarouselItem>
-                ))}
-            </CarouselContent>
-            <div className=" absolute top-[-4rem] left-[93%] md:left-[82%] md:top-[-3rem]">
-                        <CarouselPrevious />
-                        <CarouselNext />
-                    </div>
-        </Carousel>
-    </div>
+                        </CarouselItem>
+                    ))}
+                </CarouselContent>
+                <div className=" absolute top-[-4rem] left-[93%] md:left-[82%] md:top-[-3rem]">
+                    <CarouselPrevious />
+                    <CarouselNext />
+                </div>
+            </Carousel>
+        </div>
 
     )
 }

@@ -21,22 +21,26 @@ import no_image from '../../../../public/image/no_image4.webp'
 export default function NowPlayingMovies({dataPlaying }) {
 
   return (
+    <div>
+      <div>
+        <h1 className=" text-red-800 mt-10 scroll-m-20 md:text-xl  text-2xl font-bold tracking-tight transition-colors first:mt-0">Now Playing on Magix</h1>
+      </div>
+    <div className="w-full pt-10 flex justify-center items-center relative">
+      
 
 
-    <div className="w-full pt-10 flex justify-center items-center relative h-fit">
       <Carousel
         opts={{
-          align: "start",
+          align: "center",
         }}
-        className="w-full md:max-w-sm max-w-5xl 2xl:max-w-full"
+        className="w-full md:max-w-sm max-w-5xl 2xl:max-w-full bg-gradient-to-tr from-black via-purple-700 to-red-800"
       >
         <CarouselContent className="-mt-1 ">
           {dataPlaying && dataPlaying.length > 0 ? (
             dataPlaying.map((data) => (
-              <CarouselItem key={data.id} className="pt-1 md:basis-1/2 basis-1/6 lg:basis-1/5 ">
-                  <div className="p-1 hover:scale-90 hover:duration-500">
+              <CarouselItem key={data.id} className="p-2  md:basis-1/2 basis-1/6 lg:basis-1/5 ">
+                  <div className="p-1 hover:scale-90 hover:duration-500 hover:saturate-50">
                 <Link href={`/Movies/List/${data.id}`}>
-                    <div className=" ">
                       <div className=" overflow-hidden relative">
                         <Image
                           src={data.poster_path ?
@@ -44,7 +48,7 @@ export default function NowPlayingMovies({dataPlaying }) {
                           :
                           no_image
                           }
-                          alt={data.title? data.title : "image not found"}
+                          alt="image now_playing"
                           width={300}
                           height={250}
                           style={{ width: "auto" }}
@@ -53,7 +57,6 @@ export default function NowPlayingMovies({dataPlaying }) {
                           priority
                         />
                       </div>
-                    </div>
                 </Link>
                   </div>
               </CarouselItem>
@@ -76,5 +79,6 @@ export default function NowPlayingMovies({dataPlaying }) {
       </Carousel>
     </div>
 
+          </div>
   )
 }

@@ -1,5 +1,4 @@
 import { urlImageTv } from "@/app/libs/DataFetchingTv"
-import { Card, CardContent } from "@/components/ui/card"
 import {
   Carousel,
   CarouselContent,
@@ -11,7 +10,12 @@ import Image from "next/image"
 import { Suspense } from "react"
 import Link from "next/link"
 import no_image from '../../../../public/image/no_image4.webp'
-
+import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+} from "@/components/ui/alert"
+import { AlertCircle } from "lucide-react"
 export default function RecommendationTv({dataRecommend}) {
 // console.log(dataRecommend)
 
@@ -55,12 +59,13 @@ export default function RecommendationTv({dataRecommend}) {
           </CarouselItem>
         ))
       ):(
-        <div className="flex justify-items-center w-full">
-
-        <h1 className=" text-xl text-error font-bold">
-            Unknown !
-          </h1>
-        </div>
+        <Alert variant="destructive">
+        <AlertCircle className="h-4 w-4" />
+        <AlertTitle>Error</AlertTitle>
+        <AlertDescription>
+          No data found.
+        </AlertDescription>
+      </Alert>
         )
 }
         </CarouselContent>

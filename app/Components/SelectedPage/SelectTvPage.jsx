@@ -12,7 +12,11 @@ import {
     CarouselPrevious
 } from "@/components/ui/carousel";
 import { FaRegStar } from "react-icons/fa";
-
+import {
+    Alert,
+    AlertDescription,
+    AlertTitle,
+  } from "@/components/ui/alert"
 import LoadingGenreCarousel from "../LoadingUi/LoadingGenreCarousel";
 
 const  CarouselTv = ({ dataTv, currentPage, handlePageChange, isLoading }) => {
@@ -23,10 +27,10 @@ const  CarouselTv = ({ dataTv, currentPage, handlePageChange, isLoading }) => {
             <div className=" flex gap-4 justify-end items-center pr-20 md:pr-12 pt-4">
 
              <h4 className="font-bold">Select page</h4>
-             <select className=" w-14 text-black rounded-md" onChange={handlePageChange} value={currentPage} >
+             <select className=" w-14 text-white rounded-md bg-black" onChange={handlePageChange} value={currentPage} >
  
                  {Array.from({ length: 10 }, (_, index) => index + 1).map((page) => (
-                     <option value={page} className="text-black" key={page}>
+                     <option value={page} className="text-white" key={page}>
                          {page}
                      </option>
                  )
@@ -35,51 +39,71 @@ const  CarouselTv = ({ dataTv, currentPage, handlePageChange, isLoading }) => {
              </select>
                 </div>
              <div>
-                 {isLoading ? <LoadingGenreCarousel /> : null}
- 
                  <div className=" mt-8 flex justify-center w-full ">
                      <Carousel opts={{
-                         align: "start",
+                         align: "center",
                          loop: true,
-                     }} className=" md:w-[60%] xl:w-[80%]   w-[80%]">
+                     }} className="w-full md:max-w-xl  max-w-5xl 2xl:max-w-7xl lg:max-w-4xl">
                          <CarouselContent>
-                             {dataTv.map((tv) => (
- 
-                                 <CarouselItem key={tv.id} className="  basis-1/7 lg:basis-1/5 md:basis-1/2  ">
-                                     <div className="">
+                             {isLoading ? 
+                             <div className=" flex justify-center items-center w-full">
+                                 <LoadingGenreCarousel /> 
+                             </div>
 
+                             : dataTv && dataTv.length > 0 ? (
+                                dataTv.map((tv) => (
 
-                                         <Image
-                                             src={`https://image.tmdb.org/t/p/original${tv.poster_path}`}
-                                             alt={tv.name}
-                                             width={100} height={100}
-                                             className=" md:w-[150px] h-[200px] lg:w-[200px] lg:h-[200px] xl:w-[120px] xl:h-[150px] 2xl:w-[150px] 2xl:h-[150px]  "
-                                             priority={true} />
-                                         <h6 className=" font-bold flex justify-start  pt-2 mb-1">{tv.name.length > 14 ? tv.name.slice(0, 14) + "..." : tv.name}
-                                         </h6>
-                                         <div className=" flex justify-between items-center w-full">
-                                             <h6 className=" fonb flex justify-between items-center w-full">
-                                                 {tv.first_air_date}
-                                             </h6>
-
-                                             <div className=" ">
-                                                 <div className=" space-x-1 flex justify-between items-center">
-                                                     <FaRegStar className="text-[#FFC300]" />
-                                                     <span className="">
-                                                         {tv.vote_average.toFixed(1)}
-                                                     </span>
-                                                 </div>
-                                             </div>
- 
-                                         </div>
- 
-
-                                     </div>
-                                 </CarouselItem>
-                             ))}
+                                    <CarouselItem key={tv.id} className="  p-2  md:basis-1/2 basis-1/6 lg:basis-1/5 ">
+                                        <div className=" relative overflow-hidden">
+    
+    
+                                            <Image
+                                                src={`https://image.tmdb.org/t/p/original${tv.poster_path}`}
+                                                alt={tv.name}
+                                                width={300} height={250}
+                                                className="  "
+                                                priority 
+                                                loading="eager"
+                                                style={{width:"auto"}}
+                                                draggable={false}
+                                                />
+                                            <h6 className=" font-bold flex justify-start  pt-2 mb-1">{tv.name.length > 14 ? tv.name.slice(0, 14) + "..." : tv.name}
+                                            </h6>
+                                            <div className=" flex justify-between items-center w-full">
+                                                <h6 className=" fonb flex justify-between items-center w-full">
+                                                {new Date(tv.first_air_date).getFullYear()}
+                                                </h6>
+    
+                                                <div className=" ">
+                                                    <div className=" space-x-1 flex justify-between items-center">
+                                                        <FaRegStar className="text-[#FFC300]" />
+                                                        <span className="">
+                                                            {tv.vote_average.toFixed(1)}
+                                                        </span>
+                                                    </div>
+                                                </div>
+    
+                                            </div>
+    
+    
+                                        </div>
+                                    </CarouselItem>
+                                ))
+                            ):(
+                                <Alert variant="destructive">
+                                <AlertCircle className="h-4 w-4" />
+                                <AlertTitle>Error</AlertTitle>
+                                <AlertDescription>
+                                  Something went wrong.
+                                </AlertDescription>
+                              </Alert>
+                            )
+}
                          </CarouselContent>
-                         <CarouselPrevious />
-                         <CarouselNext />
+                         <div className=" absolute top-0 left-[93%] md:left-[82%] md:top-[-1rem] hidden">
+                        <CarouselPrevious />
+                        <CarouselNext />
+                    </div>
                      </Carousel>
                  </div>
              </div>
@@ -88,27 +112,21 @@ const  CarouselTv = ({ dataTv, currentPage, handlePageChange, isLoading }) => {
         )
  };
 
-const HoverCardTv = ({ dataTv }) => {
-    return (
-        <HoverCard>
 
-        </HoverCard>
-    )
-}
 
 
 
 export default function SelectTvPage() {
- const [currentPage, setCurrentPage] = useState(1)
+ const [currentPage, setCurrentPage] = useState(2)
  const [dataTv, setDataTv] = useState([])
- const [totalPages, setTotalPages] = useState(1)
+ const [totalPages, setTotalPages] = useState(10)
  const [isLoading, setIsLoading] = useState(true)
 
 
 
  const fetchData = async () => {
     try {
-        const response = await fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${process.env.NEXT_PUBLIC_API_KEY}&page=${currentPage}&limit=10`, {
+        const response = await fetch(`https://api.themoviedb.org/3/tv/airing_today?api_key=${process.env.NEXT_PUBLIC_API_KEY}&page=${currentPage}&limit=10`, {
             headers: {
                 Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`
             }
@@ -129,7 +147,7 @@ useEffect(() => {
 
 
 
- const handlePageChange = (event) => {
+ const handlePageChange = async (event) => {
      setCurrentPage(parseInt(event.target.value))
  }
 

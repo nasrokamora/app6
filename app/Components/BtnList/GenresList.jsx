@@ -99,14 +99,14 @@ export default function GenresList() {
                     }
  
                     </CarouselContent>
-                    <div className=" absolute top-[-2rem] left-[93%] md:left-[82%] ">
+                    <div className=" absolute top-[-2rem] left-[93%] md:left-[82%] hidden">
                         <CarouselPrevious />
                         <CarouselNext />
                     </div>
                 </Carousel>
             </div>
-            {/* {isLoading ? <LoadingGenreCarousel /> : null} */}
-            <div className=" mt-8 flex justify-center items-center 2xl:text-2xl w-full">
+
+            <div className=" md:mt-12 mt-8 flex justify-center items-center 2xl:text-lg w-full">
                 <Carousel opts={{
                     align: "center",
                     loop: true,
@@ -122,10 +122,10 @@ export default function GenresList() {
 
                                 <CarouselItem key={index} className=" p-2  md:basis-1/2 basis-1/6 lg:basis-1/5">
                                     <div className=" overflow-hidden relative lg:hover:scale-90 lg:hover:duration-500 xl:hover:scale-90 xl:hover:duration-500  2xl:hover:scale-90 2xl:hover:duration-500">
-                                        <Link href={`/Movies/List/${movie.id}`}>
+                                        <Link href={`/Movies/List/${movie.id}`} >
                                             <Image
                                                 src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
-                                                alt={movie.title}
+                                                alt="movie poster"
                                                 width={300} height={250}
                                                 className=" hover:sepia hover:duration-500 rounded-md  "
                                                 priority
@@ -161,7 +161,7 @@ export default function GenresList() {
                         )
                         }
                     </CarouselContent>
-                    <div className=" absolute top-[-2rem] left-[93%] md:left-[82%] hidden ">
+                    <div className=" absolute top-0 left-[93%] md:left-[82%] md:top-[-1rem]">
                         <CarouselPrevious />
                         <CarouselNext />
                     </div>

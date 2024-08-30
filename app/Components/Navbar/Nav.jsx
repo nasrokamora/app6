@@ -56,7 +56,7 @@ export default async function NavBar() {
           className=""
           placeholder="blur"
           />
-            <h1 className="scroll-m-20 text-2xl font-extrabold underline-offset-2 underline decoration-red-900 bg-clip-text text-transparent bg-gradient-to-tl from-blue-600 via-white-[30%] to-red-500 tracking-tight">Magix Movies</h1>
+            <h1 className="scroll-m-20 text-2xl font-extrabold underline-offset-2 underline decoration-red-900 bg-clip-text text-transparent bg-gradient-to-tl from-blue-600 via-white-[30%] to-red-500 tracking-tight md:hidden">Magix Movies</h1>
       </Link>
 
       <div className=" flex justify-between items-center gap-6">

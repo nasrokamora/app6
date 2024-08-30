@@ -49,7 +49,6 @@ const  CarouselTv = ({ dataTv, currentPage, handlePageChange, isLoading }) => {
                              <div className=" flex justify-center items-center w-full">
                                  <LoadingGenreCarousel /> 
                              </div>
-
                              : dataTv && dataTv.length > 0 ? (
                                 dataTv.map((tv) => (
 

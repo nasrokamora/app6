@@ -52,6 +52,7 @@ export default function NowPlayingMovies({dataPlaying }) {
                           className="rounded-md"
                           loading="eager"
                           priority
+                          draggable={false}
                         />
                       </div>
                 </Link>

@@ -28,7 +28,8 @@ import CreditsId from "./CreditsId"
 
 export default async function MoviesCredits({ credits }) {
     const dataCredit = credits.cast
-
+    // console.log(dataCredit);
+    
     return (
         <div className=" h-auto w-full">
             <div>

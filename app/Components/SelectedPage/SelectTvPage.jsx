@@ -1,8 +1,6 @@
 "use client"
 
 import { useEffect, useState } from "react"
-
-
 import Image from "next/image";
 import {
     Carousel,
@@ -18,12 +16,14 @@ import {
     AlertTitle,
 } from "@/components/ui/alert"
 import LoadingGenreCarousel from "../LoadingUi/LoadingGenreCarousel";
+import { AlertCircle } from "lucide-react"
+import no_image from '../../../public/image/no_image4.webp'
 
 const CarouselTv = ({ dataTv, currentPage, handlePageChange, isLoading }) => {
 
     return (
         <div className="">
-            <div className=" flex flex-col bg-gradient-to-r from-green-400 to-blue-500">
+            <div className=" flex flex-col bg-gradient-to-r from-green-400 to-blue-500 ">
                 <div className=" flex gap-4 justify-end items-center pr-20 md:pr-12 pt-4">
 
                     <h4 className="font-bold">Select page</h4>
@@ -57,10 +57,14 @@ const CarouselTv = ({ dataTv, currentPage, handlePageChange, isLoading }) => {
 
 
                                                     <Image
-                                                        src={`https://image.tmdb.org/t/p/original${tv.poster_path}`}
-                                                        alt={tv.name}
+                                                        src={tv.poster_path ?
+                                                            `https://image.tmdb.org/t/p/original${tv.poster_path}`
+                                                        :
+                                                        no_image
+                                                        }
+                                                        alt="image_tv"
                                                         width={300} height={250}
-                                                        className="  "
+                                                        className=" rounded-md"
                                                         priority
                                                         loading="eager"
                                                         style={{ width: "auto" }}

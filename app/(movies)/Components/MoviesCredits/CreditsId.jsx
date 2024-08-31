@@ -69,7 +69,8 @@ export default async function CreditsId({ credit_id }) {
   // console.log(dataCreditId)
   return (
     <section>
-      <PersonDetails person_id={dataCreditId.person.id} />
+      <PersonDetails person_id={dataCreditId && dataCreditId.person ?
+        dataCreditId.person.id : "null"} />
     </section>
   )
 }

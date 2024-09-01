@@ -39,12 +39,13 @@ export default function MoviesCard({ dataDiscoverMovies }) {
                                                 :
                                                 no_image
                                                 }
-                                                alt={movie.title}
+                                                alt="image_movies"
                                                 width={300} height={200}
                                                 priority
                                                 className=" hover:grayscale  hover:duration-700 hover:translate-x-6  rounded-md lg:w-[200px] lg:h-[200px] xl:w-[200px] xl:h-[150px] md:w-[150px] md:h-[150px] 2xl:w-[300px] "
                                                 style={{ height: "auto" }}
                                                 draggable={false}
+                                                loading="eager"
                                             />
                                         </div>
                                         <div className="flex   justify-between items-center xl:pt-4 xl:text-xl">

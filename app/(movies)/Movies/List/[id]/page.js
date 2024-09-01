@@ -194,12 +194,12 @@ async function getMoviesLoad(id) {
 
 export default async function DynamicMoviesList({ params }) {
     const { id } = params
-    const dataLoad = await getMoviesLoad(id)
-    const similarData = await getMoviesSimilar(id)
-    const dataImage = await getImageMoviesId(id)
-    const reviewData = await getReviewsMovies(id)
-    const dataCreditsId = await getCriditsMovies(id)
-    const nowData = await getMoviesNowPlaying()
+    const dataLoad =  getMoviesLoad(id)
+    const similarData =  getMoviesSimilar(id)
+    const dataImage =  getImageMoviesId(id)
+    const reviewData =  getReviewsMovies(id)
+    const dataCreditsId =  getCriditsMovies(id)
+    const nowData =  getMoviesNowPlaying()
     const [data, similar, dataImageList, dataReview, credits,dataPlaying] = await Promise.all([dataLoad, similarData, dataImage, reviewData, dataCreditsId,nowData])
 
 

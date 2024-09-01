@@ -24,6 +24,8 @@ export default function GenresList() {
     const [genres, setGenres] = useState([])
     const [isLoading, setIsLoading] = useState(true)
 
+    const bluredHash = "+EHLk~WB2yk8pyo0adR*.7kCMdnjS#M|%1%2Sis.slNHogaekBW;W?WBsloLozj@s:ja";
+
 
     useEffect(() => {
         fetchGenres()
@@ -130,6 +132,9 @@ export default function GenresList() {
                                                 priority
                                                 loading="eager"
                                                 style={{ width: "auto" }}
+                                                placeholder="blur"
+
+                                                blurDataURL={bluredHash}
 
 
                                             />

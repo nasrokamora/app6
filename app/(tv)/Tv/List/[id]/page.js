@@ -37,13 +37,13 @@ export async function generateMetadata({params}) {
 export default async function DynamicTvListPage({params}) {
     const {id} = params
     
-    const data = await getDetailsTv(id)
-    const dataImage = await getImageTv(id)
-    const dataCredits = await getTvCredits(id)    
-    const dataExt = await getExternalIdTv(id)
-    const dataRecommendation = await getRecommendationsTv(id)
-    const dataTrend = await getTrendingTv()
-    const videosTv = await getVideosTv(id)
+    const data =  getDetailsTv(id)
+    const dataImage =  getImageTv(id)
+    const dataCredits =  getTvCredits(id)    
+    const dataExt =  getExternalIdTv(id)
+    const dataRecommendation =  getRecommendationsTv(id)
+    const dataTrend =  getTrendingTv()
+    const videosTv =  getVideosTv(id)
     const [detailTv,imageTv, creditsTv,externalData,dataRecommend,dataTrending,dataVideosTv] = await Promise.all([data,dataImage,dataCredits,dataExt,dataRecommendation,dataTrend,videosTv])
     
     // console.log(videosTv);

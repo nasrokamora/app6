@@ -69,7 +69,7 @@ export default async function Home() {
       </section>
 
       <div className=" ml-6 mt-7">
-        <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-3xl">Movies by Genre</h1>
+        <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-3xl">Explore by Genres</h1>
       </div>
 
       <section className=" mt-7">

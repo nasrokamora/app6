@@ -92,7 +92,7 @@ export function ReviewsList({ dataReview }) {
                 <ScrollArea className="  w-full  whitespace-nowrap  lg:w-3/4 xl:w-4/5">
                     <div className="flex w-max space-x-4 p-4">
 
-                        {dataReview && dataReview.results.length > 0 ? (
+                        {dataReview && dataReview.results && dataReview.results.length > 0 ? (
                             dataReview.results.map((review) => (
                                 <div key={review.id}>
                                     <div className="  border p-4 rounded-md border-[#ff1818]">
@@ -319,12 +319,12 @@ export default async function DynamicMoviesList({ params }) {
 
             {/* section reviews of movies */}
             <div className="mt-5">
-                <ReviewsList dataReview={dataReview} />
+                <ReviewsList dataReview={dataReview && dataReview.results && dataReview.results.length > 0 ? dataReview : []} />
             </div>
 
             {/* section Cast of movies */}
             <div>
-                <MoviesCredits credits={credits} />
+                <MoviesCredits credits={credits && credits.cast.length > 0 ? credits : []} />
             </div>
 
             <Separator className="my-4" />

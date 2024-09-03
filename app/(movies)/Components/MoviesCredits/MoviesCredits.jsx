@@ -65,7 +65,7 @@ export default async function MoviesCredits({ credits }) {
 
                                             </CardHeader>
                                             <CardContent>
-                                                <CreditsId credit_id={item.credit_id} />
+                                                <CreditsId credit_id={item.credit_id } key={item. cast_id} />
                                             </CardContent>
                                         </Card>
                                     </div>

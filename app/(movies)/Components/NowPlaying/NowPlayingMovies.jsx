@@ -17,6 +17,7 @@ import {
   AlertTitle,
 } from "@/components/ui/alert"
 import no_image from '../../../../public/image/no_image4.webp'
+import AutoCarousel from "@/app/Components/AutoCarousel/AutoCarousel"
 
 export default function NowPlayingMovies({dataPlaying }) {
 
@@ -25,12 +26,8 @@ export default function NowPlayingMovies({dataPlaying }) {
       <div>
         <h1 className=" text-red-800 mt-10 scroll-m-20 md:text-xl  text-2xl font-bold tracking-tight transition-colors first:mt-0">Now Playing on Magix</h1>
       </div>
-    <div className="w-full pt-10 flex justify-center items-center relative">
-      <Carousel
-        opts={{
-          align: "center",
-        }}
-        className="w-full md:max-w-sm max-w-5xl 2xl:max-w-full bg-gradient-to-tr from-black via-purple-700 to-red-800"
+    <div className="w-full pt-10 flex justify-center items-center relative md:mt-4">
+      <AutoCarousel
       >
         <CarouselContent className="-mt-1 ">
           {dataPlaying && dataPlaying.length > 0 ? (
@@ -74,7 +71,7 @@ export default function NowPlayingMovies({dataPlaying }) {
           <CarouselPrevious />
           <CarouselNext />
         </div>
-      </Carousel>
+      </AutoCarousel>
     </div>
 
           </div>

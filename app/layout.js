@@ -1,3 +1,4 @@
+
 // import { Doppio_One, Inter } from "next/font/google";
 import "./globals.css";
 // import Navbar from "./Components/Navbar/NavBar";
@@ -6,6 +7,8 @@ import { ThemeProvider } from "./Components/theme-provider";
 import { Inter} from "next/font/google"
 import { cn } from "@/lib/utils";
 import Nav from "./Components/Navbar/Nav";
+
+
 
 // const inter = Inter({ subsets: ["latin"] });
 // const doppioOne = Doppio_One({ subsets: ["latin"], weight: "400" });
@@ -33,7 +36,10 @@ export default function RootLayout({ children}) {
         <Nav/>
         {/* {DiscoverMovies} */}
         {/* {MoviesPopular} */}
+
+
         {children}
+
         {/* {DiscoverTv} */}
         <Footer/>
 

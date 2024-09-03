@@ -21,9 +21,9 @@ export async function PersonDetails({ person_id }) {
         <AlertDialogTrigger className=" border border-zinc-600 px-3 bg-black text-white font-semibold hover:duration-500 hover:bg-zinc-700 rounded-md" variant="outline">Biography</AlertDialogTrigger>
         <AlertDialogContent className=" max-w-max md:h-screen xl:h-screen md:overflow-y-scroll md:touch-pan-y lg:h-screen lg:touch-pan-y overflow-y-scroll">
           <AlertDialogHeader >
-            <AlertDialogTitle>{data.name}</AlertDialogTitle>
+            <AlertDialogTitle>{data.name ? data.name : "Unknown"}</AlertDialogTitle>
             <AlertDialogDescription>
-              {data.also_known_as.join(", ")}
+              {data.also_known_as ? data.also_known_as.join(", "): "Unknown"}
             </AlertDialogDescription>
           </AlertDialogHeader>
           <div className=" flex justify-start gap-3 items-start lg:items-center xl:max-w-5xl md:flex-col md:items-start ">
@@ -36,7 +36,7 @@ export async function PersonDetails({ person_id }) {
                 }
                 width={300}
                 height={300}
-                alt={data.name}
+                alt="name_person"
                 className="rounded-md"
                 priopity="true" />
             </div>
@@ -69,8 +69,7 @@ export default async function CreditsId({ credit_id }) {
   // console.log(dataCreditId)
   return (
     <section>
-      <PersonDetails person_id={dataCreditId && dataCreditId.person ?
-        dataCreditId.person.id : "null"} />
+      <PersonDetails key={dataCreditId.id} person_id={dataCreditId.person.id} />
     </section>
   )
 }

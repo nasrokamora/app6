@@ -19,7 +19,7 @@ export default function MoviesSimilar({ similar }) {
                 <h1 className="  text-yellow-500  md:text-yellow-500   mt-10 scroll-m-20 md:text-xl  text-2xl font-bold tracking-tight transition-colors first:mt-0">Similar Movies on Magix </h1>
                 <div className=" underline decoration-red-500 w-2/3 flex justify-center" />
             </div>
-            <div className="flex justify-center w-full mt-6">
+            <div className="flex justify-center w-full mt-6 md:mt-4">
                 <Carousel opts={{
                     align: "start",
                     loop: true,

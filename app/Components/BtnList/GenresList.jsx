@@ -23,7 +23,7 @@ export default function GenresList() {
     const [selectedGenre, setSelectedGenre] = useState(null)
     const [genres, setGenres] = useState([])
     const [isLoading, setIsLoading] = useState(true)
-
+    const [isLoadingGenres, setIsLoadingGenres] = useState(true)
     const bluredHash = "+EHLk~WB2yk8pyo0adR*.7kCMdnjS#M|%1%2Sis.slNHogaekBW;W?WBsloLozj@s:ja";
 
 
@@ -44,7 +44,7 @@ export default function GenresList() {
             if (data.genres.length > 0) {
                 fetchMovies(data.genres[0].id)
                 setSelectedGenre(data.genres[0].id)
-                setIsLoading(false)
+                setIsLoadingGenres(false)
 
             }
         } catch (error) {
@@ -69,8 +69,10 @@ export default function GenresList() {
     }
 
     async function handleClick(genreId) {
+        setIsLoading(true)
         setSelectedGenre(genreId)
         fetchMovies(genreId)
+        setIsLoadingGenres(false)
     }
 
     //    Nas@Dev
@@ -85,7 +87,7 @@ export default function GenresList() {
                     }}
                     className="w-full md:max-w-xl max-w-5xl 2xl:max-w-7xl lg:max-w-4xl">
                     <CarouselContent className="-ml-1">
-                        {isLoading ? (
+                        {isLoadingGenres ? (
                             <div className='flex justify-center items-center w-full'>
                                 <LoadingGenreButton /> 
                             </div> 
@@ -118,7 +120,7 @@ export default function GenresList() {
 
                                 <LoadingGenreCarousel />
                             </div>
-                        ) : movieList && movieList.length > 0 ? (
+                        ) : movieList && movieList.length > 0 && (
                             movieList.map((movie, index) => (
 
                                 <CarouselItem key={index} className=" p-2  md:basis-1/2 basis-1/6 lg:basis-1/5">
@@ -158,10 +160,6 @@ export default function GenresList() {
                                     </div>
                                 </CarouselItem>
                             ))
-                        ) : (
-                            <div className="font-bold text-xl flex justify-center items-center text-error w-full">
-                                <h1>No Movie Found</h1>
-                            </div>
                         )
                         }
                     </CarouselContent>

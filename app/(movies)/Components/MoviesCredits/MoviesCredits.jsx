@@ -25,6 +25,7 @@ import {
     AvatarImage,
 } from "@/components/ui/avatar"
 import CreditsId from "./CreditsId"
+import { getCreditsId } from "@/app/libs/DataFetching"
 
 export default async function MoviesCredits({ credits }) {
     const dataCredit = credits.cast
@@ -42,6 +43,16 @@ export default async function MoviesCredits({ credits }) {
 
                         {dataCredit && dataCredit.length > 0 ? (
                             dataCredit.map((item) => (
+                            // const result = await getCreditsId(item.credit_id)
+                            //     if(result.error){
+                            //         return (
+                            //             <CarouselItem className="md:basis-1/1 lg:basis-1/3 xl:basis-1/3 2xl:basis-1/4" key={item.id}>
+                            //             <div className="text-red-500">
+                            //                 Unable to load credit data for {item.credit_id}: {result.message}
+                            //             </div>
+                            //         </CarouselItem>
+                            //         )
+                            //     }
                                 <CarouselItem className="md:basis-1/1 lg:basis-1/3 xl:basis-1/3 2xl:basis-1/4" key={item.id}>
                                     <div>
                                         <Card className=" xl:aspect-[3/2]  bg-transparent overflow-hidden aspect-auto">
@@ -65,12 +76,12 @@ export default async function MoviesCredits({ credits }) {
 
                                             </CardHeader>
                                             <CardContent>
-                                                <CreditsId credit_id={item.credit_id } key={item. cast_id} />
+                                                <CreditsId credit_id={item.credit_id } />
                                             </CardContent>
                                         </Card>
                                     </div>
                                 </CarouselItem>
-                            ))) : (
+                            )))  : (
                             <Alert variant="destructive">
                                 <AlertCircle className="h-4 w-4" />
                                 <AlertTitle>Error</AlertTitle>

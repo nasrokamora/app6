@@ -14,7 +14,11 @@ import no_image from '../../../../public/image/no_image4.webp'
 
 export async function PersonDetails({ person_id }) {
   const data = await getPersonsId(person_id)
-
+  if(!data){
+    return (
+      <p className=" text-red-500">No data found</p>
+    )
+  }
   return (
     <section>
       <AlertDialog >
@@ -65,11 +69,14 @@ export async function PersonDetails({ person_id }) {
 
 export default async function CreditsId({ credit_id }) {
   const dataCreditId = await getCreditsId(credit_id)
-
+  if(!dataCreditId){
+  return null
+  }
   // console.log(dataCreditId)
   return (
     <section>
-      <PersonDetails key={dataCreditId.id} person_id={dataCreditId.person.id} />
+      <PersonDetails  person_id={dataCreditId && dataCreditId.person && 
+        dataCreditId.person.id ? dataCreditId.person.id : null} />
     </section>
   )
 }

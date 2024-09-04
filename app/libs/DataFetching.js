@@ -104,18 +104,28 @@ export async function getPersonsId(person_id) {
   return response.json();
 }
 export async function getCreditsId(credit_id) {
-  const res = await fetch(`https://api.themoviedb.org/3/credit/${credit_id}?api_key=${process.env.NEXT_API_KEY}`,{
-    headers: {
-      Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
-      accept: "application/json"
-    }  
-  })
+  try{
 
-  if (!res.ok) {
-      throw new Error('failed to fetch data Credits Id ') 
+    const res = await fetch(`https://api.themoviedb.org/3/credit/${credit_id}?api_key=${process.env.NEXT_API_KEY}`,{
+      headers: {
+        Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
+        accept: "application/json"
+      }  
+    })
+  
+    if (!res.ok) {
+      throw new Error('failed to fetch data Credits Id')
+      // return {error: true, message: 'failed to fetch data Credits Id'}
+        // throw new Error(' ') 
+    }
+    return res.json()
+    // const data = await res.json()
+    // return {error: false, data}
+  }catch(error){
+    return {error: true, message: error.message}
   }
 
-  return res.json()
+  
 }
 
 export async function getReviewsMovies(id) {

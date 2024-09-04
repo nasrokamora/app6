@@ -222,7 +222,7 @@ export default async function DynamicMoviesList({ params }) {
                         className="rounded-md md:h-[250px] lg:h-[290px] xl:h-[350px] "
                         style={{ width: "auto" }}
                         priority 
-                        alt={data.title ? data.title : "image not found"} />
+                        alt={data.title ? data.title : "Title image not found"} />
 
                     <div className=" pt-5 flex justify-center gap-3">
                         <Dialog>

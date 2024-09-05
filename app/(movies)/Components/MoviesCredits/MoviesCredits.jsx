@@ -55,13 +55,14 @@ export default async function MoviesCredits({ credits }) {
                             //     }
                                 <CarouselItem className="md:basis-1/1 lg:basis-1/3 xl:basis-1/3 2xl:basis-1/4" key={item.id}>
                                     <div>
-                                        <Card className=" xl:aspect-[3/2]  bg-transparent overflow-hidden aspect-auto">
+                                        <Card className=" xl:aspect-[3/2]  bg-transparent overflow-hidden aspect-auto border-r">
                                             <CardHeader >
                                                 <CardTitle className=" flex justify-between items-center md:flex-wrap md:py-3">
                                                     {item.name}
                                                     <div className="md:pt-4">
                                                         <Avatar className=" h-15 w-15 ">
-                                                            <AvatarImage src={`https://image.tmdb.org/t/p/original${item.profile_path}`} className=" size-12" />
+                                                            <AvatarImage src={`https://image.tmdb.org/t/p/original${item.profile_path}`} 
+                                                            className=" size-12" />
                                                             <AvatarFallback>
                                                                 {item.name.slice(0, 3)}
                                                             </AvatarFallback>

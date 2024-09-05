@@ -207,13 +207,13 @@ export default async function DynamicMoviesList({ params }) {
         <div className="w-full h-auto p-5">
             <ToggleButton />
             <div className=" flex justify-between items-center pb-4" >
-                <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl md:text-3xl  text-base-100 drop-shadow-[0_5px_10px_rgba(255,145,0,10.25)]">{data.original_title}</h1>
+                <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl md:text-3xl  text-base-100 drop-shadow-[0_5px_10px_rgba(255,145,0,10.25)]">{data.original_title? data.original_title : data.title || data.name || "Title"}</h1>
             </div>
             <div className=" mt-4 flex justify-start items-start gap-3 md:flex-col  ">
                 <div className=" relative overflow-hidden w-full  flex flex-col justify-center items-center">
 
                     <Image src={data.poster_path ?
-                        `${urlImage}${data.poster_path}`
+                        `${urlImage}${data.poster_path || data.backdrop_path}`
                         :
                         no_image
                     }
@@ -238,7 +238,7 @@ export default async function DynamicMoviesList({ params }) {
                             </DialogContent>
                         </Dialog>
                         <div>
-                            <Link target="_blank" rel="noopener noreferrer" href={data.homepage}>
+                            <Link target="_blank" rel="noopener noreferrer" href={data.homepage ? data.homepage : "https://www.themoviedb.org/"}>
                                 <TbExternalLink size={45} className="text-[#f8e325] hover:scale-110 duration-300" />
 
                             </Link>
@@ -252,13 +252,13 @@ export default async function DynamicMoviesList({ params }) {
                         Overview :
 
                     </h1>
-                    <blockquote className="mt-6 border-l-2 border-l-red-700 md:border-l-white pl-6 font-semibold md:rounded-md md:bg-zinc-800">{data.overview}</blockquote>
+                    <blockquote className="mt-6 border-l-2 border-l-red-700 md:border-l-white pl-6 font-semibold md:rounded-md md:bg-zinc-800">{data.overview? data.overview : "Overview not found"}</blockquote>
 
                     <Separator className="mt-8" />
 
                     <div className="flex justify-start items-center gap-3 mt-5">
                         <h2 className=" text-slate-600 md:text-slate-500  scroll-m-20 md:text-lg  pb-2 text-2xl font-bold tracking-tight transition-colors first:mt-0">Release Date :</h2>
-                        <h1 className=" text-gray-400 scroll-m-20 md:text-lg pb-2  text-2xl font-bold tracking-tight transition-colors first:mt-0">{data.release_date.replace(/-/g, "/")}</h1>
+                        <h1 className=" text-gray-400 scroll-m-20 md:text-lg pb-2  text-2xl font-bold tracking-tight transition-colors first:mt-0">{data.release_date.replace(/-/g, "/") ? data.release_date.replace(/-/g, "/") : "Release date not found"}</h1>
                     </div>
 
                     <Separator className="mt-4" />
@@ -269,7 +269,7 @@ export default async function DynamicMoviesList({ params }) {
                         {data.genres.map((genre) => (
                             <div className=" pb-2" key={genre.id}>
 
-                                <Badge variant={"destructive"} className={cn('font-bold text-[#ffebcd]  ')} >{genre.name}</Badge>
+                                <Badge variant={"destructive"} className={cn('font-bold text-[#ffebcd]  ')} >{genre.name? genre.name : "Genre not found"}</Badge>
                             </div>
                         ))}
 
@@ -280,7 +280,7 @@ export default async function DynamicMoviesList({ params }) {
                             {data.production_countries.map((country) => (
                                 <div className="" key={country.iso_3166_1}>
 
-                                    <Badge variant={"outline"} className={cn('font-bold bg-yellow-700 text-black ')} >{country.name}</Badge>
+                                    <Badge variant={"outline"} className={cn('font-bold bg-yellow-700 text-black ')} >{country.name? country.name : "Country not found"}</Badge>
                                 </div>
                             ))}
                         </div>
@@ -293,18 +293,18 @@ export default async function DynamicMoviesList({ params }) {
 
                             <div className="mt-5 flex justify-start items-center gap-3  md:flex-wrap">
                                 <h2 className="text-slate-600  md:text-slate-500 scroll-m-20 md:text-lg   text-2xl font-bold tracking-tight transition-colors first:mt-0text-slate-600">Popularity :</h2>
-                                <h1 className=" text-yellow-500 flex  items-center gap-2 justify-start scroll-m-20 md:text-xl  text-2xl font-bold tracking-tight transition-colors first:mt-0">{data.popularity.toFixed(2)} <FaRankingStar size={28} className=" text-yellow-500" /></h1>
+                                <h1 className=" text-yellow-500 flex  items-center gap-2 justify-start scroll-m-20 md:text-xl  text-2xl font-bold tracking-tight transition-colors first:mt-0">{data.popularity.toFixed(2) ? data.popularity.toFixed(2) : "Popularity not found"} <FaRankingStar size={28} className=" text-yellow-500" /></h1>
                             </div>
                             <div className="mt-5 flex justify-start items-center gap-3  md:flex-wrap">
                                 <h2 className="text-slate-600 md:text-slate-500 scroll-m-20 md:text-lg   text-2xl font-bold tracking-tight transition-colors first:mt-0text-slate-600">Vote average :</h2>
-                                <h1 className=" text-yellow-500 flex justify-start items-center gap-2  scroll-m-20 md:text-xl  text-2xl font-bold tracking-tight transition-colors first:mt-0">{data.vote_average}<GiStarsStack size={28} className=" text-yellow-500" /></h1>
+                                <h1 className=" text-yellow-500 flex justify-start items-center gap-2  scroll-m-20 md:text-xl  text-2xl font-bold tracking-tight transition-colors first:mt-0">{data.vote_average? data.vote_average : "Vote average not found"}<GiStarsStack size={28} className=" text-yellow-500" /></h1>
                             </div>
                         </div>
                         <div className="mt-5 flex justify-start items-center gap-3  md:flex-wrap lg:flex-wrap">
                             <h2 className="text-slate-600 md:text-slate-500 scroll-m-20 md:text-lg   text-2xl font-bold tracking-tight transition-colors first:mt-0text-slate-600">Status :</h2>
-                            <h1 className={` text-success flex justify-start items-center gap-2  scroll-m-20 md:text-xl  text-2xl font-bold tracking-tight transition-colors first:mt-0" ${data.status ? "text-blue-500" : "text-red-800"}`}> {data.status}</h1>
+                            <h1 className={` text-success flex justify-start items-center gap-2  scroll-m-20 md:text-xl  text-2xl font-bold tracking-tight transition-colors first:mt-0" ${data.status ? "text-blue-500" : "text-red-800"}`}> {data.status? data.status : "Status not found"}</h1>
                             <h2 className="text-slate-600 md:text-slate-500 scroll-m-20 md:text-lg   text-2xl font-bold tracking-tight transition-colors first:mt-0">Original Language :</h2>
-                            <h1 className="scroll-m-20 md:text-xl  text-2xl font-bold tracking-tight transition-colors first:mt-0 text-yellow-700">{data.original_language}</h1>
+                            <h1 className="scroll-m-20 md:text-xl  text-2xl font-bold tracking-tight transition-colors first:mt-0 text-yellow-700">{data.original_language? data.original_language : "Original language not found"}</h1>
                         </div>
                     </div>
 

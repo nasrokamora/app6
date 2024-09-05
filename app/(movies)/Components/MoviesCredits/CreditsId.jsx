@@ -12,13 +12,29 @@ import {
 import Image from "next/image"
 import no_image from '../../../../public/image/no_image4.webp'
 
+import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+} from "@/components/ui/alert"
+import { AlertCircle } from "lucide-react"
+
+
+
+
 export async function PersonDetails({ person_id }) {
   const data = await getPersonsId(person_id)
-  if(!data){
-    return (
-      <p className=" text-red-500">No data found</p>
-    )
-  }
+
+  //error handling
+  if (data.error) return <Alert variant="destructive">
+    <AlertCircle className="h-4 w-4" />
+    <AlertTitle>Error</AlertTitle>
+    <AlertDescription>
+    Error fetching data.
+    </AlertDescription>
+  </Alert>
+
+  const hash = "LEHV6nWB2yk8pyo0adR*.7kCMdnj"
   return (
     <section>
       <AlertDialog >
@@ -27,22 +43,34 @@ export async function PersonDetails({ person_id }) {
           <AlertDialogHeader >
             <AlertDialogTitle>{data.name ? data.name : "Unknown"}</AlertDialogTitle>
             <AlertDialogDescription>
-              {data.also_known_as ? data.also_known_as.join(", "): "Unknown"}
+              {data.also_known_as ? data.also_known_as.join(", ") : "Unknown"}
             </AlertDialogDescription>
           </AlertDialogHeader>
           <div className=" flex justify-start gap-3 items-start lg:items-center xl:max-w-5xl md:flex-col md:items-start ">
-            <div className=" relative">
-              <Image
-                src={data.profile_path ?
-                  `${urlImage}${data.profile_path}`
-                  :
-                  no_image
-                }
+            <div className=" relative overflow-hidden">
+              {data.profile_path ? (
+
+                <Image
+                    src={`${urlImage}${data.profile_path}`}
+                  width={300}
+                  height={300}
+                  alt="name_person"
+                  className="rounded-md"
+                  priority="true"
+                  loading='eager'
+                />
+              ) : (
+                <Image 
+                alt="no_image"
                 width={300}
                 height={300}
-                alt="name_person"
-                className="rounded-md"
-                priopity="true" />
+                priority
+                placeholder="blur"
+                src={no_image}
+                />
+                
+              )
+              }
             </div>
             <div className=" w-3/4 md:w-full">
               <h1 className=" font-bold text-xl underline decoration-yellow-600 pt-3">Biography :</h1>
@@ -69,14 +97,11 @@ export async function PersonDetails({ person_id }) {
 
 export default async function CreditsId({ credit_id }) {
   const dataCreditId = await getCreditsId(credit_id)
-  if(!dataCreditId){
-  return null
-  }
+
   // console.log(dataCreditId)
   return (
     <section>
-      <PersonDetails  person_id={dataCreditId && dataCreditId.person && 
-        dataCreditId.person.id ? dataCreditId.person.id : null} />
+      <PersonDetails person_id={dataCreditId.person?.id} key={dataCreditId.id} />
     </section>
   )
 }

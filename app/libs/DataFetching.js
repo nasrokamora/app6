@@ -48,8 +48,7 @@ export async function getPopularMovies(){
 
 // By Genres Movies
   export async function getGenres() {
-    const response = await fetch(
-      `https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.NEXT_API_KEY}`,
+    const response = await fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.NEXT_API_KEY}`,
       {
         headers: {
           Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
@@ -99,9 +98,9 @@ export async function getPersonsId(person_id) {
   }
   )
   if (!response.ok) {
-    throw new Error("failed to fetch data Person Id");
+    return {error: true, message: 'failed to fetch data Person Id'}
   }
-  return response.json();
+  return response.json()
 }
 export async function getCreditsId(credit_id) {
   try{

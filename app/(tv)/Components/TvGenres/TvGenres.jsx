@@ -26,12 +26,11 @@ import { AlertCircle } from "lucide-react"
 
 export default function TvGenres() {
 
-
-
     const [genres, setGenres] = useState([])
     const [selected, setSelected] = useState(null)
     const [TvList, setTvList] = useState([])
     const [isLoading, setIsLoading] = useState(true)
+    const[isLoadingGenre,setIsLoadingGenre] = useState(true)
 
     useEffect(() => {
         fetchTvWithGenres()
@@ -46,7 +45,7 @@ export default function TvGenres() {
             if (data.genres.length > 0) {
                 getTv(data.genres[0].id)
                 setSelected(data.genres[0].id)
-                setIsLoading(false)
+                setIsLoadingGenre(false)
 
             }
         } catch (error) {
@@ -67,8 +66,10 @@ export default function TvGenres() {
     }
 
     async function handleClick(genreId) {
+        setIsLoading(true)
         setSelected(genreId)
         getTv(genreId)
+        setIsLoadingGenre(false)
     }
 
 
@@ -83,17 +84,19 @@ export default function TvGenres() {
                     }}
                     className="w-full md:max-w-xl max-w-5xl 2xl:max-w-7xl lg:max-w-4xl">
                     <CarouselContent className="-ml-1">
-                        {isLoading ? 
+                        {isLoadingGenre ? (
                         <div className='flex justify-center items-center w-full'>
                             <LoadingGenreButton />
                         </div>
-                       : genres.map((genre, index) => (
-                            <CarouselItem key={index} className="p-1 basis-1/7 lg:basis-1/8 md:basis-1/7 ">
-                                <Button variant="outline" className={`2xl:text-xl ${selected === genre.id ? 'text-[#1b83e3]' : ' text-zinc-500'}`}
-                                    style={{ color: selected === genre.id ? 'text-[#1b83e3]' : ' text-zinc-800' }}
-                                    onClick={() => handleClick(genre.id)}>{genre.name}</Button>
-                            </CarouselItem>
-                        ))}
+                        ):(                     
+                            genres.map((genre, index) => (
+                                <CarouselItem key={index} className="p-1 basis-1/7 lg:basis-1/8 md:basis-1/7 ">
+                                    <Button variant="outline" className={`2xl:text-xl ${selected === genre.id ? 'text-[#1b83e3]' : ' text-zinc-500'}`}
+                                        style={{ color: selected === genre.id ? 'text-[#1b83e3]' : ' text-zinc-800' }}
+                                        onClick={() => handleClick(genre.id)}>{genre.name}</Button>
+                                </CarouselItem>
+                            ))
+                        )}
                     </CarouselContent>
                     <div className=" absolute top-[-2rem] left-[93%] md:left-[81%] ">
                         <CarouselPrevious />
@@ -158,7 +161,7 @@ export default function TvGenres() {
                             )
                         }
                     </CarouselContent>
-                    <div className=" absolute top-[-2rem] left-[93%] md:left-[82%] hidden ">
+                    <div className=" absolute top-0 left-[93%] md:left-[82%] md:top-[-1rem] md:hidden">
                         <CarouselPrevious />
                         <CarouselNext />
                     </div>

@@ -9,11 +9,13 @@ import Image from "next/image"
 import { FaRegStar } from "react-icons/fa";
 import Link from "next/link"
 import no_image from '../../../../public/image/no_image4.webp'
-
+import { Suspense } from 'react'
 export default function MoviesSimilar({ similar }) {
 
 
     return (
+        <Suspense fallback={<div>Loading...</div>}>
+
         <div className=" mt-8 ">
             <div>
                 <h1 className="  text-yellow-500  md:text-yellow-500   mt-10 scroll-m-20 md:text-xl  text-2xl font-bold tracking-tight transition-colors first:mt-0">Similar Movies on Magix </h1>
@@ -83,5 +85,6 @@ export default function MoviesSimilar({ similar }) {
             </div>
         </div>
 
+</Suspense>
     )
 }

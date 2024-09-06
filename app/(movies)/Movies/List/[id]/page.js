@@ -50,6 +50,7 @@ import {
 } from "@/components/ui/alert"
 import { AlertCircle } from "lucide-react"
 import NowPlayingMovies from "@/app/(movies)/Components/NowPlaying/NowPlayingMovies"
+import { Suspense } from 'react'
 // import RecommendationMovies from "@/app/(movies)/Components/RecommendationMovies/RecommendationMovies"
 
 export async function generateMetadata({ params }) {
@@ -337,7 +338,9 @@ export default async function DynamicMoviesList({ params }) {
             <Separator className="my-4" />
             {/* section Similar movies */}
             <div>
+                <Suspense fallback={<p>Loading feed...</p>} >
                 <MoviesSimilar similar={similar} />
+                </Suspense>
             </div>
 
         </div>

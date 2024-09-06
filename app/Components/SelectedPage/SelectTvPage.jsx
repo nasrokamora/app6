@@ -39,68 +39,69 @@ const CarouselTv = ({ dataTv, currentPage, handlePageChange, isLoading }) => {
                     </select>
                 </div>
                 <div>
-                    <div className=" mt-8 flex justify-center w-full ">
+                    <div className=" mt-8 flex justify-center w-full">
                         <Carousel opts={{
                             align: "center",
                             loop: true,
                         }} className="w-full md:max-w-xl  max-w-5xl 2xl:max-w-7xl lg:max-w-4xl">
                             <CarouselContent>
-                                {isLoading ?
-                                    <div className=" flex justify-center items-center w-full">
+                                {isLoading ?(
+
+                                    <div className=" flex justify-center items-center w-full h-[12rem]">
                                         <LoadingGenreCarousel />
                                     </div>
-                                    : dataTv && dataTv.length > 0 ? (
-                                        dataTv.map((tv) => (
+                                ):(                       
+                                    dataTv && dataTv.length > 0 ? (
+                                       dataTv.map((tv) => (
 
-                                            <CarouselItem key={tv.id} className="  p-2  md:basis-1/2 basis-1/6 lg:basis-1/5 ">
-                                                <div className=" relative overflow-hidden">
+                                           <CarouselItem key={tv.id} className="  p-2  md:basis-1/2 basis-1/6 lg:basis-1/5 ">
+                                               <div className=" relative overflow-hidden">
+                                                   <Image
+                                                       src={tv.poster_path ?
+                                                           `https://image.tmdb.org/t/p/original${tv.poster_path}`
+                                                       :
+                                                       no_image
+                                                       }
+                                                       alt="image_tv"
+                                                       width={300} height={250}
+                                                       className=" rounded-md"
+                                                       priority
+                                                       loading="eager"
+                                                       style={{ width: "auto" }}
+                                                       draggable={false}
+                                                   />
+                                                   <h6 className=" font-bold flex justify-start  pt-2 mb-1">{tv.name.length > 14 ? tv.name.slice(0, 14) + "..." : tv.name}
+                                                   </h6>
+                                                   <div className=" flex justify-between items-center w-full">
+                                                       <h6 className=" fonb flex justify-between items-center w-full">
+                                                           {new Date(tv.first_air_date).getFullYear()}
+                                                       </h6>
+
+                                                       <div className=" ">
+                                                           <div className=" space-x-1 flex justify-between items-center">
+                                                               <FaRegStar className="text-[#FFC300]" />
+                                                               <span className="">
+                                                                   {tv.vote_average.toFixed(1)}
+                                                               </span>
+                                                           </div>
+                                                       </div>
+
+                                                   </div>
 
 
-                                                    <Image
-                                                        src={tv.poster_path ?
-                                                            `https://image.tmdb.org/t/p/original${tv.poster_path}`
-                                                        :
-                                                        no_image
-                                                        }
-                                                        alt="image_tv"
-                                                        width={300} height={250}
-                                                        className=" rounded-md"
-                                                        priority
-                                                        loading="eager"
-                                                        style={{ width: "auto" }}
-                                                        draggable={false}
-                                                    />
-                                                    <h6 className=" font-bold flex justify-start  pt-2 mb-1">{tv.name.length > 14 ? tv.name.slice(0, 14) + "..." : tv.name}
-                                                    </h6>
-                                                    <div className=" flex justify-between items-center w-full">
-                                                        <h6 className=" fonb flex justify-between items-center w-full">
-                                                            {new Date(tv.first_air_date).getFullYear()}
-                                                        </h6>
-
-                                                        <div className=" ">
-                                                            <div className=" space-x-1 flex justify-between items-center">
-                                                                <FaRegStar className="text-[#FFC300]" />
-                                                                <span className="">
-                                                                    {tv.vote_average.toFixed(1)}
-                                                                </span>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-
-
-                                                </div>
-                                            </CarouselItem>
-                                        ))
-                                    ) : (
-                                        <Alert variant="destructive">
-                                            <AlertCircle className="h-4 w-4" />
-                                            <AlertTitle>Error</AlertTitle>
-                                            <AlertDescription>
-                                                Something went wrong.
-                                            </AlertDescription>
-                                        </Alert>
-                                    )
+                                               </div>
+                                           </CarouselItem>
+                                       ))
+                                   ) : (
+                                       <Alert variant="destructive">
+                                           <AlertCircle className="h-4 w-4" />
+                                           <AlertTitle>Error</AlertTitle>
+                                           <AlertDescription>
+                                               Something went wrong.
+                                           </AlertDescription>
+                                       </Alert>
+                                   )
+                                )
                                 }
                             </CarouselContent>
                             <div className=" absolute top-0 left-[93%] md:left-[82%] md:top-[-1rem] hidden">
@@ -152,6 +153,7 @@ export default function SelectTvPage() {
 
     const handlePageChange = async (event) => {
         setCurrentPage(parseInt(event.target.value))
+        setIsLoading(true)
     }
 
     return (

@@ -3,11 +3,12 @@ import MoviePopular from "./Components/MoviePopular/MoviePopular"
 import GenresList from "./Components/BtnList/GenresList"
 import TvSeries from "./(tv)/Components/DiscoverTv/TvSeries"
 import TvGenres from "./(tv)/Components/TvGenres/TvGenres"
-import { getDiscoverMovies, getPopularMovies } from "./libs/DataFetching"
+import { getDiscoverMovies, getPersonPopular, getPopularMovies } from "./libs/DataFetching"
 import { getDiscoverTv } from "./libs/DataFetchingTv"
 import AnimateScroll from "./Animations/AnimationNumber/AnimateScroll/AnimationScroll"
 import styles from './styles/Animat.module.css'
 import SelectTvPage from "./Components/SelectedPage/SelectTvPage"
+import PopularPerson from "./Components/PopularPerson/PopularPerson"
 
 
 
@@ -18,15 +19,18 @@ export default async function Home() {
   const data =  getDiscoverMovies()
   const popularData =  getPopularMovies()
   const tvData =  getDiscoverTv()
+  const PersonDataPopular = getPersonPopular()
 
-  const  results = await Promise.allSettled([data, popularData, tvData])
+  const  results = await Promise.allSettled([data, popularData, tvData, PersonDataPopular]);
   const dataDiscoverMovies = results[0].status === 'fulfilled' ? results[0].value : { results: [] };
   const dataPopular = results[1].status === 'fulfilled' ? results[1].value : { results: [] };
   const dataTv = results[2].status === 'fulfilled' ? results[2].value : { results: [] };
+  const dataPersonPopular = results[3].status === 'fulfilled' ? results[3].value : { results: [] };
 
   const isDiscoverMoviesError = results[0].status === 'rejected';
   const isPopularMoviesError = results[1].status === 'rejected';
   const isTvError = results[2].status === 'rejected';
+  const isPersonPopularError = results[3].status === 'rejected';
 
   return (
     <main className={`w-full h-auto text-white `}>
@@ -107,6 +111,26 @@ export default async function Home() {
         </div>
         <SelectTvPage />
       </section>
+
+
+
+      <section className="mt-7">
+        {isPersonPopularError ? (
+          <div className="error-message bg-red-600 text-white p-4 rounded mb-4">
+            <p>An error occurred while loading data. Please try again</p>
+          </div>
+        ) : (
+          <PopularPerson dataPersonPopular={dataPersonPopular.results} />
+        )}
+      </section>
+      {/* <section className=" mt-7">
+        <div className="ml-6 mt-7">
+          <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-3xl">
+
+          </h1>
+        </div>
+        <PopularPerson dataPersonPopular={dataPersonPopular.results} />
+      </section> */}
     </main>
   )
 }

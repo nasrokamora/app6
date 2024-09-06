@@ -104,7 +104,6 @@ export async function getPersonsId(person_id) {
 }
 export async function getCreditsId(credit_id) {
   try{
-
     const res = await fetch(`https://api.themoviedb.org/3/credit/${credit_id}?api_key=${process.env.NEXT_API_KEY}`,{
       headers: {
         Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
@@ -143,7 +142,6 @@ export async function getReviewsMovies(id) {
 
 export async function getMoviesSimilar(id) {
   const res = await fetch(`https://api.themoviedb.org/3/movie/${id}/similar?api_key=${process.env.NEXT_API_KEY}`,{
- 
   })
   if (!res.ok) {
     throw new Error('failed to fetch data Similar')
@@ -204,4 +202,15 @@ export async function getMoviesNowPlaying(){
   return res.json()
 }
 
-
+export async function getPersonPopular() {
+  const response = await fetch(`https://api.themoviedb.org/3/person/popular?api_key=${process.env.NEXT_API_KEY}`,{
+    headers: {
+      Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
+      accept: "application/json"
+    }
+  })
+  if(!response.ok){
+    throw new Error('Failed to fetch data Person')
+  }
+  return response.json()
+}

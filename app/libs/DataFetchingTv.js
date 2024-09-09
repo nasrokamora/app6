@@ -4,81 +4,92 @@
 export const urlImageTv = "https://image.tmdb.org/t/p/original"
 
 export async function getDiscoverTv() {
-    const res = await fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${process.env.NEXT_API_KEY}`, {
-        headers: {
-            Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
-            accept:"application/json"
-        }
-    })
-    if (!res.ok) {
-        throw new Error("failed to fetch data DiscoverTv")
+    try{
+        const res = await fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${process.env.NEXT_API_KEY}`, {
+            headers: {
+                Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
+                accept:"application/json"
+            }
+        })
+    
+        return res.json()
+    }catch(error){
+       return console.log(error,"Failed to fetch data DiscoverTv")
     }
-    return res.json()
+    
 }
 
 /** for fechting tv details */
-
 export async function getDetailsTv(id) {
-    const res = await fetch(`https://api.themoviedb.org/3/tv/${id}?api_key=${process.env.NEXT_API_KEY}`,
-        {
-            headers:{
-            Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
-            accept:"application/json"
+   
+    try{
+        const res = await fetch(`https://api.themoviedb.org/3/tv/${id}?api_key=${process.env.NEXT_API_KEY}`,
+            {
+                headers:{
+                Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
+                accept:"application/json"
+                }
             }
-        }
-    )
-    if (!res.ok) {
-        throw new Error("failed to fetch data DetailsTv")
+        )
+        return res.json()
+    }catch(error){
+        return console.log(error,'Failed to fetch data DetailsTv')
     }
-    return res.json()
 }
 
-
+// for fechting tv images
 export async function getImageTv(id) {
-    const res = await fetch(`https://api.themoviedb.org/3/tv/${id}/images?api_key=${process.env.NEXT_API_KEY}`,
-        {
-            headers:{
-            Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
-            accept:"application/json"
+   
+    try{
+        const res = await fetch(`https://api.themoviedb.org/3/tv/${id}/images?api_key=${process.env.NEXT_API_KEY}`,
+            {
+                headers:{
+                Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
+                accept:"application/json"
+                }
             }
-        }
-    )
-    if (!res.ok) {
-        throw new Error("failed to fetch data ImageTv")
+        )
+        return res.json()
+    }catch(error){
+        return console.log(error,'Failed to fetch data ImageTv')
     }
-    return res.json()
 }
 
-
+// for fechting tv credits
 export async function getTvCredits(id) {
-    const res = await fetch(`https://api.themoviedb.org/3/tv/${id}/credits?api_key=${process.env.NEXT_API_KEY}`,
-        {
-            headers:{
-            Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
-            accept:"application/json"
+    try{
+        const res = await fetch(`https://api.themoviedb.org/3/tv/${id}/credits?api_key=${process.env.NEXT_API_KEY}`,
+            {
+                headers:{
+                Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
+                accept:"application/json"
+                }
             }
-        }
-    )
-    if (!res.ok) {
-        throw new Error("failed to fetch data TvCredits")
+        )
+        return res.json()
+    }catch(error){
+        return console.log(error,'Failed to fetch data TvCredits')
     }
-    return res.json()
 }
 
+// for fechting tv external
 export async function getExternalIdTv(id){
-    const response = await fetch(`https://api.themoviedb.org/3/tv/${id}/external_ids?api_key=${process.env.NEXT_API_KEY}`,
-        {
-            headers:{
-            Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
-            accept:"application/json"
+    try {
+        const response = await fetch(`https://api.themoviedb.org/3/tv/${id}/external_ids?api_key=${process.env.NEXT_API_KEY}`,
+            {
+                headers:{
+                Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
+                accept:"application/json"
+                }
             }
-        }
-    )
-    if (!response.ok) {
-        throw new Error('failed fetching series_id External')
+        )
+        return response.json()
+        
+    }catch(error) {
+      return  console.log(error,'Failed to fetch data ExternalIdTv')
     }
-    return response.json()
-}
+    }
+    
 
 
 export async function getPersonsIdTv(person_id){
@@ -96,22 +107,28 @@ export async function getPersonsIdTv(person_id){
     return res.json()
 }
 
+
+// for fechting tv external
 export async function getExtPersonsIdTv(person_id){
-    const res = await fetch(`https://api.themoviedb.org/3/person/${person_id}/external_ids?api_key=${process.env.NEXT_API_KEY}`,
-        {
-            headers:{
-            Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
-            accept:"application/json"
+    try{
+        const res = await fetch(`https://api.themoviedb.org/3/person/${person_id}/external_ids?api_key=${process.env.NEXT_API_KEY}`,
+            {
+                headers:{
+                Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
+                accept:"application/json"
+                }
             }
-        }
-    )
-    if (!res.ok) {
-        throw new Error("failed to fetch data ExtPersonsIdTv")
-    }
-    return res.json()
+        )
+        return res.json()
+    }catch(error){
+        return console.log(error,'Failed to fetch data ExtPersonsIdTv')
+}
 }
 
+
+// for fechting tv details
 export async function getDetailAllCredits(credit_id) {
+try{
     const res = await fetch(`https://api.themoviedb.org/3/credit/${credit_id}?api_key=${process.env.NEXT_API_KEY}`,
         {
             headers:{
@@ -120,10 +137,10 @@ export async function getDetailAllCredits(credit_id) {
             }
         }
     )
-    if (!res.ok) {
-        throw new Error("failed to fetch data DetailAllCredits")
-    }
     return res.json()
+}catch(error){
+    return console.log(error,'Failed to fetch data DetailAllCredits')
+}
 }
 
 /* end for fechting tv details */
@@ -151,16 +168,21 @@ export async function getScreenedTv(id) {
 /** fetching top Tv */
 
 export async function getTopTv(){
-    const res = await fetch(`https://api.themoviedb.org/3/tv/airing_today?api_key=${process.env.NEXT_API_KEY}`,
-        {
-            headers:{
-            Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
-            accept:"application/json"
+    try{
+        const res = await fetch(`https://api.themoviedb.org/3/tv/airing_today?api_key=${process.env.NEXT_API_KEY}`,
+            {
+                headers:{
+                Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
+                accept:"application/json"
+                }
             }
-        }
-    )
-        const data = await res.json()
-        return data
+        )
+            const data = await res.json()
+            return data
+    }catch(error){
+        console.log(error,'Failed to fetch data TopTv')
+    }
+    
 }
 
 /** end fetching  */

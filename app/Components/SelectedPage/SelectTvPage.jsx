@@ -93,10 +93,10 @@ const CarouselTv = ({ dataTv, currentPage, handlePageChange, isLoading }) => {
                                            </CarouselItem>
                                        ))
                                    ) : (
-                                       <Alert variant="destructive">
+                                       <Alert variant="destructive" className="text-xl border-none">
                                            <AlertCircle className="h-4 w-4" />
-                                           <AlertTitle>Error</AlertTitle>
-                                           <AlertDescription>
+                                           <AlertTitle className="font-bold">Error</AlertTitle>
+                                           <AlertDescription className="font-bold">
                                                Something went wrong.
                                            </AlertDescription>
                                        </Alert>

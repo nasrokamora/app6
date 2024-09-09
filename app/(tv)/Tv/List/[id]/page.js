@@ -20,7 +20,7 @@ import ToggleButton from "@/app/(movies)/Components/ToggleButton/ToggleButton";
 import LatestTv from "@/app/(tv)/Components/LatestTv/LatestTv";
 import TrendingTv from "@/app/(tv)/Components/TrendingTv/TrendingTv";
 import TrailerTv from "@/app/(tv)/Components/TrailerTV/TrailerTv";
-
+import no_image from '../../../../../public/image/no_image4.webp'
 
 
 export async function generateMetadata({params}) {
@@ -46,26 +46,26 @@ export default async function DynamicTvListPage({params}) {
     const videosTv =  getVideosTv(id)
     const [detailTv,imageTv, creditsTv,externalData,dataRecommend,dataTrending,dataVideosTv] = await Promise.all([data,dataImage,dataCredits,dataExt,dataRecommendation,dataTrend,videosTv])
     
-    // console.log(videosTv);
+    
     return(
         <div className=" w-full h-auto px-6 pt-6 ">
 
             <div className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-4xl flex justify-center  items-center flex-col">
             <h1 className=" tracking-wide md:decoration-blue-700 md:underline-offset-4 md:underline">
-                {detailTv.name}
+                {detailTv.name?detailTv.name:detailTv.original_name ||"Not Found"}
             </h1>
             <div className=" border-b-2 w-48 md:border-none border-b-blue-700 flex flex-col"/>
             </div>
-            <div className="flex justify-start w-full gap-4 mt-8 md:flex-col">
-                <div className=" h-fit w-[40%] md:w-full  overflow-hidden md:flex md:justify-center md:items-center">
-                    <Image src={`${urlImageTv}${detailTv.poster_path}`}
+            <div className="flex justify-start w-full  gap-4 mt-8 md:flex-col">
+                <div className=" h-fit  relative md:w-full  overflow-hidden md:flex md:justify-center md:items-center">
+                    <Image src={detailTv.poster_path ? `${urlImageTv}${detailTv.poster_path}`:no_image}
                     priority
                     width={400}
-                    height={250}
-                    stryle={{maxWidth:"100%"}}
-                    className="rounded-md  md:w-[200px] lg:w-[350px] 2xl:w-[400px] ]"
+                    height={400}
+                    stryle={{height:"auto"}}
+                    className="rounded-md  md:w-[200px] lg:w-[350px] 2xl:w-[500px] "
                     draggable="false"
-                    alt={data.name}
+                    alt={data.name? data.name : data.original_name ||"image_Tv"}
                     loading="eager"
                     />
                     </div>
@@ -77,7 +77,7 @@ export default async function DynamicTvListPage({params}) {
                 <div className=" flex justify-center items-center gap-1  flex-wrap">
                     <strong className=" font-bold text-2xl scroll-m-20 text-zinc-600">First air date : </strong>
                 <h1 className="   scroll-m-20 text-xl xl:text-2xl  font-semibold bg-clip-text text-transparent bg-gradient-to-tr from-blue-400 to-blue-700">
-                     {detailTv.first_air_date}
+                     {detailTv.first_air_date? detailTv.first_air_date:"Not Found"}
                 </h1>
 
                 </div>

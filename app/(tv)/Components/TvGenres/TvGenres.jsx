@@ -21,7 +21,7 @@ import {
 import { FaRegStar } from "react-icons/fa"
 import LoadingGenreCarousel from "@/app/Components/LoadingUi/LoadingGenreCarousel"
 import { AlertCircle } from "lucide-react"
-
+import no_image from "../../../../public/image/no_image4.webp"
 
 
 export default function TvGenres() {
@@ -122,7 +122,12 @@ export default function TvGenres() {
                                         <div className=" overflow-hidden relative lg:hover:scale-90 lg:hover:duration-500 xl:hover:scale-90 xl:hover:duration-500  2xl:hover:scale-90 2xl:hover:duration-500">
                                             <Link href={`/Tv/List/${tv.id}`}>
                                                 <Image
-                                                    src={`https://image.tmdb.org/t/p/original${tv.poster_path}`}
+                                                    src={tv.poster_path ?
+                                                        
+                                                        `https://image.tmdb.org/t/p/original${tv.poster_path}`
+                                                        :
+                                                        no_image
+                                                    }
                                                     alt={tv.original_name}
                                                     width={300} height={250}
                                                     className=" rounded-md"

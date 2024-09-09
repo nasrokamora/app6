@@ -7,7 +7,12 @@ import PersonDetailsTv from "./PersonDetailsTv/PersonDetailsTv"
 import { ScrollArea,ScrollBar  } from "@/components/ui/scroll-area"
 import ImageTvSeries from "../ImageTV/ImageTvSeries"
 import DetailsSeasonTv from "../DetailsSeasonTv/DetailsSeasonTv"
-
+import { AlertCircle } from "lucide-react"
+import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+} from "@/components/ui/alert"
 
 // import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 export default function CreditsDetailsTv({credits,dataImageTv,detailTv}) {
@@ -27,15 +32,24 @@ export default function CreditsDetailsTv({credits,dataImageTv,detailTv}) {
                <div className="  w-full ">
                 <ScrollArea className="w-full whitespace-nowrap rounded-md  xl:w-full ">
                 <div className="flex w-max space-x-2 p-4">
-                        {
-                        credits.map((credit) => (   
-                            <PersonDetailsTv 
-                            person_id={credit.id} 
-                            key={credit.id} 
-                            urlImageTv={urlImageTv}
-                            character={credit.character}
-                            />
-                        ))
+                        {credits ? (
+                            credits.map((credit) => (   
+                                <PersonDetailsTv 
+                                person_id={credit.id} 
+                                key={credit.id} 
+                                urlImageTv={urlImageTv}
+                                character={credit.character}
+                                />
+                            ))
+                        ):(
+                            <Alert variant="destructive">
+                            <AlertCircle className="h-4 w-4" />
+                            <AlertTitle>Error</AlertTitle>
+                            <AlertDescription>
+                              An error has occurred.
+                            </AlertDescription>
+                          </Alert>
+                        )
 
 
                         }

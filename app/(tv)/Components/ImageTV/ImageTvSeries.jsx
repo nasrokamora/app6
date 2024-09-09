@@ -1,6 +1,15 @@
 import Image from "next/image"
 import { Suspense } from 'react'
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
+import { AlertCircle } from "lucide-react"
+import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+} from "@/components/ui/alert"
+import no_image from "../../../../public/image/no_image4.webp"
+
+
 
 export default function ImageTvSeries({ urlImageTv, dataImage }) {
     // console.log(dataImage)
@@ -15,8 +24,9 @@ export default function ImageTvSeries({ urlImageTv, dataImage }) {
                     dataImage.map((imgs, index) => (
                         <figure key={index} className="shrink-0">
                         <div className="overflow-hidden rounded-md">
-                            <Image
-                                src={`${urlImageTv}${imgs.file_path}`}
+                            <Image 
+                                src={ imgs.file_path ?
+                                    `${urlImageTv}${imgs.file_path}` : no_image}
                                 alt={`Photo by ${imgs.artist}`}
                                 className=""
                                 width={300}
@@ -35,7 +45,13 @@ export default function ImageTvSeries({ urlImageTv, dataImage }) {
                     </figure>
                 ))
             ):(
-                <p className=" flex justify-center items center text-error"> No images</p>
+                <Alert variant="destructive">
+                <AlertCircle className="h-4 w-4" />
+                <AlertTitle>Error</AlertTitle>
+                <AlertDescription>
+                  Something went wrong.
+                </AlertDescription>
+              </Alert>
             )
         }
                 </div>

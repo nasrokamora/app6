@@ -31,7 +31,7 @@ const [persentage, setPersentage] = useState(0)
         <strong className="font-bold text-2xl text-zinc-600 md:text-xl">Vote Count: </strong>
         <h1 className=" text-amber-400  scroll-m-20 text-xl xl:text-2xl  font-semibold flex justify-center items-center gap-2">
             {persentage}
-            <span><MdOutlineInsertChartOutlined   size={28} className=" size-10" /></span>
+            <span><MdOutlineInsertChartOutlined   size={30} className=" " /></span>
         </h1>
     </div>
     )

@@ -27,6 +27,10 @@ import {
     AlertDescription,
     AlertTitle,
 } from "@/components/ui/alert"
+import { RiBarChartGroupedLine } from "react-icons/ri";
+import { MdOutlineAccessTime } from "react-icons/md";
+
+
 
 export async function generateMetadata({ params }) {
     const { id } = params
@@ -51,7 +55,7 @@ export default async function DynamicTvListPage({ params }) {
     const videosTv = getVideosTv(id)
     const [detailTv, imageTv, creditsTv, externalData, dataRecommend, dataTrending, dataVideosTv] = await Promise.all([data, dataImage, dataCredits, dataExt, dataRecommendation, dataTrend, videosTv])
 
-
+    // console.log(detailTv)
     return (
         <div className=" w-full h-auto px-6 pt-6 ">
 
@@ -107,7 +111,7 @@ export default async function DynamicTvListPage({ params }) {
                             <h1 className="p-2 badge bg-blue-800 border-blue-800 border scroll-m-20 font-semibold md:font-bold text-yellow-500"> Original language :    {detailTv.original_language}</h1>
                         </div>
                         <div className="">
-                            <h1 className=" p-2 badge bg-blue-800 border-blue-800 border scroll-m-20  font-semibold md:font-bold text-yellow-500 "> {detailTv.episode_run_time[0] ? detailTv.episode_run_time[0] : 0} min</h1>
+                            <h1 className=" p-2 badge bg-blue-800 border-blue-800 border scroll-m-20  font-semibold md:font-bold text-yellow-500 "> {detailTv.episode_run_time[0] ? detailTv.episode_run_time[0] : "Undefined"} min</h1>
                         </div>
                     </div>
 
@@ -137,7 +141,7 @@ export default async function DynamicTvListPage({ params }) {
                     <div>
                         <div className=" pt-4">
                             <strong className=" font-bold text-2xl text-zinc-600 md:text-xl">Overview :</strong>
-                            <blockquote className=" md:italic md:font-sans  mt-4 border-l-2 pl-6 border-l-blue-600 font-semibold">{detailTv.overview}</blockquote>
+                            <blockquote className=" md:italic md:font-sans  mt-4 border-l-2 pl-6 border-l-blue-600 font-semibold">{detailTv.overview ? detailTv.overview : <h1 className="font-bold text-2xl text-error rounded-xl  md:text-xl">unknown !</h1>}</blockquote>
                         </div>
                     </div>
                     <Separator className="mt-4" />
@@ -196,6 +200,12 @@ export default async function DynamicTvListPage({ params }) {
                             </li>
                         </ul>
                     </div>
+                            {/* companies */}
+                    <div>
+                        <strong></strong>
+                    </div>
+
+
                     {/* created by */}
                     <div className=" mt-6 flex justify-start gap-2 items-center flex-wrap">
                         <strong className=" font-bold text-2xl text-zinc-600 md:text-xl">Created by : </strong>
@@ -211,8 +221,104 @@ export default async function DynamicTvListPage({ params }) {
                             <h1 className="font-bold text-2xl text-error rounded-xl  md:text-xl">unknown !</h1>
                         )
                         }
-
                     </div>
+                    <Separator className="mt-4" />
+
+
+                    {/* Last Episode to air */}
+                    <div className="mt-6">
+                        <strong className=" font-bold text-2xl text-zinc-600 md:text-xl ">Last episode to air :</strong>
+                    </div>
+                    { detailTv.last_episode_to_air ? (
+                        <div className="">
+
+                        <div className=" mt-6 flex justify-start gap-2 items-start  w-full ">
+                            <div className=" overflow-hidden relative w-fit">
+                                <Image 
+                                src={detailTv.last_episode_to_air.still_path ? `${urlImageTv}${detailTv.last_episode_to_air.still_path}`: `${detailTv.backdrop_path}`}
+                                width={350} height={250} alt="image_last_air_date"
+                                priority
+                                style={{width:"auto"}}
+                                loading="eager"
+                                className="rounded-md"
+                                />
+                            </div>
+
+                            {/* last air date name */}
+                            <div className=" flex justify-start flex-col gap-2">
+                        <div className=" flex justify-start gap-3 items-center flex-wrap order-2">
+                            <strong className="font-bold text-2xl text-zinc-600 md:text-xl">Last Air Date :</strong>
+                            <h1 className="  scroll-m-20 text-xl xl:text-2xl  font-semibold bg-clip-text text-transparent bg-gradient-to-tr from-red-400 to-red-700"> {detailTv.last_episode_to_air.air_date ? detailTv.last_air_date.replace(/-/g, "/"):<span className="font-bold text-2xl text-error rounded-xl  md:text-xl">unknown !</span>} </h1>
+                        </div>
+
+                            <div className=" flex justify-start gap-3 items-center flex-wrap order-1">
+                                <strong className="font-bold text-2xl text-zinc-600 md:text-xl">Name :</strong>
+                                <h1 className="  scroll-m-20 text-xl xl:text-2xl  font-bold "> {detailTv.last_episode_to_air.name ? detailTv.last_episode_to_air.name:<span className="font-bold text-2xl text-error rounded-xl  md:text-xl">unknown !</span>} </h1>
+                            </div>
+                            {/* last air date overview */}
+                            <div className="order-4 flex flex-col gap-2">
+                                <strong className="font-bold text-2xl text-zinc-600 md:text-xl">Overview :</strong>
+                                <blockquote className="border-l-2 pl-6 italic border-l-orange-400">{detailTv.last_episode_to_air.overview ? detailTv.last_episode_to_air.overview : <span className="font-bold text-2xl text-error rounded-xl  md:text-xl">unknown !</span>}</blockquote>
+                            </div>
+                            <div className=" flex justify-start items-center gap-2 flex-wrap order-3">
+
+                            <div className=" flex justify-start gap-2 items-center order-4">
+                                <strong className="font-bold text-2xl text-zinc-600 md:text-xl">vote average :</strong>
+                                <h1 className=" text-amber-400  scroll-m-20 text-xl xl:text-2xl  font-semibold flex justify-center items-center gap-2">{(detailTv.last_episode_to_air.vote_average /10 *100).toFixed(2) }%</h1>
+                                <span className=""><RiBarChartGroupedLine  size={30} className="text-amber-400"/></span>
+                            </div>
+                                <AnimateNumber data={detailTv.last_episode_to_air? detailTv.last_episode_to_air.vote_count.toFixed(4) : "Unknown"}/>
+                            </div>
+                            <div className=" flex justify-start items-center gap-2 flex-wrap order-4">
+                                <strong className="font-bold text-2xl text-zinc-600 md:text-xl">Runtime:</strong>
+                                <h1 className="  scroll-m-20 text-xl xl:text-2xl  font-semibold text-orange-700">{detailTv.last_episode_to_air.runtime ? detailTv.last_episode_to_air.runtime : <span className="font-bold text-2xl text-error rounded-xl  md:text-xl">unknown !</span>} min
+                                </h1>
+                            </div>
+                            </div>
+                        </div>
+                        {/*Produced Companies  */}
+
+                        <div>
+                        <h1 className="">Produced Companies :</h1>
+                        </div>
+                        <div className=" mt-6 flex justify-start items-center flex-col flex-wrap bg-gray-400 w-full">
+                        
+                        {detailTv.production_companies ? (
+                            detailTv.production_companies.map((item)=>(
+
+                            <div key={item.id} className="bg-gray-400 overflow-hidden flex flex-wrap gap-3 justify-start">
+                                
+                                <Image 
+                                src={item.logo_path ?
+                                    `${urlImageTv}${item.logo_path}` : no_image}
+                                width={250} 
+                                height={200} 
+                                priority 
+                                alt='logo'
+                                className=""
+                                loading="eager"
+                                />
+
+                                <div>
+                                    <strong>Name :</strong>
+                                    <h1> {item.name} </h1>
+                                </div>
+                            </div>
+                            
+                            ))
+                        ):(
+                            <div>
+                                <h1>No data</h1>
+                            </div>
+                        )}
+                        </div>
+
+                        </div>
+                    ):(
+                        <div>
+                            <h1>No last air date</h1>
+                        </div>
+                    )}
                     <Separator className="mt-4" />
 
                     {/* Trailer */}

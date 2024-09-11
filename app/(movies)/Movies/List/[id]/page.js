@@ -4,6 +4,7 @@ import {
     getMoviesNowPlaying,
     getMoviesSimilar,
     getReviewsMovies,
+    getTrailer,
     urlImage
 } from "@/app/libs/DataFetching"
 import { Badge } from "@/components/ui/badge"
@@ -12,15 +13,6 @@ import Image from "next/image"
 import { Separator } from "@/components/ui/separator"
 import { FaRankingStar } from "react-icons/fa6";
 import { GiStarsStack } from "react-icons/gi";
-import {
-    Dialog,
-    DialogContent,
-    DialogDescription,
-    DialogHeader,
-    DialogTitle,
-    DialogTrigger,
-} from "@/components/ui/dialog"
-import { IoPlayCircleOutline } from "react-icons/io5";
 import Link from "next/link"
 import { TbExternalLink } from "react-icons/tb";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
@@ -51,6 +43,7 @@ import {
 import { AlertCircle } from "lucide-react"
 import NowPlayingMovies from "@/app/(movies)/Components/NowPlaying/NowPlayingMovies"
 import { Suspense } from 'react'
+import TrailerMovies from "@/app/(movies)/Components/TrailerMovies/TrailerMovies"
 // import RecommendationMovies from "@/app/(movies)/Components/RecommendationMovies/RecommendationMovies"
 
 export async function generateMetadata({ params }) {
@@ -201,7 +194,8 @@ export default async function DynamicMoviesList({ params }) {
     const reviewData =  getReviewsMovies(id)
     const dataCreditsId =  getCriditsMovies(id)
     const nowData =  getMoviesNowPlaying()
-    const [data, similar, dataImageList, dataReview, credits,dataPlaying] = await Promise.all([dataLoad, similarData, dataImage, reviewData, dataCreditsId,nowData])
+    const trailer = getTrailer(id)
+    const [data, similar, dataImageList, dataReview, credits,dataPlaying,dataTrailer] = await Promise.all([dataLoad, similarData, dataImage, reviewData, dataCreditsId,nowData,trailer])
 
 
     return (
@@ -226,7 +220,8 @@ export default async function DynamicMoviesList({ params }) {
                         alt={data.title ? data.title : "Title image not found"} />
 
                     <div className=" pt-5 flex justify-center gap-3">
-                        <Dialog>
+                        <TrailerMovies dataTrailer={dataTrailer.results.slice(0, 1)}/>
+                        {/* <Dialog>
                             <DialogTrigger><IoPlayCircleOutline size={48} className="text-[#f82525] hover:scale-110 duration-300" /></DialogTrigger>
                             <DialogContent>
                                 <DialogHeader>
@@ -237,7 +232,7 @@ export default async function DynamicMoviesList({ params }) {
                                     </DialogDescription>
                                 </DialogHeader>
                             </DialogContent>
-                        </Dialog>
+                        </Dialog> */}
                         <div>
                             <Link target="_blank" rel="noopener noreferrer" href={data.homepage ? data.homepage : "https://www.themoviedb.org/"}>
                                 <TbExternalLink size={45} className="text-[#f8e325] hover:scale-110 duration-300" />

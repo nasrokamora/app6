@@ -1,13 +1,5 @@
 
-export function ErrorMessage({message}){
-  return (
-    <div className="error-message bg-red-600 text-white p-4 rounded mb-4">
-    <p>
-      {message}
-    </p>
-  </div>
-  )
-}
+
 
 export const urlImage = "https://image.tmdb.org/t/p/original"
 
@@ -252,4 +244,19 @@ export async function getPersonPopular() {
    return console.log(error,"failed to fetch data Person")
   }
  
+}
+
+export async function getTrailer(id) {
+  try{
+    const res = await fetch(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${process.env.NEXT_API_KEY}`,{
+      headers: {
+        Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
+        accept: "application/json"
+      }  
+    })
+
+    return res.json()
+  }catch(error){
+    return console.log(error,"failed to fetch data Trailer Movies")
+  }
 }

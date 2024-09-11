@@ -29,6 +29,8 @@ import {
 } from "@/components/ui/alert"
 import { RiBarChartGroupedLine } from "react-icons/ri";
 import { MdOutlineAccessTime } from "react-icons/md";
+import { MdOutlineTransitEnterexit } from "react-icons/md";
+
 
 
 
@@ -65,23 +67,32 @@ export default async function DynamicTvListPage({ params }) {
                 </h1>
                 <div className=" border-b-2 w-48 md:border-none border-b-blue-700 flex flex-col" />
             </div>
-            <div className="flex justify-start w-full  gap-4 mt-8 md:flex-col">
-                <div className=" h-fit  relative md:w-full  overflow-hidden md:flex md:justify-center md:items-center">
+            <div className="flex justify-start items-start gap-4 mt-8 md:flex-col">
+                <div className=" w-[70%] flex justify-center items-center flex-col   relative md:w-full  overflow-hidden md:flex md:justify-center md:items-center">
                     <Image src={detailTv.poster_path ? `${urlImageTv}${detailTv.poster_path}` : no_image}
                         priority
                         width={400}
                         height={400}
                         stryle={{ height: "auto" }}
-                        className="rounded-md  md:w-[200px] lg:w-[350px] 2xl:w-[500px] "
+                        className="rounded-md  md:w-[200px] lg:w-[350px]  "
                         draggable="false"
                         alt={data.name ? data.name : data.original_name || <h1 className="">Image Tv</h1>}
                         loading="eager"
                     />
+                    <div className=" mt-6 flex justify-center gap-6 items-center w-full ">
+
+                        <TrailerTv dataVideos={dataVideosTv.results.slice(0, 1)} />
+                        <Link href={detailTv.homepage} target="_blank" rel="noopener noreferrer">
+
+                            <MdOutlineTransitEnterexit size={52} className="text-[#f8ea25] hover:scale-110 duration-300 cursor-pointer" />
+
+                        </Link>
+                    </div>
                 </div>
 
 
 
-                <div className=" flex justify-start items-start gap-1 flex-col">
+                <div className=" flex justify-start items-start gap-1 flex-col ">
 
                     <div className=" flex justify-center items-center gap-1  flex-wrap">
                         <strong className=" font-bold text-2xl scroll-m-20 text-zinc-600">First air date : </strong>
@@ -200,7 +211,7 @@ export default async function DynamicTvListPage({ params }) {
                             </li>
                         </ul>
                     </div>
-                            {/* companies */}
+                    {/* companies */}
                     <div>
                         <strong></strong>
                     </div>
@@ -222,38 +233,52 @@ export default async function DynamicTvListPage({ params }) {
                         )
                         }
                     </div>
-                    <Separator className="mt-4" />
+                    {/* <Separator className="mt-4" /> */}
 
 
-                    {/* Last Episode to air */}
-                    <div className="mt-6">
-                        <strong className=" font-bold text-2xl text-zinc-600 md:text-xl ">Last episode to air :</strong>
-                    </div>
-                    { detailTv.last_episode_to_air ? (
-                        <div className="">
 
-                        <div className=" mt-6 flex justify-start gap-2 items-start  w-full ">
-                            <div className=" overflow-hidden relative w-fit">
-                                <Image 
-                                src={detailTv.last_episode_to_air.still_path ? `${urlImageTv}${detailTv.last_episode_to_air.still_path}`: `${detailTv.backdrop_path}`}
-                                width={350} height={250} alt="image_last_air_date"
+                    {/* <Separator className="mt-4" /> */}
+
+                    {/* Trailer */}
+
+                    <ToggleButton />
+
+                </div>
+
+
+            </div>
+
+            <Separator className="mt-4" />
+            {/* Last Episode to air */}
+            <div className="mt-6">
+                <strong className=" font-bold text-2xl text-zinc-600 md:text-xl ">Last episode to air :</strong>
+            </div>
+            {detailTv.last_episode_to_air ? (
+                <div className="">
+
+                    <div className=" mt-6 flex justify-between gap-2 items-start relative  w-full h-auto">
+                        <div className=" overflow-hidden relative  h-full">
+                            <Image
+                                src={detailTv.last_episode_to_air.still_path ? `${urlImageTv}${detailTv.last_episode_to_air.still_path}` : `${detailTv.backdrop_path}`}
+                                fill 
+                                alt="image_last_air_date"
                                 priority
-                                style={{width:"auto"}}
-                                loading="eager"
+                                style={{ objectFit:"cover" }}
+                                // loading="eager"
                                 className="rounded-md"
-                                />
-                            </div>
-
-                            {/* last air date name */}
-                            <div className=" flex justify-start flex-col gap-2">
-                        <div className=" flex justify-start gap-3 items-center flex-wrap order-2">
-                            <strong className="font-bold text-2xl text-zinc-600 md:text-xl">Last Air Date :</strong>
-                            <h1 className="  scroll-m-20 text-xl xl:text-2xl  font-semibold bg-clip-text text-transparent bg-gradient-to-tr from-red-400 to-red-700"> {detailTv.last_episode_to_air.air_date ? detailTv.last_air_date.replace(/-/g, "/"):<span className="font-bold text-2xl text-error rounded-xl  md:text-xl">unknown !</span>} </h1>
+                            />
                         </div>
+
+                        {/* last air date name */}
+                        <div className=" flex justify-start flex-col gap-2">
+                            <div className=" flex justify-start gap-3 items-center flex-wrap order-2">
+                                <strong className="font-bold text-2xl text-zinc-600 md:text-xl">Last Air Date :</strong>
+                                <h1 className="  scroll-m-20 text-xl xl:text-2xl  font-semibold bg-clip-text text-transparent bg-gradient-to-tr from-red-400 to-red-700"> {detailTv.last_episode_to_air.air_date ? detailTv.last_air_date.replace(/-/g, "/") : <span className="font-bold text-2xl text-error rounded-xl  md:text-xl">unknown !</span>} </h1>
+                            </div>
 
                             <div className=" flex justify-start gap-3 items-center flex-wrap order-1">
                                 <strong className="font-bold text-2xl text-zinc-600 md:text-xl">Name :</strong>
-                                <h1 className="  scroll-m-20 text-xl xl:text-2xl  font-bold "> {detailTv.last_episode_to_air.name ? detailTv.last_episode_to_air.name:<span className="font-bold text-2xl text-error rounded-xl  md:text-xl">unknown !</span>} </h1>
+                                <h1 className="  scroll-m-20 text-xl xl:text-2xl  font-bold "> {detailTv.last_episode_to_air.name ? detailTv.last_episode_to_air.name : <span className="font-bold text-2xl text-error rounded-xl  md:text-xl">unknown !</span>} </h1>
                             </div>
                             {/* last air date overview */}
                             <div className="order-4 flex flex-col gap-2">
@@ -262,77 +287,26 @@ export default async function DynamicTvListPage({ params }) {
                             </div>
                             <div className=" flex justify-start items-center gap-2 flex-wrap order-3">
 
-                            <div className=" flex justify-start gap-2 items-center order-4">
-                                <strong className="font-bold text-2xl text-zinc-600 md:text-xl">vote average :</strong>
-                                <h1 className=" text-amber-400  scroll-m-20 text-xl xl:text-2xl  font-semibold flex justify-center items-center gap-2">{(detailTv.last_episode_to_air.vote_average /10 *100).toFixed(2) }%</h1>
-                                <span className=""><RiBarChartGroupedLine  size={30} className="text-amber-400"/></span>
-                            </div>
-                                <AnimateNumber data={detailTv.last_episode_to_air? detailTv.last_episode_to_air.vote_count.toFixed(4) : "Unknown"}/>
+                                <div className=" flex justify-start gap-2 items-center order-4">
+                                    <strong className="font-bold text-2xl text-zinc-600 md:text-xl">vote average :</strong>
+                                    <h1 className=" text-amber-400  scroll-m-20 text-xl xl:text-2xl  font-semibold flex justify-center items-center gap-2">{(detailTv.last_episode_to_air.vote_average / 10 * 100).toFixed(2)}%</h1>
+                                    <span className=""><RiBarChartGroupedLine size={30} className="text-amber-400" /></span>
+                                </div>
+                                <AnimateNumber data={detailTv.last_episode_to_air ? detailTv.last_episode_to_air.vote_count.toFixed(4) : "Unknown"} />
                             </div>
                             <div className=" flex justify-start items-center gap-2 flex-wrap order-4">
                                 <strong className="font-bold text-2xl text-zinc-600 md:text-xl">Runtime:</strong>
                                 <h1 className="  scroll-m-20 text-xl xl:text-2xl  font-semibold text-orange-700">{detailTv.last_episode_to_air.runtime ? detailTv.last_episode_to_air.runtime : <span className="font-bold text-2xl text-error rounded-xl  md:text-xl">unknown !</span>} min
                                 </h1>
                             </div>
-                            </div>
                         </div>
-                        {/*Produced Companies  */}
-
-                        <div>
-                        <h1 className="">Produced Companies :</h1>
-                        </div>
-                        <div className=" mt-6 flex justify-start items-center flex-col flex-wrap bg-gray-400 w-full">
-                        
-                        {detailTv.production_companies ? (
-                            detailTv.production_companies.map((item)=>(
-
-                            <div key={item.id} className="bg-gray-400 overflow-hidden flex flex-wrap gap-3 justify-start">
-                                
-                                <Image 
-                                src={item.logo_path ?
-                                    `${urlImageTv}${item.logo_path}` : no_image}
-                                width={250} 
-                                height={200} 
-                                priority 
-                                alt='logo'
-                                className=""
-                                loading="eager"
-                                />
-
-                                <div>
-                                    <strong>Name :</strong>
-                                    <h1> {item.name} </h1>
-                                </div>
-                            </div>
-                            
-                            ))
-                        ):(
-                            <div>
-                                <h1>No data</h1>
-                            </div>
-                        )}
-                        </div>
-
-                        </div>
-                    ):(
-                        <div>
-                            <h1>No last air date</h1>
-                        </div>
-                    )}
-                    <Separator className="mt-4" />
-
-                    {/* Trailer */}
-                    <div className=" mt-6 flex justify-center items-center w-full ">
-
-                        <TrailerTv dataVideos={dataVideosTv.results.slice(0, 1)} />
                     </div>
-                    <ToggleButton />
-                    <Separator className="mt-4" />
-
                 </div>
-
-
-            </div>
+            ) : (
+                <div>
+                    <h1>No last air data </h1>
+                </div>
+            )}
             {/* Credits  and cast and crew  and people && Reviews */}
             <div>
                 <CreditsDetailsTv

@@ -9,26 +9,26 @@ import {
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 import { Button } from "@/components/ui/button"
-import VideosTrailerPalyer from "./VideoPlayer/VideosTrailerPlayer"
+// import VideosTrailerPalyer from "./VideoPlayer/VideosTrailerPlayer"
 import { YouTubeEmbed } from '@next/third-parties/google'
-import { FaRegCirclePlay } from "react-icons/fa6";
+import { IoPlayCircleOutline } from "react-icons/io5"
 
 
 
 
-export default async function TrailerTv({ dataVideos }) {
+export default async function TrailerMovies({ dataTrailer }) {
 
     // console.log(dataVideos)
     return (
         <div>
             <AlertDialog >
+                    {/* <Button variant="outline" className="cursor-pointer">Trailer</Button> */}
                 <AlertDialogTrigger asChild>
-                <FaRegCirclePlay size={48} className="text-[#2556f8] hover:scale-110 duration-300 cursor-pointer" />
-
+                <IoPlayCircleOutline size={48} className="text-[#f82525] hover:scale-110 duration-300 cursor-pointer" />
                 </AlertDialogTrigger>
                 <AlertDialogContent className=" lg:max-w-xl md:h-screen md:max-w-3xl md:flex md:justify-center md:items-center md:gap-2">
-                    {dataVideos && dataVideos.length > 0 ?(
-                    dataVideos.map((item) => (
+                    {dataTrailer && dataTrailer.length > 0 ?(
+                    dataTrailer.map((item) => (
                         <div key={item.id}>
                             <AlertDialogHeader>
                                 <AlertDialogTitle>
@@ -36,6 +36,7 @@ export default async function TrailerTv({ dataVideos }) {
                                 </AlertDialogTitle>
                                 <AlertDialogDescription>
                                     {item.published_at}
+                                    {item.type}
                                 </AlertDialogDescription>
                             </AlertDialogHeader>
                             <YouTubeEmbed
@@ -45,7 +46,6 @@ export default async function TrailerTv({ dataVideos }) {
                                 style=""
                                 className=" object-fill rounded-md"
                             />
-                            
                             <AlertDialogFooter>
                                 <AlertDialogCancel>Cancel</AlertDialogCancel>
 

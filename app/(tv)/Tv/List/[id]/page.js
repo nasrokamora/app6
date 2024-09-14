@@ -28,7 +28,7 @@ import {
     AlertTitle,
 } from "@/components/ui/alert"
 import { RiBarChartGroupedLine } from "react-icons/ri";
-import { MdOutlineAccessTime } from "react-icons/md";
+
 import { MdOutlineTransitEnterexit } from "react-icons/md";
 
 
@@ -250,52 +250,63 @@ export default async function DynamicTvListPage({ params }) {
 
             <Separator className="mt-4" />
             {/* Last Episode to air */}
-            <div className="mt-6">
+            <div className="mt-6 ">
                 <strong className=" font-bold text-2xl text-zinc-600 md:text-xl ">Last episode to air :</strong>
             </div>
             {detailTv.last_episode_to_air ? (
-                <div className="">
+                <div className=" h-[20rem] w-full">
 
-                    <div className=" mt-6 flex justify-between gap-2 items-start relative  w-full h-auto">
-                        <div className=" overflow-hidden relative  h-full">
+                    <div className=" mt-6 flex justify-between gap-2 items-start relative  w-full ">
+                        <div className=" overflow-hidden relative  h-[20rem] w-full ">
                             <Image
                                 src={detailTv.last_episode_to_air.still_path ? `${urlImageTv}${detailTv.last_episode_to_air.still_path}` : `${detailTv.backdrop_path}`}
-                                fill 
+                                fill
                                 alt="image_last_air_date"
                                 priority
-                                style={{ objectFit:"cover" }}
+                                style={{ objectFit: "cover", objectPosition: "center" }}
                                 // loading="eager"
-                                className="rounded-md"
+                                className="rounded-md blur-right"
                             />
                         </div>
 
                         {/* last air date name */}
-                        <div className=" flex justify-start flex-col gap-2">
-                            <div className=" flex justify-start gap-3 items-center flex-wrap order-2">
-                                <strong className="font-bold text-2xl text-zinc-600 md:text-xl">Last Air Date :</strong>
+                        <div className=" flex justify-center w-full md:h-[20rem] md:top-0  flex-col gap-2 z-50 absolute  rounded-md  p-2 bg-black bg-opacity-30 backdrop-blur-sm h-[20rem]">
+                            <div className=" flex justify-start gap-3 items-center flex-wrap order-2 ">
+                                <strong className="font-bold text-2xl text-zinc-400  md:text-xl">Last Air Date :</strong>
                                 <h1 className="  scroll-m-20 text-xl xl:text-2xl  font-semibold bg-clip-text text-transparent bg-gradient-to-tr from-red-400 to-red-700"> {detailTv.last_episode_to_air.air_date ? detailTv.last_air_date.replace(/-/g, "/") : <span className="font-bold text-2xl text-error rounded-xl  md:text-xl">unknown !</span>} </h1>
                             </div>
 
                             <div className=" flex justify-start gap-3 items-center flex-wrap order-1">
-                                <strong className="font-bold text-2xl text-zinc-600 md:text-xl">Name :</strong>
+                                <strong className="font-bold text-2xl text-zinc-400 md:text-xl">Name :</strong>
                                 <h1 className="  scroll-m-20 text-xl xl:text-2xl  font-bold "> {detailTv.last_episode_to_air.name ? detailTv.last_episode_to_air.name : <span className="font-bold text-2xl text-error rounded-xl  md:text-xl">unknown !</span>} </h1>
                             </div>
                             {/* last air date overview */}
                             <div className="order-4 flex flex-col gap-2">
-                                <strong className="font-bold text-2xl text-zinc-600 md:text-xl">Overview :</strong>
+                                <strong className="font-bold text-2xl text-zinc-400 md:text-xl">Overview :</strong>
                                 <blockquote className="border-l-2 pl-6 italic border-l-orange-400">{detailTv.last_episode_to_air.overview ? detailTv.last_episode_to_air.overview : <span className="font-bold text-2xl text-error rounded-xl  md:text-xl">unknown !</span>}</blockquote>
                             </div>
                             <div className=" flex justify-start items-center gap-2 flex-wrap order-3">
+                                <div className=" flex flex-col gap-2">
 
-                                <div className=" flex justify-start gap-2 items-center order-4">
-                                    <strong className="font-bold text-2xl text-zinc-600 md:text-xl">vote average :</strong>
+                                <div className=" flex justify-start gap-2 items-center order-4 flex-wrap">
+                                    <strong className="font-bold text-2xl text-zinc-400 md:text-xl">vote average :</strong>
                                     <h1 className=" text-amber-400  scroll-m-20 text-xl xl:text-2xl  font-semibold flex justify-center items-center gap-2">{(detailTv.last_episode_to_air.vote_average / 10 * 100).toFixed(2)}%</h1>
                                     <span className=""><RiBarChartGroupedLine size={30} className="text-amber-400" /></span>
                                 </div>
-                                <AnimateNumber data={detailTv.last_episode_to_air ? detailTv.last_episode_to_air.vote_count.toFixed(4) : "Unknown"} />
+                                <div className=" flex justify-start gap-2 items-center">
+                                    <strong className="font-bold text-2xl text-zinc-400 md:text-xl">Vote Count: </strong>
+                                    <h1 className=" text-amber-400  scroll-m-20 text-xl xl:text-2xl  font-semibold flex justify-center items-center gap-2">
+                                        {detailTv.last_episode_to_air ? detailTv.last_episode_to_air.vote_count : "Unknown"}
+                                        <span><MdOutlineInsertChartOutlined size={30} className=" " /></span>
+                                    </h1>
+                                </div>
+                                </div>
+
+
+
                             </div>
                             <div className=" flex justify-start items-center gap-2 flex-wrap order-4">
-                                <strong className="font-bold text-2xl text-zinc-600 md:text-xl">Runtime:</strong>
+                                <strong className="font-bold text-2xl text-zinc-400 md:text-xl">Runtime:</strong>
                                 <h1 className="  scroll-m-20 text-xl xl:text-2xl  font-semibold text-orange-700">{detailTv.last_episode_to_air.runtime ? detailTv.last_episode_to_air.runtime : <span className="font-bold text-2xl text-error rounded-xl  md:text-xl">unknown !</span>} min
                                 </h1>
                             </div>

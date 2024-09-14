@@ -19,7 +19,7 @@ export default function CreditsDetailsTv({credits,dataImageTv,detailTv}) {
     // const SortedDataSeason = dataSeasonTv.sort((a, b) => a.season_number - b.season_number )
     // console.log(dataImageTv)
     return (
-        <div className=" flex justify-center items-center mt-6 ">
+        <div className=" flex justify-center items-center mt-6  md:mt-8">
             <Tabs defaultValue="cast" className="w-full flex justify-center flex-col">
                 <TabsList>
                     <TabsTrigger value="cast">Cast</TabsTrigger>

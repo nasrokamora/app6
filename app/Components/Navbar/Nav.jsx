@@ -54,7 +54,7 @@ export default async function NavBar() {
           hieght={32}
           alt="Magix_Movies_Logo"
           className=""
-          placeholder="blur"
+          // placeholder="blur"
           />
             <h1 className="scroll-m-20 text-2xl font-extrabold underline-offset-2 underline decoration-red-900 bg-clip-text text-transparent bg-gradient-to-tl from-blue-600 via-white-[30%] to-red-500 tracking-tight md:hidden">Magix Movies</h1>
       </Link>

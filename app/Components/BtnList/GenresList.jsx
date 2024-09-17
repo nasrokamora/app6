@@ -1,7 +1,7 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import Image from "next/image"
 import {
     Carousel,
@@ -24,7 +24,7 @@ export default function GenresList() {
     const [genres, setGenres] = useState([])
     const [isLoading, setIsLoading] = useState(true)
     const [isLoadingGenres, setIsLoadingGenres] = useState(true)
-    const bluredHash = "+EHLk~WB2yk8pyo0adR*.7kCMdnjS#M|%1%2Sis.slNHogaekBW;W?WBsloLozj@s:ja";
+    
 
 
     useEffect(() => {
@@ -48,12 +48,12 @@ export default function GenresList() {
 
             }
         } catch (error) {
-            console.error(error, "Error")
+            console.error(error, "Error fetch data Genres")
         }
     }
 
 
-    const fetchMovies = async (genreId) => {
+    const fetchMovies = useCallback (async(genreId) => {
         try {
             const response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.NEXT_PUBLIC_API_KEY}&with_genres=${genreId}`, {
                 headers: {
@@ -66,14 +66,14 @@ export default function GenresList() {
         } catch (error) {
             console.error(error)
         }
-    }
+    },[])
 
-    async function handleClick(genreId) {
+    const handleClick = useCallback( async(genreId) =>{
         setIsLoading(true)
         setSelectedGenre(genreId)
         fetchMovies(genreId)
         setIsLoadingGenres(false)
-    }
+    },[fetchMovies])
 
     //    Nas@Dev
     return (
@@ -95,7 +95,7 @@ export default function GenresList() {
                             genres.map((genre, index) => (
                                 <CarouselItem key={index} className=" p-1 basis-1/7 lg:basis-1/8 md:basis-1/7 ">
                                     <Button variant="outline" className={`2xl:text-xl  ${selectedGenre === genre.id ? 'text-red-700' : ' text-zinc-500'}`}
-                                        style={{ color: selectedGenre === genre.id ? 'text-red-500' : ' text-zinc-800' }}
+                                        // style={{ color: selectedGenre === genre.id ? 'text-red-500' : ' text-zinc-800' }}
                                         onClick={() => handleClick(genre.id)}>{genre.name}</Button>
                                 </CarouselItem>
                             ))
@@ -131,12 +131,12 @@ export default function GenresList() {
                                                 alt="movie poster"
                                                 width={300} height={250}
                                                 className=" hover:sepia hover:duration-500 rounded-md  "
-                                                priority
+                                                priority={true}
                                                 loading="eager"
                                                 style={{ width: "auto" }}
-                                                placeholder="blur"
+                                                // placeholder="blur"
 
-                                                blurDataURL={bluredHash}
+                                                // blurDataURL={bluredHash}
 
 
                                             />

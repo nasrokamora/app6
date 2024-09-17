@@ -45,10 +45,6 @@ export default function LoadMovies() {
         } catch (error) {
             console.error(error)
         }
-
-
-
-
     }
 
     const fetchMoreMovies = () => {
@@ -75,7 +71,7 @@ export default function LoadMovies() {
                                 alt={movie.title}
                                 width={200}
                                 height={150}
-                                priopity="true"
+                                priority
                                 style={{width:"auto"}}
                                 className="rounded-md "
                                 loading="eager"

@@ -30,8 +30,8 @@ export default function TrendingTv({ dataTrending }) {
           {dataTrending && dataTrending.length > 0 ? (
             dataTrending.map((data, index) => (
               <CarouselItem key={index} className="pt-1 md:basis-1/2 basis-1/6 lg:basis-1/5">
+                  <div className="p-1 hover:scale-90 hover:duration-500 hover:hue-rotate-90">
                 <Link href={`/Tv/List/${data.id}`}>
-                  <div className="p-1 hover:scale-90 hover:duration-500">
                     <div className=" ">
                       <div className=" overflow-hidden relative">
                         <Image
@@ -45,8 +45,8 @@ export default function TrendingTv({ dataTrending }) {
                         />
                       </div>
                     </div>
-                  </div>
                 </Link>
+                  </div>
               </CarouselItem>
             ))
           ) : (

@@ -22,8 +22,8 @@ import no_image from '../../../../../public/image/no_image4.webp'
 
 export default async function PersonDetailsTv({ person_id, urlImageTv, character }) {
 
-    const data = await getPersonsIdTv(person_id)
-    const extPersonId = await getExtPersonsIdTv(person_id)
+    const data =  getPersonsIdTv(person_id)
+    const extPersonId =  getExtPersonsIdTv(person_id)
 
 
     const [dataPerson, dataExtPerson] = await Promise.all([data, extPersonId])
@@ -76,7 +76,7 @@ export default async function PersonDetailsTv({ person_id, urlImageTv, character
                                 <div className=" pt-1  flex gap-2 flex-wrap">
                                     <strong className='text-[#52525b]'>Social Links :</strong>
                                     <div className=" flex justify-start items-center flex-wrap">
-                                        {dataExtPerson && (
+                                        {dataExtPerson ? (
                                             <div key={dataExtPerson.id}>
                                                 <ul className=" flex gap-2 items-center justify-start">
                                                     <li>
@@ -93,6 +93,10 @@ export default async function PersonDetailsTv({ person_id, urlImageTv, character
                                                     </li>
                                                 </ul>
 
+                                            </div>
+                                        ):(
+                                            <div>
+                                                <p className=" text-red-700 border-red-700">Data not found</p>
                                             </div>
                                         )}
                                     </div>

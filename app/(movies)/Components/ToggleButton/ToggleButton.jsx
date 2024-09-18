@@ -32,7 +32,7 @@ export default function ToggleButton(){
     return(
         <div className=" relative">
             {isVisible && (
-                <button className="fixed bottom-10 right-10 bg-red-500 text-white font-bold py-2 px-4 rounded-full shadow-md hover:bg-red-600" onClick={() => router.back()}>back</button>
+                <button className="fixed z-50 bottom-10 right-10 bg-red-500 text-white font-bold py-2 px-4 rounded-full shadow-md hover:bg-red-600" onClick={() => router.back()}>back</button>
             )
             }
         </div>

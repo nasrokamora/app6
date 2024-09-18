@@ -6,7 +6,7 @@ export const urlImage = "https://image.tmdb.org/t/p/original"
 // getDiscoverMovies
 export async function getDiscoverMovies() {
   try{
-    const res = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.NEXT_API_KEY}`,{}, {
+    const res = await fetch(`https://api.themoviedb.org/3/discover/movie`,{
       headers: {
         Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
       }
@@ -21,7 +21,7 @@ export async function getDiscoverMovies() {
   //get Movies by id
   export async function getMoviesId(id){
     try{
-      const response = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.NEXT_API_KEY}`,{
+      const response = await fetch(`https://api.themoviedb.org/3/movie/${id}`,{
         headers: {
           Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
           accept: "application/json"
@@ -38,8 +38,7 @@ export async function getDiscoverMovies() {
   //Popular Movies
 export async function getPopularMovies(){
   try{
-    const response = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.NEXT_API_KEY}&page=2`,{
-    },
+    const response = await fetch(`https://api.themoviedb.org/3/movie/popular?&page=2`,
     {
       headers: {
         Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
@@ -56,7 +55,7 @@ export async function getPopularMovies(){
 
 // By Genres Movies
   export async function getGenres() {
-    const response = await fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.NEXT_API_KEY}`,
+    const response = await fetch(`https://api.themoviedb.org/3/genre/movie/list`,
       {
         headers: {
           Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
@@ -71,7 +70,7 @@ export async function getPopularMovies(){
 
   export async function getImageMoviesId(id) {
     try{
-      const res = await fetch(`https://api.themoviedb.org/3/movie/${id}/images?api_key=${process.env.NEXT_API_KEY}`, {
+      const res = await fetch(`https://api.themoviedb.org/3/movie/${id}/images`, {
         headers: {
           Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
           accept: "application/json"
@@ -86,7 +85,7 @@ export async function getPopularMovies(){
 // Moveis Credits
 export async function getCriditsMovies(id){
   try{
-    const res = await fetch(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${process.env.NEXT_API_KEY}`,{
+    const res = await fetch(`https://api.themoviedb.org/3/movie/${id}/credits`,{
       headers: {
         Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
         accept: "application/json"
@@ -101,7 +100,7 @@ export async function getCriditsMovies(id){
 
 export async function getPersonsId(person_id) {
  try{
-   const response = await fetch(`https://api.themoviedb.org/3/person/${person_id}?api_key=${process.env.NEXT_API_KEY}`,{
+   const response = await fetch(`https://api.themoviedb.org/3/person/${person_id}`,{
      headers: {
        Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
        accept: "application/json"
@@ -116,7 +115,7 @@ export async function getPersonsId(person_id) {
 }
 export async function getCreditsId(credit_id) {
   try{
-    const res = await fetch(`https://api.themoviedb.org/3/credit/${credit_id}?api_key=${process.env.NEXT_API_KEY}`,{
+    const res = await fetch(`https://api.themoviedb.org/3/credit/${credit_id}`,{
       headers: {
         Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
         accept: "application/json"
@@ -168,7 +167,7 @@ export async function getMoviesSimilar(id) {
 // Trending Movies
 export async function getTrendingMovies() {
  try {
-   const res = await fetch(`https://api.themoviedb.org/3/trending/movie/day?api_key=${process.env.NEXT_API_KEY}`,{
+   const res = await fetch(`https://api.themoviedb.org/3/trending/movie/day`,{
      headers: {
        Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
        accept: "application/json"
@@ -184,7 +183,7 @@ export async function getTrendingMovies() {
 // Latest Movies
 export async function getLatestMovies(){
   try{
-    const res = await fetch(`https://api.themoviedb.org/3/movie/latest?api_key=${process.env.NEXT_API_KEY}`,{
+    const res = await fetch(`https://api.themoviedb.org/3/movie/latest`,{
       headers: {
         Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
         accept: "application/json"
@@ -200,7 +199,7 @@ export async function getLatestMovies(){
 export async function getRecommendationMovies(id){
   
   try {
-    const response = await fetch(`https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=${process.env.NEXT_API_KEY}`,{
+    const response = await fetch(`https://api.themoviedb.org/3/movie/${id}/recommendations`,{
       headres: {
         Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
         accept: "application/json"
@@ -217,7 +216,7 @@ export async function getRecommendationMovies(id){
 // Movie Now Playing
 export async function getMoviesNowPlaying(){
   try{
-    const res = await fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.NEXT_API_KEY}&page=4`,{
+    const res = await fetch(`https://api.themoviedb.org/3/movie/now_playing?&page=4`,{
       headers: {
         Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
         accept: "application/json"
@@ -233,7 +232,7 @@ export async function getMoviesNowPlaying(){
 export async function getPersonPopular() {
  
   try {
-    const response = await fetch(`https://api.themoviedb.org/3/person/popular?api_key=${process.env.NEXT_API_KEY}`,{
+    const response = await fetch(`https://api.themoviedb.org/3/person/popular`,{
       headers: {
         Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
         accept: "application/json"
@@ -248,7 +247,7 @@ export async function getPersonPopular() {
 
 export async function getTrailer(id) {
   try{
-    const res = await fetch(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${process.env.NEXT_API_KEY}`,{
+    const res = await fetch(`https://api.themoviedb.org/3/movie/${id}/videos`,{
       headers: {
         Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
         accept: "application/json"

@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/alert"
 
 // import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
-export default function CreditsDetailsTv({credits,dataImageTv,detailTv}) {
+export default function CreditsDetailsTv({credits,dataImageTv,seasions,seriesId}) {
     // const SortedDataSeason = dataSeasonTv.sort((a, b) => a.season_number - b.season_number )
     // console.log(dataImageTv)
     return (

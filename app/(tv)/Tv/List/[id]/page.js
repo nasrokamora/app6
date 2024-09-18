@@ -323,7 +323,8 @@ export default async function DynamicTvListPage({ params }) {
                 <CreditsDetailsTv
                     credits={creditsTv.cast}
                     dataImageTv={imageTv}
-                    detailTv={detailTv}
+                    seasions={detailTv.seasons}
+                    seriesId={detailTv.id}
                 />
             </div>
             <Separator className="mt-4" />

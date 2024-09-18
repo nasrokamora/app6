@@ -43,7 +43,7 @@ export default async function Home() {
       <section>
 
 
-        <MoviePopular dataPopular={dataPopular.results} />
+        <MoviePopular dataPopular={dataPopular} />
 
       </section>
 

@@ -19,7 +19,7 @@ async function getMoviesWithPage(page) {
 
 
 
-let page = 2
+
 export default function LoadMovies() {
     const [page, setPage] = useState(1)
     const [dataMovies, setDataMovies] = useState([])

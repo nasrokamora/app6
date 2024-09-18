@@ -59,7 +59,7 @@ function ReviewContent({ review }) {
             <AlertDialogTrigger >
                 <p variant="outline" className="text-base text-white mt-3 rounded-lg p-4 border hover:border-l-orange-700 hover:duration-500 hover:border-r-red-800 after:border-l-amber-600 hover:border-b-red-800 hover:border-orange-700"> {review.content.slice(0, 10)} <span className=" bg-gradient-to-tr from-orange-600 to-red-800 text-transparent bg-clip-text ">read more... </span> </p>
             </AlertDialogTrigger>
-            <AlertDialogContent className=" md:h-screen md:overflow-y-scroll max-w-4xl">
+            <AlertDialogContent className=" md:h-screen overflow-y-scroll h-3/6 lg:h-screen max-w-5xl ">
                 <AlertDialogHeader>
                     <AlertDialogTitle > {review.created_at} </AlertDialogTitle>
                     <AlertDialogDescription>
@@ -92,7 +92,7 @@ export function ReviewsList({ dataReview }) {
                                     <div className="  border p-4 rounded-md border-[#ff1818]">
                                         <div className="flex items-center justify-start gap-2">
                                             <Avatar>
-                                                <AvatarImage src={review.author_details.avatar_path} />
+                                                <AvatarImage src={`${urlImage}${review.author_details.avatar_path}`} alt="users_logo"  />
                                                 <AvatarFallback>
                                                     {review.author.slice(0, 3)}
                                                 </AvatarFallback>
@@ -133,7 +133,7 @@ export function ImageList({ dataImageList }) {
 
     return (
 
-        <ScrollArea className="w-full whitespace-nowrap rounded-md border md:w-2/3 lg:w-3/4 xl:w-4/5 transition-none">
+        <ScrollArea className=" bg-black/30 backdrop-blur border-none w-full whitespace-nowrap rounded-md border md:w-2/3 lg:w-3/4 xl:w-4/5 transition-none">
             <div className="flex w-max space-x-4 p-4">
                 {/* scroll image content */}
                 {dataImageList.backdrops && dataImageList.backdrops.length > 0 ? (
@@ -179,10 +179,18 @@ export function ImageList({ dataImageList }) {
 
 
 async function getMoviesLoad(id) {
-    const res = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.NEXT_API_KEY}`)
-
-
-    return res.json()
+    try {
+        const res = await fetch(`https://api.themoviedb.org/3/movie/${id}`,
+            {
+                headers: {
+                  Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
+                  accept: "application/json"
+                } 
+        })
+        return res.json()
+    }catch(error){
+        console.log(error,"failed to fetch data Load page =>[id]")
+    }
 }
 
 
@@ -200,11 +208,34 @@ export default async function DynamicMoviesList({ params }) {
 
     return (
         <div className="w-full h-auto p-5">
-            <ToggleButton />
+            
+                <div className=" w-full h-screen fixed overflow-hidden p-0 ml-0 left-0">
+
+                <div className=" ">
+                    {dataImageList.backdrops.slice(0,1).map((data) => (
+                        <div key={data.file_path} className=" rounded-md relative  blur-bottom h-screen" >
+                            <Image src={data.file_path ?
+                                `${urlImage}${data.file_path}`
+                                :
+                                no_image
+                            }
+                                fill
+                                className="  rounded-md  "
+                                priority
+                                style={{ objectFit:"cover" }}
+                                draggable={false}
+                                alt={data.file_path}
+                                loading="eager"
+                            />
+                        </div>
+                    ))}
+                    </div>
+                </div>
+                <ToggleButton />
             <div className=" flex justify-between items-center pb-4" >
                 <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl md:text-3xl  text-base-100 drop-shadow-[0_5px_10px_rgba(255,145,0,10.25)]">{data.original_title? data.original_title : data.title || data.name || "Title"}</h1>
             </div>
-            <div className=" mt-4 flex justify-start items-start gap-3 md:flex-col  ">
+            <div className=" mt-4 flex justify-start items-center gap-3 md:flex-col shadow-md bg-black/30 backdrop-blur p-4 rounded-md">
                 <div className=" relative overflow-hidden w-full  flex flex-col justify-center items-center">
 
                     <Image src={data.poster_path ?
@@ -221,18 +252,6 @@ export default async function DynamicMoviesList({ params }) {
 
                     <div className=" pt-5 flex justify-center gap-3">
                         <TrailerMovies dataTrailer={dataTrailer.results.slice(0, 1)}/>
-                        {/* <Dialog>
-                            <DialogTrigger><IoPlayCircleOutline size={48} className="text-[#f82525] hover:scale-110 duration-300" /></DialogTrigger>
-                            <DialogContent>
-                                <DialogHeader>
-                                    <DialogTitle></DialogTitle>
-                                    <DialogDescription>
-                                        This action cannot be undone. This will permanently delete your account
-                                        and remove your data from our servers.
-                                    </DialogDescription>
-                                </DialogHeader>
-                            </DialogContent>
-                        </Dialog> */}
                         <div>
                             <Link target="_blank" rel="noopener noreferrer" href={data.homepage ? data.homepage : "https://www.themoviedb.org/"}>
                                 <TbExternalLink size={45} className="text-[#f8e325] hover:scale-110 duration-300" />
@@ -244,7 +263,7 @@ export default async function DynamicMoviesList({ params }) {
 
                 {/* section overview */}
                 <div className="">
-                    <h1 className=" text-slate-500  md:text-slate-500   mt-10 scroll-m-20 md:text-xl  text-3xl font-bold tracking-tight transition-colors first:mt-0">
+                    <h1 className="  text-red-700 md:text-slate-900   mt-10 scroll-m-20 md:text-xl  text-3xl font-bold tracking-tight transition-colors first:mt-0">
                         Overview :
 
                     </h1>
@@ -253,7 +272,7 @@ export default async function DynamicMoviesList({ params }) {
                     <Separator className="mt-8" />
 
                     <div className="flex justify-start items-center gap-3 mt-5">
-                        <h2 className=" text-slate-600 md:text-slate-500  scroll-m-20 md:text-lg  pb-2 text-2xl font-bold tracking-tight transition-colors first:mt-0">Release Date :</h2>
+                        <h2 className=" text-red-600 scroll-m-20 md:text-lg  pb-2 text-2xl font-bold tracking-tight transition-colors first:mt-0">Release Date :</h2>
                         <h1 className=" text-gray-400 scroll-m-20 md:text-lg pb-2  text-2xl font-bold tracking-tight transition-colors first:mt-0">{data.release_date.replace(/-/g, "/") ? data.release_date.replace(/-/g, "/") : "Release date not found"}</h1>
                     </div>
 
@@ -313,15 +332,16 @@ export default async function DynamicMoviesList({ params }) {
                 <ImageList dataImageList={dataImageList} />
             </div>
 
+            {/* section Cast of movies */}
+            <div>
+                <MoviesCredits credits={credits && credits.cast.length > 0 ? credits : []} />
+            </div>
+
             {/* section reviews of movies */}
             <div className="mt-5">
                 <ReviewsList dataReview={dataReview && dataReview.results && dataReview.results.length > 0 ? dataReview : []} />
             </div>
 
-            {/* section Cast of movies */}
-            <div>
-                <MoviesCredits credits={credits && credits.cast.length > 0 ? credits : []} />
-            </div>
 
             <Separator className="my-4" />
 

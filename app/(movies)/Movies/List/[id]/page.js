@@ -44,6 +44,8 @@ import { AlertCircle } from "lucide-react"
 import NowPlayingMovies from "@/app/(movies)/Components/NowPlaying/NowPlayingMovies"
 import { Suspense } from 'react'
 import TrailerMovies from "@/app/(movies)/Components/TrailerMovies/TrailerMovies"
+import BgImageCover from "@/app/(movies)/Components/BgImageCover/BgImageCover"
+import ImageList from "@/app/(movies)/Components/ImageList/ImageList"
 // import RecommendationMovies from "@/app/(movies)/Components/RecommendationMovies/RecommendationMovies"
 
 export async function generateMetadata({ params }) {
@@ -57,7 +59,7 @@ function ReviewContent({ review }) {
     return (
         <AlertDialog>
             <AlertDialogTrigger >
-                <p variant="outline" className="text-base text-white mt-3 rounded-lg p-4 border hover:border-l-orange-700 hover:duration-500 hover:border-r-red-800 after:border-l-amber-600 hover:border-b-red-800 hover:border-orange-700"> {review.content.slice(0, 10)} <span className=" bg-gradient-to-tr from-orange-600 to-red-800 text-transparent bg-clip-text ">read more... </span> </p>
+                <p variant="outline" className="text-base text-white mt-3 rounded-lg p-1 border border-zinc-300  hover:bg-black hover:border-l-orange-700 hover:duration-500 hover:border-r-red-800 after:border-l-amber-600 hover:border-b-red-800 hover:border-orange-700"> {review.content.slice(0, 10)} <span className=" bg-gradient-to-tr from-orange-600 to-red-800 text-transparent bg-clip-text ">read more... </span> </p>
             </AlertDialogTrigger>
             <AlertDialogContent className=" md:h-screen overflow-y-scroll h-3/6 lg:h-screen max-w-5xl ">
                 <AlertDialogHeader>
@@ -89,7 +91,7 @@ export function ReviewsList({ dataReview }) {
                         {dataReview && dataReview.results && dataReview.results.length > 0 ? (
                             dataReview.results.map((review) => (
                                 <div key={review.id}>
-                                    <div className="  border p-4 rounded-md border-[#ff1818]">
+                                    <div className="  border p-4 rounded-md border-zinc-800 bg-black/30 backdrop-blur">
                                         <div className="flex items-center justify-start gap-2">
                                             <Avatar>
                                                 <AvatarImage src={`${urlImage}${review.author_details.avatar_path}`} alt="users_logo"  />
@@ -100,8 +102,8 @@ export function ReviewsList({ dataReview }) {
                                             <h1> {review.author} </h1>
                                         </div>
                                         <div className=" text-sm text-zinc-500 pt-2">
-                                            <h3> Created at : {review.created_at}</h3>
-                                            <h3> Updated at :{review.updated_at}</h3>
+                                            <h3 className=" text-amber-500"> Created at : <span className=' text-slate-200'>{review.created_at}</span></h3>
+                                            <h3 className=" text-info"> Updated at : <span className=" text-slate-200">{review.updated_at}</span></h3>
                                             <ReviewContent review={review} key={review.author} />
                                         </div>
                                     </div>
@@ -124,59 +126,6 @@ export function ReviewsList({ dataReview }) {
     )
 
 }
-
-
-
-
-export function ImageList({ dataImageList }) {
-
-
-    return (
-
-        <ScrollArea className=" bg-black/30 backdrop-blur border-none w-full whitespace-nowrap rounded-md border md:w-2/3 lg:w-3/4 xl:w-4/5 transition-none">
-            <div className="flex w-max space-x-4 p-4">
-                {/* scroll image content */}
-                {dataImageList.backdrops && dataImageList.backdrops.length > 0 ? (
-                    dataImageList.backdrops.map((data) => (
-                        <div key={data.file_path} className=" rounded-md relative overflow-hidden " >
-                            <Image src={data.file_path ?
-                                `${urlImage}${data.file_path}`
-                                :
-                                no_image
-                            }
-                                width={250}
-                                height={150}
-                                className="  rounded-md  "
-                                priority
-                                style={{ width: "auto" }}
-                                draggable={false}
-                                alt={data.file_path}
-                                loading="eager"
-                            />
-                        </div>
-                    ))
-                ) : (
-
-                    <Alert variant="destructive">
-                        <AlertCircle className="h-4 w-4" />
-                        <AlertTitle>Error</AlertTitle>
-                        <AlertDescription>
-                            There are no images in this movie.
-                        </AlertDescription>
-                    </Alert>
-                )
-                }
-            </div>
-            <ScrollBar orientation="horizontal" />
-        </ScrollArea>
-
-    )
-
-}
-
-
-
-
 
 async function getMoviesLoad(id) {
     try {
@@ -208,30 +157,13 @@ export default async function DynamicMoviesList({ params }) {
 
     return (
         <div className="w-full h-auto p-5">
-            
-                <div className=" w-full h-screen fixed overflow-hidden p-0 ml-0 left-0">
-
-                <div className=" ">
-                    {dataImageList.backdrops.slice(0,1).map((data) => (
-                        <div key={data.file_path} className=" rounded-md relative  blur-bottom h-screen" >
-                            <Image src={data.file_path ?
-                                `${urlImage}${data.file_path}`
-                                :
-                                no_image
-                            }
-                                fill
-                                className="  rounded-md  "
-                                priority
-                                style={{ objectFit:"cover" }}
-                                draggable={false}
-                                alt={data.file_path}
-                                loading="eager"
-                            />
-                        </div>
-                    ))}
-                    </div>
-                </div>
+            {/*  bg image cover  */}
+            <BgImageCover dataImageList={dataImageList}
+            />
+                {/* Toggle Button go back */}
                 <ToggleButton />
+
+                {/* container details movies */}
             <div className=" flex justify-between items-center pb-4" >
                 <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl md:text-3xl  text-base-100 drop-shadow-[0_5px_10px_rgba(255,145,0,10.25)]">{data.original_title? data.original_title : data.title || data.name || "Title"}</h1>
             </div>
@@ -263,7 +195,7 @@ export default async function DynamicMoviesList({ params }) {
 
                 {/* section overview */}
                 <div className="">
-                    <h1 className="  text-red-700 md:text-slate-900   mt-10 scroll-m-20 md:text-xl  text-3xl font-bold tracking-tight transition-colors first:mt-0">
+                    <h1 className="  text-amber-600 text-shadow md:text-slate-900   mt-10 scroll-m-20 md:text-xl  text-3xl font-bold tracking-tight transition-colors first:mt-0">
                         Overview :
 
                     </h1>
@@ -272,7 +204,7 @@ export default async function DynamicMoviesList({ params }) {
                     <Separator className="mt-8" />
 
                     <div className="flex justify-start items-center gap-3 mt-5">
-                        <h2 className=" text-red-600 scroll-m-20 md:text-lg  pb-2 text-2xl font-bold tracking-tight transition-colors first:mt-0">Release Date :</h2>
+                        <h2 className=" text-amber-600 scroll-m-20 md:text-lg  pb-2 text-2xl font-bold tracking-tight transition-colors first:mt-0">Release Date :</h2>
                         <h1 className=" text-gray-400 scroll-m-20 md:text-lg pb-2  text-2xl font-bold tracking-tight transition-colors first:mt-0">{data.release_date.replace(/-/g, "/") ? data.release_date.replace(/-/g, "/") : "Release date not found"}</h1>
                     </div>
 
@@ -280,7 +212,7 @@ export default async function DynamicMoviesList({ params }) {
 
                     {/* section genres  */}
                     <div className=" flex items-center gap-3 mt-3 flex-wrap">
-                        <h2 className=" text-slate-600 md:text-[#a52727] mt-2 scroll-m-20 md:text-lg pb-2 text-2xl font-bold tracking-tight transition-colors first:mt-0"> Genres :</h2>
+                        <h2 className=" text-amber-600 md:text-[#a52727] mt-2 scroll-m-20 md:text-lg pb-2 text-2xl font-bold tracking-tight transition-colors first:mt-0"> Genres :</h2>
                         {data.genres.map((genre) => (
                             <div className=" pb-2" key={genre.id}>
 
@@ -291,7 +223,7 @@ export default async function DynamicMoviesList({ params }) {
 
                         {/* section production countries  */}
                         <div className="flex items-center gap-3  flex-wrap">
-                            <h2 className="text-slate-600 md:text-slate-500  mt-2 scroll-m-20 md:text-lg  pb-2 text-2xl font-bold tracking-tight transition-colors first:mt-2">Production countries :</h2>
+                            <h2 className="text-sky-300  mt-2 scroll-m-20 md:text-lg  pb-2 text-2xl font-bold tracking-tight transition-colors first:mt-2">Production countries :</h2>
                             {data.production_countries.map((country) => (
                                 <div className="" key={country.iso_3166_1}>
 
@@ -307,18 +239,18 @@ export default async function DynamicMoviesList({ params }) {
                         <div className=" flex justify-start gap-5 md:justify-stretch items-center flex-wrap ">
 
                             <div className="mt-5 flex justify-start items-center gap-3  md:flex-wrap">
-                                <h2 className="text-slate-600  md:text-slate-500 scroll-m-20 md:text-lg   text-2xl font-bold tracking-tight transition-colors first:mt-0text-slate-600">Popularity :</h2>
+                                <h2 className=" text-blue-600 scroll-m-20 md:text-lg   text-2xl font-bold tracking-tight transition-colors first:mt-0text-slate-600">Popularity :</h2>
                                 <h1 className=" text-yellow-500 flex  items-center gap-2 justify-start scroll-m-20 md:text-xl  text-2xl font-bold tracking-tight transition-colors first:mt-0">{data.popularity.toFixed(2) ? data.popularity.toFixed(2) : "Popularity not found"} <FaRankingStar size={28} className=" text-yellow-500" /></h1>
                             </div>
                             <div className="mt-5 flex justify-start items-center gap-3  md:flex-wrap">
-                                <h2 className="text-slate-600 md:text-slate-500 scroll-m-20 md:text-lg   text-2xl font-bold tracking-tight transition-colors first:mt-0text-slate-600">Vote average :</h2>
+                                <h2 className="text-sky-200 scroll-m-20 md:text-lg   text-2xl font-bold tracking-tight transition-colors first:mt-0text-slate-600">Vote average :</h2>
                                 <h1 className=" text-yellow-500 flex justify-start items-center gap-2  scroll-m-20 md:text-xl  text-2xl font-bold tracking-tight transition-colors first:mt-0">{data.vote_average? data.vote_average : "Vote average not found"}<GiStarsStack size={28} className=" text-yellow-500" /></h1>
                             </div>
                         </div>
                         <div className="mt-5 flex justify-start items-center gap-3  md:flex-wrap lg:flex-wrap">
-                            <h2 className="text-slate-600 md:text-slate-500 scroll-m-20 md:text-lg   text-2xl font-bold tracking-tight transition-colors first:mt-0text-slate-600">Status :</h2>
+                            <h2 className="text-amber-600 scroll-m-20 md:text-lg   text-2xl font-bold tracking-tight transition-colors first:mt-0text-slate-600">Status :</h2>
                             <h1 className={` text-success flex justify-start items-center gap-2  scroll-m-20 md:text-xl  text-2xl font-bold tracking-tight transition-colors first:mt-0" ${data.status ? "text-blue-500" : "text-red-800"}`}> {data.status? data.status : "Status not found"}</h1>
-                            <h2 className="text-slate-600 md:text-slate-500 scroll-m-20 md:text-lg   text-2xl font-bold tracking-tight transition-colors first:mt-0">Original Language :</h2>
+                            <h2 className="text-amber-600 scroll-m-20 md:text-lg   text-2xl font-bold tracking-tight transition-colors first:mt-0">Original Language :</h2>
                             <h1 className="scroll-m-20 md:text-xl  text-2xl font-bold tracking-tight transition-colors first:mt-0 text-yellow-700">{data.original_language? data.original_language : "Original language not found"}</h1>
                         </div>
                     </div>
@@ -343,19 +275,21 @@ export default async function DynamicMoviesList({ params }) {
             </div>
 
 
-            <Separator className="my-4" />
+            <Separator className="my-4  " />
+
 
             {/* section of movies now playing */}
             <div>
                 <NowPlayingMovies dataPlaying={dataPlaying.results}  />
             </div>
 
-            <Separator className="my-4" />
+
+            <Separator className={cn('my-4 bg-red-700')} />
+
+
             {/* section Similar movies */}
             <div>
-                <Suspense fallback={<p>Loading feed...</p>} >
                 <MoviesSimilar similar={similar} />
-                </Suspense>
             </div>
 
         </div>

@@ -32,30 +32,20 @@ export default async function MoviesCredits({ credits }) {
     // console.log(dataCredit);
     
     return (
-        <div className=" h-auto w-full">
+        <div className=" h-auto w-full mt-6 ">
             <div>
                 <h1 className="md:text-slate-500 text-orange-600  mt-10 scroll-m-20 md:text-xl  text-3xl font-bold tracking-tight transition-colors first:mt-0">Cast :</h1>
             </div>
-            <div className=" flex justify-center items-center text-white pt-5">
+            <div className=" flex justify-center items-center text-white pt-5 ">
 
-                <Carousel className="w-full md:max-w-sm max-w-5xl 2xl:max-w-full" opts={{ loop: true, align: "start" }}>
-                    <CarouselContent className="-ml-1">
+                <Carousel className="w-full md:max-w-sm max-w-5xl 2xl:max-w-full " opts={{ loop: true, align: "start" }}>
+                    <CarouselContent className="-ml-1 ">
 
                         {dataCredit && dataCredit.length > 0 ? (
                             dataCredit.map((item) => (
-                            // const result = await getCreditsId(item.credit_id)
-                            //     if(result.error){
-                            //         return (
-                            //             <CarouselItem className="md:basis-1/1 lg:basis-1/3 xl:basis-1/3 2xl:basis-1/4" key={item.id}>
-                            //             <div className="text-red-500">
-                            //                 Unable to load credit data for {item.credit_id}: {result.message}
-                            //             </div>
-                            //         </CarouselItem>
-                            //         )
-                            //     }
-                                <CarouselItem className="md:basis-1/1 lg:basis-1/3 xl:basis-1/3 2xl:basis-1/4" key={item.id}>
+                                <CarouselItem className="md:basis-1/1 lg:basis-1/3 xl:basis-1/3 2xl:basis-1/4 " key={item.id}>
                                     <div>
-                                        <Card className=" xl:aspect-[3/2]  bg-transparent overflow-hidden aspect-auto border-r">
+                                        <Card className=" xl:aspect-[3/2]  shadow-md  overflow-hidden aspect-auto border-r bg-black/30 backdrop-blur">
                                             <CardHeader >
                                                 <CardTitle className=" flex justify-between items-center md:flex-wrap md:py-3">
                                                     {item.name}
@@ -71,8 +61,11 @@ export default async function MoviesCredits({ credits }) {
 
                                                 </CardTitle>
 
-                                                <CardDescription className="">
-                                                    <strong>Character</strong>  {item.character}
+                                                <CardDescription className=" flex justify-start items-center gap-2 flex-wrap">
+                                                    <strong className=" text-amber-500">Character :</strong> 
+                                                    <span className=" text-slate-300">
+                                                     {item.character}
+                                                    </span>
                                                 </CardDescription>
 
                                             </CardHeader>

@@ -17,7 +17,8 @@ export default function AutoCarousel({ children }) {
     return (
         <Carousel plugins={[plugin.current]}
         opts={{
-            align: "center"
+            align: "center",
+            loop: true,
           }}
           onMouseEnter={plugin.current.stop}
           onMouseLeave={plugin.current.play}

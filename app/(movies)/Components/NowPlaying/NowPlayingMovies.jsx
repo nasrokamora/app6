@@ -24,7 +24,7 @@ export default function NowPlayingMovies({dataPlaying }) {
   return (
     <div>
       <div>
-        <h1 className=" text-red-800 mt-10 scroll-m-20 md:text-xl  text-2xl font-bold tracking-tight transition-colors first:mt-0">Now Playing on Magix</h1>
+        <h1 className=" text-red-800 mt-10 scroll-m-20 md:text-xl  text-2xl font-bold  decoration-red-800 underline first:mt-0 black-shadow-text">Now playing on Magix</h1>
       </div>
     <div className="w-full pt-10 flex justify-center items-center relative md:mt-4">
       <AutoCarousel
@@ -57,7 +57,7 @@ export default function NowPlayingMovies({dataPlaying }) {
               </CarouselItem>
             ))
           ) : (
-            <Alert variant="destructive">
+            <Alert variant="destructive" className=" bg-black/30 backdrop-blur">
             <AlertCircle className="h-4 w-4" />
             <AlertTitle>Error</AlertTitle>
             <AlertDescription>

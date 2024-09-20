@@ -25,7 +25,7 @@ import {
     AvatarImage,
 } from "@/components/ui/avatar"
 import CreditsId from "./CreditsId"
-import { getCreditsId } from "@/app/libs/DataFetching"
+
 
 export default async function MoviesCredits({ credits }) {
     const dataCredit = credits.cast
@@ -76,7 +76,7 @@ export default async function MoviesCredits({ credits }) {
                                     </div>
                                 </CarouselItem>
                             )))  : (
-                            <Alert variant="destructive">
+                            <Alert variant="destructive" className=" bg-black  ">
                                 <AlertCircle className="h-4 w-4" />
                                 <AlertTitle>Error</AlertTitle>
                                 <AlertDescription>

@@ -15,3 +15,54 @@ export default function Loading() {
     </div>
   )
 }
+// components/Loading.js
+// "use client";
+// import { motion } from 'framer-motion';
+// import Image from 'next/image';
+// import { useEffect, useState } from 'react';
+// import icon_magix from '../public/Icon_magix.png'
+
+// export default function Loading(){
+//   const [percentage, setPercentage] = useState(0);
+
+//   useEffect(() => {
+//     const interval = setInterval(() => {
+//       setPercentage((prev) => {
+//         if (prev < 100) {
+//           return prev + 1;
+//         } else {
+//           clearInterval(interval);
+//           return 100;
+//         }
+//       });
+//     }, 50); // يمكنك تعديل سرعة التحميل عن طريق تغيير قيمة 30
+
+//     return () => clearInterval(interval);
+//   }, []);
+
+//   return (
+//     <motion.div
+//       className="loading-container h-screen w-full"
+
+//       initial={{ opacity: 0 }}
+//       animate={{ opacity: 1 }}
+//       exit={{ opacity: 0 }}
+//     >
+//       <div className=' flex justify-center items-center  overflow-hidden relative flex-col gap-4 h-screen'>
+//         <Image src={icon_magix} width={300} height={300} alt="logo" priority className=' animate-pulse'
+//         />
+//         <h1 className=' font-bold text-xl'>Please wait...</h1>
+//       </div>
+//       <motion.div
+//         className="loading-bar  h-1 bg-[#f30000] mb-5 rounded-md fixed top-0 left-0 right-0 origin-left"
+//         initial={{ width: '0%' }}
+//         animate={{ width: `${percentage}%` }}
+//         transition={{ duration: 0.5 }}
+//       />
+
+//     </motion.div>
+//   );
+// };
+
+
+

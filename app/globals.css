@@ -92,4 +92,7 @@
   .text-shadow {
     text-shadow: 2px 2px 5px rgb(255, 166, 0);
   }
+  .black-shadow-text {
+    text-shadow: 2px 2px 5px rgb(0, 0, 0);
+  }
 }

@@ -21,10 +21,10 @@ export default function TvSeries({ dataTv }) {
                 <CarouselContent className="   ">
                     {dataTv.map((tv, index) => (
 
-                        <CarouselItem key={index} className="md:basis-1/2 basis-1/6 lg:basis-1/5">
+                        <CarouselItem key={tv.id} className="md:basis-1/2 basis-1/6 lg:basis-1/5">
                             <div className="lg:hover:scale-90 lg:hover:duration-500 xl:hover:scale-90 xl:hover:duration-500  2xl:hover:scale-90 2xl:hover:duration-500 relative overflow-hidden">
 
-                                <Link className=" hover:scale-105" href={`/Tv/List/${tv.id}`}>
+                                <Link className=" hover:scale-105" href={`/Tv/List/${tv.id}`} rel="noopener noreferrer" as={`/Tv/List/${tv.id}`}>
                                     <div className="relative overflow-hidden ">
 
                                         <Image

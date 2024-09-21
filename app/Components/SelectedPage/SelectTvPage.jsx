@@ -55,6 +55,8 @@ const CarouselTv = ({ dataTv, currentPage, handlePageChange, isLoading }) => {
                                        dataTv.map((tv) => (
 
                                            <CarouselItem key={tv.id} className="  p-2  md:basis-1/2 basis-1/6 lg:basis-1/5 ">
+                                            <div className=" flex flex-col ">
+
                                                <div className=" relative overflow-hidden">
                                                    <Image
                                                        src={tv.poster_path ?
@@ -70,12 +72,15 @@ const CarouselTv = ({ dataTv, currentPage, handlePageChange, isLoading }) => {
                                                        style={{ width: "auto" }}
                                                        draggable={false}
                                                    />
-                                                   <h6 className=" font-bold flex justify-start  pt-2 mb-1">{tv.name.length > 14 ? tv.name.slice(0, 14) + "..." : tv.name}
-                                                   </h6>
+                                            </div>
+                                                   <div>
+                                                   <h1 className=" font-bold  pt-2 mb-1">{tv.name.slice(0, 14) + "..."}
+                                                   </h1>
+                                                   </div>
                                                    <div className=" flex justify-between items-center w-full">
-                                                       <h6 className=" fonb flex justify-between items-center w-full">
-                                                           {new Date(tv.first_air_date).getFullYear()}
-                                                       </h6>
+                                                       <h1 className="">
+                                                       {tv.first_air_date ? new Date(tv.first_air_date).getFullYear() : "Unknown Date"}
+                                                       </h1>
 
                                                        <div className=" ">
                                                            <div className=" space-x-1 flex justify-between items-center">

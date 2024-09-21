@@ -34,20 +34,21 @@ export default async function PersonDetailsTv({ person_id, urlImageTv, character
 
         <div className=" w-full ">
             <div className="p-1 ">
-                <Card className=" h-80 md:h-auto">
+                <Card className=" h-96 md:h-auto ">
                     <CardContent className="">
                         <div className="flex justify-start gap-2 pt-4 md:flex-grow">
-                            <div className=' relative overflow-hidden'>
+                            <div className=''>
                                 <Image src={dataPerson.profile_path ?
                                     `${urlImageTv}${dataPerson.profile_path}`
                                 :
                                 no_image
                                 }
                                     width={100} height={100}
-                                    priority
+                                    priority={true}
                                     alt={dataPerson.name}
-                                    style={{ width: 'auto' }}
-                                    className=" rounded-md"
+                                    style={{ width: 'auto',borderRadius:"12px" }}
+                                    loading="eager"
+                                    
                                 />
                             </div>
                             <div className="">

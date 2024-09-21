@@ -39,7 +39,7 @@ export default function CarouselTv  ({ dataTv, totalPages, currentPage, handlePa
 
                                 <CarouselItem key={tv.id} className="  basis-1/7 lg:basis-1/5 md:basis-1/2  ">
                                     <div className="">
-
+                                        
                                         <Image
                                             src={`https://image.tmdb.org/t/p/original${tv.poster_path}`}
                                             alt={tv.title}

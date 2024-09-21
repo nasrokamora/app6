@@ -30,7 +30,8 @@ export default function MoviesSimilar({ similar }) {
 
                                 <CarouselItem key={movie.id} className="  basis-1/5 lg:basis-1/5 md:basis-1/2 2xl:basis-1/7">
                                     <div className="  hover:scale-105 hover:duration-500  hover:grayscale  ">
-                                        <Link className="   " href={`/Movies/List/${movie.id}`}>
+                                        <Link className="" href={`/Movies/List/${movie.id}`}  rel="noopener noreferrer">
+                                            <div className=" relative overflow-hidden">
 
                                             <Image
                                                 src={movie.poster_path ? `
@@ -44,15 +45,16 @@ export default function MoviesSimilar({ similar }) {
                                                 style={{ width: "auto" }}
                                                 priority={true}
                                                 loading="eager"
-                                            />
+                                                />
+                                                </div>
                                             <div>
-                                                <p className=" font-bold flex justify-start  pt-2 mb-1">{movie.title.slice(0, 14) + "..."}
-                                                </p>
+                                                <h1 className=" font-bold flex justify-start  pt-2 mb-1">{movie.title.slice(0, 14) + "..."}
+                                                </h1>
                                             </div>
                                             <div className=" flex justify-between items-center w-full font-semibold">
-                                                <p className=" fonb flex justify-between items-center w-full">
-                                                    {new Date(movie.release_date.toString()).getFullYear()}
-                                                </p>
+                                                <h1 className=" fonb flex justify-between items-center w-full">
+                                                    {movie.release_date ? new Date(movie.release_date.toString()).getFullYear() : "N/A"}
+                                                </h1>
                                                 <div className=" ">
                                                     <div className=" space-x-1 flex justify-between items-center">
                                                         <FaRegStar className="text-[#FFC300]" />

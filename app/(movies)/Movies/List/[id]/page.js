@@ -208,7 +208,7 @@ export default async function DynamicMoviesList({ params }) {
 
             {/* section Similar movies */}
             <div>
-                {/* <MoviesSimilar similar={similar} /> */}
+                <MoviesSimilar similar={similar} />
             </div>
 
         </div>

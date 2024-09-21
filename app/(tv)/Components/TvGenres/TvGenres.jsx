@@ -1,7 +1,7 @@
 "use client"
 
 import LoadingGenreButton from "@/app/Components/LoadingUi/LoadingGenreList"
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import {
     Carousel,
@@ -61,16 +61,16 @@ export default function TvGenres() {
             setTvList(data.results)
             setIsLoading(false)
         } catch (error) {
-            console.error(error, 'Error fetch Tv')
+            console.error(error, 'Error fetch genres Tv')
         }
     }
 
-    async function handleClick(genreId) {
+    const handleClick = useCallback( async(genreId) =>{
         setIsLoading(true)
         setSelected(genreId)
-        getTv(genreId)
+       await getTv(genreId)
         setIsLoadingGenre(false)
-    }
+    }, [getTv])
 
 
 
@@ -92,7 +92,6 @@ export default function TvGenres() {
                             genres.map((genre, index) => (
                                 <CarouselItem key={index} className="p-1 basis-1/7 lg:basis-1/8 md:basis-1/7 ">
                                     <Button variant="outline" className={`2xl:text-xl ${selected === genre.id ? 'text-[#1b83e3]' : ' text-zinc-500'}`}
-                                        style={{ color: selected === genre.id ? 'text-[#1b83e3]' : ' text-zinc-800' }}
                                         onClick={() => handleClick(genre.id)}>{genre.name}</Button>
                                 </CarouselItem>
                             ))
@@ -116,11 +115,11 @@ export default function TvGenres() {
                                 <LoadingGenreCarousel />
                             </div>
                             : TvList && TvList.length > 0 ? (
-                                TvList.map((tv, index) => (
+                                TvList.map((tv) => (
 
-                                    <CarouselItem key={index} className=" p-2  md:basis-1/2 basis-1/6 lg:basis-1/5 ">
+                                    <CarouselItem key={tv.id} className=" p-2  md:basis-1/2 basis-1/6 lg:basis-1/5 ">
                                         <div className=" overflow-hidden relative lg:hover:scale-90 lg:hover:duration-500 xl:hover:scale-90 xl:hover:duration-500  2xl:hover:scale-90 2xl:hover:duration-500">
-                                            <Link href={`/Tv/List/${tv.id}`}>
+                                            <Link href={`/Tv/List/${tv.id}`} rel="noopener noreferrer" as={`/Tv/List/${tv.id}`}>
                                                 <Image
                                                     src={tv.poster_path ?
                                                         
@@ -138,7 +137,7 @@ export default function TvGenres() {
                                                 <p className=" font-bold flex justify-start  pt-2 mb-1">{tv.original_name.length > 14 ? tv.original_name.slice(0, 14) + "..." : tv.original_name}</p>
                                                 <div className=" flex justify-between items-center w-full">
                                                     <p className=" fonb flex justify-between items-center w-full">
-                                                        {new Date(tv.first_air_date).getFullYear()}
+                                                        {tv.first_air_date && new Date(tv.first_air_date).getFullYear()}
                                                     </p>
                                                     <div className=" ">
                                                         <div className=" space-x-1 flex justify-between items-center">

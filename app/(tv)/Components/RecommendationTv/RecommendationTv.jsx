@@ -32,8 +32,8 @@ export default function RecommendationTv({dataRecommend}) {
     >
       <CarouselContent className="-mt-1 ">
         {dataRecommend && dataRecommend.length > 0 ? (
-        dataRecommend.map((data, index) => (
-          <CarouselItem key={index} className="md:basis-1/2 basis-1/6 lg:basis-1/5">
+        dataRecommend.map((data) => (
+          <CarouselItem key={data.id} className="md:basis-1/2 basis-1/6 lg:basis-1/5">
             <div className="p-1 hover:scale-90 hover:duration-500 hover:hue-rotate-30">
             <Link href={`/Tv/List/${data.id}`}>
                 <div className=" ">

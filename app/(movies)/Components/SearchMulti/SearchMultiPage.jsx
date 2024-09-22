@@ -21,9 +21,10 @@ import {
     SheetTrigger,
 } from "@/components/ui/sheet"
 import { IoSearch } from "react-icons/io5";
+
 async function SearchMulti(query) {
 
-    const response = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.NEXT_PUBLIC_API_KEY}&query=${encodeURIComponent(query)}`,)
+    const response = await fetch(`https://api.themoviedb.org/3/search/multi?api_key=${process.env.NEXT_PUBLIC_API_KEY}&query=${encodeURIComponent(query)}`,)
 
     const data = await response.json()
     return data
@@ -77,7 +78,10 @@ export default function SearchMultiPage() {
                                 onChange={(e) => setQuery(e.target.value)}
                             />
 
+
                             <Button type="submit">Search</Button>
+
+
 
                         </form>
 
@@ -85,7 +89,8 @@ export default function SearchMultiPage() {
 
 
                     </main>
-                        <CardResults movie={movies} handleClick={handleClick} selectedMovie={selectedMovie} handleClose={handleClose} />
+ 
+                        <CardResults movie={movies} handleClick={handleClick}  handleClose={handleClose} />
                 </SheetContent>
             </Sheet>
 

@@ -36,6 +36,7 @@ import {
 import { VscAccount } from "react-icons/vsc";
 import LogoIcon from '../../../public/icon/Icon.png'
 import Image from "next/image"
+import SearchMulti from "../SearchMulti/SearchMulti";
 
 
 

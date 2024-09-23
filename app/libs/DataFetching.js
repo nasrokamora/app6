@@ -200,7 +200,7 @@ export async function getRecommendationMovies(id){
   
   try {
     const response = await fetch(`https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=${process.env.NEXT_API_KEY}`,{
-      headres: {
+      headers: {
         Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
         accept: "application/json"
       }

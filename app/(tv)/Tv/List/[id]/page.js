@@ -30,6 +30,7 @@ import {
 import { RiBarChartGroupedLine } from "react-icons/ri";
 
 import { MdOutlineTransitEnterexit } from "react-icons/md";
+import RatingTvShow from "@/app/(tv)/Components/RatingTvShow/RatingTvShow";
 
 
 
@@ -350,6 +351,10 @@ export default async function DynamicTvListPage({ params }) {
             <div className="mt-8">
                 <h1 className='scroll-m-20 text-2xl font-extrabold tracking-tight lg:text-5xl '>Trending Now</h1>
                 <TrendingTv dataTrending={dataTrending.results} />
+            </div>
+
+            <div>
+                <RatingTvShow id={detailTv.id} />
             </div>
         </div>
     )

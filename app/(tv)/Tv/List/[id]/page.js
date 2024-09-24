@@ -234,7 +234,12 @@ export default async function DynamicTvListPage({ params }) {
                         )
                         }
                     </div>
-                    {/* <Separator className="mt-4" /> */}
+
+                    <Separator className="mt-4" />
+                    <div>
+                    <h1 className="font-bold pb-2 text-2xl text-slate-600">Rate this series</h1>
+                        <RatingTvShow id={detailTv.id} />
+                    </div>
 
 
 
@@ -289,18 +294,18 @@ export default async function DynamicTvListPage({ params }) {
                             <div className=" flex justify-start items-center gap-2 flex-wrap order-3">
                                 <div className=" flex flex-col gap-2">
 
-                                <div className=" flex justify-start gap-2 items-center order-4 flex-wrap">
-                                    <strong className="font-bold text-2xl text-zinc-400 md:text-xl">vote average :</strong>
-                                    <h1 className=" text-amber-400  scroll-m-20 text-xl xl:text-2xl  font-semibold flex justify-center items-center gap-2">{(detailTv.last_episode_to_air.vote_average / 10 * 100).toFixed(2)}%</h1>
-                                    <span className=""><RiBarChartGroupedLine size={30} className="text-amber-400" /></span>
-                                </div>
-                                <div className=" flex justify-start gap-2 items-center">
-                                    <strong className="font-bold text-2xl text-zinc-400 md:text-xl">Vote Count: </strong>
-                                    <h1 className=" text-amber-400  scroll-m-20 text-xl xl:text-2xl  font-semibold flex justify-center items-center gap-2">
-                                        {detailTv.last_episode_to_air ? detailTv.last_episode_to_air.vote_count : "Unknown"}
-                                        <span><MdOutlineInsertChartOutlined size={30} className=" " /></span>
-                                    </h1>
-                                </div>
+                                    <div className=" flex justify-start gap-2 items-center order-4 flex-wrap">
+                                        <strong className="font-bold text-2xl text-zinc-400 md:text-xl">vote average :</strong>
+                                        <h1 className=" text-amber-400  scroll-m-20 text-xl xl:text-2xl  font-semibold flex justify-center items-center gap-2">{(detailTv.last_episode_to_air.vote_average / 10 * 100).toFixed(2)}%</h1>
+                                        <span className=""><RiBarChartGroupedLine size={30} className="text-amber-400" /></span>
+                                    </div>
+                                    <div className=" flex justify-start gap-2 items-center">
+                                        <strong className="font-bold text-2xl text-zinc-400 md:text-xl">Vote Count: </strong>
+                                        <h1 className=" text-amber-400  scroll-m-20 text-xl xl:text-2xl  font-semibold flex justify-center items-center gap-2">
+                                            {detailTv.last_episode_to_air ? detailTv.last_episode_to_air.vote_count : "Unknown"}
+                                            <span><MdOutlineInsertChartOutlined size={30} className=" " /></span>
+                                        </h1>
+                                    </div>
                                 </div>
 
 
@@ -353,9 +358,7 @@ export default async function DynamicTvListPage({ params }) {
                 <TrendingTv dataTrending={dataTrending.results} />
             </div>
 
-            <div>
-                <RatingTvShow id={detailTv.id} />
-            </div>
+
         </div>
     )
 }

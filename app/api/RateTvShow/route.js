@@ -10,24 +10,23 @@ export async function POST(request) {
     const API_URL = `https://api.themoviedb.org/3/tv/${id}/rating`
     const API_KEY = process.env.NEXT_API_TOKEN
     const headers = {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json;charset=utf-8',
         Authorization: `Bearer ${API_KEY}`
     }
-    let response ;
+
+    if (!id || typeof rating !== 'number' || rating < 0.5 || rating > 10) {
+        return new Response(JSON.stringify({ error: 'Invalid id or rating' }), {
+          status: 400,
+        });
+      }
+
 
     try {
-        if (method === 'POST') {
-            response = await fetch(API_URL, {
-                method: 'POST',
-                headers: headers,
-                body: JSON.stringify({ value: rating })
-            })
-        }else if(method === "DELETE"){
-            response = await fetch(API_URL,{
-                method:"DELETE",
-                headers:headers
-            })
-        }
+        const response = await fetch(API_URL, {
+            headers: headers,
+            method: 'POST',
+            body: JSON.stringify({ value: rating })
+        })
         
         if (!response.ok) {
             // إذا كانت الاستجابة غير ناجحة، قراءة الرسالة وإرجاعها مع حالة الخطأ

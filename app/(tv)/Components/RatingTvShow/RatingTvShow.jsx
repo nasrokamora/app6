@@ -2,8 +2,18 @@
 
 import { useEffect, useState } from "react"
 import { Input } from "@/components/ui/input"
-import { toast } from "sonner"
+
 import { Button } from "@/components/ui/button"
+
+import { ToastAction } from "@/components/ui/toast"
+import { useToast } from "@/hooks/use-toast"
+import { Terminal } from "lucide-react"
+ 
+import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+} from "@/components/ui/alert"
 
 
 export default function RatingTvShow({ id }) {
@@ -13,85 +23,29 @@ export default function RatingTvShow({ id }) {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null)
     const [success, setSuccess] = useState(false)
-    const [userRatig, setUserRating] = useState(null)
 
-
-    // جلب التقييم الحالي للمستخدم عند تحميل الصفحة
-    useEffect(() => {
-        setLoading(true)
-        const fetchUsersRating = async () => {
-            try {
-                const response = await fetch(`/api/GetUserRating?id=${id}`)
-
-                const data = await response.json()
-
-                setUserRating(data.rating)
-                // تعيين قيمة التقييم المدخلة للمستخدم
-                setRating(data.rating)
-
-            } catch (error) {
-                setError(error.message)
-            } finally {
-                setLoading(false)
-            }
-        }
-        fetchUsersRating()
-    }, [id])
-
-
-    // دالة لمعالجة حذف التقييم
-    async function handleDeletRating() {
-        setLoading(true);
-        setError(null);
-        setSuccess(false);
-
-        try {
-            const response = await fetch(`/api/RateTvShow`, {
-                method: "DELETE",
-                headers: {
-                    "Content-Type": "application/json",
-
-                },
-                body: JSON.stringify({ id })
-            })
-            if (!response.ok) {
-                throw new Error("failed to delete rating");
-            }
-
-            const data = await response.json();
-            console.log(data);
-
-            // إعادة التقييم إلى 0 بعد الحذف
-            setRating(0);
-            setSuccess(true);
-            setTimeout(() => setSuccess(false), 3000);
-
-        } catch (error) {
-            // إظهار رسالة خطأ
-            setError(error.message);
-        } finally {
-            setLoading(false);
-        }
-    }
-
-
-
-
-
-
-
-
+    const { toast } = useToast()
 
 
     // دالة لمعالجة إرسال التقييم
     async function handleRate(e) {
         e.preventDefault();
         // التأكد من أن التقييم ضمن النطاق الصحيح
-        if (rating < 0.5 || rating > 10) {
-            alert("يجب أن تكون التقييم بين 0.5 و 10")
-            return
+
+        if (rating < 0.5 || typeof rating !== "number" || rating > 10) {
+            toast({
+                variant: "destructive",
+                title: "Uh oh! Something went wrong.",
+                description: "Please enter a rating between 0.5 and 10.",
+                action: <ToastAction altText=" Try again">Try again</ToastAction>,
+              })
+              return
         }
 
+        // if (rating < 0.5 || rating > 10) {
+        //     alert("يجب أن تكون التقييم بين 0.5 و 10")
+        //     return
+        // }
 
         setLoading(true); // تعيين حالة التحميل إلى true أثناء الإرسال
         setError(null);   // إعادة تعيين حالة الخطأ
@@ -126,42 +80,33 @@ export default function RatingTvShow({ id }) {
     }
 
     return (
-        <div className="w-[25rem] h-[25rem]">
-            <h1>Rate Tv Show</h1>
-            <div>
-                {userRatig !== null ? (
-                    <div>
-                        <h1>Rating : {userRatig}</h1>
-                        <Button variant="outline" onClick={handleDeletRating} disabled={loading}>
-                        {loading ? "Processing..." : "Delete Rating"}
-                        </Button>
-                    </div>
-                ) : (
-
-                    <div>
-                        <Input
+        <div className="w-full h-auto ">
+            
+            <form onSubmit={handleRate} className=" w-full m-0 ">
+                    <div className="flex gap-2  justify-start items-center w-full">
+                        <Input className=" w-full p-2 "
                             type="number"
                             min="0.5"
                             max="10"
                             step="0.5"
                             value={rating}
-                            onChange={(e) => setRating(e.target.value)}
+                            onChange={(e) => setRating(Number(e.target.value))}
                             required
                         />
                         <Button variant="outline"
-                            onClick={handleRate} disabled={loading} >
+                            type="submit" disabled={loading} >
                             {loading ? "Processing..." : "Rate"}
                         </Button>
 
+                            </div>
                         <div>
                             {success &&
-                                <p style={{ color: 'green' }}>تم التقييم بنجاح</p>
+                                <p style={{ color: 'green' }}>Successfully Assessed, Thank you.</p>
                             }
                         </div>
                         {error && <p style={{ color: 'red' }}>خطأ: {error}</p>}
-                    </div>
-                )}
-            </div>
+
+            </form>
         </div>
     )
 }

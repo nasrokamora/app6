@@ -4,7 +4,12 @@ import { useEffect, useState } from "react"
 import InfiniteScroll from 'react-infinite-scroll-component'
 import Image from "next/image"
 import Link from "next/link"
-
+import { Button } from "@/components/ui/button"
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card"
 async function getMoviesWithPage(page) {
     const response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.NEXT_PUBLIC_API_KEY}&page=${page}`, {
         next:{
@@ -65,8 +70,11 @@ export default function LoadMovies() {
                 </div>
             <div className="grid grid-cols-6 gap-8 p-8 md:grid-cols-3 lg:grid-cols-4">
                 {dataMovies.map((movie, index) => (
+
                     <div key={index} className=" relative flex justify-center items-center flex-col hover:scale-110 hover:duration-300 overflow-hidden">
-                        <Link href={`/Movies/List/${movie.id}`}>
+
+                        <Link href={`/Movies/List/${movie.id}` } rel="noopener noreferrer" >
+
                             <Image src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
                                 alt={movie.title}
                                 width={200}
@@ -75,14 +83,18 @@ export default function LoadMovies() {
                                 style={{width:"auto"}}
                                 className="rounded-md "
                                 loading="eager"
-                            />
+                                />
+
 
                             <h1 className=" font-bold">
                                 {movie.title.length > 14 ? movie.title.slice(0, 14) + "..." : movie.title}
                             </h1>
 
                         </Link>
+
+
                     </div>
+
                 ))}
             </div>
         </InfiniteScroll>

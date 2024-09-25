@@ -27,6 +27,7 @@ import BgImageCover from "@/app/(movies)/Components/BgImageCover/BgImageCover"
 import ImageList from "@/app/(movies)/Components/ImageList/ImageList"
 import ReviewsList from "@/app/(movies)/Components/ReviewsMovies/ReviewsList"
 import RecommendationMovies from "@/app/(movies)/Components/RecommendationMovies/RecommendationMovies"
+import RatingUsersMovies from "@/app/(movies)/Components/RatingUsersMovies/RatingUsersMovies"
 // import RecommendationMovies from "@/app/(movies)/Components/RecommendationMovies/RecommendationMovies"
 
 export async function generateMetadata({ params }) {
@@ -167,6 +168,10 @@ export default async function DynamicMoviesList({ params }) {
                     </div>
 
                     <Separator className="mt-4" />
+
+                    <div>
+                        <RatingUsersMovies id={data.id} />
+                    </div>
                 </div>
             </div>
             {/* section images scroll */}

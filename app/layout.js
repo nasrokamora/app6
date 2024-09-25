@@ -7,7 +7,7 @@ import { ThemeProvider } from "./Components/theme-provider";
 import { Inter} from "next/font/google"
 import { cn } from "@/lib/utils";
 import Nav from "./Components/Navbar/Nav";
-import { Toaster } from "@/components/ui/sonner";
+
 
 
 
@@ -40,7 +40,7 @@ export default function RootLayout({ children}) {
 
 
         {children}
-        {/* <Toaster /> */}
+
         {/* {DiscoverTv} */}
         <Footer/>
 

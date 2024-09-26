@@ -63,15 +63,15 @@ export default function LoadMovies() {
             next={fetchMoreMovies}
             hasMore={hasMore}
             loader={<h4 className="">Loading...</h4>}
-            endMessage={<p className="text-center text-2xl">No more movies to show</p>}
+            endMessage={<p className="text-2xl text-center">No more movies to show</p>}
         >
-                <div className=" mt-8 flex justify-center items-center font-semibold text-3xl">
+                <div className="flex items-center justify-center mt-8 text-3xl font-semibold ">
                     <h1>Explore all movies on Magix</h1>
                 </div>
             <div className="grid grid-cols-6 gap-8 p-8 md:grid-cols-3 lg:grid-cols-4">
                 {dataMovies.map((movie, index) => (
 
-                    <div key={index} className=" relative flex justify-center items-center flex-col hover:scale-110 hover:duration-300 overflow-hidden">
+                    <div key={index} className="relative flex flex-col items-center justify-center overflow-hidden hover:scale-110 hover:duration-300">
 
                         <Link href={`/Movies/List/${movie.id}` } rel="noopener noreferrer" >
 
@@ -86,7 +86,7 @@ export default function LoadMovies() {
                                 />
 
 
-                            <h1 className=" font-bold">
+                            <h1 className="font-bold ">
                                 {movie.title.length > 14 ? movie.title.slice(0, 14) + "..." : movie.title}
                             </h1>
 

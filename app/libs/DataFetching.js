@@ -244,7 +244,7 @@ export async function getPersonPopular() {
   }
  
 }
-
+//get Trelair
 export async function getTrailer(id) {
   try{
     const res = await fetch(`https://api.themoviedb.org/3/movie/${id}/videos`,{
@@ -258,4 +258,25 @@ export async function getTrailer(id) {
   }catch(error){
     return console.log(error,"failed to fetch data Trailer Movies")
   }
+}
+
+
+// get New Movies add 
+
+export async function getChangesMovies({id}){
+  try{
+    const res = await fetch(`https://api.themoviedb.org/3/movie/${id}/changes`,{
+      headers: {
+        Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
+        accept: "application/json"
+      },
+      next: {
+        revalidate:3600
+      }
+    })
+    return res.json()
+  }catch(error){
+    return console.log(error,"failed to fetch data Changes Movies")
+  }
+  
 }

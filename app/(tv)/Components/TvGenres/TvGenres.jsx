@@ -53,17 +53,19 @@ export default function TvGenres() {
         }
     }
 
-    const getTv = async (genreId) => {
+    const getTv = useCallback(async (genreId) => {
         try {
             const response = await fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${process.env.NEXT_PUBLIC_API_KEY}&with_genres=${genreId}`, {
             })
             const data = await response.json()
             setTvList(data.results)
-            setIsLoading(false)
+            setIsLoading(true)
         } catch (error) {
             console.error(error, 'Error fetch genres Tv')
+        }finally{
+            setIsLoading(false)
         }
-    }
+    },[])
 
     const handleClick = useCallback( async(genreId) =>{
         setIsLoading(true)
@@ -76,16 +78,16 @@ export default function TvGenres() {
 
     return (
         <div className=" md:mt-16">
-            <div className=" flex justify-center ">
+            <div className="flex justify-center ">
                 <Carousel
                     opts={{
                         align: "start",
                         loop: true,
                     }}
-                    className="w-full md:max-w-xl max-w-5xl 2xl:max-w-7xl lg:max-w-4xl">
+                    className="w-full max-w-5xl md:max-w-xl 2xl:max-w-7xl lg:max-w-4xl">
                     <CarouselContent className="-ml-1">
                         {isLoadingGenre ? (
-                        <div className='flex justify-center items-center w-full'>
+                        <div className='flex items-center justify-center w-full'>
                             <LoadingGenreButton />
                         </div>
                         ):(                     
@@ -104,21 +106,21 @@ export default function TvGenres() {
                 </Carousel>
             </div>
 
-            <div className=" mt-8 flex justify-center w-full">
+            <div className="flex justify-center w-full mt-8 ">
                 <Carousel opts={{
                     align: "start",
                     loop: true,
-                }} className="w-full md:max-w-xl  max-w-5xl 2xl:max-w-7xl lg:max-w-4xl" >
-                    <CarouselContent className=" -ml-1">
+                }} className="w-full max-w-5xl md:max-w-xl 2xl:max-w-7xl lg:max-w-4xl" >
+                    <CarouselContent className="-ml-1 ">
                         {isLoading ?
-                            <div className=" flex justify-center items-center w-full">
+                            <div className="flex items-center justify-center w-full ">
                                 <LoadingGenreCarousel />
                             </div>
                             : TvList && TvList.length > 0 ? (
                                 TvList.map((tv) => (
 
-                                    <CarouselItem key={tv.id} className=" p-2  md:basis-1/2 basis-1/6 lg:basis-1/5 ">
-                                        <div className=" overflow-hidden relative lg:hover:scale-90 lg:hover:duration-500 xl:hover:scale-90 xl:hover:duration-500  2xl:hover:scale-90 2xl:hover:duration-500">
+                                    <CarouselItem key={tv.id} className="p-2 md:basis-1/2 basis-1/6 lg:basis-1/5">
+                                        <div className="relative overflow-hidden lg:hover:scale-90 lg:hover:duration-500 xl:hover:scale-90 xl:hover:duration-500 2xl:hover:scale-90 2xl:hover:duration-500">
                                             <Link href={`/Tv/List/${tv.id}`} rel="noopener noreferrer" as={`/Tv/List/${tv.id}`}>
                                                 <Image
                                                     src={tv.poster_path ?
@@ -129,18 +131,18 @@ export default function TvGenres() {
                                                     }
                                                     alt={tv.original_name}
                                                     width={300} height={250}
-                                                    className=" rounded-md"
+                                                    className="rounded-md "
                                                     priority
                                                     loading="eager"
                                                     style={{ width: "auto" }}
                                                 />
-                                                <p className=" font-bold flex justify-start  pt-2 mb-1">{tv.original_name.length > 14 ? tv.original_name.slice(0, 14) + "..." : tv.original_name}</p>
-                                                <div className=" flex justify-between items-center w-full">
-                                                    <p className=" fonb flex justify-between items-center w-full">
+                                                <p className="flex justify-start pt-2 mb-1 font-bold ">{tv.original_name.length > 14 ? tv.original_name.slice(0, 14) + "..." : tv.original_name}</p>
+                                                <div className="flex items-center justify-between w-full ">
+                                                    <p className="flex items-center justify-between w-full fonb">
                                                         {tv.first_air_date && new Date(tv.first_air_date).getFullYear()}
                                                     </p>
-                                                    <div className=" ">
-                                                        <div className=" space-x-1 flex justify-between items-center">
+                                                    <div className="">
+                                                        <div className="flex items-center justify-between space-x-1 ">
                                                             <FaRegStar className="text-[#FFC300]" />
                                                             <span className="">
                                                                 {tv.vote_average.toFixed(1)}
@@ -156,7 +158,7 @@ export default function TvGenres() {
                                 ))
                             ) : (
                                 <Alert variant="destructive">
-                                <AlertCircle className="h-4 w-4" />
+                                <AlertCircle className="w-4 h-4" />
                                 <AlertTitle>Error</AlertTitle>
                                 <AlertDescription>
                                   Something went wrong.

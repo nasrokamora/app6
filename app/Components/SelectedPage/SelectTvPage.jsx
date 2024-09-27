@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import Image from "next/image";
 import {
     Carousel,
@@ -23,11 +23,11 @@ const CarouselTv = ({ dataTv, currentPage, handlePageChange, isLoading }) => {
 
     return (
         <div className="">
-            <div className=" flex flex-col bg-gradient-to-r from-green-400 to-blue-500 ">
-                <div className=" flex gap-4 justify-end items-center pr-20 md:pr-12 pt-4">
+            <div className="flex flex-col bg-gradient-to-r from-green-400 to-blue-500">
+                <div className="flex items-center justify-end gap-4 pt-4 pr-20 md:pr-12">
 
                     <h4 className="font-bold">Select page</h4>
-                    <select className=" w-14 text-white rounded-md bg-black" onChange={handlePageChange} value={currentPage} >
+                    <select className="text-white bg-black rounded-md w-14" onChange={handlePageChange} value={currentPage} >
 
                         {Array.from({ length: 10 }, (_, index) => index + 1).map((page) => (
                             <option value={page} className="text-white" key={page}>
@@ -39,73 +39,73 @@ const CarouselTv = ({ dataTv, currentPage, handlePageChange, isLoading }) => {
                     </select>
                 </div>
                 <div>
-                    <div className=" mt-8 flex justify-center w-full">
+                    <div className="flex justify-center w-full mt-8 ">
                         <Carousel opts={{
                             align: "center",
                             loop: true,
-                        }} className="w-full md:max-w-xl  max-w-5xl 2xl:max-w-7xl lg:max-w-4xl">
+                        }} className="w-full max-w-5xl md:max-w-xl 2xl:max-w-7xl lg:max-w-4xl">
                             <CarouselContent>
-                                {isLoading ?(
+                                {isLoading ? (
 
                                     <div className=" flex justify-center items-center w-full h-[12rem]">
                                         <LoadingGenreCarousel />
                                     </div>
-                                ):(                       
+                                ) : (
                                     dataTv && dataTv.length > 0 ? (
-                                       dataTv.map((tv) => (
+                                        dataTv.map((tv) => (
 
-                                           <CarouselItem key={tv.id} className="  p-2  md:basis-1/2 basis-1/6 lg:basis-1/5 ">
-                                            <div className=" flex flex-col ">
+                                            <CarouselItem key={tv.id} className="p-2 md:basis-1/2 basis-1/6 lg:basis-1/5">
+                                                <div className="flex flex-col ">
 
-                                               <div className=" relative overflow-hidden">
-                                                   <Image
-                                                       src={tv.poster_path ?
-                                                           `https://image.tmdb.org/t/p/original${tv.poster_path}`
-                                                       :
-                                                       no_image
-                                                       }
-                                                       alt="image_tv"
-                                                       width={300} height={250}
-                                                       className=" rounded-md"
-                                                       priority
-                                                       loading="eager"
-                                                       style={{ width: "auto" }}
-                                                       draggable={false}
-                                                   />
-                                            </div>
-                                                   <div>
-                                                   <h1 className=" font-bold  pt-2 mb-1">{tv.name.slice(0, 14) + "..."}
-                                                   </h1>
-                                                   </div>
-                                                   <div className=" flex justify-between items-center w-full">
-                                                       <h1 className="">
-                                                       {tv.first_air_date ? new Date(tv.first_air_date).getFullYear() : "Unknown Date"}
-                                                       </h1>
+                                                    <div className="relative overflow-hidden ">
+                                                        <Image
+                                                            src={tv.poster_path ?
+                                                                `https://image.tmdb.org/t/p/original${tv.poster_path}`
+                                                                :
+                                                                no_image
+                                                            }
+                                                            alt="image_tv"
+                                                            width={300} height={250}
+                                                            className="rounded-md "
+                                                            priority
+                                                            loading="eager"
+                                                            style={{ width: "auto" }}
+                                                            draggable={false}
+                                                        />
+                                                    </div>
+                                                    <div>
+                                                        <h1 className="pt-2 mb-1 font-bold ">{tv.name.slice(0, 14) + "..."}
+                                                        </h1>
+                                                    </div>
+                                                    <div className="flex items-center justify-between w-full ">
+                                                        <h1 className="">
+                                                            {tv.first_air_date ? new Date(tv.first_air_date).getFullYear() : "Unknown Date"}
+                                                        </h1>
 
-                                                       <div className=" ">
-                                                           <div className=" space-x-1 flex justify-between items-center">
-                                                               <FaRegStar className="text-[#FFC300]" />
-                                                               <span className="">
-                                                                   {tv.vote_average.toFixed(1)}
-                                                               </span>
-                                                           </div>
-                                                       </div>
+                                                        <div className="">
+                                                            <div className="flex items-center justify-between space-x-1 ">
+                                                                <FaRegStar className="text-[#FFC300]" />
+                                                                <span className="">
+                                                                    {tv.vote_average.toFixed(1)}
+                                                                </span>
+                                                            </div>
+                                                        </div>
 
-                                                   </div>
+                                                    </div>
 
 
-                                               </div>
-                                           </CarouselItem>
-                                       ))
-                                   ) : (
-                                       <Alert variant="destructive" className="text-xl border-none">
-                                           <AlertCircle className="h-4 w-4" />
-                                           <AlertTitle className="font-bold">Error</AlertTitle>
-                                           <AlertDescription className="font-bold">
-                                               Something went wrong.
-                                           </AlertDescription>
-                                       </Alert>
-                                   )
+                                                </div>
+                                            </CarouselItem>
+                                        ))
+                                    ) : (
+                                        <Alert variant="destructive" className="text-xl border-none">
+                                            <AlertCircle className="w-4 h-4" />
+                                            <AlertTitle className="font-bold">Error</AlertTitle>
+                                            <AlertDescription className="font-bold">
+                                                Something went wrong.
+                                            </AlertDescription>
+                                        </Alert>
+                                    )
                                 )
                                 }
                             </CarouselContent>
@@ -134,6 +134,9 @@ export default function SelectTvPage() {
 
 
     const fetchData = async () => {
+
+        
+        
         try {
             const response = await fetch(`https://api.themoviedb.org/3/tv/airing_today?api_key=${process.env.NEXT_PUBLIC_API_KEY}&page=${currentPage}&limit=10`, {
                 headers: {
@@ -143,7 +146,7 @@ export default function SelectTvPage() {
             const data = await response.json()
             setDataTv(data.results)
             setTotalPages(data.total_pages)
-            setIsLoading(false)
+            setIsLoading(true)
         } catch (error) {
             console.error(error)
         }
@@ -156,10 +159,10 @@ export default function SelectTvPage() {
 
 
 
-    const handlePageChange = async (event) => {
+    const handlePageChange = useCallback(async (event) => {
         setCurrentPage(parseInt(event.target.value))
         setIsLoading(true)
-    }
+    },[])
 
     return (
         <div>

@@ -68,8 +68,8 @@ export default async function DynamicMoviesList({ params }) {
     const recommendMovies = getRecommendationMovies(id)
     const nowData = getMoviesNowPlaying()
     const trailer = getTrailer(id)
-    const changes = getChangesMovies({ id })
-    const release = getReleasDateMovies({ id })
+    const changes = getChangesMovies( id )
+    const release = getReleasDateMovies( id )
     const [data, similar, dataImageList, dataReview, credits, dataRecommend, dataPlaying, dataTrailer, dataChanges, dataRelease] = await Promise.all([dataLoad, similarData, dataImage, reviewData, dataCreditsId, recommendMovies, nowData, trailer, changes, release])
 
 
@@ -176,9 +176,9 @@ export default async function DynamicMoviesList({ params }) {
                     <Separator className="mt-4" />
 
                     {/* section Release Date */}
-                    <div className="mt-5">
+                    {/* <div className="mt-5">
                         <ReleaseMovies dataRelease={dataRelease} />
-                    </div>
+                    </div> */}
 
                     <Separator className="mt-4" />
 
@@ -209,9 +209,9 @@ export default async function DynamicMoviesList({ params }) {
             <Separator className="my-4 " />
             
             {/*  section Add New Movies */}
-            <div>
+            {/* <div>
                 <AddNewMovies dataChanges={dataChanges.changes} />
-            </div>
+            </div> */}
 
 
             <Separator className="my-4 " />

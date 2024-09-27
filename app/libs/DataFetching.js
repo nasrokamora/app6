@@ -35,6 +35,27 @@ export async function getDiscoverMovies() {
     }
   }
  
+
+  // get Release data Movies
+  export async function getReleasDateMovies({id}){
+
+    try{
+      const response = await fetch(`https://api.themoviedb.org/3/movie/${id}/release_dates`,{
+        headers: {
+          Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
+          accept: "application/json"
+        }  
+      })
+      return response.json()
+    }catch(error){
+    return  console.log(error,"failed to fetch data releasDate")
+    }
+
+  }
+
+
+
+
   //Popular Movies
 export async function getPopularMovies(){
   try{

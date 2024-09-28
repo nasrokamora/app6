@@ -17,22 +17,26 @@ import {
 } from "@/components/ui/carousel"
 import Rating from "../Rated/Rating"
 // import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
-export default function MoviesCard({ dataDiscoverMovies }) {
+
+
+
+
+export default async function MoviesCard({dataDiscoverMovies  }) {
 
     return (
 
         <div className="  w-full 2xl:text-2xl h-fit xl:h-[21rem]  ">
-            <div className=" ">
+            <div className="">
             </div>
-            <div className=" flex justify-center items-center pt-2 md:mt-10">
-                <Carousel className="w-full max-w-sm lg:max-w-2xl xl:max-w-5xl 2xl:max-w-6xl text-black" opts={{ loop: true, align: "start" }}>
+            <div className="flex items-center justify-center pt-2 md:mt-10">
+                <Carousel className="w-full max-w-sm text-black lg:max-w-2xl xl:max-w-5xl 2xl:max-w-6xl" opts={{ loop: true, align: "start" }}>
                     <CarouselContent className="-ml-1">
                         {dataDiscoverMovies && dataDiscoverMovies.length > 0 ? (
                         dataDiscoverMovies.map((movie, index) => (
-                            <CarouselItem key={index} className="pl-1 md:basis-1/3 lg:basis-1/3 xl:basis-1/6   basis-1/6 2xl:basis-1/7">
-                                <div className="  p-1 w-full  flex flex-col hover:scale-90 hover:duration-500   ">
+                            <CarouselItem key={index} className="pl-1 md:basis-1/3 lg:basis-1/3 xl:basis-1/6 basis-1/6 2xl:basis-1/7">
+                                <div className="flex flex-col w-full p-1 hover:scale-90 hover:duration-500">
                                     <Link varient="link" className="" href={`/Movies/List/${movie.id}`}>
-                                        <div className=' relative'>
+                                        <div className='relative '>
                                             <Image
                                                 src={movie.poster_path ?
                                                     `${urlImage}/${movie.poster_path}`
@@ -48,7 +52,7 @@ export default function MoviesCard({ dataDiscoverMovies }) {
                                                 loading="eager"
                                             />
                                         </div>
-                                        <div className="flex   justify-between items-center xl:pt-4 xl:text-xl">
+                                        <div className="flex items-center justify-between xl:pt-4 xl:text-xl">
                                             <Rating rating={Math.round(movie.vote_average / 2)} className="" />
                                             <p className="text-[#ffbf18]">{new Date(movie.release_date).getFullYear()}</p>
                                         </div>
@@ -61,7 +65,7 @@ export default function MoviesCard({ dataDiscoverMovies }) {
                         ))
                         ):(
                             <Alert variant="destructive">
-                            <AlertCircle className="h-4 w-4" />
+                            <AlertCircle className="w-4 h-4" />
                             <AlertTitle>Error</AlertTitle>
                             <AlertDescription>
                               Something went wrong.

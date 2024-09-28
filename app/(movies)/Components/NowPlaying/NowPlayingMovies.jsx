@@ -24,18 +24,20 @@ export default function NowPlayingMovies({dataPlaying }) {
   return (
     <div>
       <div>
-        <h1 className=" text-red-800 mt-10 scroll-m-20 md:text-xl  text-2xl font-bold  decoration-red-800 underline first:mt-0 black-shadow-text">Now playing on Magix</h1>
+        <h1 className="mt-10 text-2xl font-bold text-red-800 underline scroll-m-20 md:text-xl decoration-red-800 first:mt-0 black-shadow-text">Now playing on Magix</h1>
       </div>
-    <div className="w-full pt-10 flex justify-center items-center relative md:mt-4">
+
+
+    <div className="relative flex items-center justify-center w-full pt-10 md:mt-4">
       <AutoCarousel
       >
         <CarouselContent className="-mt-1 ">
           {dataPlaying && dataPlaying.length > 0 ? (
             dataPlaying.map((data) => (
-              <CarouselItem key={data.id} className="p-2  md:basis-1/2 basis-1/6 lg:basis-1/5 ">
+              <CarouselItem key={data.id} className="p-2 md:basis-1/2 basis-1/6 lg:basis-1/5 ">
                   <div className="p-1 hover:scale-90 hover:duration-500 hover:saturate-50">
                 <Link href={`/Movies/List/${data.id}`}>
-                      <div className=" overflow-hidden relative">
+                      <div className="relative overflow-hidden ">
                         <Image
                           src={data.poster_path ?
                             `${urlImageTv}${data.poster_path}`
@@ -54,11 +56,13 @@ export default function NowPlayingMovies({dataPlaying }) {
                       </div>
                 </Link>
                   </div>
+                  
               </CarouselItem>
+              
             ))
           ) : (
             <Alert variant="destructive" className=" bg-black/30 backdrop-blur">
-            <AlertCircle className="h-4 w-4" />
+            <AlertCircle className="w-4 h-4" />
             <AlertTitle>Error</AlertTitle>
             <AlertDescription>
               Something went wrong.

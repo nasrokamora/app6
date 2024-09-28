@@ -42,6 +42,7 @@ export async function generateMetadata({ params }) {
 }
 
 
+
 async function getMoviesLoad(id) {
     try {
         const res = await fetch(`https://api.themoviedb.org/3/movie/${id}`,
@@ -60,6 +61,7 @@ async function getMoviesLoad(id) {
 
 export default async function DynamicMoviesList({ params }) {
     const { id } = params
+
     const dataLoad = getMoviesLoad(id)
     const similarData = getMoviesSimilar(id)
     const dataImage = getImageMoviesId(id)
@@ -68,8 +70,8 @@ export default async function DynamicMoviesList({ params }) {
     const recommendMovies = getRecommendationMovies(id)
     const nowData = getMoviesNowPlaying()
     const trailer = getTrailer(id)
-    const changes = getChangesMovies( id )
-    const release = getReleasDateMovies( id )
+    const changes = getChangesMovies(id)
+    const release = getReleasDateMovies(id)
     const [data, similar, dataImageList, dataReview, credits, dataRecommend, dataPlaying, dataTrailer, dataChanges, dataRelease] = await Promise.all([dataLoad, similarData, dataImage, reviewData, dataCreditsId, recommendMovies, nowData, trailer, changes, release])
 
 
@@ -203,11 +205,23 @@ export default async function DynamicMoviesList({ params }) {
             {/* section reviews of movies */}
             <div className="mt-5">
                 <ReviewsList dataReview={dataReview && dataReview.results && dataReview.results.length > 0 ? dataReview : []} />
-            </div>
 
+            </div>
+            {/* <div className="flex justify-between w-full mt-5 h-[10rem] bg-black/30 backdrop-blur">
+                    {page > 1 &&(
+                        <Link href={`/Movies/List/${id}?page=${page - 1}`} className="btn">
+                            Previous
+                        </Link>
+                    )}
+                    {page < dataReview.total_pages && dataReview.results.length > 0 && (
+                        <Link href={`/Movies/List/${id}?page=${page + 1}`} className='btn'>
+                            Next
+                        </Link>
+                    )}
+                    </div> */}
 
             <Separator className="my-4 " />
-            
+
             {/*  section Add New Movies */}
             {/* <div>
                 <AddNewMovies dataChanges={dataChanges.changes} />
@@ -229,6 +243,8 @@ export default async function DynamicMoviesList({ params }) {
             {/* section of movies now playing */}
             <div>
                 <NowPlayingMovies dataPlaying={dataPlaying.results} />
+
+
             </div>
 
 

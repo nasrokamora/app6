@@ -29,7 +29,7 @@ export default async function Home() {
       <div className={`scroll-m-20 text-4xl  tracking-tight lg:text-3xl ml-6  title font-extrabold md:flex md:justify-center md:items-center   mt-7 md:mt-3 text-red-700 `}>
         <h1 className={styles.effect}>Discover on Magix</h1>
       </div>
-      <section className="mt-7 flex justify-center w-full">
+      <section className="flex justify-center w-full mt-7">
           
           <MoviesCard dataDiscoverMovies={dataDiscoverMovies.results} />
 
@@ -47,8 +47,8 @@ export default async function Home() {
 
       </section>
 
-      <div className=" ml-6 mt-7">
-        <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-3xl">Explore by Genres</h1>
+      <div className="ml-6  mt-7">
+        <h1 className="text-4xl font-extrabold tracking-tight scroll-m-20 lg:text-3xl">Explore by Genres</h1>
       </div>
 
       <section className=" mt-7">
@@ -56,8 +56,8 @@ export default async function Home() {
       </section>
 
       {/*   section Tv & series & season */}
-      <div className=" ml-6 mt-7">
-        <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-3xl">
+      <div className="ml-6  mt-7">
+        <h1 className="text-4xl font-extrabold tracking-tight scroll-m-20 lg:text-3xl">
           Tv Show
         </h1>
       </div>
@@ -67,8 +67,8 @@ export default async function Home() {
 
       </section>
 
-      <div className=" ml-6 mt-7">
-        <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
+      <div className="ml-6  mt-7">
+        <h1 className="text-4xl font-extrabold tracking-tight scroll-m-20 lg:text-5xl">
           Tv by Genre
         </h1>
       </div>
@@ -77,8 +77,8 @@ export default async function Home() {
       </section>
 
       <section className="mt-7">
-        <div className=" ml-6 mt-7 mb-4">
-          <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-3xl">Airing on TV Today</h1>
+        <div className="mb-4 ml-6  mt-7">
+          <h1 className="text-4xl font-extrabold tracking-tight scroll-m-20 lg:text-3xl">Airing on TV Today</h1>
         </div>
         <SelectTvPage />
       </section>
@@ -92,7 +92,7 @@ export default async function Home() {
       </section>
       {/* <section className=" mt-7">
         <div className="ml-6 mt-7">
-          <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-3xl">
+          <h1 className="text-4xl font-extrabold tracking-tight scroll-m-20 lg:text-3xl">
 
           </h1>
         </div>

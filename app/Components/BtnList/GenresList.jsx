@@ -79,21 +79,21 @@ export default function GenresList() {
     return (
 
         <div className=" md:mt-16">
-            <div className=" flex justify-center ">
+            <div className="flex justify-center ">
                 <Carousel
                     opts={{
                         align: "start",
                         loop: true,
                     }}
-                    className="w-full md:max-w-xl max-w-5xl 2xl:max-w-7xl lg:max-w-4xl">
+                    className="w-full max-w-5xl md:max-w-xl 2xl:max-w-7xl lg:max-w-4xl">
                     <CarouselContent className="-ml-1">
                         {isLoadingGenres ? (
-                            <div className='flex justify-center items-center w-full'>
+                            <div className='flex items-center justify-center w-full'>
                                 <LoadingGenreButton /> 
                             </div> 
                         ):(
                             genres.map((genre, index) => (
-                                <CarouselItem key={index} className=" p-1 basis-1/7 lg:basis-1/8 md:basis-1/7 ">
+                                <CarouselItem key={index} className="p-1 basis-1/7 lg:basis-1/8 md:basis-1/7">
                                     <Button variant="outline" className={`2xl:text-xl  ${selectedGenre === genre.id ? 'text-red-700' : ' text-zinc-500'}`}
                                         // style={{ color: selectedGenre === genre.id ? 'text-red-500' : ' text-zinc-800' }}
                                         onClick={() => handleClick(genre.id)}>{genre.name}</Button>
@@ -109,28 +109,28 @@ export default function GenresList() {
                 </Carousel>
             </div>
 
-            <div className=" md:mt-12 mt-8 flex justify-center items-center 2xl:text-lg w-full">
+            <div className="flex items-center justify-center w-full mt-8 md:mt-12 2xl:text-lg">
                 <Carousel opts={{
                     align: "center",
                     loop: true,
-                }} className="w-full md:max-w-xl  max-w-5xl 2xl:max-w-7xl lg:max-w-4xl" >
-                    <CarouselContent className=" -ml-1">
+                }} className="w-full max-w-5xl md:max-w-xl 2xl:max-w-7xl lg:max-w-4xl" >
+                    <CarouselContent className="-ml-1 ">
                         {isLoading ? (
-                            <div className=" flex justify-center items-center w-full">
+                            <div className="flex items-center justify-center w-full ">
 
                                 <LoadingGenreCarousel />
                             </div>
                         ) : movieList && movieList.length > 0 && (
                             movieList.map((movie, index) => (
 
-                                <CarouselItem key={index} className=" p-2  md:basis-1/2 basis-1/6 lg:basis-1/5">
-                                    <div className=" overflow-hidden relative lg:hover:scale-90 lg:hover:duration-500 xl:hover:scale-90 xl:hover:duration-500  2xl:hover:scale-90 2xl:hover:duration-500">
+                                <CarouselItem key={index} className="p-2 md:basis-1/2 basis-1/6 lg:basis-1/5">
+                                    <div className="relative overflow-hidden lg:hover:scale-90 lg:hover:duration-500 xl:hover:scale-90 xl:hover:duration-500 2xl:hover:scale-90 2xl:hover:duration-500">
                                         <Link href={`/Movies/List/${movie.id}`} >
                                             <Image
                                                 src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
                                                 alt="movie poster"
                                                 width={300} height={250}
-                                                className=" hover:sepia hover:duration-500 rounded-md  "
+                                                className="rounded-md hover:sepia hover:duration-500"
                                                 priority={true}
                                                 loading="eager"
                                                 style={{ width: "auto" }}
@@ -140,13 +140,13 @@ export default function GenresList() {
 
 
                                             />
-                                            <p className=" font-bold flex justify-start  pt-2 mb-1">{movie.title.length > 14 ? movie.title.slice(0, 14) + "..." : movie.title}</p>
-                                            <div className=" flex justify-between items-center w-full">
-                                                <p className=" font-semibold flex justify-between items-center w-full 2xl:text-2xl">
+                                            <p className="flex justify-start pt-2 mb-1 font-bold ">{movie.title.length > 14 ? movie.title.slice(0, 14) + "..." : movie.title}</p>
+                                            <div className="flex items-center justify-between w-full ">
+                                                <p className="flex items-center justify-between w-full font-semibold 2xl:text-2xl">
                                                     {new Date(movie.release_date).getFullYear()}
                                                 </p>
                                                 <div className=" 2xl:font-bold 2xl:text-2xl">
-                                                    <div className=" space-x-1 flex justify-between items-center">
+                                                    <div className="flex items-center justify-between space-x-1 ">
                                                         <FaRegStar className="text-[#FFC300]" />
                                                         <span className="">
                                                             {movie.vote_average.toFixed(1)}

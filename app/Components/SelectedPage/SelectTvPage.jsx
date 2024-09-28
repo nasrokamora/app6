@@ -146,7 +146,7 @@ export default function SelectTvPage() {
             const data = await response.json()
             setDataTv(data.results)
             setTotalPages(data.total_pages)
-            setIsLoading(true)
+            setIsLoading(false)
         } catch (error) {
             console.error(error)
         }

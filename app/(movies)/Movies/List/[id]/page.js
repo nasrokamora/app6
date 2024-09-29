@@ -223,9 +223,9 @@ export default async function DynamicMoviesList({ params }) {
             <Separator className="my-4 " />
 
             {/*  section Add New Movies */}
-            {/* <div>
+            <div>
                 <AddNewMovies dataChanges={dataChanges.changes} />
-            </div> */}
+            </div>
 
 
             <Separator className="my-4 " />

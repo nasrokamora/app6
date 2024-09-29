@@ -9,6 +9,8 @@ import AnimateScroll from "./Animations/AnimationNumber/AnimateScroll/AnimationS
 import styles from './styles/Animat.module.css'
 import SelectTvPage from "./Components/SelectedPage/SelectTvPage"
 import PopularPerson from "./Components/PopularPerson/PopularPerson"
+import SelectMoviesPages from "./(movies)/Components/SelectPagesMovies/SelectPagesMovies"
+import PaginationTvShow from "./(tv)/Components/PaginationTv/PaginationTvShow"
 
 
 
@@ -76,12 +78,12 @@ export default async function Home() {
         <TvGenres />
       </section>
 
-      <section className="mt-7">
+      {/* <section className="mt-7">
         <div className="mb-4 ml-6  mt-7">
           <h1 className="text-4xl font-extrabold tracking-tight scroll-m-20 lg:text-3xl">Airing on TV Today</h1>
         </div>
         <SelectTvPage />
-      </section>
+      </section> */}
 
 
 
@@ -98,6 +100,22 @@ export default async function Home() {
         </div>
         <PopularPerson dataPersonPopular={dataPersonPopular.results} />
       </section> */}
+
+      <section>
+        <div>
+          <h1>Explore Movies </h1>
+        </div>
+        <SelectMoviesPages />
+      </section>
+
+
+
+      <section>
+        <div>
+          <h1>TV SHOW</h1>
+        </div>
+        <PaginationTvShow />
+      </section>
     </main>
   )
 

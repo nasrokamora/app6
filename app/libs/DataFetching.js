@@ -98,7 +98,7 @@ export async function getImageMoviesId(id) {
         Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
         accept: "application/json"
       }
-    },{cache:"force-store"})
+    }, { cache: "force-store" })
     return res.json()
   } catch (error) {
     return console.log(error, "failed to fetch data Image movies")
@@ -142,6 +142,8 @@ export async function getCreditsId(credit_id) {
       headers: {
         Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
         accept: "application/json"
+      }, next: {
+          revalidate:3600
       }
     })
 
@@ -183,8 +185,8 @@ export async function getMoviesSimilar(id) {
         Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
         accept: "application/json"
       }
-    }, { 
-      cache: "force-cache" 
+    }, {
+      cache: "force-store"
     })
 
     return res.json()
@@ -237,8 +239,8 @@ export async function getRecommendationMovies(id) {
       headers: {
         Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
         accept: "application/json"
-      },next: {
-        revalidate: 900
+      }, next: {
+        revalidate: 1800
       }
     })
     return response.json()
@@ -258,6 +260,8 @@ export async function getMoviesNowPlaying() {
       headers: {
         Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
         accept: "application/json"
+      }, next: {
+        revalidate: 3600
       }
     })
     return res.json()
@@ -274,8 +278,8 @@ export async function getPersonPopular() {
       headers: {
         Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
         accept: "application/json"
-      },next:{
-        revalidate:900
+      }, next: {
+        revalidate: 3600
       }
     })
     return response.json()
@@ -311,7 +315,7 @@ export async function getChangesMovies({ id }) {
         accept: "application/json"
       },
       next: {
-        revalidate: 3600
+        revalidate: 84600
       }
     })
     return res.json()

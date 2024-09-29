@@ -11,9 +11,9 @@ import {
 } from "@/components/ui/alert"
 
 
-export default async function AddNewMovies({ dataChanges }) {
-
-  
+export default function AddNewMovies({ dataChanges }) {
+    const dataChanges = data.filter(change => change.key === "images")
+    console.log(data)
     
     return (
         <div>

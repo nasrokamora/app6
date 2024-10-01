@@ -3,13 +3,20 @@
 
 export const urlImage = "https://image.tmdb.org/t/p/original"
 
+export const headers = {
+  "Content-Type": "application/json",
+  "Authorization": `Bearer ${process.env.NEXT_API_TOKEN}`
+}
+
+
+
 // getDiscoverMovies
 export async function getDiscoverMovies() {
   try {
     const res = await fetch(`https://api.themoviedb.org/3/discover/movie`, {
-      headers: {
-        Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
-      }, next: {
+      headers: headers
+    }, {
+      next: {
         revalidate: 3600
       }
     })
@@ -23,12 +30,13 @@ export async function getDiscoverMovies() {
 //get Movies by id
 export async function getMoviesId(id) {
   try {
-    const response = await fetch(`https://api.themoviedb.org/3/movie/${id}`, {
-      headers: {
-        Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
-        accept: "application/json"
-      }
-    }, { cache: 'force-cache' })
+    const response = await fetch(`https://api.themoviedb.org/3/movie/${id}`,
+      { headers: headers },
+      {
+        next: {
+          revalidate: 3600
+        }
+      })
 
     return response.json()
 
@@ -43,10 +51,7 @@ export async function getReleasDateMovies({ id }) {
 
   try {
     const response = await fetch(`https://api.themoviedb.org/3/movie/${id}/release_dates`, {
-      headers: {
-        Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
-        accept: "application/json"
-      }
+      headers: headers
     })
     return response.json()
   } catch (error) {
@@ -61,13 +66,13 @@ export async function getReleasDateMovies({ id }) {
 //Popular Movies
 export async function getPopularMovies() {
   try {
-    const response = await fetch(`https://api.themoviedb.org/3/movie/popular?&page=2`,
+    const response = await fetch(`https://api.themoviedb.org/3/movie/popular?page=2`,{
+      headers:headers
+    },
       {
-        headers: {
-          Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
-          accept: "application/json"
+        next: {
+          revalidate: 3600
         }
-
       })
     return response.json()
 
@@ -94,10 +99,7 @@ export async function getGenres() {
 export async function getImageMoviesId(id) {
   try {
     const res = await fetch(`https://api.themoviedb.org/3/movie/${id}/images`, {
-      headers: {
-        Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
-        accept: "application/json"
-      }
+      headers: headers
     }, { cache: "force-store" })
     return res.json()
   } catch (error) {
@@ -143,7 +145,7 @@ export async function getCreditsId(credit_id) {
         Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
         accept: "application/json"
       }, next: {
-          revalidate:3600
+        revalidate: 3600
       }
     })
 

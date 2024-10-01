@@ -88,11 +88,15 @@ export default function PaginationTvShow() {
                         </button>
                     </div>
                 ) : (
-                    <ScrollArea className="max-w-3xl p-4 border rounded-md whitespace-nowrap">
+                    <div className="w-full gap-2 flex justify-center ">
+
+                    <ScrollArea className="max-w-6xl  p-4 whitespace-nowrap ">
+                        <div className="flex items-center justify-start gap-2 w-max ">
+
                         {dataTv && dataTv.length > 0 ? (
                             dataTv.map((tv) => (
-                                <div key={tv.id} className="flex items-center justify-start w-full gap-3">
-                                    <div className="flex justify-start w-full">
+                                <div key={tv.id} className=" max-w-5xl p-3">
+
                                         <div className="relative overflow-hidden">
                                             <Image
                                                 src={
@@ -101,25 +105,26 @@ export default function PaginationTvShow() {
                                                         : no_image
                                                 }
                                                 alt="image_tv"
-                                                width={140}
-                                                height={140}
+                                                width={200}
+                                                height={120}
                                                 className="rounded-md"
-                                                priority
+                                                priority={true}
                                                 loading="eager"
-                                                style={{ width: "auto" }}
+                                                style={{ height: "auto" }}
                                                 draggable={false}
                                             />
                                         </div>
                                     </div>
-                                </div>
                             ))
                         ) : (
                             <div className="text-center">
                                 <h1>No TV shows found</h1>
                             </div>
                         )}
+                                </div>
                         <ScrollBar orientation="horizontal" />
                     </ScrollArea>
+                    </div>
                 )}
             </div>
 

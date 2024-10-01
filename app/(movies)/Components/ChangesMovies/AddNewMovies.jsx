@@ -12,8 +12,8 @@ import {
 
 
 export default function AddNewMovies({ dataChanges }) {
-    const dataChanges = data.filter(change => change.key === "images")
-    console.log(data)
+    // const dataChanges = data.filter(change => change.key === "images")
+    // console.log(data)
     
     return (
         <div>

@@ -45,13 +45,9 @@ export async function generateMetadata({ params }) {
 
 async function getMoviesLoad(id) {
     try {
-        const res = await fetch(`https://api.themoviedb.org/3/movie/${id}`,
-            {
-                headers: {
-                    Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
-                    accept: "application/json"
-                }
-            })
+        const res = await fetch(`https://api.themoviedb.org/3/movie/${id}`, {
+            headers: headers
+        })
         return res.json()
     } catch (error) {
         console.log(error, "failed to fetch data Load page =>[id]")
@@ -125,7 +121,7 @@ export default async function DynamicMoviesList({ params }) {
 
                     <div className="flex items-center justify-start gap-3 mt-5">
                         <h2 className="pb-2 text-2xl font-bold text-amber-600 scroll-m-20 md:text-lg black-shadow-text first:mt-0">Release Date :</h2>
-                        <h1 className="pb-2 text-2xl font-bold tracking-tight text-gray-400 transition-colors scroll-m-20 md:text-lg first:mt-0">{data.release_date.replace(/-/g, "/") ? data.release_date.replace(/-/g, "/") : "Release date not found"}</h1>
+                        <h1 className="pb-2 text-2xl font-bold tracking-tight text-gray-400 transition-colors scroll-m-20 md:text-lg first:mt-0">{data.release_date ? data.release_date.replace(/-/g, "/") : "Release date not found"}</h1>
                     </div>
 
                     <Separator className="mt-4" />
@@ -223,9 +219,10 @@ export default async function DynamicMoviesList({ params }) {
             <Separator className="my-4 " />
 
             {/*  section Add New Movies */}
-            <div>
+            {/* <div>
                 <AddNewMovies dataChanges={dataChanges.changes} />
-            </div>
+            </div> */}
+
 
 
             <Separator className="my-4 " />

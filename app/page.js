@@ -11,6 +11,7 @@ import SelectTvPage from "./Components/SelectedPage/SelectTvPage"
 import PopularPerson from "./Components/PopularPerson/PopularPerson"
 import SelectMoviesPages from "./(movies)/Components/SelectPagesMovies/SelectPagesMovies"
 import PaginationTvShow from "./(tv)/Components/PaginationTv/PaginationTvShow"
+import PaginationMovies from "./(movies)/Components/PaginationMovies/PaginationMovies"
 
 
 
@@ -101,16 +102,16 @@ export default async function Home() {
         <PopularPerson dataPersonPopular={dataPersonPopular.results} />
       </section> */}
 
-      <section>
+      {/* <section className="mt-7">
         <div>
           <h1>Explore Movies </h1>
         </div>
-        <SelectMoviesPages />
-      </section>
+        <PaginationMovies />
+      </section> */}
 
 
 
-      <section>
+      <section className='mt-7'>
         <div>
           <h1>TV SHOW</h1>
         </div>

@@ -28,11 +28,11 @@ export default function PaginationTvShow() {
 
     const fetchTvShow = async (page) => {
         // إذا كانت البيانات موجودة في الكاش، استخدمها بدلاً من جلبها مجددًا
-        if (cacheRef.current[page]) {
-            setDataTv(cacheRef.current[page]);
-            setIsLoading(false);
-            return;
-        }
+        // if (cacheRef.current[page]) {
+        //     setDataTv(cacheRef.current[page]);
+        //     setIsLoading(false);
+        //     return;
+        // }
 
         setIsLoading(true);
         setError(null); // إعادة تعيين الخطأ قبل بدء الجلب
@@ -53,7 +53,7 @@ export default function PaginationTvShow() {
 
             const data = await response.json();
             setDataTv(data.results);
-            cacheRef.current[page] = data.results; // تخزين البيانات في الكاش
+            // cacheRef.current[page] = data.results; // تخزين البيانات في الكاش
         } catch (error) {
             console.log('فشل جلب البيانات => PaginationTvShow', error);
             setError(error.message || "حدث خطأ غير متوقع");
@@ -97,20 +97,19 @@ export default function PaginationTvShow() {
                             dataTv.map((tv) => (
                                 <div key={tv.id} className=" max-w-5xl p-3">
 
-                                        <div className="relative overflow-hidden">
+                                        <div className=" ">
                                             <Image
                                                 src={
                                                     tv.poster_path
-                                                        ? `https://image.tmdb.org/t/p/original${tv.poster_path}`
+                                                        ? `https://image.tmdb.org/t/p/w500${tv.poster_path}`
                                                         : no_image
                                                 }
                                                 alt="image_tv"
-                                                width={200}
-                                                height={120}
-                                                className="rounded-md"
-                                                priority={true}
-                                                loading="eager"
-                                                style={{ height: "auto" }}
+                                                width={120}
+                                                height={150}
+                                                className="rounded-md "
+                                                priority={true}  
+                                                style={{width:'auto'}}
                                                 draggable={false}
                                             />
                                         </div>
@@ -139,7 +138,7 @@ export default function PaginationTvShow() {
                         />
                     </PaginationItem>
 
-                    {[...Array(5).keys()].map((index) => (
+                    {Array(5).fill(0).map((_, index) =>(
                         <PaginationItem key={index}>
                             <PaginationLink
                                 className="cursor-pointer"

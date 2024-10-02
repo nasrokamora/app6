@@ -8,7 +8,10 @@ export const headers = {
   "Authorization": `Bearer ${process.env.NEXT_API_TOKEN}`
 }
 
-
+export const HEADERS = {
+  "accept": "application/json",
+  "Authorization": `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`
+}
 
 // getDiscoverMovies
 export async function getDiscoverMovies() {

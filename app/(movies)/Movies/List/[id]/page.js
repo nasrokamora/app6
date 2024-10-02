@@ -8,6 +8,7 @@ import {
     getReleasDateMovies,
     getReviewsMovies,
     getTrailer,
+    headers,
     urlImage
 } from "@/app/libs/DataFetching"
 import { Badge } from "@/components/ui/badge"
@@ -37,7 +38,7 @@ import AddNewMovies from "@/app/(movies)/Components/ChangesMovies/AddNewMovies"
 export async function generateMetadata({ params }) {
     const data = await getMoviesLoad(params.id)
     return {
-        title: data.title,
+        title: data.title ,
     }
 }
 
@@ -81,7 +82,7 @@ export default async function DynamicMoviesList({ params }) {
 
             {/* container details movies */}
             <div className="flex items-center justify-between pb-4 " >
-                <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl md:text-3xl  text-base-100 drop-shadow-[0_5px_10px_rgba(255,145,0,10.25)]">{data.original_title ? data.original_title : data.title || data.name || "Title"}</h1>
+                <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl md:text-3xl  text-base-100 drop-shadow-[0_5px_10px_rgba(255,145,0,10.25)]">{data.original_title ? data.original_title : data.title }</h1>
             </div>
             <div className="flex items-center justify-start gap-3 p-4 mt-4 rounded-md shadow-xl md:flex-col shadow-black/30 bg-black/30 backdrop-blur">
                 <div className="relative flex flex-col items-center justify-center w-full overflow-hidden ">

@@ -16,6 +16,8 @@ import LoadingGenreCarousel from "@/app/Components/LoadingUi/LoadingGenreCarouse
 import no_image from '../../../../public/image/no_image4.webp';
 
 export default function PaginationTvShow() {
+
+    
     const [currentPage, setCurrentPage] = useState(1); // الحالة الحالية للصفحة
     const [dataTv, setDataTv] = useState([]); // لتخزين بيانات المسلسلات
     const [isLoading, setIsLoading] = useState(true); // حالة التحميل
@@ -34,7 +36,7 @@ export default function PaginationTvShow() {
         //     return;
         // }
 
-        setIsLoading(true);
+        // setIsLoading(true);
         setError(null); // إعادة تعيين الخطأ قبل بدء الجلب
 
         try {
@@ -69,12 +71,12 @@ export default function PaginationTvShow() {
     };
 
     return (
-        <div className="w-full h-auto">
+        <div className="w-full h-[25rem]">
             <div className="flex justify-center mb-2">
                 <h1>Tv Show</h1>
             </div>
 
-            <div className="flex items-center justify-center w-full">
+            <div className="flex items-center justify-center w-full relative">
                 {isLoading ? (
                     <LoadingGenreCarousel />
                 ) : error ? (
@@ -95,9 +97,9 @@ export default function PaginationTvShow() {
 
                         {dataTv && dataTv.length > 0 ? (
                             dataTv.map((tv) => (
-                                <div key={tv.id} className=" max-w-5xl p-3">
+                                <div key={tv.id} className=" max-w-5xl  p-3">
 
-                                        <div className=" ">
+                                        <div className=" overflow-hidden relative h-[200px]">
                                             <Image
                                                 src={
                                                     tv.poster_path
@@ -105,12 +107,13 @@ export default function PaginationTvShow() {
                                                         : no_image
                                                 }
                                                 alt="image_tv"
-                                                width={120}
+                                                width={125}
                                                 height={150}
                                                 className="rounded-md "
-                                                priority={true}  
                                                 style={{width:'auto'}}
                                                 draggable={false}
+                                                placeholder="blur"
+                                                blurDataURL={`https://image.tmdb.org/t/p/w100${tv.poster_path}`}
                                             />
                                         </div>
                                     </div>
@@ -128,7 +131,7 @@ export default function PaginationTvShow() {
             </div>
 
             {/* Pagination */}
-            <Pagination>
+            <Pagination className=' mt-4'>
                 <PaginationContent>
                     <PaginationItem>
                         <PaginationPrevious
@@ -139,7 +142,7 @@ export default function PaginationTvShow() {
                     </PaginationItem>
 
                     {Array(5).fill(0).map((_, index) =>(
-                        <PaginationItem key={index}>
+                        <PaginationItem key={index} className=" md:hidden">
                             <PaginationLink
                                 className="cursor-pointer"
                                 onClick={() => handleChangePageTv(index + 1)}
@@ -150,11 +153,11 @@ export default function PaginationTvShow() {
                         </PaginationItem>
                     ))}
 
-                    <PaginationItem>
+                    <PaginationItem className="">
                         <PaginationEllipsis />
                     </PaginationItem>
 
-                    <PaginationItem>
+                    <PaginationItem className=" ">
                         <PaginationNext
                             className="cursor-pointer"
                             onClick={() => handleChangePageTv(currentPage + 1)}

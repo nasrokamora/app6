@@ -129,10 +129,7 @@ export async function getCriditsMovies(id) {
 export async function getPersonsId(person_id) {
   try {
     const response = await fetch(`https://api.themoviedb.org/3/person/${person_id}`, {
-      headers: {
-        Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
-        accept: "application/json"
-      }
+      headers: headers
     }
     )
     return response.json()

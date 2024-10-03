@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/pagination";
 import LoadingGenreCarousel from "@/app/Components/LoadingUi/LoadingGenreCarousel";
 import no_image from '../../../../public/image/no_image4.webp';
+import Link from 'next/link'
 
 export default function PaginationTvShow() {
 
@@ -37,7 +38,7 @@ export default function PaginationTvShow() {
         // }
 
         // setIsLoading(true);
-        setError(null); // إعادة تعيين الخطأ قبل بدء الجلب
+        setError(null); // 
 
         try {
             const response = await fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${process.env.NEXT_PUBLIC_API_KEY}&page=${page}`, {
@@ -45,20 +46,19 @@ export default function PaginationTvShow() {
                     Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
                     accept: "application/json",
                 },
-                // خيارات التخزين المؤقت يمكن تعديلها حسب الحاجة
 
             });
 
             if (!response.ok) {
-                throw new Error("حدث خطأ أثناء جلب البيانات");
+                throw new Error("An error occurred while fetching data");
             }
 
             const data = await response.json();
             setDataTv(data.results);
             // cacheRef.current[page] = data.results; // تخزين البيانات في الكاش
         } catch (error) {
-            console.log('فشل جلب البيانات => PaginationTvShow', error);
-            setError(error.message || "حدث خطأ غير متوقع");
+            console.log('  Failed to fetch data => PaginationTvShow', error);
+            setError(error.message || "An unexpected error occurred");
         }
 
         setIsLoading(false);
@@ -66,8 +66,8 @@ export default function PaginationTvShow() {
 
     // دالة لتغيير الصفحة الحالية
     const handleChangePageTv = (newPage) => {
-        if (newPage < 1) return; // منع الانتقال إلى صفحات سالبة
-        setCurrentPage(newPage); // تحديث الحالة الحالية للصفحة
+        if (newPage < 1) return; // 
+        setCurrentPage(newPage); 
     };
 
     return (
@@ -98,13 +98,13 @@ export default function PaginationTvShow() {
                         {dataTv && dataTv.length > 0 ? (
                             dataTv.map((tv) => (
                                 <div key={tv.id} className=" max-w-5xl  p-3">
-
-                                        <div className=" overflow-hidden relative h-[200px]">
+                                        <Link href={`/Tv/List/${tv.id}`} >
+                                        <div className=" overflow-hidden relative h-[200px] hover:scale-105 hover:duration-500">
                                             <Image
                                                 src={
                                                     tv.poster_path
-                                                        ? `https://image.tmdb.org/t/p/w500${tv.poster_path}`
-                                                        : no_image
+                                                    ? `https://image.tmdb.org/t/p/w500${tv.poster_path}`
+                                                    : no_image
                                                 }
                                                 alt="image_tv"
                                                 width={125}
@@ -114,8 +114,9 @@ export default function PaginationTvShow() {
                                                 draggable={false}
                                                 placeholder="blur"
                                                 blurDataURL={`https://image.tmdb.org/t/p/w100${tv.poster_path}`}
-                                            />
+                                                />
                                         </div>
+                                                </Link>
                                     </div>
                             ))
                         ) : (

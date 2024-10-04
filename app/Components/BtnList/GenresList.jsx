@@ -123,7 +123,7 @@ export default function GenresList() {
                         ) : movieList && movieList.length > 0 && (
                             movieList.map((movie, index) => (
 
-                                <CarouselItem key={index} className="p-2 md:basis-1/2 basis-1/6 lg:basis-1/5">
+                                <CarouselItem key={index} className="p-2 md:basis-1/3 basis-1/6 lg:basis-1/5">
                                     <div className="relative overflow-hidden lg:hover:scale-90 lg:hover:duration-500 xl:hover:scale-90 xl:hover:duration-500 2xl:hover:scale-90 2xl:hover:duration-500">
                                         <Link href={`/Movies/List/${movie.id}`} >
                                             <Image

@@ -30,18 +30,18 @@ export default function PaginationTvShow() {
     }, [currentPage]);
 
     const fetchTvShow = async (page) => {
-        // إذا كانت البيانات موجودة في الكاش، استخدمها بدلاً من جلبها مجددًا
-        // if (cacheRef.current[page]) {
-        //     setDataTv(cacheRef.current[page]);
-        //     setIsLoading(false);
-        //     return;
-        // }
 
-        // setIsLoading(true);
-        setError(null); // 
+        if (cacheRef.current[page]) {
+            setDataTv(cacheRef.current[page]);
+            setIsLoading(false);
+            return;
+        }
+
+        setIsLoading(true);
+        setError(null); 
 
         try {
-            const response = await fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${process.env.NEXT_PUBLIC_API_KEY}&page=${page}`, {
+            const response = await fetch(`https://api.themoviedb.org/3/trending/tv/day?api_key=${process.env.NEXT_PUBLIC_API_KEY}&page=${page}`, {
                 headers: {
                     Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
                     accept: "application/json",
@@ -55,7 +55,7 @@ export default function PaginationTvShow() {
 
             const data = await response.json();
             setDataTv(data.results);
-            // cacheRef.current[page] = data.results; // تخزين البيانات في الكاش
+            cacheRef.current[page] = data.results; 
         } catch (error) {
             console.log('  Failed to fetch data => PaginationTvShow', error);
             setError(error.message || "An unexpected error occurred");
@@ -71,10 +71,8 @@ export default function PaginationTvShow() {
     };
 
     return (
-        <div className="w-full h-[25rem]">
-            <div className="flex justify-center mb-2">
-                <h1>Tv Show</h1>
-            </div>
+        <div className="w-full ">
+
 
             <div className="flex items-center justify-center w-full relative">
                 {isLoading ? (
@@ -92,14 +90,14 @@ export default function PaginationTvShow() {
                 ) : (
                     <div className="w-full gap-2 flex justify-center ">
 
-                    <ScrollArea className="max-w-6xl  p-4 whitespace-nowrap ">
+                    <ScrollArea className="max-w-6xl  p-4 whitespace-nowrap 2xl:max-w-7xl">
                         <div className="flex items-center justify-start gap-2 w-max ">
 
                         {dataTv && dataTv.length > 0 ? (
                             dataTv.map((tv) => (
                                 <div key={tv.id} className=" max-w-5xl  p-3">
                                         <Link href={`/Tv/List/${tv.id}`} >
-                                        <div className=" overflow-hidden relative h-[200px] hover:scale-105 hover:duration-500">
+                                        <div className=" overflow-hidden relative h-[200px] hover:scale-105 hover:duration-500 2xl:h-auto">
                                             <Image
                                                 src={
                                                     tv.poster_path
@@ -109,7 +107,7 @@ export default function PaginationTvShow() {
                                                 alt="image_tv"
                                                 width={125}
                                                 height={150}
-                                                className="rounded-md "
+                                                className="rounded-md 2xl:h-[300px] 2xl:w-[200px]"
                                                 style={{width:'auto'}}
                                                 draggable={false}
                                                 placeholder="blur"
@@ -132,7 +130,7 @@ export default function PaginationTvShow() {
             </div>
 
             {/* Pagination */}
-            <Pagination className=' mt-4'>
+            <Pagination className=' mt-4 '>
                 <PaginationContent>
                     <PaginationItem>
                         <PaginationPrevious

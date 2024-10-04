@@ -10,7 +10,7 @@ import {
     PaginationNext,
     PaginationPrevious,
 } from "@/components/ui/pagination"
-import { HEADERS, headers } from "@/app/libs/DataFetching"
+import { HEADERS} from "@/app/libs/DataFetching"
 import LoadingGenreCarousel from "@/app/Components/LoadingUi/LoadingGenreCarousel";
 import no_image from '../../../../public/image/no_image4.webp';
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
@@ -21,52 +21,57 @@ import {
     AlertDescription,
     AlertTitle,
 } from "@/components/ui/alert"
+import Link from 'next/link'
+
 
 
 export default function PaginationMovies() {
+        const [currentPage,setCurrentPage] = useState(1)
+        const [dataMovies,setDataMovies] = useState([])
+        const [isLoading,setIsLoading] = useState(true)
+        const [error,setError] = useState(null)
+        const cachRef = useRef({})
 
-    const [currentPage, setCurrentPage] = useState(1)
-    const [dataMovies, setDataMovies] = useState([])
-    const [isLoading, setIsLoading] = useState(true)
-    const [error, setError] = useState(null)
-    const cacheRef = useRef({})
+        useEffect(() => {
+            fetchMovies(currentPage)
+        }, [currentPage])
+        
 
-    useEffect(() => {
-        fetchMovies(currentPage)
-    }, [currentPage])
 
-    const fetchMovies = async (page) => {
+            async function fetchMovies(page){
+                try{
 
-        if (cacheRef.current[page]) {
-            setDataMovies(cacheRef.current[page])
-            setIsLoading(false)
-            return;
-        }
-        setIsLoading(true)
-        setError(null)
-        try {
-            const response = await fetch(`https://api.themoviedb.org/3/discover/movie?page=${page = 4}`, {
-                headers: HEADERS
-            })
-            if (!response.ok) {
-                throw new Error("failed to fetch data")
+                    if (cachRef.current[page]) {
+                        setDataMovies(cachRef.current[page])
+                        setIsLoading(false)
+                        return;
+                    }
+
+
+                    setIsLoading(true)
+                    setError(null)
+                    
+                const response = await fetch(`https://api.themoviedb.org/3/movie/top_rated?&page=${page}`,{
+                    headers:HEADERS
+                })
+
+                if(!response.ok){
+                    throw new Error(error,"failed fetch top rated movie")
+                }
+
+                const data = await response.json()
+                setDataMovies(data.results)
+                cachRef.current[page] = data.results
+            }catch(error){
+                console.log(error.message)    
             }
-            const data = await response.json()
-            setDataMovies(data.results)
+            setIsLoading(false)
+            }
+            function handlePageChange(newPage){
+                if(newPage < 1)return
+                setCurrentPage(newPage)
+            }
 
-            cacheRef.current[page] = data.results
-
-
-        } catch (error) {
-            console.log('failed to fetch data', error)
-            setError(error.message)
-        }
-        setIsLoading(false)
-    }
-    function handlePageChange(newPage) {
-        if (newPage < 1) return;
-        setCurrentPage(newPage);
-    }
     return (
         <div>
             {isLoading ? (
@@ -84,30 +89,29 @@ export default function PaginationMovies() {
             ) : (
                 <div className="w-full gap-2 flex justify-center ">
 
-                    <ScrollArea className="max-w-6xl  p-4 whitespace-nowrap ">
+                    <ScrollArea className="max-w-6xl  p-4 whitespace-nowrap 2xl:max-w-7xl">
                         <div className="flex items-center justify-start gap-2 w-max ">
 
                             {dataMovies && dataMovies.length > 0 ? (
                                 dataMovies.map((movie) => (
-                                    <div key={movie.id} className=" max-w-5xl p-3">
-
-                                        <div className="relative overflow-hidden">
+                                    <div key={movie.id} className=" max-w-5xl p-3 2xl:w-full">
+                                        <Link className="" href={`/Movies/List/${movie.id}`}>
+                                        <div className="relative overflow-hidden h-[200px] 2xl:h-auto hover:duration-500 hover:scale-105">
                                             <Image
                                                 src={
                                                     movie.poster_path
-                                                        ? `https://image.tmdb.org/t/p/original${movie.poster_path}`
-                                                        : no_image
+                                                    ? `https://image.tmdb.org/t/p/original${movie.poster_path}`
+                                                    : no_image
                                                 }
                                                 alt="poster movies"
-                                                width={150}
-                                                height={120}
-                                                className="rounded-md "
-                                                priority={true}
-                                                loading="eager"
+                                                width={120}
+                                                height={150}
+                                                className="rounded-md 2xl:h-[300px] 2xl:w-[200px]"
                                                 draggable={false}
-                                                style={{width:'auto',height:'auto'}}
-                                            />
+                                                style={{width:'auto'}}
+                                                />
                                         </div>
+                                                </Link>
                                     </div>
                                 ))
                             ) : (
@@ -126,19 +130,19 @@ export default function PaginationMovies() {
             )}
 
             <Pagination>
-                <PaginationContent>
-                    <PaginationItem>
+                <PaginationContent className="2xl:text-xl">
+                    <PaginationItem className="">
                         <PaginationPrevious
-                            className='cursor-pointer'
+                            className='cursor-pointer '
                             onClick={() => handlePageChange(currentPage - 1)}
                             disabled={currentPage === 1}
                         />
                     </PaginationItem>
 
                     {[...Array(5).keys()].map((index) => (
-                        <PaginationItem key={index}>
+                        <PaginationItem key={index} className=" md:hidden">
                             <PaginationLink
-                                className="cursor-pointer"
+                                className="cursor-pointer 2xl:text-xl font-semibold"
                                 onClick={() => handlePageChange(index + 1)}
                                 isActive={currentPage === index + 1}
                             >
@@ -147,13 +151,13 @@ export default function PaginationMovies() {
                         </PaginationItem>
                     ))}
 
-                    <PaginationItem>
+                    <PaginationItem >
                         <PaginationEllipsis />
                     </PaginationItem>
 
-                    <PaginationItem>
+                    <PaginationItem className="2xl:text-xl">
                         <PaginationNext
-                            className="cursor-pointer"
+                            className="cursor-pointer "
                             onClick={() => handlePageChange(currentPage + 1)}
                         />
                     </PaginationItem>

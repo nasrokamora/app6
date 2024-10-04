@@ -12,9 +12,9 @@ import {
     PaginationNext,
     PaginationPrevious,
 } from "@/components/ui/pagination";
-import LoadingGenreCarousel from "@/app/Components/LoadingUi/LoadingGenreCarousel";
 import no_image from '../../../../public/image/no_image4.webp';
 import Link from 'next/link'
+import LoadingPaginationTv from "./LoadingPaginationTv";
 
 export default function PaginationTvShow() {
 
@@ -76,7 +76,7 @@ export default function PaginationTvShow() {
 
             <div className="flex items-center justify-center w-full relative">
                 {isLoading ? (
-                    <LoadingGenreCarousel />
+                    <LoadingPaginationTv />
                 ) : error ? (
                     <div className="text-center">
                         <h1>Error: {error}</h1>

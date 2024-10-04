@@ -28,7 +28,7 @@ export default function CreditsDetailsTv({credits,dataImageTv,seasions,seriesId}
                 </TabsList>
 
                 {/* Cast */}
-                <TabsContent value="cast" className="  pt-4  items-center rounded-md">
+                <TabsContent value="cast" className="  pt-4 rounded-md">
                <div className="  w-full ">
                 <ScrollArea className="w-full whitespace-nowrap rounded-md  xl:w-full ">
                 <div className="flex w-max space-x-2 p-4">

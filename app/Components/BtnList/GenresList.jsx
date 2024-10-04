@@ -134,11 +134,6 @@ export default function GenresList() {
                                                 priority={true}
                                                 loading="eager"
                                                 style={{ width: "auto" }}
-                                                // placeholder="blur"
-
-                                                // blurDataURL={bluredHash}
-
-
                                             />
                                             <p className="flex justify-start pt-2 mb-1 font-bold ">{movie.title.length > 14 ? movie.title.slice(0, 14) + "..." : movie.title}</p>
                                             <div className="flex items-center justify-between w-full ">

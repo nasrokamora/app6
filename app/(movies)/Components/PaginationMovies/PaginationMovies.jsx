@@ -22,6 +22,7 @@ import {
     AlertTitle,
 } from "@/components/ui/alert"
 import Link from 'next/link'
+import LoadingPaginationMovies from "./LoadingPaginationMovies";
 
 
 
@@ -75,7 +76,10 @@ export default function PaginationMovies() {
     return (
         <div>
             {isLoading ? (
-                <LoadingGenreCarousel />
+                <div className=" ">
+
+                <LoadingPaginationMovies />
+                </div>
             ) : error ? (
                 <div className="text-center">
                     <h1>Error: {error}</h1>
@@ -96,7 +100,7 @@ export default function PaginationMovies() {
                                 dataMovies.map((movie) => (
                                     <div key={movie.id} className=" max-w-5xl p-3 2xl:w-full">
                                         <Link className="" href={`/Movies/List/${movie.id}`}>
-                                        <div className="relative overflow-hidden h-[200px] 2xl:h-auto hover:duration-500 hover:scale-105">
+                                        <div className="relative overflow-hidden h-[200px] 2xl:h-auto hover:duration-500 hover:scale-105 ">
                                             <Image
                                                 src={
                                                     movie.poster_path
@@ -106,7 +110,7 @@ export default function PaginationMovies() {
                                                 alt="poster movies"
                                                 width={120}
                                                 height={150}
-                                                className="rounded-md 2xl:h-[300px] 2xl:w-[200px]"
+                                                className="rounded-md 2xl:h-[300px] 2xl:w-[200px] shadow shadow-black"
                                                 draggable={false}
                                                 style={{width:'auto'}}
                                                 />
@@ -129,11 +133,11 @@ export default function PaginationMovies() {
                 </div>
             )}
 
-            <Pagination>
-                <PaginationContent className="2xl:text-xl">
-                    <PaginationItem className="">
+            <Pagination className="mt-4">
+                <PaginationContent >
+                    <PaginationItem >
                         <PaginationPrevious
-                            className='cursor-pointer '
+                            className='cursor-pointer font-semibold'
                             onClick={() => handlePageChange(currentPage - 1)}
                             disabled={currentPage === 1}
                         />
@@ -157,7 +161,7 @@ export default function PaginationMovies() {
 
                     <PaginationItem className="2xl:text-xl">
                         <PaginationNext
-                            className="cursor-pointer "
+                            className="cursor-pointer font-semibold"
                             onClick={() => handlePageChange(currentPage + 1)}
                         />
                     </PaginationItem>

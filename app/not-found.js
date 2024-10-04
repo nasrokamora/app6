@@ -15,7 +15,7 @@ export default function NotFound() {
     <div className='not-found w-full h-screen'>
       <div className=" relative overflow-hidden h-screen z-0  filter blur-sm">
         <Image src={magix_movies} alt="404" fill
-        priority 
+        priority={true}
         style={{objectFit:"cover"}}
         placeholder='blur'
         />
@@ -24,7 +24,7 @@ export default function NotFound() {
       <div className=' flex justify-center items-center gap-3   overflow-hidden'>
         <Image
         src={icon_magix} width={200} height={200} alt='icon'
-        priority 
+        priority={true}
 
         />
       </div>

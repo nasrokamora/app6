@@ -22,9 +22,9 @@ export default function TrendingTv({ dataTrending }) {
     <div className="w-full pt-10 flex justify-center items-center relative h-fit">
       <Carousel
         opts={{
-          align: "start",
+          align: "center",
         }}
-        className="w-full max-w-5xl "
+        className="w-full max-w-5xl md:max-w-xl"
       >
         <CarouselContent className="-mt-1 ">
           {dataTrending && dataTrending.length > 0 ? (
@@ -37,10 +37,10 @@ export default function TrendingTv({ dataTrending }) {
                         <Image
                           src={`${urlImageTv}${data.poster_path}`}
                           alt={data.name}
-                          width={400}
+                          width={300}
                           height={250}
                           style={{ width: "auto" }}
-                          className="rounded-md"
+                          className="rounded-md "
                           loading="eager"
                         />
                       </div>

@@ -35,8 +35,8 @@ export default async function PersonDetailsTv({ person_id, urlImageTv, character
         <div className=" w-full ">
             <div className="p-1 ">
                 <Card className=" h-96 md:h-auto ">
-                    <CardContent className="">
-                        <div className="flex justify-start gap-2 pt-4 md:flex-grow">
+                    <CardContent className="-ml-1">
+                        <div className="flex justify-start gap-2 pt-4 ">
                             <div className=''>
                                 <Image src={dataPerson.profile_path ?
                                     `${urlImageTv}${dataPerson.profile_path}`

@@ -279,17 +279,17 @@ export default async function DynamicTvListPage({ params }) {
                         <div className=" flex justify-center w-full md:h-[20rem] md:top-0  flex-col gap-2 z-50 absolute  rounded-md  p-2 bg-black bg-opacity-30 backdrop-blur-sm h-[20rem]">
                             <div className="flex flex-wrap items-center justify-start order-2 gap-3 ">
                                 <strong className="text-2xl font-bold text-zinc-400 md:text-xl">Last Air Date :</strong>
-                                <h1 className="text-xl font-semibold text-transparent scroll-m-20 xl:text-2xl bg-clip-text bg-gradient-to-tr from-red-400 to-red-700"> {detailTv.last_episode_to_air.air_date ? detailTv.last_air_date.replace(/-/g, "/") : <span className="text-2xl font-bold text-error rounded-xl md:text-xl">unknown !</span>} </h1>
+                                <h1 className="text-xl font-semibold text-transparent scroll-m-20 xl:text-2xl bg-clip-text bg-gradient-to-tr from-red-800 to-red-700"> {detailTv.last_episode_to_air.air_date ? detailTv.last_air_date.replace(/-/g, "/") : <span className="text-2xl font-bold text-error rounded-xl md:text-xl">unknown !</span>} </h1>
                             </div>
 
                             <div className="flex flex-wrap items-center justify-start order-1 gap-3 ">
-                                <strong className="text-2xl font-bold text-zinc-400 md:text-xl">Name :</strong>
+                                <strong className="text-2xl font-bold text-zinc-400 md:hidden">Name :</strong>
                                 <h1 className="text-xl font-bold scroll-m-20 xl:text-2xl"> {detailTv.last_episode_to_air.name ? detailTv.last_episode_to_air.name : <span className="text-2xl font-bold text-error rounded-xl md:text-xl">unknown !</span>} </h1>
                             </div>
                             {/* last air date overview */}
-                            <div className="flex flex-col order-4 gap-2">
+                            <div className="flex flex-col order-4 gap-2 ">
                                 <strong className="text-2xl font-bold text-zinc-400 md:text-xl">Overview :</strong>
-                                <blockquote className="pl-6 italic border-l-2 border-l-orange-400">{detailTv.last_episode_to_air.overview ? detailTv.last_episode_to_air.overview : <span className="text-2xl font-bold text-error rounded-xl md:text-xl">unknown !</span>}</blockquote>
+                                <blockquote className="pl-6 italic border-l-2 border-l-orange-400 bg-black/30 backdrop-blur rounded-md">{detailTv.last_episode_to_air.overview ? detailTv.last_episode_to_air.overview : <span className="text-2xl font-bold text-error rounded-xl md:text-xl">unknown !</span>}</blockquote>
                             </div>
                             <div className="flex flex-wrap items-center justify-start order-3 gap-2 ">
                                 <div className="flex flex-col gap-2 ">

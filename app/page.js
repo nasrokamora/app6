@@ -32,19 +32,19 @@ export default async function Home() {
       <div className={`scroll-m-20 text-4xl  tracking-tight lg:text-3xl ml-6  title font-extrabold md:flex md:justify-center md:items-center   mt-7 md:mt-3 text-red-700 `}>
         <h1 className={styles.effect}>Discover on Magix</h1>
       </div>
+
       <section className="flex justify-center w-full mt-7">
-          
           <MoviesCard dataDiscoverMovies={dataDiscoverMovies.results} />
-
-
       </section>
 
 
-      <section className="mt-7 ">
+      <section className="mt-7  ">
         <div className="ml-6 md:flex md:justify-center md:items-center">
-          <h1 className="text-4xl font-extrabold  scroll-m-20 lg:text-3xl">Highest Rated Movies </h1>
+          <h1 className="text-4xl font-extrabold  scroll-m-20 lg:text-3xl mb-6">Highest Rated Movies </h1>
         </div>
+        <div className="bg-gradient-to-r from-[#f48a00] from-[40%] to-[#09090b] to-[80%] ">
         <PaginationMovies />
+          </div>
       </section>
 
 
@@ -112,12 +112,14 @@ export default async function Home() {
 
 
 
-      <section className='mt-7 '>
-        <div className=" md:flex md:justify-center md:items-center ml-6">
-          <h1 className="text-4xl font-extrabold  scroll-m-20 lg:text-3xl">What’s <span className=" text-red-700">Hot</span>  on TV</h1>
+      {/* <section className='mt-7  '>
+        <div className=" md:flex md:justify-center md:items-center ml-6 mb-6">
+          <h1 className="text-4xl font-extrabold  scroll-m-20 lg:text-3xl">What’s <span className=" text-blue-700">Hot</span>  on TV</h1>
         </div>
+        <div className="bg-gradient-br from[#1976cc] to-[#15477a]">
         <PaginationTvShow />
-      </section>
+        </div>
+      </section> */}
     </main>
   )
 

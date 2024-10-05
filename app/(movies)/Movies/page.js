@@ -7,7 +7,7 @@ export default function Movies() {
     return (
         <div className=" w-full h-auto">
             <LoadMovies />
-            <ToggleButton />
+            {/* <ToggleButton /> */}
         </div>
     )
 

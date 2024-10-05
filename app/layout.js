@@ -7,6 +7,7 @@ import { ThemeProvider } from "./Components/theme-provider";
 import { Inter} from "next/font/google"
 import { cn } from "@/lib/utils";
 import Nav from "./Components/Navbar/Nav";
+import ToggleButton from "./(movies)/Components/ToggleButton/ToggleButton";
 
 
 
@@ -40,7 +41,7 @@ export default function RootLayout({ children}) {
 
 
         {children}
-
+        <ToggleButton />
         {/* {DiscoverTv} */}
         <Footer/>
 

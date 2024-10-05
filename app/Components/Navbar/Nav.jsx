@@ -1,4 +1,4 @@
-// import SearchMultiPage from "@/app/(movies)/Components/SearchMulti/SearchMultiPage";
+"use server"
 import {
   Sheet,
   SheetClose,

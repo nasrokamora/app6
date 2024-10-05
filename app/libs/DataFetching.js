@@ -4,8 +4,8 @@
 export const urlImage = "https://image.tmdb.org/t/p/original"
 
 export const headers = {
-  "Content-Type": "application/json",
-  "Authorization": `Bearer ${process.env.NEXT_API_TOKEN}`
+  "Authorization": `Bearer ${process.env.NEXT_API_TOKEN}`,
+  "accept": "application/json"
 }
 
 export const HEADERS = {

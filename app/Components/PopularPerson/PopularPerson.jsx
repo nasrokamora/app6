@@ -22,7 +22,7 @@ import {
   
 import { urlImage } from "@/app/libs/DataFetching"
 export default function PopularPerson({ dataPersonPopular }) {
-    // console.log(dataPersonPopular);
+    console.log(dataPersonPopular);
 
 
     return (

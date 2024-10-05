@@ -1,5 +1,7 @@
 // import ListPage from "@/app/(movies)/Movies/[...listPage]/page";
 
+import { LoadMoreTv } from "../Components/LoadMoreTv/LoadMoreTv";
+
 
 
 
@@ -9,8 +11,9 @@ export default async function Tv() {
 
 
     return(
-        <div className="w h-screen">
-
+        <div className="w-full h-auto">
+            <LoadMoreTv />
+            
         </div>
     )
 }

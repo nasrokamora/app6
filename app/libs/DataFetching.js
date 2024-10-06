@@ -103,7 +103,10 @@ export async function getImageMoviesId(id) {
   try {
     const res = await fetch(`https://api.themoviedb.org/3/movie/${id}/images`, {
       headers: headers
-    }, { cache: "force-store" })
+    }, 
+    { 
+      cache: "force-cache" 
+    })
     return res.json()
   } catch (error) {
     return console.log(error, "failed to fetch data Image movies")

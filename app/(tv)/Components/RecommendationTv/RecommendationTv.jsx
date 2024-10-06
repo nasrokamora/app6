@@ -59,11 +59,11 @@ export default function RecommendationTv({dataRecommend}) {
           </CarouselItem>
         ))
       ):(
-        <Alert variant="destructive">
-        <AlertCircle className="h-4 w-4" />
-        <AlertTitle>Error</AlertTitle>
-        <AlertDescription>
-          No data found.
+        <Alert variant="destructive" className=" ml-4">
+        <AlertCircle className="h-6 w-6" />
+        <AlertTitle className=" text-xl">Error</AlertTitle>
+        <AlertDescription className=" text-xl font-bold">
+          No recommended content found.
         </AlertDescription>
       </Alert>
         )

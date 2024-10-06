@@ -69,7 +69,7 @@ export default async function DynamicTvListPage({ params }) {
                 <div className="flex flex-col w-48 border-b-2 md:border-none border-b-blue-700" />
             </div>
             <div className="flex items-start justify-start gap-4 mt-8 md:flex-col">
-                <div className=" w-[70%] flex justify-center items-center flex-col   relative md:w-full  overflow-hidden md:flex md:justify-center md:items-center">
+                <div className=" w-[70%]  flex justify-center items-center flex-col   relative md:w-full  overflow-hidden md:flex md:justify-center md:items-center">
                     <Image src={detailTv.poster_path ? `${urlImageTv}${detailTv.poster_path}` : no_image}
                         priority
                         width={400}
@@ -320,8 +320,8 @@ export default async function DynamicTvListPage({ params }) {
                     </div>
                 </div>
             ) : (
-                <div>
-                    <h1>No last air data </h1>
+                <div className=" flex justify-center items-center font-bold p-4">
+                    <h1 className="border-red-800 border p-2 text-xl rounded-md text-red-600">No Last Air Data Available !</h1>
                 </div>
             )}
             {/* Credits  and cast and crew  and people && Reviews */}

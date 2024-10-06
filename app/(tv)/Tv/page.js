@@ -1,6 +1,8 @@
 // import ListPage from "@/app/(movies)/Movies/[...listPage]/page";
 
-import { LoadMoreTv } from "../Components/LoadMoreTv/LoadMoreTv";
+import LoadMoreTv from "../Components/LoadMoreTv/LoadMoreTv";
+
+
 
 
 

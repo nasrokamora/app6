@@ -11,6 +11,7 @@ import {
   HoverCardContent,
   HoverCardTrigger,
 } from "@/components/ui/hover-card"
+import { urlImageTv } from "@/app/libs/DataFetchingTv"
 
 
 async function getTvWithPage(page){
@@ -31,7 +32,7 @@ async function getTvWithPage(page){
 }
 
 
-export async function LoadMoreTv() {
+export default function LoadMoreTv() {
     const [page,setPage] = useState(1)
     const [dataTv,setDataTv] = useState([])
     const [hasMore, setHasMore] = useState(true)
@@ -47,8 +48,8 @@ export async function LoadMoreTv() {
         try {
             const data = await getTvWithPage(page)
     
-            const newTv = data.results.filter(tv => !dataTv.some(t => t.id === tv.id))
             setDataTv((prevTv) => [...prevTv, ...newTv])
+            const newTv = data.results.filter(tv => !dataTv.some(t => t.id === tv.id))
             if(page >= data.total_pages){
                 hasMore(false)
             }
@@ -72,23 +73,24 @@ export async function LoadMoreTv() {
         endMessage={<p className="text-2xl text-center">No more movies to show</p>}
     >
             <div className="flex items-center justify-center mt-8 text-3xl font-semibold ">
-                <h1>Explore all movies on Magix</h1>
+                <h1>Explore all Tv series on Magix</h1>
             </div>
         <div className="grid grid-cols-6 gap-8 p-8 md:grid-cols-3 lg:grid-cols-4">
-            {dataTv.map((tv) => (
+            {dataTv.map((tv,index) => (
 
-                <div key={tv.id} className="relative flex flex-col items-center justify-center overflow-hidden hover:scale-110 hover:duration-300">
+                <div key={`${tv.id}-${index}`} className="relative flex flex-col items-center justify-center overflow-hidden hover:scale-110 hover:duration-300">
 
                     <Link href={`/Tv/List/${tv.id}` } >
 
-                        <Image src={`https://image.tmdb.org/t/p/original/${tv.poster_path}`}
-                            alt={tv.title}
+                        <Image src={`${urlImageTv}${tv.poster_path}`}
+                            alt={tv.name}
                             width={200}
                             height={150}
                             priority={true}
                             style={{width:"auto"}}
                             className="rounded-md "
                             loading="eager"
+
                             />
                         <h1 className="font-bold ">
                             {tv.name.length > 10 ? tv.name.slice(0, 10) + "..." : tv.name}

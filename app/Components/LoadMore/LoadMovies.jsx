@@ -10,6 +10,7 @@ import {
   HoverCardContent,
   HoverCardTrigger,
 } from "@/components/ui/hover-card"
+import { urlImage } from "@/app/libs/DataFetching"
 async function getMoviesWithPage(page) {
     const response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.NEXT_PUBLIC_API_KEY}&page=${page}`, {
         next:{
@@ -75,7 +76,7 @@ export default function LoadMovies() {
 
                         <Link href={`/Movies/List/${movie.id}` } rel="noopener noreferrer" >
 
-                            <Image src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
+                            <Image src={`${urlImage}/${movie.poster_path}`}
                                 alt={movie.title}
                                 width={200}
                                 height={150}

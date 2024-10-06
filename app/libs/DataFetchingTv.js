@@ -2,6 +2,7 @@
 
 
 export const urlImageTv = "https://image.tmdb.org/t/p/original"
+export const urlImageTv500 = "https://image.tmdb.org/t/p/w500"
 
 export async function getDiscoverTv() {
     try{
@@ -9,9 +10,10 @@ export async function getDiscoverTv() {
             headers: {
                 Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
                 accept:"application/json"
+            },next:{
+                revalidate:3600
             }
         })
-    
         return res.json()
     }catch(error){
        return console.log(error,"Failed to fetch data DiscoverTv")
@@ -46,7 +48,10 @@ export async function getImageTv(id) {
                 headers:{
                 Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
                 accept:"application/json"
-                }
+                },
+                
+            },{
+                cache:"force-cache"
             }
         )
         return res.json()
@@ -98,6 +103,9 @@ export async function getPersonsIdTv(person_id){
             headers:{
             Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
             accept:"application/json"
+            },
+            next:{
+                revalidate:3600
             }
         }
     )
@@ -117,6 +125,8 @@ export async function getExtPersonsIdTv(person_id){
                 Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
                 accept:"application/json"
                 }
+            },{
+                cache:"force-cache"
             }
         )
         return res.json()
@@ -134,6 +144,9 @@ try{
             headers:{
             Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
             accept:"application/json"
+            },
+            next:{
+                revalidate:3600
             }
         }
     )
@@ -174,6 +187,9 @@ export async function getTopTv(){
                 headers:{
                 Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
                 accept:"application/json"
+                },
+                next:{
+                    revalidate:7200
                 }
             }
         )
@@ -225,6 +241,8 @@ export async function getRecommendationsTv(id){
             headers:{
             Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
             accept:"application/json"
+            },next:{
+                revalidate:3600
             }
         }
     )
@@ -241,6 +259,9 @@ export async function getTrendingTv(){
         headers:{
             Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
             accept:"application/json"
+            },
+            next:{
+                revalidate:3600
             }
     })
     if(!res.ok){

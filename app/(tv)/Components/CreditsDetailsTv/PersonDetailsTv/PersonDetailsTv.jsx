@@ -59,7 +59,7 @@ export default async function PersonDetailsTv({ person_id, urlImageTv, character
                                 </div>
                                 <div className=" flex gap-1 flex-wrap pt-2">
                                     <strong className="text-[#52525b]">birthday :</strong>
-                                    <h1 className=" font-semibold italic">{dataPerson.birthday}</h1>
+                                    <h1 className=" font-semibold italic">{dataPerson.birthday ? dataPerson.birthday : <span></span>}</h1>
                                 </div>
                                 <div className=" flex gap-1 flex-wrap pt-2 w-fit md:flex-col">
                                     <strong className="text-[#52525b]"> Place of birth :</strong>
@@ -109,7 +109,7 @@ export default async function PersonDetailsTv({ person_id, urlImageTv, character
                                         <AlertDialogTrigger className="hover:bg-info hover:duration-300 alert-info text-white hover:text-slate-950 border p-2 font-bold rounded-lg">Biography</AlertDialogTrigger>
                                         <AlertDialogContent className="md:h-screen  max-w-2xl xl:max-w-5xl">
                                             <AlertDialogHeader>
-                                                <AlertDialogTitle> {dataPerson.name}</AlertDialogTitle>
+                                                <AlertDialogTitle> {dataPerson.name? dataPerson.name : "Name is not found"}</AlertDialogTitle>
                                                 <AlertDialogDescription>
                                                     {dataPerson && dataPerson.biography && dataPerson.biography.length > 0
                                                         ? dataPerson.biography

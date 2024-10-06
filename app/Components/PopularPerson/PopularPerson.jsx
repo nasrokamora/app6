@@ -1,8 +1,4 @@
-import {
-    ResizableHandle,
-    ResizablePanel,
-    ResizablePanelGroup,
-} from "@/components/ui/resizable"
+
 import {
     Alert,
     AlertDescription,
@@ -19,15 +15,18 @@ import {
     CarouselNext,
     CarouselPrevious,
   } from "@/components/ui/carousel"
-  
+  import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 import { urlImage } from "@/app/libs/DataFetching"
-export default function PopularPerson({ dataPersonPopular }) {
-    console.log(dataPersonPopular);
 
+export default function PopularPerson({ dataPersonPopular }) {
+    // console.log(dataPersonPopular);
+    // dataPersonPopular.filter()
 
     return (
-        <div className=" ml-6 flex justify-center items-center ">
-
+        <div className=" ml-6 flex justify-center items-center w-full h-auto">
+            <ScrollArea >
+                
+            </ScrollArea>
         </div>
     )
 }

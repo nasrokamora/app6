@@ -276,7 +276,7 @@ export async function getMoviesNowPlaying() {
 }
 
 // Person Popular
-export async function getPersonPopular() {
+export async function getPersonPopular(mediaType) {
 
   try {
     const response = await fetch(`https://api.themoviedb.org/3/person/popular`, {
@@ -287,6 +287,7 @@ export async function getPersonPopular() {
         revalidate: 3600
       }
     })
+
     return response.json()
   } catch (error) {
     return console.log(error, "failed to fetch data Person")

@@ -8,7 +8,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel"
 import Image from "next/image"
-import { Suspense } from "react"
+// import { Suspense } from "react"
 import Link from "next/link"
 import { AlertCircle } from "lucide-react"
 import {

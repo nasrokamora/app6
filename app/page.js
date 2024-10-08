@@ -22,9 +22,9 @@ export default async function Home() {
   const data =  getDiscoverMovies()
   const popularData =  getPopularMovies()
   const tvData =  getDiscoverTv()
-  const PersonDataPopular = getPersonPopular()
+  const personPopular = getPersonPopular()
 
-  const [dataDiscoverMovies, dataPopular, dataTv, dataPersonPopular] = await Promise.all([data, popularData, tvData, PersonDataPopular]);
+  const [dataDiscoverMovies, dataPopular, dataTv, dataPersonPopular] = await Promise.all([data, popularData, tvData, personPopular]);
 
   return (
     <main className={`w-full h-auto text-white `}>
@@ -95,8 +95,13 @@ export default async function Home() {
 
 
       <section className="mt-7">
-
-        <PopularPerson dataPersonPopular={dataPersonPopular.results} />
+      <div className=" ml-6   scroll-m-20 text-4xl font-extrabold  lg:text-3xl   md:flex md:justify-center md:items-center items-center mt-14 lg:mt-11 md:mt-3">
+        <h1 className="">
+      <span className=" text-blue-700">Popular</span>   People
+        </h1>
+      </div>
+        <PopularPerson dataPersonPopular={dataPersonPopular.results}
+        />
 
       </section>
       {/* <section className=" mt-7">

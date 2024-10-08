@@ -28,7 +28,7 @@ export default function MoviesSimilar({ similar }) {
                         {similar.results && similar.results.length > 0 ? (
                             similar.results.map((movie) => (
 
-                                <CarouselItem key={movie.id} className="  basis-1/5 lg:basis-1/5 md:basis-1/2 2xl:basis-1/7">
+                                <CarouselItem key={movie.id} className="  basis-1/5 lg:basis-1/5 md:basis-1/2 2xl:basis-1/6">
                                     <div className="  hover:scale-105 hover:duration-500  hover:grayscale  ">
                                         <Link className="" href={`/Movies/List/${movie.id}`}  rel="noopener noreferrer">
                                             <div className=" relative overflow-hidden">

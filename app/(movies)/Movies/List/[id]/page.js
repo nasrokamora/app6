@@ -2,6 +2,7 @@ import {
     getChangesMovies,
     getCriditsMovies,
     getImageMoviesId,
+    getMoviesId,
     getMoviesNowPlaying,
     getMoviesSimilar,
     getRecommendationMovies,
@@ -36,7 +37,7 @@ import AddNewMovies from "@/app/(movies)/Components/ChangesMovies/AddNewMovies"
 // import RecommendationMovies from "@/app/(movies)/Components/RecommendationMovies/RecommendationMovies"
 
 export async function generateMetadata({ params }) {
-    const data = await getMoviesLoad(params.id)
+    const data = await getMoviesId(params.id)
     return {
         title: data.title ,
     }
@@ -44,22 +45,22 @@ export async function generateMetadata({ params }) {
 
 
 
-async function getMoviesLoad(id) {
-    try {
-        const res = await fetch(`https://api.themoviedb.org/3/movie/${id}`, {
-            headers: headers
-        })
-        return res.json()
-    } catch (error) {
-        console.log(error, "failed to fetch data Load page =>[id]")
-    }
-}
+// async function getMoviesLoad(id) {
+//     try {
+//         const res = await fetch(`https://api.themoviedb.org/3/movie/${id}`, {
+//             headers: headers
+//         })
+//         return res.json()
+//     } catch (error) {
+//         console.log(error, "failed to fetch data Load page =>[id]")
+//     }
+// }
 
 
 export default async function DynamicMoviesList({ params }) {
     const { id } = params
 
-    const dataLoad = getMoviesLoad(id)
+    const dataLoad = getMoviesId(id)
     const similarData = getMoviesSimilar(id)
     const dataImage = getImageMoviesId(id)
     const reviewData = getReviewsMovies(id)

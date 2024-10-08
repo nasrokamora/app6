@@ -26,7 +26,7 @@ export default function RecommendationMovies({dataRecommend}) {
       opts={{
         align: "start",
       }}
-      className="w-full max-w-5xl md:max-w-lg 2xl:max-w-6xl"
+      className="w-full max-w-5xl md:max-w-lg 2xl:max-w-full"
     >
       <CarouselContent className="-mt-1 ">
         {dataRecommend && dataRecommend.length > 0 ? (

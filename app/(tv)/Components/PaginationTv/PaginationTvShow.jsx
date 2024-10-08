@@ -24,51 +24,51 @@ export default function PaginationTvShow() {
     const [dataTv, setDataTv] = useState([]); // لتخزين بيانات المسلسلات
     const [isLoading, setIsLoading] = useState(true); // حالة التحميل
     const [error, setError] = useState(null); // لتخزين أي خطأ أثناء الجلب
-    // const cacheRef = useRef({}); // لتخزين البيانات المجلوبة مؤقتًا
+    const cacheRef = useRef({}); // لتخزين البيانات المجلوبة مؤقتًا
 
 
 
     
 
 
-    // useEffect(() => {
-    //     fetchTvShow(currentPage);
-    // }, [currentPage]);
+    useEffect(() => {
+        fetchTvShow(currentPage);
+    }, [currentPage]);
 
-    // const fetchTvShow = async (page) => {
+    const fetchTvShow = async (page) => {
 
-    //     if (cacheRef.current[page]) {
-    //         setDataTv(cacheRef.current[page]);
-    //         setIsLoading(false);
-    //         return;
-    //     }
+        if (cacheRef.current[page]) {
+            setDataTv(cacheRef.current[page]);
+            setIsLoading(false);
+            return;
+        }
 
-    //     setIsLoading(true);
-    //     setError(null); 
+        setIsLoading(true);
+        setError(null); 
 
-    //     try {
-    //         const response = await fetch(`https://api.themoviedb.org/3/trending/tv/day?api_key=${process.env.NEXT_PUBLIC_API_KEY}&page=${page}`, {
-    //             headers: {
-    //                 Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
-    //                 accept: "application/json",
-    //             },
+        try {
+            const response = await fetch(`https://api.themoviedb.org/3/trending/tv/day?api_key=${process.env.NEXT_PUBLIC_API_KEY}&page=${page}`, {
+                headers: {
+                    Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
+                    accept: "application/json",
+                },
 
-    //         });
+            });
 
-    //         if (!response.ok) {
-    //             throw new Error("An error occurred while fetching data");
-    //         }
+            if (!response.ok) {
+                throw new Error("An error occurred while fetching data");
+            }
 
-    //         const data = await response.json();
-    //         setDataTv(data.results);
-    //         cacheRef.current[page] = data.results; 
-    //     } catch (error) {
-    //         console.log('  Failed to fetch data => PaginationTvShow', error);
-    //         setError(error.message || "An unexpected error occurred");
-    //     }
+            const data = await response.json();
+            setDataTv(data.results);
+            cacheRef.current[page] = data.results; 
+        } catch (error) {
+            console.log('  Failed to fetch data => PaginationTvShow', error);
+            setError(error.message || "An unexpected error occurred");
+        }
 
-    //     setIsLoading(false);
-    // };
+        setIsLoading(false);
+    };
 
     // دالة لتغيير الصفحة الحالية
     const handleChangePageTv = (newPage) => {
@@ -87,7 +87,7 @@ export default function PaginationTvShow() {
                     <div className="text-center">
                         <h1>Error: {error}</h1>
                         <button
-                            onClick={() => fetchTest(currentPage)}
+                            onClick={() => fetchTvShow(currentPage)}
                             className="px-4 py-2 mt-2 text-white bg-red-500 rounded"
                         >
                             Retry
@@ -111,8 +111,8 @@ export default function PaginationTvShow() {
                                                     : no_image
                                                 }
                                                 alt="image_tv"
-                                                width={125}
-                                                height={150}
+                                                width={300}
+                                                height={200}
                                                 className="rounded-md 2xl:h-[300px] 2xl:w-[200px]"
                                                 style={{width:'auto'}}
                                                 draggable={false}

@@ -94,7 +94,7 @@ export default async function Home() {
 
 
 
-      <section className="mt-7">
+      {/* <section className="mt-7">
       <div className=" ml-6   scroll-m-20 text-4xl font-extrabold  lg:text-3xl   md:flex md:justify-center md:items-center items-center mt-14 lg:mt-11 md:mt-3">
         <h1 className="">
       <span className=" text-blue-700">Popular</span>   People
@@ -103,7 +103,7 @@ export default async function Home() {
         <PopularPerson dataPersonPopular={dataPersonPopular.results}
         />
 
-      </section>
+      </section> */}
       {/* <section className=" mt-7">
         <div className="ml-6 mt-7">
           <h1 className="text-4xl font-extrabold tracking-tight scroll-m-20 lg:text-3xl">

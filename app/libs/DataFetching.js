@@ -129,9 +129,9 @@ export async function getCriditsMovies(id) {
 }
 
 
-export async function getPersonsId(person_id) {
+export async function getPersonsId(personId) {
   try {
-    const response = await fetch(`https://api.themoviedb.org/3/person/${person_id}`, {
+    const response = await fetch(`https://api.themoviedb.org/3/person/${personId}`, {
       headers: headers
     }
     )

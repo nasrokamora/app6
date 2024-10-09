@@ -36,6 +36,16 @@ import ReleaseMovies from "@/app/(movies)/Components/Release/ReleaseMovies"
 import AddNewMovies from "@/app/(movies)/Components/ChangesMovies/AddNewMovies"
 // import RecommendationMovies from "@/app/(movies)/Components/RecommendationMovies/RecommendationMovies"
 
+
+// async function PersonData({params}) {
+//     return(
+//         <div></div>
+//     )
+// }
+
+
+
+
 export async function generateMetadata({ params }) {
     const data = await getMoviesId(params.id)
     return {
@@ -70,6 +80,7 @@ export default async function DynamicMoviesList({ params }) {
     const trailer = getTrailer(id)
     const changes = getChangesMovies(id)
     const release = getReleasDateMovies(id)
+    // const personData = getPersonsId(personId)
     const [data, similar, dataImageList, dataReview, credits, dataRecommend, dataPlaying, dataTrailer, dataChanges, dataRelease] = await Promise.all([dataLoad, similarData, dataImage, reviewData, dataCreditsId, recommendMovies, nowData, trailer, changes, release])
 
 

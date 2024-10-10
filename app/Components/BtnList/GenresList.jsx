@@ -14,7 +14,12 @@ import { FaRegStar } from "react-icons/fa";
 import LoadingGenreButton from "../LoadingUi/LoadingGenreList"
 import LoadingGenreCarousel from "../LoadingUi/LoadingGenreCarousel"
 import Link from "next/link"
-
+import { AlertCircle } from "lucide-react"
+import {
+    Alert,
+    AlertDescription,
+    AlertTitle,
+} from "@/components/ui/alert"
 
 
 export default function GenresList() {
@@ -120,11 +125,11 @@ export default function GenresList() {
 
                                 <LoadingGenreCarousel />
                             </div>
-                        ) : movieList && movieList.length > 0 && (
+                        ) : movieList && movieList.length > 0 ? (
                             movieList.map((movie, index) => (
 
                                 <CarouselItem key={index} className="p-2 md:basis-1/3 basis-1/6 lg:basis-1/5">
-                                    <div className="relative overflow-hidden lg:hover:scale-90 lg:hover:duration-500 xl:hover:scale-90 xl:hover:duration-500 2xl:hover:scale-90 2xl:hover:duration-500">
+                                    <div className="relative overflow-hidden lg:hover:scale-90 md:active:scale-110 hover:scale-90 hover:duration-500 ">
                                         <Link href={`/Movies/List/${movie.id}`} >
                                             <Image
                                                 src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
@@ -155,6 +160,14 @@ export default function GenresList() {
                                     </div>
                                 </CarouselItem>
                             ))
+                        ):(
+                            <Alert variant="destructive" className="ml-4 md:ml-2 md:mr-2 text-xl font-bold">
+                            <AlertCircle className="h-4 w-4" />
+                            <AlertTitle>Error</AlertTitle>
+                            <AlertDescription>
+                                Something went wrong. Please try again later.
+                            </AlertDescription>
+                        </Alert>
                         )
                         }
                     </CarouselContent>

@@ -42,7 +42,7 @@ export default async function Home() {
         <div className="ml-6 md:flex md:justify-center md:items-center">
           <h1 className="text-4xl font-extrabold  scroll-m-20 lg:text-3xl mb-6">Highest Rated Movies </h1>
         </div>
-        <div className="bg-gradient-to-r from-[#f48a00] from-[40%] to-[#09090b] to-[80%] ">
+        <div className="bg-gradient-to-bl from-[#00f4e0] from-[20%] to-[#09090b] to-[60%]  ">
         <PaginationMovies />
           </div>
       </section>

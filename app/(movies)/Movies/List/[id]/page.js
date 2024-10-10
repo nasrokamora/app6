@@ -53,20 +53,6 @@ export async function generateMetadata({ params }) {
     }
 }
 
-
-
-// async function getMoviesLoad(id) {
-//     try {
-//         const res = await fetch(`https://api.themoviedb.org/3/movie/${id}`, {
-//             headers: headers
-//         })
-//         return res.json()
-//     } catch (error) {
-//         console.log(error, "failed to fetch data Load page =>[id]")
-//     }
-// }
-
-
 export default async function DynamicMoviesList({ params }) {
     const { id } = params
 

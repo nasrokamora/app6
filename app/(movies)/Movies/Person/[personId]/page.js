@@ -9,10 +9,14 @@ export default async function Person({ params }) {
     const { personId } = params
 
     const personDetails = await getPersonsId(personId)
-    console.log(personDetails)
+    // console.log(personDetails)
     return (
         <div className="w-full h-screen">
             <ToggleButton />
+
+            <div>
+                <h1></h1>
+            </div>
         </div>
     )
 }

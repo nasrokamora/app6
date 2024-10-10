@@ -1,5 +1,11 @@
 "use client"
-
+import {
+    Carousel,
+    CarouselContent,
+    CarouselItem,
+    CarouselNext,
+    CarouselPrevious,
+} from "@/components/ui/carousel"
 import { useEffect, useRef, useState } from "react"
 import {
     Pagination,
@@ -10,7 +16,7 @@ import {
     PaginationNext,
     PaginationPrevious,
 } from "@/components/ui/pagination"
-import { HEADERS} from "@/app/libs/DataFetching"
+import { HEADERS } from "@/app/libs/DataFetching"
 import LoadingGenreCarousel from "@/app/Components/LoadingUi/LoadingGenreCarousel";
 import no_image from '../../../../public/image/no_image4.webp';
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
@@ -23,100 +29,120 @@ import {
 } from "@/components/ui/alert"
 import Link from 'next/link'
 import LoadingPaginationMovies from "./LoadingPaginationMovies";
+import { FaRegStar } from "react-icons/fa"
 
 
 
 export default function PaginationMovies() {
-        const [currentPage,setCurrentPage] = useState(1)
-        const [dataMovies,setDataMovies] = useState([])
-        const [isLoading,setIsLoading] = useState(true)
-        const [error,setError] = useState(null)
-        const cachRef = useRef({})
+    const [currentPage, setCurrentPage] = useState(1)
+    const [dataMovies, setDataMovies] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
+    const [error, setError] = useState(null)
+    const cachRef = useRef({})
 
-        useEffect(() => {
-            fetchMovies(currentPage)
-        }, [currentPage])
-        
-
-
-            async function fetchMovies(page){
-                try{
-
-                    if (cachRef.current[page]) {
-                        setDataMovies(cachRef.current[page])
-                        setIsLoading(false)
-                        return;
-                    }
+    useEffect(() => {
+        fetchMovies(currentPage)
+    }, [currentPage])
 
 
-                    setIsLoading(true)
-                    setError(null)
-                    
-                const response = await fetch(`https://api.themoviedb.org/3/movie/top_rated?&page=${page}`,{
-                    headers:HEADERS
-                })
 
-                if(!response.ok){
-                    throw new Error(error,"failed fetch top rated movie")
-                }
+    async function fetchMovies(page) {
+        try {
 
-                const data = await response.json()
-                setDataMovies(data.results)
-                cachRef.current[page] = data.results
-            }catch(error){
-                console.log(error.message)    
+            if (cachRef.current[page]) {
+                setDataMovies(cachRef.current[page])
+                setIsLoading(false)
+                return;
             }
-            setIsLoading(false)
+
+
+            setIsLoading(true)
+            setError(null)
+
+            const response = await fetch(`https://api.themoviedb.org/3/movie/top_rated?&page=${page}`, {
+                headers: HEADERS
+            })
+
+            if (!response.ok) {
+                throw new Error(error, "failed fetch top rated movie")
             }
-            function handlePageChange(newPage){
-                if(newPage < 1)return
-                setCurrentPage(newPage)
-            }
+
+            const data = await response.json()
+            setDataMovies(data.results)
+            cachRef.current[page] = data.results
+        } catch (error) {
+            console.log(error.message)
+        }
+        setIsLoading(false)
+    }
+    function handlePageChange(newPage) {
+        if (newPage < 1) return
+        setCurrentPage(newPage)
+    }
 
     return (
-        <div>
+        <div className=" w-full">
             {isLoading ? (
                 <div className=" ">
 
-                <LoadingPaginationMovies />
+                    <LoadingPaginationMovies />
                 </div>
             ) : error ? (
                 <div className="text-center">
                     <h1>Error: {error}</h1>
                     <button
                         onClick={() => fetchMovies(currentPage)}
-                        className="px-4 py-2 mt-2 text-white bg-red-500 rounded"
+                        className="px-4 py-2 mt-2 text-white bg-red-500 rounded text-xl"
                     >
                         Retry
                     </button>
                 </div>
             ) : (
-                <div className="w-full gap-2 flex justify-center ">
+                <div className="w-full gap-2 flex justify-center md:mt-6 ">
 
-                    <ScrollArea className="max-w-6xl  p-4 whitespace-nowrap 2xl:max-w-7xl">
-                        <div className="flex items-center justify-start gap-2 w-max ">
+                    <Carousel className="w-full max-w-5xl md:max-w-xl 2xl:max-w-7xl lg:max-w-4xl"
+                        opts={{
+                            loop: true,
+                            align: "center"
+                        }}>
+                        <CarouselContent className="-ml-1">
 
                             {dataMovies && dataMovies.length > 0 ? (
                                 dataMovies.map((movie) => (
-                                    <div key={movie.id} className=" max-w-5xl p-3 2xl:w-full">
-                                        <Link className="" href={`/Movies/List/${movie.id}`}>
-                                        <div className="relative overflow-hidden h-[200px] 2xl:h-auto hover:duration-500 hover:scale-105 ">
-                                            <Image
-                                                src={
-                                                    movie.poster_path
-                                                    ? `https://image.tmdb.org/t/p/original${movie.poster_path}`
-                                                    : no_image
-                                                }
-                                                alt="poster movies"
-                                                width={120}
-                                                height={150}
-                                                className="rounded-md 2xl:h-[300px] 2xl:w-[200px] shadow shadow-black"
-                                                draggable={false}
-                                                style={{width:'auto'}}
+                                    <CarouselItem key={movie.id} className=" p-2 md:basis-1/3 basis-1/6 lg:basis-1/5">
+                                        <div className="relative overflow-hidden md:active:scale-90 hover:scale-90 hover:duration-500  ">
+                                            <Link className=" font-bold" href={`/Movies/List/${movie.id}`}>
+                                                <Image
+                                                    src={
+                                                        movie.poster_path
+                                                            ? `https://image.tmdb.org/t/p/original${movie.poster_path}`
+                                                            : no_image
+                                                    }
+                                                    alt="poster movies"
+                                                    width={300}
+                                                    height={250}
+                                                    className="rounded-md "
+                                                    draggable={false}
+                                                    style={{ width: 'auto' }}
                                                 />
+                                                <p classNam=" pt-2 font-bold  mb-1">{movie.title.length > 14 ? movie.title.slice(0, 14) + "..." : movie.title}</p>
+                                                <div className="flex items-center justify-between w-full ">
+                                                    <p className="flex items-center justify-between w-full font-bold 2xl:text-2xl">
+                                                        {new Date(movie.release_date).getFullYear()}
+                                                    </p>
+                                                    <div className=" 2xl:font-bold 2xl:text-2xl">
+                                                        <div className="flex items-center justify-between space-x-1 ">
+                                                            <FaRegStar className="text-[#FFC300]" />
+                                                            <span className="">
+                                                                {movie.vote_average.toFixed(1)}
+                                                            </span>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </Link>
                                         </div>
-                                                </Link>
-                                    </div>
+                                    </CarouselItem>
                                 ))
                             ) : (
                                 <Alert variant="destructive">
@@ -127,9 +153,12 @@ export default function PaginationMovies() {
                                     </AlertDescription>
                                 </Alert>
                             )}
+                        </CarouselContent>
+                        <div className=" absolute top-0 left-[93%] md:left-[82%] md:top-[1rem]  ">
+                            <CarouselPrevious />
+                            <CarouselNext />
                         </div>
-                        <ScrollBar orientation="horizontal" />
-                    </ScrollArea>
+                    </Carousel>
                 </div>
             )}
 

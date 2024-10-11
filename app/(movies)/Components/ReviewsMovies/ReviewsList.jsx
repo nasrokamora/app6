@@ -46,7 +46,7 @@ export default function ReviewsList({ dataReview }) {
                                 </div>
                             )))
                             : (
-                                <Alert variant="destructive" className=" bg-black">
+                                <Alert variant="destructive" className=" bg-black font-bold">
                                     <AlertCircle className="h-4 w-4" />
                                     <AlertTitle>Error</AlertTitle>
                                     <AlertDescription>

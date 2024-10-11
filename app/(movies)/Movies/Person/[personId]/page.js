@@ -15,7 +15,9 @@ export default async function Person({ params }) {
             <ToggleButton />
 
             <div>
-                <h1></h1>
+                <h1>
+                    {personDetails.name}
+                </h1>
             </div>
         </div>
     )

@@ -10,10 +10,26 @@ import {
 import Image from "next/image"
 import { Suspense } from "react"
 import Link from "next/link"
+import { AlertCircle } from "lucide-react"
+import {
+    Alert,
+    AlertDescription,
+    AlertTitle,
+} from "@/components/ui/alert"
+import no_image from '../../../../public/image/no_image4.webp';
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination"
 
-
-export default function TrendingTv({ dataTrending }) {
+export default  function TrendingTv({ dataTrending }) {
   // console.log(dataTrending)
+
 
 
   return (

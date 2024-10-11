@@ -39,10 +39,10 @@ export default async function Home() {
 
 
       <section className="mt-7  ">
-        <div className="ml-6 md:flex md:justify-center md:items-center">
-          <h1 className="text-4xl font-extrabold  scroll-m-20 lg:text-3xl mb-6">Highest Rated Movies </h1>
+        <div className="ml-6 md:ml-0 md:flex md:justify-center md:items-center ">
+          <h1 className="text-4xl  font-extrabold  scroll-m-20 lg:text-3xl md:mb-11">Highest <span className="text-[#00f4e1] underline decoration-[#00f4e1]">Rated</span> <span className=" md:text-center md:flex md: justify-center  md:items-center ">Movies </span> </h1>
         </div>
-        <div className="bg-gradient-to-bl from-[#00f4e0] from-[20%] to-[#09090b] to-[60%]  ">
+        <div className="bg-gradient-to-bl from-[#00f4e0] from-[20%] to-[#09090b] to-[60%] mt-7 ">
         <PaginationMovies />
           </div>
       </section>
@@ -104,14 +104,14 @@ export default async function Home() {
         />
 
       </section> */}
-      {/* <section className=" mt-7">
+      <section className=" mt-7">
         <div className="ml-6 mt-7">
           <h1 className="text-4xl font-extrabold tracking-tight scroll-m-20 lg:text-3xl">
-
+            <span className=" text-blue-700">Popular</span> People
           </h1>
         </div>
         <PopularPerson dataPersonPopular={dataPersonPopular.results} />
-      </section> */}
+      </section>
 
 
 

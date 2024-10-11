@@ -118,9 +118,11 @@ export default async function DynamicMoviesList({ params }) {
 
                     <Separator className="mt-8" />
 
-                    <div className="flex items-center justify-start gap-3 mt-5">
-                        <h2 className="pb-2 text-2xl font-bold text-amber-600 scroll-m-20 md:text-lg black-shadow-text first:mt-0">Release Date :</h2>
-                        <h1 className="pb-2 text-2xl font-bold tracking-tight text-gray-400 transition-colors scroll-m-20 md:text-lg first:mt-0">{data.release_date ? data.release_date.replace(/-/g, "/") : "Release date not found"}</h1>
+                    <div className="flex items-center justify-start gap-6 mt-5 text-2xl font-bold pb-2 flex-wrap">
+                        <h2 className=" text-amber-600 scroll-m-20 md:text-lg black-shadow-text first:mt-0">Release Date :</h2>
+                        <h1 className=" tracking-tight text-gray-400  scroll-m-20 md:text-lg first:mt-0">{data.release_date ? data.release_date.replace(/-/g, "/") : "Release date not found"}</h1>
+                        <h2 className=" text-amber-600 scroll-m-20 md:text-lg black-shadow-text ">Runtime :</h2>
+                        <h1 className=" text-red-300 scroll-m-20 md:text-xl first:mt-0 black-shadow-text">{data.runtime ? data.runtime : "Runtime not found"}min</h1>
                     </div>
 
                     <Separator className="mt-4" />
@@ -167,6 +169,7 @@ export default async function DynamicMoviesList({ params }) {
                             <h1 className={` text-success flex justify-start items-center gap-2  scroll-m-20 md:text-xl  text-2xl font-bold tracking-tight transition-colors first:mt-0" ${data.status ? "text-blue-500" : "text-red-800"}`}> {data.status ? data.status : "Status not found"}</h1>
                             <h2 className="text-2xl font-bold text-amber-600 scroll-m-20 md:text-lg black-shadow-text first:mt-0">Original Language :</h2>
                             <h1 className="text-2xl font-bold text-purple-500 scroll-m-20 md:text-xl first:mt-0 black-shadow-text">{data.original_language ? data.original_language : "Original language not found"}</h1>
+
                         </div>
                     </div>
 

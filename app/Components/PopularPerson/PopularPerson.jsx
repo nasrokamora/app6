@@ -24,43 +24,54 @@ import {
     CardFooter,
     CardHeader,
     CardTitle,
-  } from "@/components/ui/card"
+} from "@/components/ui/card"
+import { FaRegStar } from "react-icons/fa"
 
 export default function PopularPerson({ dataPersonPopular }) {
     // console.log(dataPersonPopular);
     // dataPersonPopular.filter()
 
     return (
-        <div className="  flex justify-center items-center w-full h-auto mt-5">
+        <div className="  flex justify-center items-center w-full h-auto mt-7 md:mt-12">
 
 
-            <ScrollArea className='max-w-6xl whitespace-nowrap rounded-md border' >
-                <div className='w-full p-4 flex gap-2 items-center justify-center'>
+            <Carousel className='w-full max-w-5xl md:max-w-sm 2xl:max-w-full' opts={{ loop: true, align: 'center' }} >
+                <CarouselContent className='-ml-1'>
                     {dataPersonPopular && dataPersonPopular.length > 0 ? (
                         dataPersonPopular.map((person) => (
-                            <div key={person.id} className=" flex justify-center items-center w-full">
-                                <Link href={`/Movies/Person/${person.id}`}>
-                                    <Card className=" flex flex-col justify-center w-full">
-                                        <CardContent className="">
+                            <CarouselItem key={person.id} className="md:basis-1/2 basis-1/6 lg:basis-1/5 2xl:basis-1/6">
 
-                                        <div className="">
-                                            <Image src={`${urlImage}${person.profile_path}`} 
-                                            alt={person.name} 
-                                            width={300}
-                                            height={200} 
-                                            // priority={true}
-                                            className="rounded-md"
-                                            style={{height:'auto'}}
-                                            />
-                                        </div>
+                                        <Card className=" flex flex-col justify-center w-full font-bold border-none md:mt-6">
+                               
+                                    <Link href={`/Movies/Person/${person.id}`} className="hover:scale-90 hover:duration-500 md:active:scale-90">
 
-                                <h2>
-                                    {person.name? person.name.length > 8 ? person.name.slice(0, 8) + "..." : person.name : "No name"}
-                                </h2>
-                                            </CardContent>
-                                    </Card>
-                                </Link>
-                            </div>
+
+                                                <div className=" relative ">
+                                                    <Image src={`${urlImage}${person.profile_path}`}
+                                                        alt={person.name}
+                                                        width={200}
+                                                        height={150}
+                                                        priority={true}
+                                                        className="rounded-md"
+                                                        style={{ width: 'auto' }}
+                                                    />
+                                                </div>
+                                                <h2 className="pt-2 mb-1 ">
+                                                    {person.name ? person.name.length > 12 ? person.name.slice(0, 12) + "..." : person.name : "No name"}
+                                                </h2>
+                                                <div className="flex items-center justify-between w-full">
+                                                    <p className=" font-semibold 2xl:text-xl">{person.known_for_department}</p>
+                                                     <div className="flex items-center justify-between space-x-1 2xl:text-xl">
+                                                        <FaRegStar className="text-[#003cff]" />
+                                                        <span className="">
+                                                            {person.popularity.toFixed(1)}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            
+                                    </Link>
+                                        </Card>
+                            </CarouselItem>
 
 
 
@@ -81,9 +92,12 @@ export default function PopularPerson({ dataPersonPopular }) {
                             </AlertDescription>
                         </Alert>
                     )}
+                </CarouselContent>
+                <div className=" absolute top-[-2rem] left-[93%] md:left-[82%] md:top-[-1rem]">
+                    <CarouselPrevious />
+                    <CarouselNext />
                 </div>
-                <ScrollBar orientation="horizontal" />
-            </ScrollArea>
+            </Carousel>
         </div>
     )
 }

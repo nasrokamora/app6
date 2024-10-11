@@ -276,7 +276,7 @@ export async function getMoviesNowPlaying() {
 }
 
 // Person Popular
-export async function getPersonPopular(mediaType) {
+export async function getPersonPopular() {
 
   try {
     const response = await fetch(`https://api.themoviedb.org/3/person/popular`, {

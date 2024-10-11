@@ -118,7 +118,7 @@ export default function GenresList() {
                 <Carousel opts={{
                     align: "center",
                     loop: true,
-                }} className="w-full max-w-5xl md:max-w-xl 2xl:max-w-7xl lg:max-w-4xl" >
+                }} className="w-full max-w-5xl md:max-w-md 2xl:max-w-7xl lg:max-w-4xl" >
                     <CarouselContent className="-ml-1 ">
                         {isLoading ? (
                             <div className="flex items-center justify-center w-full ">
@@ -128,7 +128,7 @@ export default function GenresList() {
                         ) : movieList && movieList.length > 0 ? (
                             movieList.map((movie, index) => (
 
-                                <CarouselItem key={index} className="p-2 md:basis-1/3 basis-1/6 lg:basis-1/5">
+                                <CarouselItem key={index} className="p-2 md:basis-1/2 basis-1/6 lg:basis-1/5">
                                     <div className="relative overflow-hidden lg:hover:scale-90 md:active:scale-110 hover:scale-90 hover:duration-500 ">
                                         <Link href={`/Movies/List/${movie.id}`} >
                                             <Image

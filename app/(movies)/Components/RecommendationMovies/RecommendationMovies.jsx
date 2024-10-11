@@ -57,9 +57,8 @@ export default function RecommendationMovies({dataRecommend}) {
           </CarouselItem>
         ))
       ):(
-        <div className="flex justify-items-center w-full">
-
-        <h1 className=" text-xl text-error font-bold">
+        <div className=" w-full flex justify-center items-center  ">
+        <h1 className=" text-xl text-red-700 font-bold border rounded-md p-5 border-red-700 bg-black">
           Currently, there are no movies to display.
           </h1>
         </div>

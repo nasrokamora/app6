@@ -19,7 +19,7 @@ import {
 import { HEADERS } from "@/app/libs/DataFetching"
 import LoadingGenreCarousel from "@/app/Components/LoadingUi/LoadingGenreCarousel";
 import no_image from '../../../../public/image/no_image4.webp';
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+
 import Image from "next/image";
 import { AlertCircle } from "lucide-react"
 import {
@@ -100,7 +100,7 @@ export default function PaginationMovies() {
             ) : (
                 <div className="w-full gap-2 flex justify-center md:mt-6 ">
 
-                    <Carousel className="w-full max-w-5xl md:max-w-xl 2xl:max-w-7xl lg:max-w-4xl"
+                    <Carousel className="w-full max-w-5xl md:max-w-sm 2xl:max-w-7xl lg:max-w-4xl"
                         opts={{
                             loop: true,
                             align: "center"
@@ -109,7 +109,7 @@ export default function PaginationMovies() {
 
                             {dataMovies && dataMovies.length > 0 ? (
                                 dataMovies.map((movie) => (
-                                    <CarouselItem key={movie.id} className=" p-2 md:basis-1/3 basis-1/6 lg:basis-1/5">
+                                    <CarouselItem key={movie.id} className=" p-2 md:basis-1/2 basis-1/6 lg:basis-1/5">
                                         <div className="relative overflow-hidden md:active:scale-90 hover:scale-90 hover:duration-500  ">
                                             <Link className=" font-bold" href={`/Movies/List/${movie.id}`}>
                                                 <Image
@@ -125,7 +125,7 @@ export default function PaginationMovies() {
                                                     draggable={false}
                                                     style={{ width: 'auto' }}
                                                 />
-                                                <p classNam=" pt-2 font-bold  mb-1">{movie.title.length > 14 ? movie.title.slice(0, 14) + "..." : movie.title}</p>
+                                                <p className=" pt-2 font-bold  mb-1">{movie.title.length > 11 ? movie.title.slice(0, 11) + "..." : movie.title}</p>
                                                 <div className="flex items-center justify-between w-full ">
                                                     <p className="flex items-center justify-between w-full font-bold 2xl:text-2xl">
                                                         {new Date(movie.release_date).getFullYear()}
@@ -154,7 +154,7 @@ export default function PaginationMovies() {
                                 </Alert>
                             )}
                         </CarouselContent>
-                        <div className=" absolute top-0 left-[93%] md:left-[82%] md:top-[1rem]  ">
+                        <div className=" absolute left-[93%] md:left-[82%] md:top-[-2rem] top-[-2rem] ">
                             <CarouselPrevious />
                             <CarouselNext />
                         </div>

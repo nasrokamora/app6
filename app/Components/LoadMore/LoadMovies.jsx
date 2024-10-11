@@ -80,10 +80,10 @@ export default function LoadMovies() {
                                 alt={movie.title}
                                 width={200}
                                 height={150}
-                                priority
                                 style={{width:"auto"}}
                                 className="rounded-md "
                                 loading="eager"
+                                priority={true}
                                 />
 
 

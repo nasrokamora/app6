@@ -1,4 +1,13 @@
-import { getDetailsSeasonTv, getDetailsTv, getExternalIdTv, getImageTv, getLatestTv, getRecommendationsTv, getTrendingTv, getTvCredits, getVideosTv, urlImageTv } from "@/app/libs/DataFetchingTv"
+import { getDetailsSeasonTv, 
+    getDetailsTv, 
+    getExternalIdTv, 
+    getImageTv, 
+    getLatestTv, 
+    getRecommendationsTv, 
+    getTrendingTv, 
+    getTvCredits, 
+    getVideosTv, 
+    urlImageTv } from "@/app/libs/DataFetchingTv"
 import Image from "next/image"
 import { IoTimerOutline } from "react-icons/io5";
 import { PiShootingStarLight } from "react-icons/pi";
@@ -35,6 +44,7 @@ import RatingTvShow from "@/app/(tv)/Components/RatingTvShow/RatingTvShow";
 
 
 
+
 export async function generateMetadata({ params }) {
     const { id } = params
     const data = await getDetailsTv(id)
@@ -54,9 +64,10 @@ export default async function DynamicTvListPage({ params }) {
     const dataCredits = getTvCredits(id)
     const dataExt = getExternalIdTv(id)
     const dataRecommendation = getRecommendationsTv(id)
-    const dataTrend = getTrendingTv()
     const videosTv = getVideosTv(id)
-    const [detailTv, imageTv, creditsTv, externalData, dataRecommend, dataTrending, dataVideosTv] = await Promise.all([data, dataImage, dataCredits, dataExt, dataRecommendation, dataTrend, videosTv])
+    const dataTrend = getTrendingTv()
+    
+    const [detailTv, imageTv, creditsTv, externalData, dataRecommend,dataVideosTv,dataTrending] = await Promise.all([data, dataImage, dataCredits, dataExt, dataRecommendation, videosTv,dataTrend])
 
     // console.log(detailTv)
     return (
@@ -352,11 +363,14 @@ export default async function DynamicTvListPage({ params }) {
             </div>
 
             <Separator className="mt-4" />
-            {/* trending */}
-            <div className="mt-8">
+            {/* trending  */}
+             <div className="mt-8">
                 <h1 className='text-2xl font-extrabold tracking-tight scroll-m-20 lg:text-5xl '>Trending Now</h1>
-                <TrendingTv dataTrending={dataTrending.results} />
+                <TrendingTv dataTrending={dataTrending.results}  />
             </div>
+            
+            
+            
 
 
         </div>

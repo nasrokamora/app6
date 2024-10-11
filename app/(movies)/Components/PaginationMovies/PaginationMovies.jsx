@@ -75,6 +75,7 @@ export default function PaginationMovies() {
         }
         setIsLoading(false)
     }
+    
     function handlePageChange(newPage) {
         if (newPage < 1) return
         setCurrentPage(newPage)

@@ -11,10 +11,23 @@ import Image from "next/image"
 import { Suspense } from "react"
 import Link from "next/link"
 import no_image from '../../../../public/image/no_image4.webp'
+import AllAutoCarousel from "@/app/Components/AutoCarousel/AllAutoCarousel"
 
 export default function RecommendationMovies({dataRecommend}) {
 // console.log(dataRecommend)
+const keyStr =
+"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
 
+const triplet = (e1, e2, e3) =>
+keyStr.charAt(e1 >> 2) +
+keyStr.charAt(((e1 & 3) << 4) | (e2 >> 4)) +
+keyStr.charAt(((e2 & 15) << 2) | (e3 >> 6)) +
+keyStr.charAt(e3 & 63);
+
+const rgbDataURL = (r, g, b) =>
+`data:image/gif;base64,R0lGODlhAQABAPAA${
+  triplet(0, r, g) + triplet(b, 255, 255)
+}/yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==`;
 
     return(
       <>
@@ -22,11 +35,7 @@ export default function RecommendationMovies({dataRecommend}) {
         <h1 className="scroll-m-20 text-2xl md:text-xl font-extrabold text-amber-600 backdrop-none  lg:text-2xl   black-shadow-text underline decoration-amber-600">Suggested Movies :</h1>
       </div>
         <div className="w-full pt-10 flex justify-center items-center relative h-fit md:mt-4">
-        <Carousel
-      opts={{
-        align: "start",
-      }}
-      className="w-full max-w-5xl md:max-w-lg 2xl:max-w-full"
+        <AllAutoCarousel
     >
       <CarouselContent className="-mt-1 ">
         {dataRecommend && dataRecommend.length > 0 ? (
@@ -49,6 +58,8 @@ export default function RecommendationMovies({dataRecommend}) {
                         className="rounded-md "
                         loading="eager"
                         priority
+                        placeholder="blur"
+                        blurDataURL={rgbDataURL(86,91,96)}
                         />
                     </div>
                 </div>
@@ -69,7 +80,7 @@ export default function RecommendationMovies({dataRecommend}) {
       <CarouselPrevious />
       <CarouselNext />
       </div>
-    </Carousel>
+    </AllAutoCarousel>
         </div>
         </>
     )

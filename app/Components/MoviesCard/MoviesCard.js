@@ -22,21 +22,33 @@ import Rating from "../Rated/Rating"
 
 
 export default async function MoviesCard({dataDiscoverMovies  }) {
-
+    const keyStr =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+  
+  const triplet = (e1, e2, e3) =>
+    keyStr.charAt(e1 >> 2) +
+    keyStr.charAt(((e1 & 3) << 4) | (e2 >> 4)) +
+    keyStr.charAt(((e2 & 15) << 2) | (e3 >> 6)) +
+    keyStr.charAt(e3 & 63);
+  
+  const rgbDataURL = (r, g, b) =>
+    `data:image/gif;base64,R0lGODlhAQABAPAA${
+      triplet(0, r, g) + triplet(b, 255, 255)
+    }/yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==`;
     return (
 
         <div className="  w-full 2xl:text-2xl h-fit xl:h-[21rem]  ">
             <div className="">
             </div>
             <div className="flex items-center justify-center pt-2 md:mt-10">
-                <Carousel className="w-full max-w-sm text-black lg:max-w-2xl xl:max-w-5xl 2xl:max-w-6xl" opts={{ loop: true, align: "start" }}>
+                <Carousel className="w-full max-w-5xl md:max-w-md text-black  2xl:max-w-full" opts={{ loop: true, align: "start" }}>
                     <CarouselContent className="-ml-1">
                         {dataDiscoverMovies && dataDiscoverMovies.length > 0 ? (
                         dataDiscoverMovies.map((movie, index) => (
-                            <CarouselItem key={index} className="pl-1 md:basis-1/3 lg:basis-1/3 xl:basis-1/6 basis-1/6 2xl:basis-1/7">
+                            <CarouselItem key={index} className="pl-1 md:basis-1/3 lg:basis-1/5 xl:basis-1/5 basis-1/6 ">
                                 <div className="flex flex-col w-full p-1 hover:scale-90 hover:duration-500">
                                     <Link varient="link" className="" href={`/Movies/List/${movie.id}`}>
-                                        <div className='relative '>
+                                        <div className='relative  hover:grayscale  hover:duration-700 hover:translate-x-6 '>
                                             <Image
                                                 src={movie.poster_path ?
                                                     `${urlImage}/${movie.poster_path}`
@@ -45,11 +57,13 @@ export default async function MoviesCard({dataDiscoverMovies  }) {
                                                 }
                                                 alt="image_movies"
                                                 width={300} height={200}
-                                                priority
-                                                className=" hover:grayscale  hover:duration-700 hover:translate-x-6  rounded-md lg:w-[200px] lg:h-[200px] xl:w-[200px] xl:h-[150px] md:w-[150px] md:h-[150px] 2xl:w-[300px] "
-                                                style={{ height: "auto" }}
+                                                priority={true}
+                                                className=" rounded-md  "
+                                                style={{ width: "auto" }}
                                                 draggable={false}
-                                                loading="eager"
+                                                // loading="eager"
+                                                blurDataURL={rgbDataURL(230,242,255)}
+                                                placeholder="blur"
                                             />
                                         </div>
                                         <div className="flex items-center justify-between xl:pt-4 xl:text-xl">

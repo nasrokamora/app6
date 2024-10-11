@@ -25,6 +25,7 @@ export default function NotFound() {
         <Image
         src={icon_magix} width={200} height={200} alt='icon'
         priority={true}
+        placeholder='blur'
 
         />
       </div>

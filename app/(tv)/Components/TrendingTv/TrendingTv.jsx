@@ -16,16 +16,7 @@ import {
     AlertDescription,
     AlertTitle,
 } from "@/components/ui/alert"
-import no_image from '../../../../public/image/no_image4.webp';
-import {
-  Pagination,
-  PaginationContent,
-  PaginationEllipsis,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from "@/components/ui/pagination"
+
 
 export default  function TrendingTv({ dataTrending }) {
   // console.log(dataTrending)

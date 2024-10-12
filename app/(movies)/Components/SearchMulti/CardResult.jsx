@@ -21,7 +21,7 @@ export default function CardResults({ movie, handleClick, handleClose }) {
     const hasResults = movie && movie.length > 0
     return (
         <div className="  p-4    z-50 gap-5 w-full ">
-            {hasResults && (
+            {hasResults ? (
                 <ScrollArea className="w-full  whitespace-nowrap  h-[80vh] xl:h-[50vh] " >
                     <div className="grid grid-cols-4 xl:grid-cols-5 md:grid-cols-3 md:overflow-hidden gap-3 border rounded-lg w-full h-[180vh] xl:h-[150vh] p-4">
 
@@ -52,6 +52,10 @@ export default function CardResults({ movie, handleClick, handleClose }) {
                 </ScrollArea>
 
 
+            ) : (
+                <div className="mockup-code">
+                    <pre data-prefix="3" className="bg-warning text-warning-content"><code>No results found !</code></pre>
+                </div>
             )
             }
         </div>

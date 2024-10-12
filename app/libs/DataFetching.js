@@ -330,3 +330,13 @@ export async function getChangesMovies({ id }) {
   }
 
 }
+
+export async function getExternalIdMovies(id){
+  const response = await fetch(`https://api.themoviedb.org/3/movie/${id}/external_ids`,{
+    headers:headers
+  })
+  if(!response.ok){
+    throw new Error("failed to fetch data external id")
+  }
+  return response.json()
+}

@@ -1,6 +1,7 @@
 import {
     getChangesMovies,
     getCriditsMovies,
+    getExternalIdMovies,
     getImageMoviesId,
     getMoviesId,
     getMoviesNowPlaying,
@@ -34,6 +35,9 @@ import RecommendationMovies from "@/app/(movies)/Components/RecommendationMovies
 import RatingUsersMovies from "@/app/(movies)/Components/RatingUsersMovies/RatingUsersMovies"
 import ReleaseMovies from "@/app/(movies)/Components/Release/ReleaseMovies"
 import AddNewMovies from "@/app/(movies)/Components/ChangesMovies/AddNewMovies"
+import { FaFacebook, FaImdb } from "react-icons/fa"
+import { BsTwitterX } from "react-icons/bs"
+import { SlSocialInstagram } from "react-icons/sl"
 // import RecommendationMovies from "@/app/(movies)/Components/RecommendationMovies/RecommendationMovies"
 
 
@@ -66,8 +70,9 @@ export default async function DynamicMoviesList({ params }) {
     const trailer = getTrailer(id)
     const changes = getChangesMovies(id)
     const release = getReleasDateMovies(id)
+    const dataExt = getExternalIdMovies(id)
     // const personData = getPersonsId(personId)
-    const [data, similar, dataImageList, dataReview, credits, dataRecommend, dataPlaying, dataTrailer, dataChanges, dataRelease] = await Promise.all([dataLoad, similarData, dataImage, reviewData, dataCreditsId, recommendMovies, nowData, trailer, changes, release])
+    const [data, similar, dataImageList, dataReview, credits, dataRecommend, dataPlaying, dataTrailer, dataChanges, dataRelease,extData] = await Promise.all([dataLoad, similarData, dataImage, reviewData, dataCreditsId, recommendMovies, nowData, trailer, changes, release,dataExt])
 
 
     return (
@@ -82,17 +87,17 @@ export default async function DynamicMoviesList({ params }) {
             <div className="flex items-center justify-between pb-4 " >
                 <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl md:text-3xl  text-base-100 drop-shadow-[0_5px_10px_rgba(255,145,0,10.25)]">{data.original_title ? data.original_title : data.title }</h1>
             </div>
-            <div className="flex items-center justify-start gap-3 p-4 mt-4 rounded-md shadow-xl md:flex-col shadow-black/30 bg-black/30 backdrop-blur 2xl:justify-evenly">
-                <div className="relative flex flex-col items-center justify-center w-full xl:w-[50%]  ">
+            <div className="w-full flex items-center justify-start gap-3 p-4 mt-4 rounded-md shadow-xl md:flex-col shadow-black/30 bg-black/30 backdrop-blur 2xl:justify-evenly">
+                <div className=" w-[65%] flex flex-col items-center justify-center ">
 
                     <Image src={data.poster_path ?
                         `${urlImage}${data.poster_path || data.backdrop_path}`
                         :
                         no_image
                     }
-                        width={300}
-                        height={300}
-                        className="rounded-md md:h-[250px] lg:h-[290px] xl:h-[350px] "
+                        width={250}
+                        height={250}
+                        className="rounded-md  "
                         style={{ width: "auto" }}
                         priority
                         alt={data.title ? data.title : "Title image not found"} />
@@ -169,8 +174,39 @@ export default async function DynamicMoviesList({ params }) {
                             <h1 className={` text-success flex justify-start items-center gap-2  scroll-m-20 md:text-xl  text-2xl font-bold tracking-tight transition-colors first:mt-0" ${data.status ? "text-blue-500" : "text-red-800"}`}> {data.status ? data.status : "Status not found"}</h1>
                             <h2 className="text-2xl font-bold text-amber-600 scroll-m-20 md:text-lg black-shadow-text first:mt-0">Original Language :</h2>
                             <h1 className="text-2xl font-bold text-purple-500 scroll-m-20 md:text-xl first:mt-0 black-shadow-text">{data.original_language ? data.original_language : "Original language not found"}</h1>
-
                         </div>
+
+                        {/* section social media information */}
+                        <div className="flex flex-wrap items-center justify-start gap-2 mt-5 ">
+                        <strong className="text-2xl font-bold text-amber-600  md:text-lg black-shadow-text">Social Media Information : </strong>
+                        <ul className="flex items-center justify-center gap-6 ">
+                            <li className="">
+                                <Link
+                                    href={`https://www.facebook.com/${extData.facebook_id}`}
+                                    rel="noopener noreferrer"
+                                    target='_blank'
+                                    className=''
+                                >
+                                    <FaFacebook size={34} className=" hover:bg-blue-600 hover:duration-500 hover:rounded-full hover:bg-clip-content hover:scale-105" />
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href={`https://www.twitter.com/${extData.twitter_id ? extData.twitter_id : "null"}`} rel="noopener noreferrer" target='_blank'>
+                                    <BsTwitterX size={34} className="hover:bg-black md:active:scale-110 hover:duration-500 hover:bg-clip-content hover:scale-105" />
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href={`https://www.instagram.com/${extData.instagram_id ? extData.instagram_id : "null"}`} rel="noopener noreferrer" target='_blank'>
+                                    <SlSocialInstagram size={34} className="hover:bg-orange-600 md:active:scale-110  hover:duration-500 hover:rounded-xl hover:bg-clip-content hover:scale-105 " />
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href={`https://www.imdb.com/title/${extData.imdb_id ? extData.imdb_id : "null"}`} rel="noopener noreferrer" target='_blank'>
+                                    <FaImdb size={34} className="hover:bg-black md:active:scale-110  hover:duration-500 hover:bg-clip-content hover:scale-105 " />
+                                </Link>
+                            </li>
+                        </ul>
+                    </div>
                     </div>
 
                     <Separator className="mt-4" />

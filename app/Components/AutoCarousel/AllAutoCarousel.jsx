@@ -10,7 +10,7 @@ import { useRef } from "react"
 
 export default function AllAutoCarousel({ children }) {
     const plugin = useRef(
-        Autoplay({ delay: 4000, stopOnInteraction: true, playDirection: "right" })
+        Autoplay({ delay: 2500, stopOnInteraction: true, playDirection: "right" })
       )
       
       

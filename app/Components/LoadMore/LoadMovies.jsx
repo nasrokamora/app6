@@ -74,7 +74,7 @@ export default function LoadMovies() {
 
                     <div key={index} className="relative flex flex-col items-center justify-center overflow-hidden hover:scale-110 hover:duration-300">
 
-                        <Link href={`/Movies/List/${movie.id}` } rel="noopener noreferrer" >
+                        <Link href={`/Movies/List/${movie.id}` } >
 
                             <Image src={`${urlImage}/${movie.poster_path}`}
                                 alt={movie.title}
@@ -82,7 +82,7 @@ export default function LoadMovies() {
                                 height={150}
                                 style={{width:"auto"}}
                                 className="rounded-md "
-                                loading="eager"
+                                // loading="eager"
                                 priority={true}
                                 />
 

@@ -191,7 +191,7 @@ export async function getMoviesSimilar(id) {
         accept: "application/json"
       }
     }, {
-      cache: "force-store"
+      cache: "force-cache"
     })
 
     return res.json()

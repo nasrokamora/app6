@@ -39,7 +39,12 @@ import { FaFacebook, FaImdb } from "react-icons/fa"
 import { BsTwitterX } from "react-icons/bs"
 import { SlSocialInstagram } from "react-icons/sl"
 // import RecommendationMovies from "@/app/(movies)/Components/RecommendationMovies/RecommendationMovies"
-
+import { AlertCircle } from "lucide-react"
+import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+} from "@/components/ui/alert"
 
 // async function PersonData({params}) {
 //     return(
@@ -53,9 +58,11 @@ import { SlSocialInstagram } from "react-icons/sl"
 export async function generateMetadata({ params }) {
     const data = await getMoviesId(params.id)
     return {
-        title: data.title ,
+        title: data.title,
     }
 }
+
+
 
 export default async function DynamicMoviesList({ params }) {
     const { id } = params
@@ -119,7 +126,7 @@ export default async function DynamicMoviesList({ params }) {
                         Overview :
 
                     </h1>
-                    <blockquote className="pl-6 mt-6 font-semibold border-l-2 border-l-red-700 md:border-l-white md:rounded-md md:bg-zinc-800">{data.overview ? data.overview : "Overview not found"}</blockquote>
+                    <blockquote className="pl-6 mt-6 font-semibold border-l-2 border-l-red-700 md:border-l-white md:rounded-md md:bg-zinc-800">{data.overview ? data.overview : <p className=" text-error-content">"Overview not found"</p>}</blockquote>
 
                     <Separator className="mt-8" />
 
@@ -127,7 +134,7 @@ export default async function DynamicMoviesList({ params }) {
                         <h2 className=" text-amber-600 scroll-m-20 md:text-lg black-shadow-text first:mt-0">Release Date :</h2>
                         <h1 className=" tracking-tight text-gray-400  scroll-m-20 md:text-lg first:mt-0">{data.release_date ? data.release_date.replace(/-/g, "/") : "Release date not found"}</h1>
                         <h2 className=" text-amber-600 scroll-m-20 md:text-lg black-shadow-text ">Runtime :</h2>
-                        <h1 className=" text-red-300 scroll-m-20 md:text-xl first:mt-0 black-shadow-text">{data.runtime ? data.runtime : "Runtime not found"}min</h1>
+                        <h1 className=" text-red-300 scroll-m-20 md:text-xl first:mt-0 black-shadow-text">{data.runtime ? <span>{data.runtime} min</span>  : <span className=" text-error">Runtime not found</span>}</h1>
                     </div>
 
                     <Separator className="mt-4" />

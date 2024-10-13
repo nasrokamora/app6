@@ -1,5 +1,4 @@
 import { urlImageTv } from "@/app/libs/DataFetchingTv"
-import { Card, CardContent } from "@/components/ui/card"
 import {
   Carousel,
   CarouselContent,
@@ -11,7 +10,7 @@ import Image from "next/image"
 import { Suspense } from "react"
 import Link from "next/link"
 import no_image from '../../../../public/image/no_image4.webp'
-import AllAutoCarousel from "@/app/Components/AutoCarousel/AllAutoCarousel"
+
 
 export default function RecommendationMovies({dataRecommend}) {
 // console.log(dataRecommend)
@@ -35,7 +34,7 @@ const rgbDataURL = (r, g, b) =>
         <h1 className="scroll-m-20 text-2xl md:text-xl font-extrabold text-amber-600 backdrop-none  lg:text-2xl   black-shadow-text underline decoration-amber-600">Suggested Movies :</h1>
       </div>
         <div className="w-full pt-10 flex justify-center items-center relative h-fit md:mt-4">
-        <AllAutoCarousel
+        <Carousel className="w-full md:max-w-sm max-w-5xl 2xl:max-w-full " opts={{loop:true, align:"start"}}
     >
       <CarouselContent className="-mt-1 ">
         {dataRecommend && dataRecommend.length > 0 ? (
@@ -80,7 +79,7 @@ const rgbDataURL = (r, g, b) =>
       <CarouselPrevious />
       <CarouselNext />
       </div>
-    </AllAutoCarousel>
+    </Carousel>
         </div>
         </>
     )

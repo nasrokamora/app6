@@ -43,8 +43,7 @@ export default function MoviesSimilar({ similar }) {
                                                 width={250} height={180}
                                                 className=" rounded-md "
                                                 style={{ width: "auto" }}
-                                                priority={true}
-                                                loading="eager"
+                                                // priority={true}
                                                 />
                                                 </div>
                                             <div>

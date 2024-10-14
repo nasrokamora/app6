@@ -132,8 +132,6 @@ export default function TvGenres() {
                                                     alt={tv.original_name}
                                                     width={300} height={250}
                                                     className="rounded-md "
-                                                    priority
-                                                    loading="eager"
                                                     style={{ width: "auto" }}
                                                 />
                                                 <p className="flex justify-start pt-2 mb-1 font-bold ">{tv.original_name.length > 14 ? tv.original_name.slice(0, 14) + "..." : tv.original_name}</p>

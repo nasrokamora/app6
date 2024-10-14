@@ -81,9 +81,8 @@ export default function TrendingMovies() {
                                                     `https://image.tmdb.org/t/p/original${movie.poster_path}`}
                                                 alt={movie.title}
                                                 width={180} height={180}
-                                                className=" md:w-[200px]  lg:w-[200px] lg:h-[200px] xl:w-[150px] xl:h-[150px] 2xl:w-[250px] 2xl:h-[150px]  " style={{ height: "auto" }}
-                                                priority={true}
-                                                loading="eager"
+                                                className=" md:w-[200px]  lg:w-[200px] lg:h-[200px] xl:w-[150px] xl:h-[150px] 2xl:w-[250px] 2xl:h-[150px]  " 
+                                                style={{ height: "auto" }}
 
                                             />
                                             <p className=" font-bold flex justify-start  pt-2 mb-1">{movie.title.length > 14 ? movie.title.slice(0, 14) + "..." : movie.title}

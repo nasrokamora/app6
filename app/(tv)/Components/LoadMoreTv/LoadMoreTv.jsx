@@ -5,12 +5,6 @@ import { useEffect, useState } from "react"
 import InfiniteScroll from 'react-infinite-scroll-component'
 import Image from "next/image"
 import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from "@/components/ui/hover-card"
 import { urlImageTv } from "@/app/libs/DataFetchingTv"
 
 
@@ -70,7 +64,7 @@ export default function LoadMoreTv() {
         next={fetchMoreTv}
         hasMore={hasMore}
         loader={<h4 className="">Loading...</h4>}
-        endMessage={<p className="text-2xl text-center">No more movies to show</p>}
+        endMessage={<p className="text-2xl text-center">No more Tv series to show</p>}
     >
             <div className="flex items-center justify-center mt-8 text-3xl font-semibold ">
                 <h1>Explore all Tv series on Magix</h1>

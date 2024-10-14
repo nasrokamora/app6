@@ -125,6 +125,8 @@ export default function PaginationMovies() {
                                                     className="rounded-md "
                                                     draggable={false}
                                                     style={{ width: 'auto' }}
+                                                    priority
+                                                    loading="eager"
                                                 />
                                                 <p className=" pt-2 font-bold  mb-1">{movie.title.length > 11 ? movie.title.slice(0, 11) + "..." : movie.title}</p>
                                                 <div className="flex items-center justify-between w-full ">

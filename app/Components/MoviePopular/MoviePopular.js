@@ -39,7 +39,7 @@ export default  function MoviePopular({dataPopular}) {
                                     src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
                                     alt={movie.title}
                                     width={180} height={180}
-                                    className=" hover:saturate-50 hover:duration-500 rounded-md  md:w-[200px]  lg:w-[200px] lg:h-[250px] xl:w-[200px] xl:h-[150px] 2xl:w-[250px] 2xl:h-[150px]  " style={{height:"auto"}}
+                                    className=" hover:saturate-50 hover:duration-500 rounded-md  md:w-[200px]  lg:w-[200px] lg:h-[250px] xl:w-[200px] xl:h-[150px] 2xl:w-[250px] 2xl:h-[150px]  " style={{width:"auto"}}
                                     priority={true}
                                     
                                     />

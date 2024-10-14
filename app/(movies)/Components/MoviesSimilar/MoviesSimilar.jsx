@@ -43,11 +43,10 @@ export default function MoviesSimilar({ similar }) {
                                                 width={250} height={180}
                                                 className=" rounded-md "
                                                 style={{ width: "auto" }}
-                                                // priority={true}
                                                 />
                                                 </div>
                                             <div>
-                                                <h1 className=" font-bold flex justify-start  pt-2 mb-1">{movie.title.slice(0, 14) + "..."}
+                                                <h1 className=" font-bold flex justify-start  pt-2 mb-1">{movie.title.slice(0, 11) + "..."}
                                                 </h1>
                                             </div>
                                             <div className=" flex justify-between items-center w-full font-semibold">

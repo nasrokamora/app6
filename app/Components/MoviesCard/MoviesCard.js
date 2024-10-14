@@ -22,19 +22,19 @@ import Rating from "../Rated/Rating"
 
 
 export default async function MoviesCard({dataDiscoverMovies  }) {
-    const keyStr =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+//     const keyStr =
+//     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
   
-  const triplet = (e1, e2, e3) =>
-    keyStr.charAt(e1 >> 2) +
-    keyStr.charAt(((e1 & 3) << 4) | (e2 >> 4)) +
-    keyStr.charAt(((e2 & 15) << 2) | (e3 >> 6)) +
-    keyStr.charAt(e3 & 63);
+//   const triplet = (e1, e2, e3) =>
+//     keyStr.charAt(e1 >> 2) +
+//     keyStr.charAt(((e1 & 3) << 4) | (e2 >> 4)) +
+//     keyStr.charAt(((e2 & 15) << 2) | (e3 >> 6)) +
+//     keyStr.charAt(e3 & 63);
   
-  const rgbDataURL = (r, g, b) =>
-    `data:image/gif;base64,R0lGODlhAQABAPAA${
-      triplet(0, r, g) + triplet(b, 255, 255)
-    }/yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==`;
+//   const rgbDataURL = (r, g, b) =>
+//     `data:image/gif;base64,R0lGODlhAQABAPAA${
+//       triplet(0, r, g) + triplet(b, 255, 255)
+//     }/yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==`;
     return (
 
         <div className="  w-full 2xl:text-2xl h-fit xl:h-[21rem]  ">
@@ -57,13 +57,11 @@ export default async function MoviesCard({dataDiscoverMovies  }) {
                                                 }
                                                 alt="image_movies"
                                                 width={300} height={200}
-                                                priority={true}
+                                                priority={index < 6 }
                                                 className=" rounded-md  "
                                                 style={{ width: "auto" }}
                                                 draggable={false}
-                                                // loading="eager"
-                                                blurDataURL={rgbDataURL(230,242,255)}
-                                                placeholder="blur"
+                                                loading="eager"
                                             />
                                         </div>
                                         <div className="flex items-center justify-between xl:pt-4 xl:text-xl">

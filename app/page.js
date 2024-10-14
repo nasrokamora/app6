@@ -12,12 +12,15 @@ import PopularPerson from "./Components/PopularPerson/PopularPerson"
 import SelectMoviesPages from "./(movies)/Components/SelectPagesMovies/SelectPagesMovies"
 import PaginationTvShow from "./(tv)/Components/PaginationTv/PaginationTvShow"
 import PaginationMovies from "./(movies)/Components/PaginationMovies/PaginationMovies"
+import { Suspense } from "react"
 
 
 
 
 
 export default async function Home() {
+
+
 
   const data =  getDiscoverMovies()
   const popularData =  getPopularMovies()
@@ -40,7 +43,7 @@ export default async function Home() {
 
       <section className="mt-7  ">
         <div className="ml-6 md:ml-0 md:flex md:justify-center md:items-center ">
-          <h1 className="text-4xl  font-extrabold  scroll-m-20 lg:text-3xl md:mb-11">Highest <span className="text-[#00f4e1] underline decoration-[#00f4e1]">Rated</span> <span className=" md:text-center md:flex md: justify-center  md:items-center ">Movies </span> </h1>
+          <h1 className="text-4xl  font-extrabold  scroll-m-20 lg:text-3xl md:mb-11">Highest <span className="text-[#00f4e1] ">Rated</span> <span className=" md:text-center md:flex md: justify-center  md:items-center ">Movies </span> </h1>
         </div>
         <div className="bg-gradient-to-bl from-[#00f4e0] from-[20%] to-[#09090b] to-[60%] mt-7 ">
         <PaginationMovies />
@@ -53,6 +56,7 @@ export default async function Home() {
         <h1 className="">Popular on Magix</h1>
       </div>
       <section>
+
         <MoviePopular dataPopular={dataPopular} />
       </section>
 
@@ -61,7 +65,10 @@ export default async function Home() {
       </div>
 
       <section className=" mt-7">
+        <Suspense fallback={<p className=" flex justify-center items-center">Loading feed...</p>}>
+
         <GenresList />
+        </Suspense>
       </section>
 
       {/*   section Tv & series & season */}

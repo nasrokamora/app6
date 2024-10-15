@@ -8,8 +8,6 @@ import { urlImage } from "@/app/libs/DataFetching";
 export default function BgImageCover({ dataImageList}) {
     return (
         <div className=" w-full h-screen fixed overflow-hidden p-0 ml-0 left-0 blur-sm">
-
-            <div className=" ">
                 {dataImageList.backdrops.slice(0, 1).map((data) => (
                     <div key={data.file_path} className=" rounded-md relative  blur-bottom h-screen" >
                         <Image src={data.file_path ?
@@ -18,8 +16,7 @@ export default function BgImageCover({ dataImageList}) {
                             icon_magix
                         }
                             fill
-                            className="  rounded-md  "
-                            priority
+                            priority={true}
                             style={{ objectFit: "cover" }}
                             draggable={false}
                             alt={data.file_path}
@@ -27,7 +24,6 @@ export default function BgImageCover({ dataImageList}) {
                         />
                     </div>
                 ))}
-            </div>
         </div>
     )
 }

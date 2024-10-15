@@ -42,8 +42,8 @@ export default async function MoviesCredits({ credits }) {
                     <CarouselContent className="-ml-1 ">
 
                         {dataCredit && dataCredit.length > 0 ? (
-                            dataCredit.map((item) => (
-                                <CarouselItem className="md:basis-1/1 lg:basis-1/3 xl:basis-1/3 2xl:basis-1/4 " key={item.id}>
+                            dataCredit.map((item,index) => (
+                                <CarouselItem className="md:basis-1/1 lg:basis-1/3 xl:basis-1/3 2xl:basis-1/4 " key={item.credit_id}>
                                     <div>
                                         <Card className=" xl:aspect-[3/2]  shadow-md  overflow-hidden aspect-auto border-r bg-black/30 backdrop-blur">
                                             <CardHeader >

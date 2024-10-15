@@ -1,3 +1,5 @@
+"use server"
+
 import {
     getChangesMovies,
     getCriditsMovies,
@@ -223,12 +225,12 @@ export default async function DynamicMoviesList({ params }) {
                         <ReleaseMovies dataRelease={dataRelease} />
                     </div> */}
 
-                    <Separator className="mt-4" />
+
 
                     {/* section Rating Users */}
-                    <div>
+                    {/* <div>
                         <RatingUsersMovies id={data.id} />
-                    </div>
+                    </div> */}
 
                 </div>
             </div>

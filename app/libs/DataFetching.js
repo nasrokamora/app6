@@ -129,18 +129,7 @@ export async function getCriditsMovies(id) {
 }
 
 
-export async function getPersonsId(personId) {
-  try {
-    const response = await fetch(`https://api.themoviedb.org/3/person/${personId}`, {
-      headers: headers
-    }
-    )
-    return response.json()
 
-  } catch (error) {
-    return console.log(error, "failed to fetch data Person Id")
-  }
-}
 export async function getCreditsId(credit_id) {
   try {
     const res = await fetch(`https://api.themoviedb.org/3/credit/${credit_id}`, {
@@ -310,7 +299,18 @@ export async function getTrailer(id) {
   }
 }
 
+export async function getPersonId(person_id) {
+  try {
+    const response = await fetch(`https://api.themoviedb.org/3/person/${person_id}`, {
+      headers: Headers,
+    }
+    )
+    return response.json()
 
+  } catch (error) {
+    return console.log(error, "failed to fetch data Person Id")
+  }
+}
 // get New Movies add 
 
 export async function getChangesMovies({ id }) {

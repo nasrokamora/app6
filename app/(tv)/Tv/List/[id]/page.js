@@ -93,7 +93,7 @@ export default async function DynamicTvListPage({ params }) {
                     />
                     <div className="flex items-center justify-center w-full gap-6 mt-6 ">
 
-                        <TrailerTv dataVideos={dataVideosTv.results.slice(0, 1)} />
+                        <TrailerTv dataVideos={dataVideosTv && dataVideosTv.results.length > 0 ? dataVideosTv.results.slice(0, 1) : []} />
                         <Link href={detailTv.homepage} target="_blank" rel="noopener noreferrer">
 
                             <MdOutlineTransitEnterexit size={52} className="text-[#f8ea25] hover:scale-110 duration-300 cursor-pointer" />

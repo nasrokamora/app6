@@ -1,4 +1,4 @@
-import { getPersonsId, urlImage } from "@/app/libs/DataFetching"
+import { getPersonId, urlImage } from "@/app/libs/DataFetching"
 import {
     Alert,
     AlertDescription,
@@ -20,7 +20,7 @@ import {
 
 
 export default async function PersonDetails({ person_id }) {
-    const data = await getPersonsId(person_id)
+    const data = await getPersonId(person_id)
   
     //error handling
     if (!data) return <Alert variant="destructive">

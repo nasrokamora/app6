@@ -25,6 +25,8 @@ import {
     AvatarImage,
 } from "@/components/ui/avatar"
 import CreditsId from "./CreditsId"
+import { buttonVariants } from "@/components/ui/button"
+import Link from "next/link"
 
 
 export default async function MoviesCredits({ credits }) {
@@ -69,8 +71,12 @@ export default async function MoviesCredits({ credits }) {
                                                 </CardDescription>
 
                                             </CardHeader>
-                                            <CardContent>
+                                            <CardContent className=" flex justify-between ">
                                                 <CreditsId credit_id={item.credit_id } />
+                                                <Link href={`/Movies/Person/${item.id}`} className=" border border-zinc-600 px-3 bg-black text-white font-semibold hover:duration-500 hover:bg-zinc-700 rounded-md">
+                                                More...
+                                                </Link>
+
                                             </CardContent>
                                         </Card>
                                     </div>

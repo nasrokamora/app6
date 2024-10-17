@@ -302,7 +302,7 @@ export async function getTrailer(id) {
 export async function getPersonId(person_id) {
   try {
     const response = await fetch(`https://api.themoviedb.org/3/person/${person_id}`, {
-      headers: Headers,
+      headers: headers,
     }
     )
     return response.json()

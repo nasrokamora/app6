@@ -16,13 +16,12 @@ import {
   AlertTitle,
 } from "@/components/ui/alert"
 import { AlertCircle } from "lucide-react"
+
 export default function RecommendationTv({dataRecommend}) {
 // console.log(dataRecommend)
 
 
     return(
-      <Suspense fallback={<p className=" flex justify-center items-center">Loading feed...</p>}>
-
         <div className="w-full pt-10 flex justify-center items-center relative h-fit md:mt-4">
         <Carousel
       opts={{
@@ -39,16 +38,11 @@ export default function RecommendationTv({dataRecommend}) {
                 <div className=" ">
                     <div className=" overflow-hidden relative">
                         <Image 
-                        src={data.poster_path ?
-                          `${urlImageTv}${data.poster_path}`
-                        :
-                        no_image
-                        }
+                        src={data.poster_path ? `${urlImageTv}${data.poster_path}`: no_image}
                         alt={data.name}
                         width={300}
                         height={250}
-                        style={{width:"auto"}}
-                        className="rounded-md "
+                        style={{width:"auto",borderRadius:"2px"}}
                         loading="eager"
                         priority
                         />
@@ -75,6 +69,6 @@ export default function RecommendationTv({dataRecommend}) {
       </div>
     </Carousel>
         </div>
-        </Suspense>
+
     )
 }

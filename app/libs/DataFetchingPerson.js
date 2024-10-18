@@ -53,7 +53,7 @@ export async function getExternelIdsPerson(personId){
 }
 export async function getCombinedCreditPerson(personId) {
     try {
-        const response = await fetch(`https://api.themoviedb.org/3/person/${id}/combined_credits`, {
+        const response = await fetch(`https://api.themoviedb.org/3/person/${personId}/combined_credits`, {
             headers: Headers
         })
         if(!response.ok){
@@ -64,4 +64,3 @@ export async function getCombinedCreditPerson(personId) {
         return console.log(error, "failed to fetch data Person")
     }
 }
-

@@ -3,13 +3,15 @@
 import LoadMoreTv from "../Components/LoadMoreTv/LoadMoreTv";
 
 
+export const metadata = {
+    title:'Tv series'
+}
 
 
 
 
 
-
-export default async function Tv() {
+export default function Tv() {
 
 
     return(

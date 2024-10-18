@@ -35,11 +35,11 @@ export default function PopularPerson({ dataPersonPopular }) {
         <div className="  flex justify-center items-center w-full h-auto mt-7 md:mt-12">
 
 
-            <Carousel className='w-full max-w-5xl md:max-w-sm 2xl:max-w-full' opts={{ loop: true, align: 'center' }} >
+            <Carousel className='w-full max-w-5xl md:max-w-sm 2xl:max-w-full' opts={{ loop: true, align: 'start' }} >
                 <CarouselContent className='-ml-1'>
                     {dataPersonPopular && dataPersonPopular.length > 0 ? (
                         dataPersonPopular.map((person) => (
-                            <CarouselItem key={person.id} className="md:basis-1/2 basis-1/6 lg:basis-1/5 2xl:basis-1/6">
+                            <CarouselItem key={person.id} className="md:basis-1/2 basis-1/6 lg:basis-1/6 2xl:basis-1/6">
 
                                         <Card className=" flex flex-col justify-center w-full font-bold border-none md:mt-6">
                                
@@ -49,7 +49,7 @@ export default function PopularPerson({ dataPersonPopular }) {
                                                 <div className=" relative ">
                                                     <Image src={`${urlImage}${person.profile_path}`}
                                                         alt={person.name}
-                                                        width={200}
+                                                        width={150}
                                                         height={150}
                                                         priority={true}
                                                         className="rounded-md"

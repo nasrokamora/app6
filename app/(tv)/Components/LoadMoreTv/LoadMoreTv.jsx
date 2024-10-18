@@ -69,7 +69,7 @@ export default function LoadMoreTv() {
             <div className="flex items-center justify-center mt-8 text-3xl font-semibold ">
                 <h1>Explore all Tv series on Magix</h1>
             </div>
-        <div className="grid grid-cols-6 gap-8 p-8 md:grid-cols-3 lg:grid-cols-4">
+        <div className="grid grid-cols-6 gap-8 p-8 md:grid-cols-3 lg:grid-cols-5">
             {dataTv.map((tv,index) => (
 
                 <div key={`${tv.id}-${index}`} className="relative flex flex-col items-center justify-center overflow-hidden hover:scale-110 hover:duration-300">
@@ -86,7 +86,7 @@ export default function LoadMoreTv() {
                             loading="eager"
 
                             />
-                        <h1 className="font-bold ">
+                        <h1 className="font-bold  md:hidden">
                             {tv.name.length > 10 ? tv.name.slice(0, 10) + "..." : tv.name}
                         </h1>
 

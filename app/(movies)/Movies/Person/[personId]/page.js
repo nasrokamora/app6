@@ -25,6 +25,7 @@ import { LiaImdb } from "react-icons/lia";
 import { SlSocialInstagram } from "react-icons/sl"
 import { BsFacebook, BsTwitterX, BsYoutube } from "react-icons/bs"
 import { SiImdb } from "react-icons/si";
+import CombinedCreditsPerson from "@/app/(person)/Components/CombinedCredits/CombinedCreditsPerson"
 
 
 
@@ -141,10 +142,7 @@ export default async function Person({ params }) {
 
                             {/* combibed Credits */}
                         <div>
-                                <h2>Known for:</h2>
-                                <div>
-
-                                </div>
+                            <CombinedCreditsPerson dataCombined={dataCombined}  />
                             </div>
                     </div>
                 </div>

@@ -13,7 +13,7 @@ import { FaRegStar } from "react-icons/fa6"
 export default function TvSeries({ dataTv }) {
 
     return (
-        <div className=" mt-10 flex justify-center w-full bg-gradient-to-br from-[black] to-[#318ffa] p-6 2xl:text-lg ">
+        <div className=" mt-12 flex justify-center w-full bg-gradient-to-br from-[black] to-[#318ffa] p-6 2xl:text-lg ">
             <Carousel opts={{
                 align: "center",
                 loop: true,

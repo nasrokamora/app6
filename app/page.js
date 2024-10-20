@@ -32,8 +32,8 @@ export default async function Home() {
   return (
     <main className={`w-full h-auto text-white `}>
       <AnimateScroll />
-      <div className={`scroll-m-20 text-4xl  tracking-tight lg:text-3xl ml-6  title font-extrabold md:flex md:justify-center md:items-center   mt-7 md:mt-3 text-red-700 `}>
-        <h1 className={styles.effect}>Discover on Magix</h1>
+      <div className={`scroll-m-20 text-4xl  tracking-tight lg:text-3xl ml-6 md:ml-0  title font-extrabold md:flex md:justify-center md:items-center   mt-7 md:mt-3 text-red-700 `}>
+        <h1 className={'md:text-3xl md:flex md:justify-center md:items-center md:ml-0'}>Discover on Magix</h1>
       </div>
 
       <section className="flex justify-center w-full mt-7">
@@ -60,8 +60,8 @@ export default async function Home() {
         <MoviePopular dataPopular={dataPopular} />
       </section>
 
-      <div className="ml-6  mt-7">
-        <h1 className="text-4xl font-extrabold  scroll-m-20 lg:text-3xl">Explore by Genres</h1>
+      <div className="ml-6 md:ml-0 mt-7 md:flex md:justify-center md:items-center">
+        <h1 className="text-4xl font-extrabold  scroll-m-20 lg:text-3xl md:text-3xl">Explore by Genres</h1>
       </div>
 
       <section className=" mt-7">
@@ -72,9 +72,9 @@ export default async function Home() {
       </section>
 
       {/*   section Tv & series & season */}
-      <div className="ml-6  mt-7">
-        <h1 className="text-4xl font-extrabold  scroll-m-20 lg:text-3xl">
-          Must-Watch TV Shows
+      <div className="ml-6 md:ml-0  mt-7 md:flex md:justify-center md:items-center ">
+        <h1 className="text-4xl font-extrabold  scroll-m-20 lg:text-3xl md:text-2xl ">
+        <span className=" text-[#1977cd]">Must-Watch</span>   TV Shows
         </h1>
       </div>
       <section className="mt-7">
@@ -83,7 +83,7 @@ export default async function Home() {
 
       </section>
 
-      <div className=" ml-6   scroll-m-20 text-4xl font-extrabold  lg:text-3xl   md:flex md:justify-center md:items-center items-center mt-14 lg:mt-11 md:mt-3">
+      <div className=" ml-6   scroll-m-20 text-4xl font-extrabold  lg:text-3xl   md:flex md:justify-center md:items-center items-center mt-14 lg:mt-11 md:text-3xl md:ml-0 md:mt-5">
         <h1 className="">
         TV Shows by Genre
         </h1>

@@ -49,7 +49,7 @@ export default async function Person({ params }) {
     const ExtDataPerson = getExternelIdsPerson(personId)
     const combinedCredits = getCombinedCreditPerson(personId)
     const [dataPerson, personDetails, ImagePerson, dataExtPerson, dataCombined] = await Promise.all([personData, detailsPerson, dataImagePerson, ExtDataPerson, combinedCredits])
-    console.log(dataCombined)
+    // console.log(dataCombined)
     return (
         <div className="w-full h-auto mt-7 pl-6 pr-6">
             <ToggleButton />
@@ -69,7 +69,7 @@ export default async function Person({ params }) {
                     </div>
 
                 </div>
-                <div className=' pt-3 flex justify-start gap-3 items-start '>
+                <div className=' pt-3 flex justify-start gap-3 items-start md:flex-col'>
 
                     {/* image */}
                     <div className=" relative w-max h-max ">
@@ -108,7 +108,7 @@ export default async function Person({ params }) {
                         )}
 
                         {/* External Ids */}
-                        <div className="lg:text-xl xl:text-2xl 2xl:text-2xl pt-3 flex gap-2 items-center">
+                        <div className="lg:text-xl text-2xl pt-3 flex gap-2 items-center">
                             <h1 className="font-bold border-l pl-2 border-yellow-600">Social Media:</h1>
                             <div className=" flex justify-start gap-2">
 
@@ -142,7 +142,7 @@ export default async function Person({ params }) {
 
                             {/* combibed Credits */}
                         <div>
-                            <CombinedCreditsPerson dataCombined={dataCombined}  />
+                            <CombinedCreditsPerson dataCombined={dataCombined.cast}  />
                             </div>
                     </div>
                 </div>

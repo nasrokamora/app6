@@ -14,7 +14,7 @@ export default function ImageList({ dataImageList }) {
 
     return (
 
-        <ScrollArea className=" bg-black/30 backdrop-blur border-none w-full whitespace-nowrap rounded-md border md:w-2/3 lg:w-3/4 xl:w-4/5 transition-none">
+        <ScrollArea className=" bg-black/30 backdrop-blur border-none w-full whitespace-nowrap rounded-md border md:w-2/3 lg:w-3/4 xl:w-4/5 ">
             <div className="flex w-max space-x-4 p-4">
                 {/* scroll image content */}
                 {dataImageList.backdrops && dataImageList.backdrops.length > 0 ? (

@@ -24,20 +24,20 @@ export default function CombinedCreditsPerson({dataCombined}) {
             <h1 className="font-bold border-l pl-2 border-yellow-600">Known For:</h1>
         </div>
 
-        <ScrollArea className="max-w-2xl whitespace-nowrap   md:max-w-xs">
-            <div className="flex gap-4 max-w-5xl justify-start">
+        <ScrollArea className="max-w-3xl whitespace-nowrap   md:max-w-sm">
+            <div className="flex gap-4 max-w-4xl lg:max-w-3xl justify-start">
 
     {dataCombined && dataCombined.length > 0 ? (
         dataCombined.map((item, index) => (
             
-            <Card className="" key={index - item.id}>
+            <Card className=" " key={index - item.id}>
         <CardHeader>
         <CardTitle>{item.title ? item.title : item.name}</CardTitle>
         <CardDescription> {item.release_date ? item.release_date : item.first_air_date} </CardDescription>
             <CardContent className=" flex justify-start gap-2 ">
-                <div className=" overflow-hidden relative ">
+                <div className=" ">
                     <Image src={item.poster_path ? `https://image.tmdb.org/t/p/original${item.poster_path}` : `https://image.tmdb.org/t/p/original${item.backdrop_path}`} 
-                    alt={item.poster_path} 
+                    alt={item.title ? item.title : item.name || "No Title"} 
                     width={100} 
                     height={100}
                     priority 

@@ -1,4 +1,3 @@
-import ToggleButton from "@/app/(movies)/Components/ToggleButton/ToggleButton"
 
 import {
     Card,
@@ -11,9 +10,8 @@ import {
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 import Link from "next/link"
 import Image from "next/image"
-import no_image from '../../../../../public/image/no_image4.webp'
+import no_image from '../../../../public/image/no_image4.webp'
 import { getCombinedCreditPerson, getExternelIdsPerson, getPersonsId, getPersonsImage, urlImagesPerson } from "@/app/libs/DataFetchingPerson"
-import PopularPersonDetails from "@/app/Components/PersonPopular/PopularPersonDetails"
 import { getPersonPopular } from "@/app/libs/DataFetching"
 import {
     Accordion,
@@ -25,9 +23,18 @@ import { LiaImdb } from "react-icons/lia";
 import { SlSocialInstagram } from "react-icons/sl"
 import { BsFacebook, BsTwitterX, BsYoutube } from "react-icons/bs"
 import { SiImdb } from "react-icons/si";
-import CombinedCreditsPerson from "@/app/(person)/Components/CombinedCredits/CombinedCreditsPerson"
+import CombinedCreditsPerson from "../../Components/CombinedCredits/CombinedCreditsPerson"
+import PopularPersonDetails from "@/app/Components/PersonPopular/PopularPersonDetails"
+import ToggleButton from "@/app/(movies)/Components/ToggleButton/ToggleButton"
 
 
+export async function generateMetadata({ params }) {
+    const { personId } = params
+    const data = await getPersonsId(personId)
+    return {
+        title: data.title ? data.title : data.name || "Person Details",
+    }
+}
 
 
 
@@ -69,19 +76,20 @@ export default async function Person({ params }) {
                     </div>
 
                 </div>
-                <div className=' pt-3 flex justify-start gap-3 items-start md:flex-col'>
+                <div className=' pt-3 flex justify-start gap-3  w-full md:flex-col '>
 
                     {/* image */}
-                    <div className=" relative w-max h-max ">
+                    <div className="   overflow-hidden relative">
                         <Image
                             src={personDetails.profile_path ? `${urlImagesPerson}${personDetails.profile_path}` : no_image}
-                            alt={personDetails.name}
                             priority
-                            width={250} height={250}
-                            className="rounded-md h-auto w-auto z-10"
+                            width={250} height={150}
+                            className="rounded-md "
+                            style={{ width: 'auto' }}
+                            alt={personDetails.name ? personDetails.name : personDetails.title || "Person Details"}
                         />
                     </div>
-                    <div>
+                    <div className="w-full flex flex-col justify-start items-start flex-wrap">
                         {/* date of birth */}
                         <div className="flex gap-2 justify-start items-center lg:text-xl xl:text-2xl 2xl:text-2xl flex-wrap">
                             <h1 className="font-bold border-l pl-2 border-yellow-600">Date of Birth:</h1>
@@ -89,9 +97,9 @@ export default async function Person({ params }) {
                         </div>
 
                         {/* place of birth */}
-                        <div className="flex gap-2 justify-start items-center lg:text-xl xl:text-2xl 2xl:text-2xl pt-3">
+                        <div className="flex gap-2 justify-start items-center flex-wrap lg:text-xl xl:text-2xl 2xl:text-2xl pt-3">
                             <h1 className="font-bold border-l pl-2 border-yellow-600"> Place of Birth: </h1>
-                            <p className="font-semibold">{personDetails.place_of_birth? personDetails.place_of_birth : <span className="text-red-700">Unknown!</span>}</p>
+                            <p className="font-semibold">{personDetails.place_of_birth ? personDetails.place_of_birth : <span className="text-red-700">Unknown!</span>}</p>
                         </div>
 
                         {/* known for department */}
@@ -108,31 +116,31 @@ export default async function Person({ params }) {
                         )}
 
                         {/* External Ids */}
-                        <div className="lg:text-xl text-2xl pt-3 flex gap-2 items-center">
-                            <h1 className="font-bold border-l pl-2 border-yellow-600">Social Media:</h1>
+                        <div className=" pt-3 flex gap-2 items-center">
+                            <h1 className="font-bold border-l pl-2 border-yellow-600 lg:text-xl xl:text-2xl 2xl:text-2xl ">Social Media:</h1>
                             <div className=" flex justify-start gap-2">
 
 
                                 <ul className=" flex justify-start gap-3 items-center list-none">
 
                                     <li>
-                                        <Link href={dataExtPerson.imdb_id ? `https://www.imdb.com/title/${dataExtPerson.imdb_id}` : "https://www.imdb.com/title/"} target="_blank"><SiImdb /></Link>
+                                        <Link href={dataExtPerson.imdb_id ? `https://www.imdb.com/title/${dataExtPerson.imdb_id}` : "https://www.imdb.com/title/"} target="_blank"><SiImdb size={20} /></Link>
                                     </li>
                                     <li>
-                                        <Link href={dataExtPerson.instagram_id ? `https://www.instagram.com/${dataExtPerson.instagram_id}/` : "https://www.instagram.com/"} target="_blank"><SlSocialInstagram /></Link>
+                                        <Link href={dataExtPerson.instagram_id ? `https://www.instagram.com/${dataExtPerson.instagram_id}/` : "https://www.instagram.com/"} target="_blank"><SlSocialInstagram size={20} /></Link>
                                     </li>
                                     <li>
-                                        <Link href={dataExtPerson.twitter_id ? `https://twitter.com/${dataExtPerson.twitter_id}` : "https://twitter.com/"} target="_blank"><BsTwitterX /></Link>
+                                        <Link href={dataExtPerson.twitter_id ? `https://twitter.com/${dataExtPerson.twitter_id}` : "https://twitter.com/"} target="_blank"><BsTwitterX size={20} /></Link>
                                     </li>
                                     <li>
-                                        <Link href={dataExtPerson.facebook_id ? `https://www.facebook.com/${dataExtPerson.facebook_id}` : "https://www.facebook.com/"} target="_blank"><BsFacebook /></Link>
+                                        <Link href={dataExtPerson.facebook_id ? `https://www.facebook.com/${dataExtPerson.facebook_id}` : "https://www.facebook.com/"} target="_blank"><BsFacebook size={20} /></Link>
                                     </li>
                                     <li>
-                                        <Link href={dataExtPerson.youtube_id ? `https://www.youtube.com/channel/${dataExtPerson.youtube_id}` : "https://www.youtube.com"} target="_blank"><BsYoutube /></Link>
+                                        <Link href={dataExtPerson.youtube_id ? `https://www.youtube.com/channel/${dataExtPerson.youtube_id}` : "https://www.youtube.com"} target="_blank"><BsYoutube size={20} /></Link>
                                     </li>
                                 </ul>
                             </div>
- 
+
 
 
 
@@ -140,18 +148,25 @@ export default async function Person({ params }) {
 
                         </div>
 
-                            {/* combibed Credits */}
+                        <div className="pt-3">
+
+                <Accordion type="single" collapsible className="  border-l pl-6  border-yellow-600 lg:text-xl xl:text-2xl 2xl:text-2xl">
+                    <AccordionItem value="item-1">
+                        <AccordionTrigger>Biography</AccordionTrigger>
+                        <AccordionContent className="italic font-semibold">
+                        {personDetails.biography}
+                        </AccordionContent>
+                    </AccordionItem>
+                </Accordion>
+            </div>
+                        {/* combibed Credits */}
                         <div>
-                            <CombinedCreditsPerson dataCombined={dataCombined.cast}  />
-                            </div>
+                            <CombinedCreditsPerson dataCombined={dataCombined.cast} />
+                        </div>
                     </div>
                 </div>
                 {/* biography */}
-                <div className="pt-3 ">
-                    <h1 className="font-bold border-l pl-2 border-yellow-600 lg:text-xl xl:text-2xl 2xl:text-2xl ">Biography:</h1>
-                    <blockquote className="mt-6 border-l-2 pl-6 italic font-semibold"> {personDetails.biography} </blockquote>
-                </div>
-            </div>
+                        </div>
 
             <PopularPersonDetails dataPerson={dataPerson.results} />
         </div>

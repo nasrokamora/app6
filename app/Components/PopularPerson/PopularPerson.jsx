@@ -43,7 +43,7 @@ export default function PopularPerson({ dataPersonPopular }) {
 
                                         <Card className=" flex flex-col justify-center w-full font-bold border-none md:mt-6">
                                
-                                    <Link href={`/Movies/Person/${person.id}`} className="hover:scale-90 hover:duration-500 md:active:scale-90">
+                                    <Link href={`/Person/${person.id}`} className="hover:scale-90 hover:duration-500 md:active:scale-90">
 
 
                                                 <div className=" relative ">

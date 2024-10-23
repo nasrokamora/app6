@@ -76,20 +76,20 @@ export default async function Person({ params }) {
                     </div>
 
                 </div>
-                <div className=' pt-3 flex justify-start gap-3  w-full md:flex-col '>
+                <div className=' pt-3 flex justify-start gap-2  w-full  '>
 
                     {/* image */}
-                    <div className="   overflow-hidden relative">
+                    <div className=" w-max ">
                         <Image
                             src={personDetails.profile_path ? `${urlImagesPerson}${personDetails.profile_path}` : no_image}
                             priority
                             width={250} height={150}
-                            className="rounded-md "
+                            className="rounded-md md:w-[100px] md:h-[250px] "
                             style={{ width: 'auto' }}
                             alt={personDetails.name ? personDetails.name : personDetails.title || "Person Details"}
                         />
                     </div>
-                    <div className="w-full flex flex-col justify-start items-start flex-wrap">
+                    <div className="w-full flex-col h-auto flex justify-start items-start">
                         {/* date of birth */}
                         <div className="flex gap-2 justify-start items-center lg:text-xl xl:text-2xl 2xl:text-2xl flex-wrap">
                             <h1 className="font-bold border-l pl-2 border-yellow-600">Date of Birth:</h1>
@@ -97,14 +97,14 @@ export default async function Person({ params }) {
                         </div>
 
                         {/* place of birth */}
-                        <div className="flex gap-2 justify-start items-center flex-wrap lg:text-xl xl:text-2xl 2xl:text-2xl pt-3">
+                        <div className="flex gap-1 justify-start items-center flex-wrap lg:text-xl xl:text-2xl 2xl:text-2xl pt-3">
                             <h1 className="font-bold border-l pl-2 border-yellow-600"> Place of Birth: </h1>
-                            <p className="font-semibold">{personDetails.place_of_birth ? personDetails.place_of_birth : <span className="text-red-700">Unknown!</span>}</p>
+                            <p className="font-semibold ">{personDetails.place_of_birth ? personDetails.place_of_birth : <span className="text-red-700">Unknown!</span>}</p>
                         </div>
 
                         {/* known for department */}
                         {personDetails.known_for_department ? (
-                            <div className="flex gap-2 justify-start items-center lg:text-xl xl:text-2xl 2xl:text-2xl pt-3">
+                            <div className="flex gap-2 justify-start items-center lg:text-xl xl:text-2xl 2xl:text-2xl pt-3 md:flex-wrap">
 
                                 <h1 className="font-bold border-l pl-2 border-yellow-600">
                                     Known for department:
@@ -121,7 +121,7 @@ export default async function Person({ params }) {
                             <div className=" flex justify-start gap-2">
 
 
-                                <ul className=" flex justify-start gap-3 items-center list-none">
+                                <ul className=" flex justify-start gap-3 items-center list-none flex-wrap">
 
                                     <li>
                                         <Link href={dataExtPerson.imdb_id ? `https://www.imdb.com/title/${dataExtPerson.imdb_id}` : "https://www.imdb.com/title/"} target="_blank"><SiImdb size={20} /></Link>
@@ -160,9 +160,9 @@ export default async function Person({ params }) {
                 </Accordion>
             </div>
                         {/* combibed Credits */}
-                        <div>
+                        {/* <div>
                             <CombinedCreditsPerson dataCombined={dataCombined.cast} />
-                        </div>
+                        </div> */}
                     </div>
                 </div>
                 {/* biography */}

@@ -84,8 +84,8 @@ export default async function Person({ params }) {
                             src={personDetails.profile_path ? `${urlImagesPerson}${personDetails.profile_path}` : no_image}
                             priority
                             width={250} height={150}
-                            className="rounded-md md:w-[100px] md:h-[250px] "
-                            style={{ width: 'auto' }}
+                            className="rounded-md   md:h-[250px] "
+                            style={{ height: 'auto' }}
                             alt={personDetails.name ? personDetails.name : personDetails.title || "Person Details"}
                         />
                     </div>

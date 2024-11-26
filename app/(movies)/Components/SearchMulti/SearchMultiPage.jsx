@@ -63,7 +63,7 @@ export default function SearchMultiPage() {
                     <SheetHeader>
                         <SheetTitle>Explorer Movies on Magix</SheetTitle>
                         <SheetDescription>
-                            Search for your favorite movies.
+                            Search for your favorite movies and series.
                         </SheetDescription>
                     </SheetHeader>
                     <main className="  py-2 w-full" onClick={() => handleClose()} >

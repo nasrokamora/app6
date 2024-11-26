@@ -26,11 +26,11 @@ export async function getDiscoverMovies() {
     }
     return res.json()
   } catch (error) {
-    if(process.env.NODE_ENV !== "production"){
+    if (process.env.NODE_ENV !== "production") {
       console.error(error, "failed to fetch data discover")
     }
     return { error: true, message: error.message };
-    
+
   }
 
 }
@@ -46,13 +46,13 @@ export async function getMoviesId(id) {
         }
       })
 
-      if(!response.ok){
-        throw new Error('failed to fetch data id')
-      }
+    if (!response.ok) {
+      throw new Error('failed to fetch data id')
+    }
     return response.json()
 
   } catch (error) {
-    if(process.env.NODE_ENV !== "production"){
+    if (process.env.NODE_ENV !== "production") {
       console.error(error, "failed to fetch data id")
     }
     return { error: true, message: error.message };
@@ -69,7 +69,7 @@ export async function getReleasDateMovies({ id }) {
     })
     return response.json()
   } catch (error) {
-    if(process.env.NODE_ENV !== "production"){
+    if (process.env.NODE_ENV !== "production") {
       console.error(error, "failed to fetch data release")
     }
     return { error: true, message: error.message };
@@ -83,8 +83,8 @@ export async function getReleasDateMovies({ id }) {
 //Popular Movies
 export async function getPopularMovies() {
   try {
-    const response = await fetch(`${process.env.TMDB_BASE_URL}/movie/popular?page=2`,{
-      headers:headers
+    const response = await fetch(`${process.env.TMDB_BASE_URL}/movie/popular?page=2`, {
+      headers: headers
     },
       {
         next: {
@@ -94,39 +94,25 @@ export async function getPopularMovies() {
     return response.json()
 
   } catch (error) {
-    if(process.env.NODE_ENV !== "production"){
+    if (process.env.NODE_ENV !== "production") {
       console.error(error, "failed to fetch data popular")
     }
-    return {error: true, message: error.message};
+    return { error: true, message: error.message };
   }
 }
 
-// By Genres Movies
-export async function getGenres() {
-  const response = await fetch(`${process.env.TMDB_BASE_URL}/genre/movie/list`,
-    {
-      headers: {
-        Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
-      },
-    }
-  );
-  if (!response.ok) {
-    throw new Error("failed to fetch dataGenres");
-  }
-  return response.json();
-}
 
 export async function getImageMoviesId(id) {
   try {
     const res = await fetch(`${process.env.TMDB_BASE_URL}/movie/${id}/images`, {
       headers: headers
-    }, 
-    { 
-      cache: "force-cache" 
-    })
+    },
+      {
+        cache: "force-cache"
+      })
     return res.json()
   } catch (error) {
-    if(process.env.NODE_ENV !== "production"){
+    if (process.env.NODE_ENV !== "production") {
       console.error(error, "failed to fetch data image")
     }
   }
@@ -143,7 +129,7 @@ export async function getCriditsMovies(id) {
     })
     return res.json()
   } catch (error) {
-    if(process.env.NODE_ENV !== "production"){
+    if (process.env.NODE_ENV !== "production") {
       console.error(error, "failed to fetch data Credits Movies")
     }
     return { error: true, message: error.message };
@@ -189,9 +175,9 @@ export async function getReviewsMovies(id) {
     return res.json()
 
   } catch (error) {
-   if(process.env.NODE_ENV !== "production"){
-    console.error(error, "failed to fetch data Reviews Movies")
-   }
+    if (process.env.NODE_ENV !== "production") {
+      console.error(error, "failed to fetch data Reviews Movies")
+    }
     return { error: true, message: error.message };
   }
 }
@@ -211,7 +197,7 @@ export async function getMoviesSimilar(id) {
     return res.json()
 
   } catch (error) {
-    if(process.env.NODE_ENV !== "production"){
+    if (process.env.NODE_ENV !== "production") {
       console.error(error, "failed to fetch data Similar Movies")
     }
     return { error: true, message: error.message };
@@ -234,7 +220,7 @@ export async function getTrendingMovies() {
 
     return res.json()
   } catch (error) {
-    if(process.env.NODE_ENV !== "production"){
+    if (process.env.NODE_ENV !== "production") {
       console.error(error, "failed to fetch data Trending Movies")
     }
     return { error: true, message: error.message }
@@ -256,7 +242,7 @@ export async function getRecommendationMovies(id) {
     return response.json()
 
   } catch (error) {
-    if(process.env.NODE_ENV !== "production"){
+    if (process.env.NODE_ENV !== "production") {
       console.error(error, "failed to fetch data Recommendation")
     }
     return { error: true, message: error.message }
@@ -279,7 +265,7 @@ export async function getMoviesNowPlaying() {
     })
     return res.json()
   } catch (error) {
-    if(process.env.NODE_ENV !== "production"){
+    if (process.env.NODE_ENV !== "production") {
       console.error(error, "failed to fetch data Now Playing")
     }
     return { error: true, message: error.message }
@@ -301,7 +287,7 @@ export async function getPersonPopular() {
 
     return response.json()
   } catch (error) {
-    if(process.env.NODE_ENV !== "production"){
+    if (process.env.NODE_ENV !== "production") {
       console.error(error, "failed to fetch data Person")
     }
     return { error: true, message: error.message }
@@ -343,12 +329,19 @@ export async function getPersonId(person_id) {
   }
 }
 
-export async function getExternalIdMovies(id){
-  const response = await fetch(`${process.env.TMDB_BASE_URL}/movie/${id}/external_ids`,{
-    headers:headers
-  })
-  if(!response.ok){
-    throw new Error("failed to fetch data external id")
+export async function getExternalIdMovies(id) {
+  try {
+    const response = await fetch(`${process.env.TMDB_BASE_URL}/movie/${id}/external_ids`, {
+      headers: headers
+    })
+    if (!response.ok) {
+      throw new Error("failed to fetch data external id")
+    }
+    return response.json()
+  } catch (error) {
+    if (process.env.NODE_ENV !== "production") {
+      console.log(error, 'failed to fetch data external id')
+    }
+    return { error: true, message: error.message }
   }
-  return response.json()
 }

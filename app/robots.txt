@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /home
+Allow: /Movies
+Allow: /Tv
+Allow: /Movies/List/
+Allow: /Movies/Person/
+
+Disallow: /login
+Disallow: /admin

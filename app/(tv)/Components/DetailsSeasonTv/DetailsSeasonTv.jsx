@@ -18,7 +18,7 @@ import {
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 import Link from "next/link"
 import BlurFade from "@/components/ui/blur-fade"
-
+import no_image from '../../../../public/image/no_image4.webp'
 
 
 
@@ -27,7 +27,7 @@ export default function DetailsSeasonTv({ season, id }) {
     const sortSeason = season.sort((a, b) => a.season_number - b.season_number)
     return (
         <div className="w-full">
-            <div className="  mt-5 flex justify-center items-center w-full bg-gradient-to-r from-[#0d61e7] via-[#000000] to-[#0d61e7] bg-[length:200%_auto]  animate-gradient rounded-md">
+            <div className="  mt-5 flex justify-center items-center w-full rounded-md ">
 
                 <ScrollArea className="whitespace-nowrap rounded-md xl:max-w-5xl w-full  ">
                     <div className="w-max flex space-x-4 p-4 backdrop-blur-md  ">
@@ -39,11 +39,12 @@ export default function DetailsSeasonTv({ season, id }) {
                                 <div className=" w-full " key={item.id}>
                                     <BlurFade key={item.id} delay={0.25 + index * 0.05} inView>
 
-                                    <Card className=" md:h-auto w-full border-blue-600 shadow-md shadow-blue-800  bg-transparent">
-                                        <CardContent className=" pt-2 ">
+                                    <Card className="  md:h-auto w-full border-blue-600 shadow-md shadow-blue-800 bg-black/30 backdrop-blur">
+                                        <CardContent className=" pt-2  ">
 
                                             <div className=" relative lg:order-2 w-full ">
-                                                <Image src={`${urlImageTv}${item.poster_path ? item.poster_path : "no-image.png"}`}
+                                                <Image src={item.poster_path ?
+                                                    `${urlImageTv}${item.poster_path}` : no_image}
                                                     width={100} height={100}
                                                     priority
                                                     className=" rounded-md "
@@ -66,7 +67,7 @@ export default function DetailsSeasonTv({ season, id }) {
                                                         </div> */}
                                                 <div>
                                                     <Link href={`/Tv/List/${id}/season/${item.season_number}`}
-                                                        className=" border p-1 rounded-md bg-black hover:bg-transparent hover:shadow-sm active:scale-105 hover:shadow-red-700 hover:border-l-red-700 hover:duration-500 hover:border-r-red-800 after:border-l-red-600 hover:red-b-red-800 hover:border-red-700 font-semibold"
+                                                        className=" border p-1 rounded-md animate-rainbow bg-black hover:bg-transparent hover:shadow-sm active:scale-105 hover:shadow-blue-700 hover:border-l-blue-700 hover:duration-500  hover:border-blue-700 font-semibold"
                                                         >
                                                         See More
                                                     </Link>

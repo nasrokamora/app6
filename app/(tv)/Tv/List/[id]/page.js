@@ -82,9 +82,9 @@ export default async function DynamicTvListPage({ params }) {
 
             <div className="flex flex-col items-center justify-center text-4xl font-extrabold tracking-tight scroll-m-20 lg:text-4xl">
                 <WordPullUp
-      className="text-4xl font-bold tracking-[-0.02em] text-white  md:text-4xl "
-      words= {detailTv.name ? detailTv.name : detailTv.original_name || <h1 className="text-2xl font-bold text-error rounded-xl md:text-xl">unknown !</h1>}
-    />
+                    className="text-4xl font-bold tracking-[-0.02em] text-white  md:text-4xl "
+                    words={detailTv.name ? detailTv.name : detailTv.original_name || <h1 className="text-2xl font-bold text-error rounded-xl md:text-xl">unknown !</h1>}
+                />
                 {/* <h1 className="tracking-wide md:decoration-blue-700 md:underline-offset-4 md:underline">
                     {detailTv.name ? detailTv.name : detailTv.original_name || <h1 className="text-2xl font-bold text-error rounded-xl md:text-xl">unknown !</h1>}
                 </h1> */}
@@ -92,7 +92,7 @@ export default async function DynamicTvListPage({ params }) {
             </div>
             <div className="flex items-start justify-start gap-4 mt-8 md:flex-col">
                 <div className=" w-[70%] xl:w-full  flex justify-center items-center flex-col   relative md:w-full  overflow-hidden md:flex md:justify-center md:items-center">
-                
+
 
                     <Image src={detailTv.poster_path ? `${urlImageTv}${detailTv.poster_path}` : no_image}
                         priority
@@ -103,8 +103,8 @@ export default async function DynamicTvListPage({ params }) {
                         draggable="false"
                         alt={data.name ? data.name : data.original_name || <h1 className="">Image Tv</h1>}
                         loading="eager"
-                        />
-                        
+                    />
+
                     <div className="flex items-center justify-center w-full gap-6 mt-6 ">
 
                         <TrailerTv dataVideos={dataVideosTv && dataVideosTv.results.length > 0 ? dataVideosTv.results.slice(0, 1) : []} />
@@ -277,84 +277,84 @@ export default async function DynamicTvListPage({ params }) {
             {/* Last Episode to air */}
             <BlurFade delay={0.25} inView>
 
-            <div className="mt-6 ">
-                <strong className="text-2xl font-bold text-[#3f7eab] md:text-xl">Last episode to air :</strong>
-            </div>
-            {detailTv.last_episode_to_air ? (
-                <div className=" h-[20rem] md:h-auto w-full">
+                <div className="mt-6 ">
+                    <strong className="text-2xl font-bold text-[#3f7eab] md:text-xl">Last episode to air :</strong>
+                </div>
+                {detailTv.last_episode_to_air ? (
+                    <div className=" h-[20rem] md:h-auto w-full">
 
-                    <div className="relative flex items-start justify-between w-full gap-2 mt-6 ">
-                        <div className=" overflow-hidden relative  h-[20rem] w-full ">
-                            <Image
-                                src={detailTv.last_episode_to_air.still_path ? `${urlImageTv}${detailTv.last_episode_to_air.still_path}` : no_image}
-                                fill
-                                alt="image_last_air_date"
-                                priority
-                                style={{ objectFit: "cover", objectPosition: "center" }}
-                                // loading="eager"
-                                className="rounded-md blur-right"
-                            />
-                        </div>
-
-                        {/* last air date name */}
-                        <div className=" flex justify-center w-full md:h-auto md:top-0  flex-col gap-2 z-50 absolute  rounded-md  p-2 bg-black bg-opacity-30 backdrop-blur-sm h-[20rem]">
-                            <div className="flex flex-wrap items-center justify-start order-2 gap-3 ">
-                                <strong className="text-2xl font-bold text-zinc-400 md:text-xl">Last Air Date :</strong>
-                                <h1 className="text-xl font-semibold text-transparent scroll-m-20 xl:text-2xl bg-clip-text bg-gradient-to-tr from-red-800 to-red-700"> {detailTv.last_episode_to_air.air_date ? detailTv.last_air_date.replace(/-/g, "/") : <span className="text-2xl font-bold text-error rounded-xl md:text-xl">unknown !</span>} </h1>
+                        <div className="relative flex items-start justify-between w-full gap-2 mt-6 ">
+                            <div className=" overflow-hidden relative  h-[20rem] w-full ">
+                                <Image
+                                    src={detailTv.last_episode_to_air.still_path ? `${urlImageTv}${detailTv.last_episode_to_air.still_path}` : no_image}
+                                    fill
+                                    alt="image_last_air_date"
+                                    priority
+                                    style={{ objectFit: "cover", objectPosition: "center" }}
+                                    // loading="eager"
+                                    className="rounded-md blur-right"
+                                />
                             </div>
 
-                            <div className="flex flex-wrap items-center justify-start order-1 gap-3 ">
-                                <strong className="text-2xl font-bold text-zinc-400 md:hidden">Name :</strong>
-                                <h1 className="text-xl font-bold scroll-m-20 xl:text-2xl"> {detailTv.last_episode_to_air.name ? detailTv.last_episode_to_air.name : <span className="text-2xl font-bold text-error rounded-xl md:text-xl">unknown !</span>} </h1>
-                            </div>
-                            {/* last air date overview */}
-                            <div className="flex flex-col order-4 gap-2 ">
-                                <strong className="text-2xl font-bold text-zinc-400 md:text-xl">Overview :</strong>
-                                <Accordion type="single" collapsible className=" lg:hidden xl:hidden 2xl:hidden ">
-                                    <AccordionItem value="item-1">
-                                        <AccordionTrigger> {detailTv.last_episode_to_air.overview.slice(0, 50) ? detailTv.last_episode_to_air.overview.slice(0, 30) +"..." : <span className="text-2xl font-bold text-error rounded-xl md:text-xl">unknown !</span>} </AccordionTrigger>
-                                        <AccordionContent>
-                                        {detailTv.last_episode_to_air.overview ? detailTv.last_episode_to_air.overview : <span className="text-2xl font-bold text-error rounded-xl md:text-xl">unknown !</span>}
-                                        </AccordionContent>
-                                    </AccordionItem>
-                                </Accordion>
-                                <blockquote className=" md:hidden pl-6 italic border-l-2 border-l-orange-400 bg-black/30 backdrop-blur rounded-md">{detailTv.last_episode_to_air.overview ? detailTv.last_episode_to_air.overview : <span className="text-2xl font-bold text-error rounded-xl md:text-xl">unknown !</span>}</blockquote>
-                            </div>
-                            <div className="flex flex-wrap items-center justify-start order-3 gap-2 ">
-                                <div className="flex flex-col gap-2 ">
-
-                                    <div className="flex flex-wrap items-center justify-start order-4 gap-2 ">
-                                        <strong className="text-2xl font-bold text-zinc-400 md:text-xl">vote average :</strong>
-                                        <h1 className="flex items-center justify-center gap-2 text-xl font-semibold text-amber-400 scroll-m-20 xl:text-2xl">{(detailTv.last_episode_to_air.vote_average / 10 * 100).toFixed(2)}%</h1>
-                                        <span className=""><RiBarChartGroupedLine size={30} className="text-amber-400" /></span>
-                                    </div>
-                                    <div className="flex items-center justify-start gap-2 ">
-                                        <strong className="text-2xl font-bold text-zinc-400 md:text-xl">Vote Count: </strong>
-                                        <h1 className="flex items-center justify-center gap-2 text-xl font-semibold text-amber-400 scroll-m-20 xl:text-2xl">
-                                            {detailTv.last_episode_to_air ? detailTv.last_episode_to_air.vote_count : "Unknown"}
-                                            <span><MdOutlineInsertChartOutlined size={30} className="" /></span>
-                                        </h1>
-                                    </div>
+                            {/* last air date name */}
+                            <div className=" flex justify-center w-full md:h-auto md:top-0  flex-col gap-2 z-50 absolute  rounded-md  p-2 bg-black bg-opacity-30 backdrop-blur-sm h-[20rem]">
+                                <div className="flex flex-wrap items-center justify-start order-2 gap-3 ">
+                                    <strong className="text-2xl font-bold text-zinc-400 md:text-xl">Last Air Date :</strong>
+                                    <h1 className="text-xl font-semibold text-transparent scroll-m-20 xl:text-2xl bg-clip-text bg-gradient-to-tr from-red-800 to-red-700"> {detailTv.last_episode_to_air.air_date ? detailTv.last_air_date.replace(/-/g, "/") : <span className="text-2xl font-bold text-error rounded-xl md:text-xl">unknown !</span>} </h1>
                                 </div>
 
+                                <div className="flex flex-wrap items-center justify-start order-1 gap-3 ">
+                                    <strong className="text-2xl font-bold text-zinc-400 md:hidden">Name :</strong>
+                                    <h1 className="text-xl font-bold scroll-m-20 xl:text-2xl"> {detailTv.last_episode_to_air.name ? detailTv.last_episode_to_air.name : <span className="text-2xl font-bold text-error rounded-xl md:text-xl">unknown !</span>} </h1>
+                                </div>
+                                {/* last air date overview */}
+                                <div className="flex flex-col order-4 gap-2 ">
+                                    <strong className="text-2xl font-bold text-zinc-400 md:text-xl">Overview :</strong>
+                                    <Accordion type="single" collapsible className=" lg:hidden xl:hidden 2xl:hidden ">
+                                        <AccordionItem value="item-1">
+                                            <AccordionTrigger> {detailTv.last_episode_to_air.overview.slice(0, 50) ? detailTv.last_episode_to_air.overview.slice(0, 30) + "..." : <span className="text-2xl font-bold text-error rounded-xl md:text-xl">unknown !</span>} </AccordionTrigger>
+                                            <AccordionContent>
+                                                {detailTv.last_episode_to_air.overview ? detailTv.last_episode_to_air.overview : <span className="text-2xl font-bold text-error rounded-xl md:text-xl">unknown !</span>}
+                                            </AccordionContent>
+                                        </AccordionItem>
+                                    </Accordion>
+                                    <blockquote className=" md:hidden pl-6 italic border-l-2 border-l-orange-400 bg-black/30 backdrop-blur rounded-md">{detailTv.last_episode_to_air.overview ? detailTv.last_episode_to_air.overview : <span className="text-2xl font-bold text-error rounded-xl md:text-xl">unknown !</span>}</blockquote>
+                                </div>
+                                <div className="flex flex-wrap items-center justify-start order-3 gap-2 ">
+                                    <div className="flex flex-col gap-2 ">
+
+                                        <div className="flex flex-wrap items-center justify-start order-4 gap-2 ">
+                                            <strong className="text-2xl font-bold text-zinc-400 md:text-xl">vote average :</strong>
+                                            <h1 className="flex items-center justify-center gap-2 text-xl font-semibold text-amber-400 scroll-m-20 xl:text-2xl">{(detailTv.last_episode_to_air.vote_average / 10 * 100).toFixed(2)}%</h1>
+                                            <span className=""><RiBarChartGroupedLine size={30} className="text-amber-400" /></span>
+                                        </div>
+                                        <div className="flex items-center justify-start gap-2 ">
+                                            <strong className="text-2xl font-bold text-zinc-400 md:text-xl">Vote Count: </strong>
+                                            <h1 className="flex items-center justify-center gap-2 text-xl font-semibold text-amber-400 scroll-m-20 xl:text-2xl">
+                                                {detailTv.last_episode_to_air ? detailTv.last_episode_to_air.vote_count : "Unknown"}
+                                                <span><MdOutlineInsertChartOutlined size={30} className="" /></span>
+                                            </h1>
+                                        </div>
+                                    </div>
 
 
-                            </div>
-                            <div className="flex flex-wrap items-center justify-start order-4 gap-2 ">
-                                <strong className="text-2xl font-bold text-zinc-400 md:text-xl">Runtime:</strong>
-                                <h1 className="text-xl font-semibold text-orange-700 scroll-m-20 xl:text-2xl">{detailTv.last_episode_to_air.runtime ? detailTv.last_episode_to_air.runtime : <span className="text-2xl font-bold text-error rounded-xl md:text-xl">unknown !</span>} min
-                                </h1>
+
+                                </div>
+                                <div className="flex flex-wrap items-center justify-start order-4 gap-2 ">
+                                    <strong className="text-2xl font-bold text-zinc-400 md:text-xl">Runtime:</strong>
+                                    <h1 className="text-xl font-semibold text-orange-700 scroll-m-20 xl:text-2xl">{detailTv.last_episode_to_air.runtime ? detailTv.last_episode_to_air.runtime : <span className="text-2xl font-bold text-error rounded-xl md:text-xl">unknown !</span>} min
+                                    </h1>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            ) : (
-                <div className=" flex justify-center items-center font-bold p-4">
-                    <h1 className="border-red-800 border p-2 text-xl rounded-md text-red-600">No Last Air Data Available !</h1>
-                </div>
-            )}
+                ) : (
+                    <div className=" flex justify-center items-center font-bold p-4">
+                        <h1 className="border-red-800 border p-2 text-xl rounded-md text-red-600">No Last Air Data Available !</h1>
+                    </div>
+                )}
 
-                </BlurFade>
+            </BlurFade>
             {/* Credits  and cast and crew  and people && Reviews , season and episode */}
             <div>
                 <CreditsDetailsTv
@@ -377,7 +377,7 @@ export default async function DynamicTvListPage({ params }) {
             <Separator className="mt-4 bg-gradient-to-r from-[#0742a1] via-[#b60c00] to-[#0742a1]" />
             {/* trending  */}
             <div className="mt-8">
-                <h1 className='text-2xl font-extrabold tracking-tight scroll-m-20 lg:text-3xl '>Trending Now</h1>
+                <h1 className=' bg-gradient-to-tr from-[#f2f2f2] mb-1 via-[#f96d00] to-[#f96d00]  bg-clip-text text-transparent 2xl:text-4xl  text-3xl font-extrabold tracking-tight scroll-m-20 lg:text-3xl '>Hot <span>on</span> <span className=" ">TV Now</span></h1>
                 <TrendingTv dataTrending={dataTrending.results} />
             </div>
 

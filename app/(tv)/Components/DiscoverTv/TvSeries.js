@@ -28,7 +28,7 @@ export default function TvSeries({ dataTv }) {
 
                                 <div className="hover:duration-500 hover:scale-90 ">
 
-                                    <Link className="" href={`/tv/list/${tv.id}`} rel="noopener noreferrer" as={`/Tv/List/${tv.id}`}>
+                                    <Link className="" href={`/tv/list/${tv.id}`} rel="noopener noreferrer" as={`/tv/list/${tv.id}`}>
                                         <div className="relative overflow-hidden  rounded-md">
 
                                             <Image

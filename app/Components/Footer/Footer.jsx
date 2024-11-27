@@ -3,10 +3,10 @@ import Link from "next/link";
 
 export default function Footer() {
     return (
-        <footer className="footer  relative  footer-center p-10 bg-[#09090b] backdrop-blur text-base-100 rounded z-40">
+        <footer className="footer font-semibold  relative  footer-center p-10 bg-[#09090b] backdrop-blur text-base-100 rounded z-40">
             <nav className="grid grid-flow-col gap-4">
                 {LinkFooter.map((item, index) => (
-                    <Link  key={item.id + index} href={item.link} className="link link-hover">{item.name}</Link>
+                    <Link  key={item.id + index} href={item.link} className="link link-hover font-bold">{item.name}</Link>
                 ))}
             </nav>
             <nav>
@@ -17,7 +17,7 @@ export default function Footer() {
                 </div>
             </nav>
             <aside>
-                <p>Copyright © 2024 - All right reserved by Nas@Dev, Nasreddine Abdellouche</p>
+                <p className="font-semibold">Copyright © 2024 - All right reserved by Nas@Dev, Nasreddine Abdellouche</p>
             </aside>
         </footer>
     )

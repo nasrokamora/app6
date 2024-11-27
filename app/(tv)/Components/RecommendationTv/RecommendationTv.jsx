@@ -1,13 +1,11 @@
 import { urlImageTv } from "@/app/libs/DataFetchingTv"
 import {
-  Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
 import Image from "next/image"
-import { Suspense } from "react"
 import Link from "next/link"
 import no_image from '../../../../public/image/no_image4.webp'
 import {
@@ -30,7 +28,7 @@ export default function RecommendationTv({ dataRecommend }) {
               <CarouselItem key={data.id} className="md:basis-1/2 basis-1/6 lg:basis-1/5">
                 <BlurFade key={data.id} delay={0.25 + idx * 0.05} inView>
                   <div className="p-1 hover:scale-90 hover:duration-500 hover:hue-rotate-30">
-                    <Link href={`/Tv/List/${data.id}`}>
+                    <Link href={`/tv/list/${data.id}`}>
                       <div className=" overflow-hidden  relative">
                         <Image
                           src={data.poster_path ? `${urlImageTv}${data.poster_path}` : no_image}

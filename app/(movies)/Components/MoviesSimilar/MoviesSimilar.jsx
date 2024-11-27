@@ -12,12 +12,11 @@ import no_image from '../../../../public/image/no_image4.webp'
 
 export default function MoviesSimilar({ similar }) {
 
-
     return (
         <div className=" mt-8 ">
             <div>
-                <h1 className="  text-yellow-500  md:text-yellow-500   mt-10 scroll-m-20 md:text-xl  text-2xl font-bold tracking-tight transition-colors first:mt-0">Similar Movies on Magix </h1>
-                
+                <h1 className="  text-yellow-500  md:text-yellow-500   mt-10 scroll-m-20 md:text-xl  text-2xl font-bold tracking-tight  first:mt-0">Similar Movies on Magix </h1>
+
             </div>
             <div className="flex justify-center w-full mt-6 md:mt-16">
                 <Carousel opts={{
@@ -30,21 +29,16 @@ export default function MoviesSimilar({ similar }) {
 
                                 <CarouselItem key={movie.id} className="  basis-1/5 lg:basis-1/5 md:basis-1/2 2xl:basis-1/6">
                                     <div className="  hover:scale-105 hover:duration-500  hover:grayscale  ">
-                                        <Link className="" href={`/Movies/List/${movie.id}`}  rel="noopener noreferrer">
+                                        <Link className="" href={`/movies/list/${movie.id}`} rel="noopener noreferrer">
                                             <div className=" relative overflow-hidden">
-
-                                            <Image
-                                                src={movie.poster_path ? `
-                                    https://image.tmdb.org/t/p/original${movie.poster_path}`
-                                                    :
-                                                    no_image
-                                                }
-                                                alt="movie poster"
-                                                width={250} height={180}
-                                                className=" rounded-md "
-                                                style={{ width: "auto" }}
+                                                <Image
+                                                    src={movie.poster_path ? `https://image.tmdb.org/t/p/original${movie.poster_path}` : no_image}
+                                                    alt="movie poster"
+                                                    width={250} height={180}
+                                                    className=" rounded-md "
+                                                    style={{ width: "auto" }}
                                                 />
-                                                </div>
+                                            </div>
                                             <div>
                                                 <h1 className=" font-bold flex justify-start  pt-2 mb-1">{movie.title.slice(0, 11) + "..."}
                                                 </h1>
@@ -70,7 +64,7 @@ export default function MoviesSimilar({ similar }) {
                             ))
                         ) : (
                             <div className=" flex justify-center items-center w-full">
-                                <h1 className="font-bold text-2xl text-error md:text-xl italic">No data found. </h1>
+                                <h1 className="font-bold text-2xl text-error md:text-xl italic">there is no similar movies.</h1>
                             </div>
                         )
                         }

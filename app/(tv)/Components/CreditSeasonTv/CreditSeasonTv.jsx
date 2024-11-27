@@ -50,7 +50,7 @@ export default function CreditSeasonTv({ dataCreditSeason }) {
                                     </div>
                                     <CardDescription> Character : {cast.character} </CardDescription>
                                     <CardContent>
-                                        <Link href={`/Person/${cast.id}`}  className={buttonVariants({ variant: "outline",className:cn("text-[#2ce2c6]" )})}>
+                                        <Link href={`/person/${cast.id}`}  className={buttonVariants({ variant: "outline",className:cn("text-[#2ce2c6]" )})}>
                                         See More
                                         </Link>
                                     </CardContent>
@@ -93,7 +93,7 @@ export default function CreditSeasonTv({ dataCreditSeason }) {
                                 </CardHeader>
                                 <CardContent>
                                 <CardDescription> Job : {crew.job} </CardDescription>
-                                <Link href={`/Person/${crew.id}`}  className={buttonVariants({ variant: "outline",className:cn("border-none mt-1 text-[#2ce2c6]" )})}>
+                                <Link href={`/person/${crew.id}`}  className={buttonVariants({ variant: "outline",className:cn("border-none mt-1 text-[#2ce2c6]" )})}>
                                 See More
                                 </Link>
                                 </CardContent>

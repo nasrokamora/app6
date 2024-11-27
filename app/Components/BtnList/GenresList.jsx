@@ -44,7 +44,7 @@ const MoviesList = React.memo(({ movieList }) => {
 
 
                 <div className="relative overflow-hidden lg:hover:scale-90 md:active:scale-110 hover:scale-90 hover:duration-500 ">
-                    <Link href={`/Movies/List/${movie.id}`} >
+                    <Link href={`/movies/list/${movie.id}`} >
                         <Image
                             src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
                             alt="movie poster"

@@ -1,7 +1,6 @@
 import { getExtPersonsIdTv, getPersonsIdTv } from "@/app/libs/DataFetchingTv"
 import {
     AlertDialog,
-    AlertDialogAction,
     AlertDialogCancel,
     AlertDialogContent,
     AlertDialogDescription,
@@ -10,7 +9,6 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 import { Card, CardContent } from "@/components/ui/card"
 import Image from "next/image"
 import { LiaImdb } from "react-icons/lia";
@@ -25,8 +23,6 @@ export default async function PersonDetailsTv({ person_id, urlImageTv, character
 
     const data =  getPersonsIdTv(person_id)
     const extPersonId =  getExtPersonsIdTv(person_id)
-
-
     const [dataPerson, dataExtPerson] = await Promise.all([data, extPersonId])
     // console.log(dataExtPerson)
 
@@ -98,7 +94,7 @@ export default async function PersonDetailsTv({ person_id, urlImageTv, character
                                             </div>
                                         ):(
                                             <div>
-                                                <p className=" text-red-700 border-red-700">Data not found</p>
+                                                <p className=" text-red-700 border-red-700 font-bold text-xl">Social links not found.</p>
                                             </div>
                                         )}
                                     </div>
@@ -122,7 +118,7 @@ export default async function PersonDetailsTv({ person_id, urlImageTv, character
                                             </AlertDialogFooter>
                                         </AlertDialogContent>
                                     </AlertDialog>
-                                    <Link href={`/Person/${dataPerson.id}`} className={buttonVariants({ variant: "outline",color:"red" })}>More Details</Link>
+                                    <Link href={`/person/${dataPerson.id}`} className={buttonVariants({ variant: "outline",color:"red" })}>More Details</Link>
 
                                 </div>
 
@@ -139,7 +135,7 @@ export default async function PersonDetailsTv({ person_id, urlImageTv, character
                                         </div>
                                     )
                                 })) : (
-                                <div className="font-bold text-red-400">No Data</div>
+                                <div className="font-bold text-red-400">No data available.</div>
                             )}
                         </div>
                     </CardContent>

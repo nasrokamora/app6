@@ -4,8 +4,8 @@ export default function middleware(req) {
 }
 export const config = {
   matcher: ["/",
-    "/Movies/:path*",
-    "/Tv/:path*",
+    "/movies/:path*",
+    "/tv/:path*",
     '/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)',
 
   ]

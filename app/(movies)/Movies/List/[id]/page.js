@@ -40,14 +40,6 @@ import AddNewMovies from "@/app/(movies)/Components/ChangesMovies/AddNewMovies"
 import { FaFacebook, FaImdb } from "react-icons/fa"
 import { BsTwitterX } from "react-icons/bs"
 import { SlSocialInstagram } from "react-icons/sl"
-// import RecommendationMovies from "@/app/(movies)/Components/RecommendationMovies/RecommendationMovies"
-import { AlertCircle } from "lucide-react"
-import {
-    Alert,
-    AlertDescription,
-    AlertTitle,
-} from "@/components/ui/alert"
-
 import ErrorMessage from "@/app/(tv)/Components/Error/ErrorMessage"
 
 
@@ -74,10 +66,7 @@ export default async function DynamicMoviesList({ params }) {
     const recommendMovies = getRecommendationMovies(id)
     const nowData = getMoviesNowPlaying()
     const trailer = getTrailer(id)
-    // const changes = getChangesMovies(id)
-    // const release = getReleasDateMovies(id)
     const dataExt = getExternalIdMovies(id)
-    // const personData = getPersonsId(personId)
     const [data, similar, dataImageList, dataReview, credits, dataRecommend, dataPlaying, dataTrailer, extData] = await Promise.all([dataLoad, similarData, dataImage, reviewData, dataCreditsId, recommendMovies, nowData, trailer, dataExt])
 
 
@@ -97,12 +86,7 @@ export default async function DynamicMoviesList({ params }) {
 
                 <div className=" w-[65%] flex flex-col items-center justify-center ">
 
-
-                    <Image src={data.poster_path ?
-                        `${urlImage}${data.poster_path || data.backdrop_path}`
-                        :
-                        no_image
-                    }
+                    <Image src={data.poster_path ? `${urlImage}${data.poster_path || data.backdrop_path}` : no_image}
                         width={250}
                         height={250}
                         className="rounded-md  "
@@ -135,7 +119,7 @@ export default async function DynamicMoviesList({ params }) {
                         <h2 className=" text-amber-600 scroll-m-20 md:text-lg black-shadow-text first:mt-0">Release Date :</h2>
                         <h1 className=" tracking-tight text-gray-400  scroll-m-20 md:text-lg first:mt-0">{data.release_date ? data.release_date.replace(/-/g, "/") : <ErrorMessage />}</h1>
                         <h2 className=" text-amber-600 scroll-m-20 md:text-lg black-shadow-text ">Runtime :</h2>
-                        <h1 className=" text-red-300 scroll-m-20 md:text-xl first:mt-0 black-shadow-text">{data.runtime ? <span>{data.runtime} min</span> : <Alert type="warning" variant="destructive" className=" border-none font-bold text-red-700"> Not found</Alert>}</h1>
+                        <h1 className=" text-red-300 scroll-m-20 md:text-xl first:mt-0 black-shadow-text">{data.runtime ? <span>{data.runtime} min</span> : <span   className=" border-none font-bold text-red-700"> Not found</span>}</h1>
                     </div>
 
                     <Separator className="mt-4" />
@@ -146,15 +130,12 @@ export default async function DynamicMoviesList({ params }) {
                         {data.genres && data.genres.length > 0 ? (
                             data.genres.map((genre) => (
                                 <div className="pb-2 " key={genre.id}>
-
                                     <Badge variant={"destructive"} className={cn('font-bold text-[#ffebcd]  ')} >{genre.name ? genre.name : "Genre not found"}</Badge>
                                 </div>
                             ))
                         ) : (
                             <ErrorMessage className=" font-bold" />
-                        )
-                        }
-
+                        )}
 
                         {/* section production countries  */}
                         <div className="flex flex-wrap items-center gap-3">
@@ -164,11 +145,11 @@ export default async function DynamicMoviesList({ params }) {
                                     <div className="" key={country.iso_3166_1}>
                                         <Badge variant={"outline"} className={cn('font-bold bg-yellow-700 text-black ')} >{country.name ? country.name : <ErrorMessage />}</Badge>
                                     </div>
-                                ))        
-                            ):(
+                                ))
+                            ) : (
                                 <ErrorMessage />
                             )
-                        }
+                            }
                         </div>
                     </div>
                     <div>

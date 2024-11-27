@@ -13,7 +13,7 @@ async function getTvWithPage(page){
         const response = await fetch(`https://api.themoviedb.org/3/discover/tv?&page=${page}`, {
             headers:HEADERS,
             next:{
-                revalidate:360
+                revalidate:3600
             }
         })
         if(!response.ok){
@@ -74,7 +74,7 @@ export default function LoadMoreTv() {
 
                 <div key={`${tv.id}-${index}`} className="relative flex flex-col items-center justify-center overflow-hidden hover:scale-110 hover:duration-300">
 
-                    <Link href={`/Tv/List/${tv.id}` } >
+                    <Link href={`/tv/list/${tv.id}` } >
 
                         <Image src={`${urlImageTv}${tv.poster_path}`}
                             alt={tv.name}

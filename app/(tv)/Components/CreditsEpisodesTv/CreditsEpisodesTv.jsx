@@ -66,7 +66,7 @@ const CreditsEpisodesTvGuestStars = ({ creditsEpisodes }) => {
 
                                         </div>
                                         <p className="mt-2 font-bold mb-4">Character: {item.character}</p>
-                                        <Link className={buttonVariants({ variant: "outline" })} href={`/Person/${item.id}`}>More Details</Link>
+                                        <Link className={buttonVariants({ variant: "outline" })} href={`/person/${item.id}`}>More Details</Link>
                                     </CardContent>
                                 </Card>
                             ))
@@ -135,7 +135,7 @@ export default function CreditsEpisodesTv({ creditsEpisodes }) {
 
                                         </div>
                                         <p className="mt-2 font-bold text-yellow-500 mb-4"> <span className="text-slate-600">Character: </span> {cast.character}</p>
-                                        <Link className={buttonVariants({ variant: "outline" })} href={`/Person/${cast.id}`}>More Details</Link>
+                                        <Link className={buttonVariants({ variant: "outline" })} href={`/person/${cast.id}`}>More Details</Link>
                                     </CardContent>
                                 </Card>
                             ))

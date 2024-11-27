@@ -121,7 +121,7 @@ export default function TvGenres() {
 
                                     <CarouselItem key={tv.id} className="p-2 md:basis-1/2 basis-1/6 lg:basis-1/5">
                                         <div className="relative overflow-hidden lg:hover:scale-90 lg:hover:duration-500 xl:hover:scale-90 xl:hover:duration-500 2xl:hover:scale-90 2xl:hover:duration-500">
-                                            <Link href={`/Tv/List/${tv.id}`} rel="noopener noreferrer" as={`/Tv/List/${tv.id}`}>
+                                            <Link href={`/tv/list/${tv.id}`} rel="noopener noreferrer" as={`/tv/list/${tv.id}`}>
                                                 <Image
                                                     src={tv.poster_path ?
                                                         

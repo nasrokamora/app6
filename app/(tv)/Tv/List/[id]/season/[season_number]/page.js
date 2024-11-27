@@ -180,7 +180,7 @@ export default async function SeasonDetailTvSeries({ params }) {
 
                                         <div className=" flex  justify-start items-center  hover:scale-105 hover:duration-300 md:active:shadow-md md:active:shadow-[#40ffc6] ">
 
-                                            <Link className="bg-gradient-to-r from-[#40ffc6] via-[#9c40ff] to-[#40ffc6] bg-[length:200%_auto] bg-clip-text text-transparent " href={`/Tv/List/${id}/season/${season_number}/Episode/${episode.episode_number}`} >
+                                            <Link className="bg-gradient-to-r from-[#40ffc6] via-[#9c40ff] to-[#40ffc6] bg-[length:200%_auto] bg-clip-text text-transparent " href={`/tv/list/${id}/season/${season_number}/episode/${episode.episode_number}`} >
                                                 Explore Full Episode Details
                                             </Link>
                                             <ChevronRight className=" text-xl text-white ml-1 size-3 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" />

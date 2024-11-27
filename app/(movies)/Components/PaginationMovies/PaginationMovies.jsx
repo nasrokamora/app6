@@ -112,7 +112,7 @@ export default function PaginationMovies() {
                                         <BlurFade delay={0.10} inView>
 
                                         <div className="relative overflow-hidden md:active:scale-90 hover:scale-90 hover:duration-500  ">
-                                            <Link className=" font-bold" href={`/Movies/List/${movie.id}`}>
+                                            <Link className=" font-bold" href={`/movies/list/${movie.id}`}>
                                                 <Image
                                                     src={
                                                         movie.poster_path

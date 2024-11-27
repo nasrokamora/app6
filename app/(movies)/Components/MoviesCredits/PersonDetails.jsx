@@ -18,10 +18,17 @@ import {
     AlertDialogTrigger,
   } from "@/components/ui/alert-dialog"
 
+  const ErrorContent = () => {
+    return (
+      <span className=" font-bold text-xl text-warning">
+          Unknown !
+      </span>
+    )
+  }
 
 export default async function PersonDetails({ person_id }) {
     const data = await getPersonId(person_id)
-  
+
     //error handling
     if (!data) return <Alert variant="destructive">
       <AlertCircle className="h-4 w-4" />
@@ -38,9 +45,9 @@ export default async function PersonDetails({ person_id }) {
           <AlertDialogTrigger className=" border border-zinc-600 px-3 bg-black text-white font-semibold hover:duration-500 hover:bg-zinc-700 rounded-md" variant="outline">Biography</AlertDialogTrigger>
           <AlertDialogContent className=" max-w-max md:h-screen xl:h-screen md:overflow-y-scroll md:touch-pan-y lg:h-screen lg:touch-pan-y overflow-y-scroll">
             <AlertDialogHeader >
-              <AlertDialogTitle>{data.name ? data.name : "Unknown"}</AlertDialogTitle>
+              <AlertDialogTitle>{data.name ? data.name : <ErrorContent />}</AlertDialogTitle>
               <AlertDialogDescription>
-                {data.also_known_as ? data.also_known_as.join(", ") : "Unknown"}
+                {data.also_known_as ? data.also_known_as.join(", ") : <ErrorContent />}
               </AlertDialogDescription>
             </AlertDialogHeader>
             <div className=" flex justify-start gap-3 items-start lg:items-center xl:max-w-5xl md:flex-col md:items-start ">
@@ -71,13 +78,13 @@ export default async function PersonDetails({ person_id }) {
               </div>
               <div className=" w-3/4 md:w-full">
                 <h1 className=" font-bold text-xl underline decoration-yellow-600 pt-3">Biography :</h1>
-                <p className="   pt-2 font-semibold">{data.biography ? data.biography : <span className="font-bold">Unknown</span>}</p>
+                <p className="   pt-2 font-semibold">{data.biography ? data.biography : <ErrorContent />}</p>
                 <div className="">
                   <h1 className=" font-bold text-xl underline decoration-yellow-600 pt-3">Birthday :</h1>
-                  <p className="pt-2 font-semibold"> {data.birthday ? data.birthday.replace(/-/g, '.') : <span className="font-bold">Unknown</span>}</p>
+                  <p className="pt-2 font-semibold"> {data.birthday ? data.birthday.replace(/-/g, '.') : <ErrorContent />}</p>
                   <h1 className=" font-bold text-xl underline decoration-yellow-600 pt-3">Place of Birth : </h1>
                   <p className="pt-2 font-semibold">
-                    {data.place_of_birth ? data.place_of_birth : <span className="font-bold">Unknown</span>}
+                    {data.place_of_birth ? data.place_of_birth : <ErrorContent />}
                   </p>
                 </div>
               </div>

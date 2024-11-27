@@ -3,12 +3,12 @@ export const DataLink = [
     {
         id: "3",
         name: "Tv series",
-        link: "/Tv",
+        link: "/tv",
     },
     {
         id: "2",
         name: "Movies",
-        link: "/Movies",
+        link: "/movies",
 
     },
     {
@@ -30,13 +30,13 @@ export const LinkFooter = [
     {
         id: "2",
         name: "Movies",
-        link: "/Movies",
+        link: "/movies",
 
     },
     {
         id: "3",
         name: "Tv series",
-        link: "/Tv",
+        link: "/tv",
     },
 ]
 

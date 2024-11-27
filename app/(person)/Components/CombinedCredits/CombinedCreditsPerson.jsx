@@ -84,7 +84,7 @@ export default function CombinedCreditsPerson({ dataCombined }) {
                                             <h2 className="font-semibold underline decoration-orange-500 underline-offset-1"> {item.character} </h2>
                                         </div>
                                         <div>
-                                            <Link className={buttonVariants({ variant: "outline" })} href={item.media_type === "movie" ? `/Movies/List/${item.id}` : `/Tv/List/${item.id}`}>More Info</Link>
+                                            <Link className={buttonVariants({ variant: "outline" })} href={item.media_type === "movie" ? `/movies/list/${item.id}` : `/tv/list/${item.id}`}>More Info</Link>
                                         </div>
 
                                     </div>

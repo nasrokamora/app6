@@ -13,19 +13,19 @@ import no_image from '../../../../public/image/no_image4.webp'
 
 
 export default function RecommendationMovies({dataRecommend}) {
-const keyStr =
-"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+// const keyStr =
+// "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
 
-const triplet = (e1, e2, e3) =>
-keyStr.charAt(e1 >> 2) +
-keyStr.charAt(((e1 & 3) << 4) | (e2 >> 4)) +
-keyStr.charAt(((e2 & 15) << 2) | (e3 >> 6)) +
-keyStr.charAt(e3 & 63);
+// const triplet = (e1, e2, e3) =>
+// keyStr.charAt(e1 >> 2) +
+// keyStr.charAt(((e1 & 3) << 4) | (e2 >> 4)) +
+// keyStr.charAt(((e2 & 15) << 2) | (e3 >> 6)) +
+// keyStr.charAt(e3 & 63);
 
-const rgbDataURL = (r, g, b) =>
-`data:image/gif;base64,R0lGODlhAQABAPAA${
-  triplet(0, r, g) + triplet(b, 255, 255)
-}/yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==`;
+// const rgbDataURL = (r, g, b) =>
+// `data:image/gif;base64,R0lGODlhAQABAPAA${
+//   triplet(0, r, g) + triplet(b, 255, 255)
+// }/yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==`;
 
     return(
       <>
@@ -40,7 +40,7 @@ const rgbDataURL = (r, g, b) =>
         dataRecommend.map((data,index) => (
           <CarouselItem key={index} className="md:basis-1/2 basis-1/6 lg:basis-1/5">
             <div className="p-1 hover:scale-90 hover:duration-500">
-            <Link href={`/Movies/List/${data.id}`}>
+            <Link href={`/movies/list/${data.id}`}>
                 <div className=" ">
                     <div className=" overflow-hidden relative">
                         <Image 
@@ -56,8 +56,6 @@ const rgbDataURL = (r, g, b) =>
                         className="rounded-md "
                         loading="eager"
                         priority
-                        placeholder="blur"
-                        blurDataURL={rgbDataURL(86,91,96)}
                         />
                     </div>
                 </div>

@@ -42,10 +42,7 @@ export default function RatingTvShow({ id }) {
               return
         }
 
-        // if (rating < 0.5 || rating > 10) {
-        //     alert("يجب أن تكون التقييم بين 0.5 و 10")
-        //     return
-        // }
+
 
         setLoading(true); // تعيين حالة التحميل إلى true أثناء الإرسال
         setError(null);   // إعادة تعيين حالة الخطأ
@@ -101,10 +98,10 @@ export default function RatingTvShow({ id }) {
                             </div>
                         <div>
                             {success &&
-                                <p style={{ color: 'green' }}>Successfully Assessed, Thank you.</p>
+                                <p className=" text-success text-xl mt-4" >Successfully Assessed, Thank you.</p>
                             }
                         </div>
-                        {error && <p style={{ color: 'red' }}>خطأ: {error}</p>}
+                        {error && <p className=" text-error text-xl mt-4" style={{ color: 'red' }}>Error</p>}
 
             </form>
         </div>

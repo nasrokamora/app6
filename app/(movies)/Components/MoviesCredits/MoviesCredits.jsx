@@ -73,7 +73,7 @@ export default async function MoviesCredits({ credits }) {
                                             </CardHeader>
                                             <CardContent className=" flex justify-between ">
                                                 <CreditsId credit_id={item.credit_id } />
-                                                <Link href={`/Person/${item.id}`} className=" border border-zinc-600 px-3 bg-black text-white font-semibold hover:duration-500 hover:bg-zinc-700 rounded-md">
+                                                <Link href={`/person/${item.id}`} className=" border border-zinc-600 px-3 bg-black text-white font-semibold hover:duration-500 hover:bg-zinc-700 rounded-md">
                                                 More...
                                                 </Link>
 

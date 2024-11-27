@@ -48,9 +48,7 @@ export default function TrendingMovies() {
     useEffect(() => {
         fetchTredingMovies(page)
     }, [page])
-    // const data = await getTrendingMovies()
-    // const dataTrendingMovies = data.results
-    // console.log(dataTrendingMovies)
+
     return (
         <div className=" w-full">
             <div>
@@ -73,7 +71,7 @@ export default function TrendingMovies() {
                             dataTrendingMovies.map((movie, index) => (
 
                                     <CarouselItem key={index} className="  basis-1/5 lg:basis-1/5 md:basis-1/2 2xl:basis-1/7">
-                                        <Link className=" hover:grayscale hover:duration-500" href={`/Movies/List/${movie.id}`}>
+                                        <Link className=" hover:grayscale hover:duration-500" href={`/movies/list/${movie.id}`}>
 
                                             <Image
                                                 src={

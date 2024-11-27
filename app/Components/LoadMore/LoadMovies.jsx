@@ -76,7 +76,7 @@ export default function LoadMovies() {
 
                     <div key={index} className="relative flex flex-col items-center justify-center overflow-hidden hover:scale-110 hover:duration-300">
 
-                        <Link href={`/Movies/List/${movie.id}` } >
+                        <Link href={`/movies/list/${movie.id}` } >
 
                             <Image src={`${urlImage}/${movie.poster_path}`}
                                 alt={movie.title}

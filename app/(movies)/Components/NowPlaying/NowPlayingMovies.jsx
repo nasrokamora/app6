@@ -36,7 +36,7 @@ export default function NowPlayingMovies({dataPlaying }) {
             dataPlaying.map((data) => (
               <CarouselItem key={data.id} className="p-2 md:basis-1/2 basis-1/6 lg:basis-1/5 ">
                   <div className="p-1 hover:scale-90 hover:duration-500 hover:saturate-50">
-                <Link href={`/Movies/List/${data.id}`}>
+                <Link href={`/movies/list/${data.id}`}>
                       <div className="relative overflow-hidden ">
                         <Image
                           src={data.poster_path ?

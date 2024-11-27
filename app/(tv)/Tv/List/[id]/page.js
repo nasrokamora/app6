@@ -29,12 +29,6 @@ import LatestTv from "@/app/(tv)/Components/LatestTv/LatestTv";
 import TrendingTv from "@/app/(tv)/Components/TrendingTv/TrendingTv";
 import TrailerTv from "@/app/(tv)/Components/TrailerTV/TrailerTv";
 import no_image from '../../../../../public/image/no_image4.webp'
-import { AlertCircle } from "lucide-react"
-import {
-    Alert,
-    AlertDescription,
-    AlertTitle,
-} from "@/components/ui/alert"
 import { RiBarChartGroupedLine } from "react-icons/ri";
 import {
     Accordion,
@@ -85,9 +79,6 @@ export default async function DynamicTvListPage({ params }) {
                     className="text-4xl font-bold tracking-[-0.02em] text-white  md:text-4xl "
                     words={detailTv.name ? detailTv.name : detailTv.original_name || <h1 className="text-2xl font-bold text-error rounded-xl md:text-xl">unknown !</h1>}
                 />
-                {/* <h1 className="tracking-wide md:decoration-blue-700 md:underline-offset-4 md:underline">
-                    {detailTv.name ? detailTv.name : detailTv.original_name || <h1 className="text-2xl font-bold text-error rounded-xl md:text-xl">unknown !</h1>}
-                </h1> */}
                 <div className="flex flex-col w-48 border-b-2 md:border-none border-b-blue-700" />
             </div>
             <div className="flex items-start justify-start gap-4 mt-8 md:flex-col">
@@ -261,6 +252,8 @@ export default async function DynamicTvListPage({ params }) {
                     </div>
 
                     <Separator className="mt-4" />
+
+                    {/* rating */}
                     <div>
                         <h1 className="pb-2 text-2xl font-bold text-slate-600">Rate this series</h1>
                         <RatingTvShow id={detailTv.id} />

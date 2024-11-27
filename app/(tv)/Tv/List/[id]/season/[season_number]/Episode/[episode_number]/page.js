@@ -70,10 +70,10 @@ export default async function EpisodeDetailsTv({ params }) {
                 <h4 className=" text-lg text-slate-700"><span>Runtime :</span> {data.runtime ?? <span className="font-semibold text-error"> Undefined </span>} min </h4>
                 <div className="flex justify-center items-center">
 
+            {/* Tailer */}
             <TrailerEpisodes trailerEpisodes={trailerEpisodes.results} />
                 </div>
             </div>
-            {/* Tailer */}
             <div>
                 <div>
                     <h1 className="mt-10 scroll-m-20 text-color-5 text-2xl font-bold tracking-tight transition-colors first:mt-0">Overview :</h1>
@@ -110,18 +110,14 @@ export default async function EpisodeDetailsTv({ params }) {
                                                     <h1 className=" font-bold">Known for department :</h1>
                                                     <h2 className="text-orange-500"> {item.known_for_department ?? "Unknown"} </h2>
                                                 </div>
-                                                {/* <div>
-                                                <Link href={''} className=' font-bold absolute bottom-[-50px] left-1/2 transform -translate-x-1/2 px-4 py-2 bg-black/30 backdrop-blur border p-1 text-[#a0ff58] rounded-md transition-all duration-300 group-hover:bottom-3 group-hover:opacity-100 opacity-0'>
-                                                See more
-                                            </Link>
-                                                </div> */}
+
                                                 <div className="lg:hidden xl:hidden 2xl:hidden border p-1 rounded-md font-bold active:scale-110 active:bg-zinc-500 active:duration-500">
-                                                    <Link href={`/Person/${item.id}`}>See more</Link>
+                                                    <Link href={`/person/${item.id}`}>See more</Link>
                                                 </div>
                                             </div>
                                         </CardContent>
                                         <div className="md:hidden  transition-transform duration-300 hover:scale-105 hover:shadow-lg ">
-                                            <Link href={`/Person/${item.id}`} className=' font-bold absolute bottom-[-50px] left-1/2 transform -translate-x-1/2 px-4 py-2 bg-black/30 backdrop-blur border p-1 text-[#a0ff58] rounded-md transition-all duration-300 group-hover:bottom-3 group-hover:opacity-100 opacity-0'>
+                                            <Link href={`/person/${item.id}`} className=' font-bold absolute bottom-[-50px] left-1/2 transform -translate-x-1/2 px-4 py-2 bg-black/30 backdrop-blur border p-1 text-[#a0ff58] rounded-md transition-all duration-300 group-hover:bottom-3 group-hover:opacity-100 opacity-0'>
                                                 See more
                                             </Link>
                                         </div>
@@ -150,81 +146,6 @@ export default async function EpisodeDetailsTv({ params }) {
                     <CreditsEpisodesTv creditsEpisodes={creditsEpisodes} />
                 </div>
             </div>
-
-
-
-
-
-
-            {/* <div className=" flex justify-center items-center">
-
-            <ScrollArea className="w-full  whitespace-nowrap rounded-md border ">
-                <div className=" flex w-max space-x-4 p-4 justify-center">
-
-                <div className=" flex gap-2">
-                    {episodeImage && episodeImage.stills.length > 0 ? (
-                        episodeImage.stills.map((item,index) => (
-                            <div key={item.still_path + index} className=" flex-1">
-                                <div>
-                                    <Image src={`${urlImageTv}${item.file_path}`} 
-                                    width={300} 
-                                    height={250} 
-                                    alt={data.name}
-                                    draggable="false"
-                                    style={{width:"auto"}}
-                                    priority
-                                    className="rounded-md"
-                                    />
-                                </div>
-
-                            </div>
-                        ))
-                    ) : (
-                        <Alert variant="destructive">
-                            <AlertCircle className="h-4 w-4" />
-                            <AlertTitle>Error</AlertTitle>
-                            <AlertDescription>
-                                Error fetching data.
-                            </AlertDescription>
-                        </Alert>
-                    )}
-                </div>
-            </div>
-            <ScrollBar orientation="horizontal" />
-            </ScrollArea>
-            </div> */}
-
-
-            {/* <div className="flex w-full gap-2 flex-wrap">
-                {data && data.crew && data.crew.length > 0 ? (
-                    data.crew.map((item) => (
-                        <div key={item.id} className=" flex-1">
-                            <Card className=" border-[#fffc40]">
-                                <CardHeader>
-                                    <CardTitle>Card Title</CardTitle>
-                                    <CardDescription>Card Description</CardDescription>
-                                </CardHeader>
-                                <CardContent>
-                                    <p>Card Content</p>
-                                </CardContent>
-                                <CardFooter>
-                                    <p>Card Footer</p>
-                                </CardFooter>
-                            </Card>
-
-                        </div>
-                    ))
-                ) : (
-                    <Alert variant="destructive">
-                        <AlertCircle className="h-4 w-4" />
-                        <AlertTitle>Error</AlertTitle>
-                        <AlertDescription>
-                            Error fetching data.
-                        </AlertDescription>
-                    </Alert>
-                )
-                }
-            </div> */}
         </div>
     )
 }

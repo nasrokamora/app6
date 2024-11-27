@@ -36,7 +36,7 @@ export default function PopularPerson({ dataPersonPopular }) {
                         dataPersonPopular.map((person) => (
                             <CarouselItem key={person.id} className="md:basis-1/2 basis-1/6 lg:basis-1/6 2xl:basis-1/6">
                                 <Card className=" flex flex-col justify-center w-full font-bold border-none md:mt-6">
-                                    <Link href={`/Person/${person.id}`} className="hover:scale-90 hover:duration-500 md:active:scale-90">
+                                    <Link href={`/person/${person.id}`} className="hover:scale-90 hover:duration-500 md:active:scale-90">
                                         <div className=" relative overflow-hidden">
                                             <Image src={person.profile_path ? `${urlImage}${person.profile_path}` : no_image}
                                                 alt={person.name? person.name : "No name"}

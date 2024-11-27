@@ -36,7 +36,7 @@ export default function MoviePopular({ dataPopular }) {
 
                                     <div className="hover:scale-105  hover:duration-500 w-full ">
 
-                                        <Link className=" " href={`/Movies/List/${movie.id}`}>
+                                        <Link className=" " href={`/movies/list/${movie.id}`}>
 
                                             <Image
                                                 src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}

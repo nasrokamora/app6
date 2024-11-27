@@ -14,16 +14,11 @@ import {
   AlertDescription,
   AlertTitle,
 } from "@/components/ui/alert"
-import { RiStarSLine } from "react-icons/ri";
+
 
 export default function TrendingTv({ dataTrending }) {
-  // console.log(dataTrending)
-
-
 
   return (
-
-
     <div className="w-full pt-10 flex justify-center items-center relative h-fit ">
       <Carousel
         opts={{
@@ -36,7 +31,7 @@ export default function TrendingTv({ dataTrending }) {
             dataTrending.map((data, index) => (
               <CarouselItem key={index} className="pt-1 md:basis-1/2 basis-1/6 lg:basis-1/5 ">
                 <div className="p-1 hover:scale-90 hover:duration-500 hover:hue-rotate-90">
-                  <Link href={`/Tv/List/${data.id}`}>
+                  <Link href={`/tv/list/${data.id}`}>
                     <div className=" ">
                       <div className=" overflow-hidden relative">
                         <Image

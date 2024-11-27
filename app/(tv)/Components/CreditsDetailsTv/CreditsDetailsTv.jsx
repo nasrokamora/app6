@@ -1,7 +1,5 @@
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Card, CardContent } from "@/components/ui/card"
-import Image from "next/image"
 import { urlImageTv } from "@/app/libs/DataFetchingTv"
 import PersonDetailsTv from "./PersonDetailsTv/PersonDetailsTv"
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
@@ -21,7 +19,7 @@ export default function CreditsDetailsTv({ credits, dataImageTv, seasons, series
                 <TabsList>
                     <TabsTrigger value="cast">Cast</TabsTrigger>
                     <TabsTrigger value="image">Images</TabsTrigger>
-                    <TabsTrigger value="season">Season</TabsTrigger>
+                    <TabsTrigger value="seasons">Seasons</TabsTrigger>
                 </TabsList>
 
                 {/* Cast */}
@@ -41,7 +39,7 @@ export default function CreditsDetailsTv({ credits, dataImageTv, seasons, series
                                 ) : (
                                     <Alert variant="destructive">
                                         <AlertCircle className="h-4 w-4" />
-                                        <AlertTitle>Error</AlertTitle>
+                                        <AlertTitle>Oops!</AlertTitle>
                                         <AlertDescription>
                                             An error has occurred, please try again later.
                                         </AlertDescription>
@@ -64,7 +62,7 @@ export default function CreditsDetailsTv({ credits, dataImageTv, seasons, series
 
 
                 {/* Season */}
-                <TabsContent value="season" className=" pt-4   rounded-md h-auto w-full">
+                <TabsContent value="seasons" className=" pt-4   rounded-md h-auto w-full">
 
                     <DetailsSeasonTv
                         season={seasons}

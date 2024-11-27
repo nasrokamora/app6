@@ -38,6 +38,7 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
+import ButtonBack from "@/app/(movies)/Components/ToggleButton/ButtonBack"
 
 export async function generateMetadata({ params }) {
     const { personId } = params
@@ -69,7 +70,7 @@ export default async function Person({ params }) {
     const [dataPerson, personDetails, ImagePerson, dataExtPerson, dataCombined] = await Promise.all([personData, detailsPerson, dataImagePerson, ExtDataPerson, combinedCredits])
     return (
         <div className="w-full h-auto mt-7 pl-6 pr-6">
-            <ToggleButton />
+            <ButtonBack />
 
             <div className=" w-full ">
                 <div className=" flex justify-center flex-col items-center">
@@ -87,18 +88,6 @@ export default async function Person({ params }) {
 
                 </div>
                 <div className=' pt-3 flex justify-evenly gap-2  w-full  md:flex-col lg:flex-col'>
-
-                    {/* image */}
-                    {/* <div className=" w-max md:flex md:items-center md:justify-center md:w-full lg:hidden">
-                        <Image
-                            src={personDetails.profile_path ? `${urlImagesPerson}${personDetails.profile_path}` : no_image}
-                            priority
-                            width={250} height={150}
-                            className="rounded-md   md:h-[250px] "
-                            style={{ height: 'auto' }}
-                            alt={personDetails.name ? personDetails.name : personDetails.title || "Person Details"}
-                        />
-                    </div> */}
                     <div className="w-max flex-col h-auto flex justify-start items-start order-2">
                         {/* date of birth */}
                         <div className="flex gap-2 justify-start items-center lg:text-xl xl:text-xl 2xl:text-2xl flex-wrap">

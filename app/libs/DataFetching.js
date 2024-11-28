@@ -292,8 +292,31 @@ export async function getPersonPopular() {
     }
     return { error: true, message: error.message }
   }
-
 }
+
+//get popular person page 2
+export async function getPersonPopularPage2() {
+  try {
+    const response = await fetch(`${process.env.TMDB_BASE_URL}/person/popular?&page=2`, {
+      headers: {
+        Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
+        accept: "application/json"
+      }, next: {
+        revalidate: 3600
+      }
+    })
+
+    return response.json()
+  } catch (error) {
+    if (process.env.NODE_ENV !== "production") {
+      console.error(error, "failed to fetch data Person")
+    }
+    return { error: true, message: error.message }
+  }
+}
+
+
+
 //get Trelair
 export async function getTrailer(id) {
   try {

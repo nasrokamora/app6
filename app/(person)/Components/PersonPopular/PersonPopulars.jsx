@@ -27,7 +27,7 @@ import {
     CardTitle,
 } from "@/components/ui/card"
 import { FaRegStar } from "react-icons/fa"
-export default function PersonPopular({ dataPersonPopular }) {
+export default function PersonPopulars({ dataPersonPopular }) {
 
     return (
         <div className="  flex justify-center items-center w-full h-auto mt-7 md:mt-12">

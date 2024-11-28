@@ -48,7 +48,7 @@ This project utilizes the [TMDB API](https://www.themoviedb.org/documentation/ap
 
 ## 👨‍💻 Developed By  
 
-This project is developed by **Nasreddine Abdellouche**, a skilled web developer specializing in building high-performance websites and applications using modern frameworks and technologies such as Next.js, React.js, and Tailwind CSS,MERN Stack...and more.  
+This project is developed by **Nasreddine Abdellouche**, a proficient web developer with expertise in crafting high-performance websites and applications. Nasreddine specializes in modern frameworks and technologies, including **Next.js**, **React.js**, **Tailwind CSS**, and the **MERN Stack**, among others. His work emphasizes scalability, responsiveness, and user-centric design, ensuring exceptional digital experiences.  
 
 - **GitHub:** [Nasreddine](https://github.com/nasrokamora)  
 - **Email:** nasreddine-ab@outlook.com

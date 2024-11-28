@@ -25,6 +25,7 @@ This is a **work-in-progress** project for a Movies & TV Shows website, built wi
 - Optimized for performance using **SSR**, **ISR**, and **SSG**.
 - Dynamic routing with **parallel routes**.
 - Beautiful and consistent UI built with **ShadcnUI** and **Magic UI**.
+- Smooth animations and transitions using **Framer Motion**.
 
 ---
 

@@ -1,4 +1,3 @@
-
 # 🎬 Movies & TV Shows Website (Coming Soon)
 
 This is a **work-in-progress** project for a Movies & TV Shows website, built with modern web technologies and frameworks. Stay tuned for the full release!
@@ -48,7 +47,7 @@ This project utilizes the [TMDB API](https://www.themoviedb.org/documentation/ap
 
 ## 👨‍💻 Developed By  
 
-This project is developed by **Nasreddine Abdellouche**, a proficient web developer with expertise in crafting high-performance websites and applications. Nasreddine specializes in modern frameworks and technologies, including **Next.js**, **React.js**, **Tailwind CSS**, and the **MERN Stack**, among others. His work emphasizes scalability, responsiveness, and user-centric design, ensuring exceptional digital experiences.  
+This project is developed by **Nasreddine Abdellouche**, a proficient web developer with expertise in crafting high-performance websites and applications. He specializes in modern frameworks and technologies, including **Next.js**, **React.js**, **Tailwind CSS**, and the **MERN Stack**, among others. His work emphasizes scalability, responsiveness, and user-centric design, ensuring exceptional digital experiences.  
 
 - **GitHub:** [Nasreddine](https://github.com/nasrokamora)  
 - **Email:** nasreddine-ab@outlook.com

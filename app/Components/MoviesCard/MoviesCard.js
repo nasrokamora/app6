@@ -16,10 +16,13 @@ import {
     CarouselPrevious,
 } from "@/components/ui/carousel"
 import Rating from "../Rated/Rating"
+import TransitionCom from "@/app/Animations/Transition/TransitionCom"
 
 
 export default async function MoviesCard({ dataDiscoverMovies }) {
     return (
+        <TransitionCom>
+
         <div className="  w-full 2xl:text-2xl h-fit xl:h-[21rem]  ">
             <div className="">
             </div>
@@ -64,7 +67,7 @@ export default async function MoviesCard({ dataDiscoverMovies }) {
                                 </AlertDescription>
                             </Alert>
                         )
-                        }
+                    }
                     </CarouselContent>
                     <div className=" absolute top-[-2rem] left-[93%] md:left-[80%] text-white ">
                         <CarouselPrevious />
@@ -75,5 +78,6 @@ export default async function MoviesCard({ dataDiscoverMovies }) {
 
 
         </div>
+                    </TransitionCom>
     )
 }

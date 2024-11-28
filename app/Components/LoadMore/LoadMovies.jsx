@@ -73,9 +73,7 @@ export default function LoadMovies() {
             <div className="grid grid-cols-6 gap-8 p-8 md:grid-cols-3 lg:grid-cols-4">
                 {dataMovies.map((movie, index) => (
                     <BlurFade key={movie.id - index} delay={0.10 + index * 0.05} inView>
-
                         <div key={index} className="relative flex flex-col items-center justify-center overflow-hidden hover:scale-110 hover:duration-300">
-
                             <Link href={`/movies/list/${movie.id}`} >
 
                                 <Image src={`${urlImage}/${movie.poster_path}`}

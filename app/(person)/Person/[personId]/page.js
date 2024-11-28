@@ -68,6 +68,7 @@ export default async function Person({ params }) {
     const ExtDataPerson = getExternelIdsPerson(personId)
     const combinedCredits = getCombinedCreditPerson(personId)
     const [dataPerson, personDetails, ImagePerson, dataExtPerson, dataCombined] = await Promise.all([personData, detailsPerson, dataImagePerson, ExtDataPerson, combinedCredits])
+    // console.log(dataPerson)
     return (
         <div className="w-full h-auto mt-7 pl-6 pr-6">
             <ButtonBack />
@@ -75,12 +76,12 @@ export default async function Person({ params }) {
             <div className=" w-full ">
                 <div className=" flex justify-center flex-col items-center">
 
-                    <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-3xl">
+                    <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-3xl bg-gradient-to-r from-[#f4c700] via-[#ff0000] to-[#f4c700]  text-transparent bg-clip-text bg-[length:200%] animate-gradient">
                         {personDetails.name ? personDetails.name : <Unknown />}
                     </h1>
                     <div className=" text-center pt-1">
                         {personDetails.also_known_as && personDetails.also_known_as.length > 0 ? (
-                            <h1 className=" text-slate-500"> <span>Also Known As: </span>{personDetails.also_known_as}</h1>
+                            <h1 className=" text-slate-500 font-bold"> <span className=" font-semibold">Also Known As: </span>{personDetails.also_known_as}</h1>
                         ) : (
                             <h1 className=" font-semibold"> <span className="text-slate-500">Also Known As: </span><span className="text-red-700">No found</span></h1>
                         )}
@@ -120,22 +121,22 @@ export default async function Person({ params }) {
                             <div className=" flex justify-start gap-2">
 
 
-                                <ul className=" flex justify-start gap-3 items-center list-none flex-wrap">
+                                <ul className="  flex justify-start gap-3 items-center list-none flex-wrap">
 
-                                    <li>
-                                        <Link href={dataExtPerson.imdb_id ? `https://www.imdb.com/title/${dataExtPerson.imdb_id}` : "https://www.imdb.com/title/"} target="_blank"><SiImdb size={20} /></Link>
+                                    <li className=" hover:animate-pulse">
+                                        <Link href={dataExtPerson.imdb_id ? `https://www.imdb.com/title/${dataExtPerson.imdb_id}` : "https://www.imdb.com/title/"} target="_blank"><SiImdb size={24} /></Link>
                                     </li>
-                                    <li>
-                                        <Link href={dataExtPerson.instagram_id ? `https://www.instagram.com/${dataExtPerson.instagram_id}/` : "https://www.instagram.com/"} target="_blank"><SlSocialInstagram size={20} /></Link>
+                                    <li className=" hover:animate-pulse">
+                                        <Link href={dataExtPerson.instagram_id ? `https://www.instagram.com/${dataExtPerson.instagram_id}/` : "https://www.instagram.com/"} target="_blank"><SlSocialInstagram size={24} /></Link>
                                     </li>
-                                    <li>
-                                        <Link href={dataExtPerson.twitter_id ? `https://twitter.com/${dataExtPerson.twitter_id}` : "https://twitter.com/"} target="_blank"><BsTwitterX size={20} /></Link>
+                                    <li className=" hover:animate-pulse">
+                                        <Link href={dataExtPerson.twitter_id ? `https://twitter.com/${dataExtPerson.twitter_id}` : "https://twitter.com/"} target="_blank"><BsTwitterX size={24} /></Link>
                                     </li>
-                                    <li>
-                                        <Link href={dataExtPerson.facebook_id ? `https://www.facebook.com/${dataExtPerson.facebook_id}` : "https://www.facebook.com/"} target="_blank"><BsFacebook size={20} /></Link>
+                                    <li className=" hover:animate-pulse">
+                                        <Link href={dataExtPerson.facebook_id ? `https://www.facebook.com/${dataExtPerson.facebook_id}` : "https://www.facebook.com/"} target="_blank"><BsFacebook size={24} /></Link>
                                     </li>
-                                    <li>
-                                        <Link href={dataExtPerson.youtube_id ? `https://www.youtube.com/channel/${dataExtPerson.youtube_id}` : "https://www.youtube.com"} target="_blank"><BsYoutube size={20} /></Link>
+                                    <li className=" hover:animate-pulse">
+                                        <Link href={dataExtPerson.youtube_id ? `https://www.youtube.com/channel/${dataExtPerson.youtube_id}` : "https://www.youtube.com"} target="_blank"><BsYoutube size={24} /></Link>
                                     </li>
                                 </ul>
                             </div>
@@ -149,10 +150,10 @@ export default async function Person({ params }) {
                         {/* biography */}
                         <div className="pt-3 md:hidden">
                                 <AlertDialog className=" " >
-                                    <AlertDialogTrigger className="hover:bg-info hover:duration-300 alert-info text-white hover:text-slate-950 border p-2 font-bold rounded-lg">Biography</AlertDialogTrigger>
+                                    <AlertDialogTrigger className="hover:bg-yellow-500 hover:duration-300 border-yellow-500 text-white hover:text-slate-950 border p-2 font-bold rounded-lg hover:border-[#ff0401]">Biography</AlertDialogTrigger>
                                     <AlertDialogContent className="md:h-screen  max-w-2xl xl:max-w-5xl">
                                         <AlertDialogHeader>
-                                            <AlertDialogTitle> {dataPerson.name ? dataPerson.name : "Name is not found"}</AlertDialogTitle>
+                                            <AlertDialogTitle> {personDetails.name ? personDetails.name || personDetails.original_name : <span className="text-red-700 font-semibold">Unknown!</span>}</AlertDialogTitle>
                                             <AlertDialogDescription className=" italic">
                                                 {personDetails && personDetails.biography && personDetails.biography.length > 0
                                                     ? personDetails.biography

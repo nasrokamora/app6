@@ -55,7 +55,7 @@ export default function CombinedCreditsPerson({ dataCombined }) {
                                                 width={120}
                                                 height={100}
                                                 priority
-                                                className=" "
+                                                className=" rounded-md"
                                                 style={{ height: "auto", width: "auto" }}
                                             />
                                         </div>

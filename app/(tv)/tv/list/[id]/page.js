@@ -274,7 +274,7 @@ export default async function DynamicTvListPage({ params }) {
                     <strong className="text-2xl font-bold text-[#3f7eab] md:text-xl">Last episode to air :</strong>
                 </div>
                 {detailTv.last_episode_to_air ? (
-                    <div className=" h-[20rem] md:h-auto w-full">
+                    <div className=" h-[20rem] md:h-auto w-full xl:h-[22rem] relative">
 
                         <div className="relative flex items-start justify-between w-full gap-2 mt-6 ">
                             <div className=" overflow-hidden relative  h-[20rem] w-full ">
@@ -300,19 +300,7 @@ export default async function DynamicTvListPage({ params }) {
                                     <strong className="text-2xl font-bold text-zinc-400 md:hidden">Name :</strong>
                                     <h1 className="text-xl font-bold scroll-m-20 xl:text-2xl"> {detailTv.last_episode_to_air.name ? detailTv.last_episode_to_air.name : <span className="text-2xl font-bold text-error rounded-xl md:text-xl">unknown !</span>} </h1>
                                 </div>
-                                {/* last air date overview */}
-                                <div className="flex flex-col order-4 gap-2 ">
-                                    <strong className="text-2xl font-bold text-zinc-400 md:text-xl">Overview :</strong>
-                                    <Accordion type="single" collapsible className=" lg:hidden xl:hidden 2xl:hidden ">
-                                        <AccordionItem value="item-1">
-                                            <AccordionTrigger> {detailTv.last_episode_to_air.overview.slice(0, 50) ? detailTv.last_episode_to_air.overview.slice(0, 30) + "..." : <span className="text-2xl font-bold text-error rounded-xl md:text-xl">unknown !</span>} </AccordionTrigger>
-                                            <AccordionContent>
-                                                {detailTv.last_episode_to_air.overview ? detailTv.last_episode_to_air.overview : <span className="text-2xl font-bold text-error rounded-xl md:text-xl">unknown !</span>}
-                                            </AccordionContent>
-                                        </AccordionItem>
-                                    </Accordion>
-                                    <blockquote className=" md:hidden pl-6 italic border-l-2 border-l-orange-400 bg-black/30 backdrop-blur rounded-md">{detailTv.last_episode_to_air.overview ? detailTv.last_episode_to_air.overview : <span className="text-2xl font-bold text-error rounded-xl md:text-xl">unknown !</span>}</blockquote>
-                                </div>
+ 
                                 <div className="flex flex-wrap items-center justify-start order-3 gap-2 ">
                                     <div className="flex flex-col gap-2 ">
 

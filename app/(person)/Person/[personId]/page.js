@@ -156,7 +156,7 @@ export default async function Person({ params }) {
                                             <AlertDialogDescription className=" italic">
                                                 {personDetails && personDetails.biography && personDetails.biography.length > 0
                                                     ? personDetails.biography
-                                                    : 'Biography is not available.'}
+                                                    : <span className="text-red-700 font-semibold">Biography is not available.</span>}
                                             </AlertDialogDescription>
                                         </AlertDialogHeader>
                                         <AlertDialogFooter>

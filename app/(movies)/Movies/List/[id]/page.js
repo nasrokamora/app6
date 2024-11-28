@@ -34,9 +34,6 @@ import BgImageCover from "@/app/(movies)/Components/BgImageCover/BgImageCover"
 import ImageList from "@/app/(movies)/Components/ImageList/ImageList"
 import ReviewsList from "@/app/(movies)/Components/ReviewsMovies/ReviewsList"
 import RecommendationMovies from "@/app/(movies)/Components/RecommendationMovies/RecommendationMovies"
-import RatingUsersMovies from "@/app/(movies)/Components/RatingUsersMovies/RatingUsersMovies"
-import ReleaseMovies from "@/app/(movies)/Components/Release/ReleaseMovies"
-import AddNewMovies from "@/app/(movies)/Components/ChangesMovies/AddNewMovies"
 import { FaFacebook, FaImdb } from "react-icons/fa"
 import { BsTwitterX } from "react-icons/bs"
 import { SlSocialInstagram } from "react-icons/sl"
@@ -90,7 +87,7 @@ export default async function DynamicMoviesList({ params }) {
                         width={250}
                         height={250}
                         className="rounded-md  "
-                        style={{ width: "auto" }}
+                        style={{ width: "auto",height:'auto' }}
                         priority
                         alt={data.title ? data.title : "Title image not found"} />
 

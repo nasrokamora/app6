@@ -1,4 +1,4 @@
-
+import { RiHeartsFill } from "react-icons/ri";
 import {
     Card,
     CardContent,
@@ -12,7 +12,7 @@ import Link from "next/link"
 import Image from "next/image"
 import no_image from '../../../../public/image/no_image4.webp'
 import { getCombinedCreditPerson, getExternelIdsPerson, getPersonsId, getPersonsImage, urlImagesPerson } from "@/app/libs/DataFetchingPerson"
-import { getPersonPopular } from "@/app/libs/DataFetching"
+import { getPersonPopular, getPersonPopularPage2 } from "@/app/libs/DataFetching"
 import {
     Accordion,
     AccordionContent,
@@ -62,13 +62,13 @@ export default async function Person({ params }) {
 
     const { personId } = params
 
-    const personData = getPersonPopular()
+    const personData = getPersonPopularPage2()
     const detailsPerson = getPersonsId(personId)
     const dataImagePerson = getPersonsImage(personId)
     const ExtDataPerson = getExternelIdsPerson(personId)
     const combinedCredits = getCombinedCreditPerson(personId)
-    const [dataPerson, personDetails, ImagePerson, dataExtPerson, dataCombined] = await Promise.all([personData, detailsPerson, dataImagePerson, ExtDataPerson, combinedCredits])
-    // console.log(dataPerson)
+    const [dataPersonPopular, personDetails, ImagePerson, dataExtPerson, dataCombined] = await Promise.all([personData, detailsPerson, dataImagePerson, ExtDataPerson, combinedCredits])
+    // console.log(dataPersonPopular)
     return (
         <div className="w-full h-auto mt-7 pl-6 pr-6">
             <ButtonBack />
@@ -149,40 +149,46 @@ export default async function Person({ params }) {
                         </div>
                         {/* biography */}
                         <div className="pt-3 md:hidden">
-                                <AlertDialog className=" " >
-                                    <AlertDialogTrigger className="hover:bg-yellow-500 hover:duration-300 border-yellow-500 text-white hover:text-slate-950 border p-2 font-bold rounded-lg hover:border-[#ff0401]">Biography</AlertDialogTrigger>
-                                    <AlertDialogContent className="md:h-screen  max-w-2xl xl:max-w-5xl">
-                                        <AlertDialogHeader>
-                                            <AlertDialogTitle> {personDetails.name ? personDetails.name || personDetails.original_name : <span className="text-red-700 font-semibold">Unknown!</span>}</AlertDialogTitle>
-                                            <AlertDialogDescription className=" italic">
-                                                {personDetails && personDetails.biography && personDetails.biography.length > 0
-                                                    ? personDetails.biography
-                                                    : <span className="text-red-700 font-semibold">Biography is not available.</span>}
-                                            </AlertDialogDescription>
-                                        </AlertDialogHeader>
-                                        <AlertDialogFooter>
-                                            <AlertDialogCancel>Cancel</AlertDialogCancel>
-                                        </AlertDialogFooter>
-                                    </AlertDialogContent>
-                                </AlertDialog>
-           
+                            <AlertDialog className=" " >
+                                <AlertDialogTrigger className="hover:bg-yellow-500 hover:duration-300 border-yellow-500 text-white hover:text-slate-950 border p-2 font-bold rounded-lg hover:border-[#ff0401]">Biography</AlertDialogTrigger>
+                                <AlertDialogContent className="md:h-screen  max-w-2xl xl:max-w-5xl">
+                                    <AlertDialogHeader>
+                                        <AlertDialogTitle> {personDetails.name ? personDetails.name || personDetails.original_name : <span className="text-red-700 font-semibold">Unknown!</span>}</AlertDialogTitle>
+                                        <AlertDialogDescription className=" italic">
+                                            {personDetails && personDetails.biography && personDetails.biography.length > 0
+                                                ? personDetails.biography
+                                                : <span className="text-red-700 font-semibold">Biography is not available.</span>}
+                                        </AlertDialogDescription>
+                                    </AlertDialogHeader>
+                                    <AlertDialogFooter>
+                                        <AlertDialogCancel>Cancel</AlertDialogCancel>
+                                    </AlertDialogFooter>
+                                </AlertDialogContent>
+                            </AlertDialog>
+
                         </div>
                     </div>
 
                     {/* Image person */}
                     <div className=" lg:order-1">
 
-                    <PersonImage ImagePerson={ImagePerson.profiles} />
+                        <PersonImage ImagePerson={ImagePerson.profiles} />
                     </div>
 
                 </div>
             </div>
             {/* combibed Credits */}
-            <div>
+            <div className="">
                 <CombinedCreditsPerson dataCombined={dataCombined && dataCombined.cast ? dataCombined.cast : []} />
             </div>
-
-            <PopularPersonDetails dataPerson={dataPerson.results} />
+            <div className="mt-7">
+                <div className=" flex justify-start gap-2 items-center">
+                    <h1 className="bg-gradient-to-r from-[#ff40c6] via-[#9c40ff] to-[#ff4040] bg-[length:200%_auto] bg-clip-text text-transparent animate-gradient font-bold text-3xl scroll-m-20 tracking-tigh md:first:m-0 md:text-4xl">Meet the Stars </h1>
+                    <RiHeartsFill size={32} className=" xl:size-[2rem] animate-pulse text-[#ff40c6] " />
+                </div>
+                {/* popular person details */}
+                <PopularPersonDetails dataPersonPopular={dataPersonPopular.results} />
+            </div>
         </div>
     )
 }

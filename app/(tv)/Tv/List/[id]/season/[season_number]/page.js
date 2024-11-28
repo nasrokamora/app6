@@ -52,8 +52,6 @@ export default async function SeasonDetailTvSeries({ params }) {
     const seasonCredit = getDetailsSeasonCreditsTv(id, season_number)
     const dataTrailer = grtTrailerSeason(id, season_number)
     const [dataSeason, seasonImage, ExtSeason, dataCreditSeason, dataTrailerSeason] = await Promise.all([seasonData, imageSeason, dataExtIds, seasonCredit, dataTrailer])
-    // console.log(dataSeason.guest_stars);
-    
     const color = "#ffffff"
 
     return (
@@ -73,8 +71,8 @@ export default async function SeasonDetailTvSeries({ params }) {
                 />
                 <h1 className="scroll-m-20 text-xl italic text-slate-500 font-semibold tracking-tight">{dataSeason.air_date ? dataSeason.air_date : "Unknown"}</h1>
             </div>
-                                    
-                
+
+
             <div className=" flex justify-evenly  gap-2 mt-4   p-2 md:flex-col md:items-center">
                 <div className=" lg:hidden  overflow-hidden relative">
                     <Image src={dataSeason.poster_path ? `${urlImageTv}${dataSeason.poster_path}` : no_image}
@@ -82,9 +80,9 @@ export default async function SeasonDetailTvSeries({ params }) {
                         height={200}
                         priority
                         alt={dataSeason.name}
-                        style={{ width: "auto",height:"auto" }}
+                        style={{ width: "auto", height: "auto" }}
                         className=" rounded-md  "
-                        />
+                    />
                 </div>
 
                 <div className=" flex justify-center flex-col w-full gap-2">
@@ -162,12 +160,12 @@ export default async function SeasonDetailTvSeries({ params }) {
                                                     className=" md:h-[100px] md:w-[180px] "
                                                     alt={episode.name} />
 
-                                            ):(
+                                            ) : (
                                                 <Image src={broken_image}
                                                     width={100} height={100}
                                                     priority
                                                     draggable="false"
-                                                    style={{ borderRadius: "2px",  }}
+                                                    style={{ borderRadius: "2px", }}
                                                     className=" xl:w-[150px] xl:h-[145px]"
                                                     placeholder="blur"
                                                     alt={episode.name} />

@@ -7,7 +7,7 @@ This is a **work-in-progress** project for a Movies & TV Shows website, built wi
 ## 🛠️ Technologies Used
 - [Next.js](https://nextjs.org) (Framework)
 - [Tailwind CSS](https://tailwindcss.com) (Styling)
-- [ShadcnUI](https://shadcn.com) (Component Library)
+- [ShadcnUI](https://ui.shadcn.com) (Component Library)
 - [Magic UI](https://magic.design) (UI Enhancements)
 - [KindeAuth](https://kinde.com) (Authentication)
 - **TMDB API** for movies and TV shows data

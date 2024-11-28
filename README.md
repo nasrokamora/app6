@@ -10,8 +10,8 @@ This is a **work-in-progress** project for a Movies & TV Shows website, built wi
 - [ShadcnUI](https://ui.shadcn.com) (Component Library)
 - [Magic UI](https://magic.design) (UI Enhancements)
 - [KindeAuth](https://kinde.com) (Authentication)
-- **TMDB API** for movies and TV shows data
 - [Framer Motion](https://motion.dev) (Animation Library)
+- **TMDB API** for movies and TV shows data
 
 ---
 

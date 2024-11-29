@@ -17,6 +17,10 @@ import Link from 'next/link'
 import LoadingPaginationTv from "./LoadingPaginationTv";
 
 
+
+
+
+
 export default function PaginationTvShow() {
 
     
@@ -85,7 +89,7 @@ export default function PaginationTvShow() {
                     <LoadingPaginationTv />
                 ) : error ? (
                     <div className="text-center">
-                        <h1>Error: {error}</h1>
+                        <h1>error</h1>
                         <button
                             onClick={() => fetchTvShow(currentPage)}
                             className="px-4 py-2 mt-2 text-white bg-red-500 rounded"
@@ -147,9 +151,9 @@ export default function PaginationTvShow() {
                     </PaginationItem>
 
                     {Array(5).fill(0).map((_, index) =>(
-                        <PaginationItem key={index} className=" md:hidden">
+                        <PaginationItem key={index} className=" md:hidden ">
                             <PaginationLink
-                                className="cursor-pointer"
+                                className="cursor-pointer 2xl:font-bold"
                                 onClick={() => handleChangePageTv(index + 1)}
                                 isActive={currentPage === index + 1}
                             >

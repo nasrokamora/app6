@@ -155,7 +155,10 @@ export async function getCreditsId(credit_id) {
     return res.json()
 
   } catch (error) {
-    return { error: true, message: error.message }
+    if (process.env.NODE_ENV !== "production") {
+      console.error(error, "failed to fetch data Credits Id")
+    }
+    return { error: true, message: error.message };
   }
 
 

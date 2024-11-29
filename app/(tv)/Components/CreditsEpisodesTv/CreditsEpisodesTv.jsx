@@ -92,7 +92,6 @@ const CreditsEpisodesTvGuestStars = ({ creditsEpisodes }) => {
 
 
 export default function CreditsEpisodesTv({ creditsEpisodes }) {
-    // console.log(creditsEpisodes);
     return (
         <div className=" w-full mt-4 flex  justify-start flex-col items-start ">
             {/* cast */}

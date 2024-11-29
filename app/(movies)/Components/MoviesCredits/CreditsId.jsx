@@ -6,7 +6,7 @@ export default async function CreditsId({ credit_id }) {
 
   return (
     <section>
-      <PersonDetails person_id={dataCreditId.person.id} key={dataCreditId.id} />
+      <PersonDetails person_id={dataCreditId.person.id} />
     </section>
   )
 }

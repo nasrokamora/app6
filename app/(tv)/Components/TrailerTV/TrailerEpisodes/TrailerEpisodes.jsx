@@ -1,4 +1,4 @@
-import ReactPlayer from "react-player";
+
 import {
     AlertDialog,
     AlertDialogCancel,
@@ -9,18 +9,15 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
-import { Button } from "@/components/ui/button"
-
 import { SiGradleplaypublisher } from "react-icons/si";
 import { YouTubeEmbed } from '@next/third-parties/google'
-import { FaRegCirclePlay } from "react-icons/fa6";
-import { LuMonitorPlay } from "react-icons/lu";
+
 
 
 
 export default function TrailerEpisodes({trailerEpisodes}) {
     const dataTrailerEpisodes = trailerEpisodes.slice(0, 1);
-    // console.log(trailerEpisodes);
+
 
     return(
         <div className="  w-full  md:flex md:justify-center md:items-center">

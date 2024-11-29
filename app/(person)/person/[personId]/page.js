@@ -24,6 +24,7 @@ import {
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 import ButtonBack from "@/app/(movies)/Components/ToggleButton/ButtonBack"
+import { RiHeartsFill } from "react-icons/ri"
 
 export async function generateMetadata({ params }) {
     const { personId } = params

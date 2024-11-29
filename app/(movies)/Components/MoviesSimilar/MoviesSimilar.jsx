@@ -13,21 +13,21 @@ import no_image from '../../../../public/image/no_image4.webp'
 export default function MoviesSimilar({ similar }) {
 
     return (
-        <div className=" mt-8 ">
-            <div>
-                <h1 className="  text-yellow-500  md:text-yellow-500   mt-10 scroll-m-20 md:text-xl  text-2xl font-bold tracking-tight  first:mt-0">Similar Movies on Magix </h1>
+        <div className=" mt-8  ">
+            <div className="border-l-yellow-500 border-l-2 pl-2">
+                <h1 className="  bg-gradient-to-r from-[#f4c700] via-[#00ccff] to-[#f4c700] bg-clip-text text-transparent animate-gradient bg-[length:200%_auto]    mt-10 scroll-m-20 md:text-2xl md:text-wrap  text-3xl font-bold tracking-tight  first:mt-0">Similar Movies on Magix </h1>
 
             </div>
-            <div className="flex justify-center w-full mt-6 md:mt-16">
+            <div className="flex justify-center w-full mt-6 md:mt-16 bg-black/50 backdrop-blur p-4 rounded-md">
                 <Carousel opts={{
                     align: "start",
                     loop: true,
-                }} className=" md:max-w-lg xl:max-w-4xl w-full max-w-5xl 2xl:max-w-full" >
+                }} className=" md:max-w-lg xl:max-w-5xl w-full max-w-5xl 2xl:max-w-full" >
                     <CarouselContent className="  -ml-1">
                         {similar.results && similar.results.length > 0 ? (
                             similar.results.map((movie) => (
 
-                                <CarouselItem key={movie.id} className="  basis-1/5 lg:basis-1/5 md:basis-1/2 2xl:basis-1/6">
+                                <CarouselItem key={movie.id} className="  basis-1/6 lg:basis-1/5 md:basis-1/2 2xl:basis-1/6">
                                     <div className="  hover:scale-105 hover:duration-500  hover:grayscale  ">
                                         <Link className="" href={`/movies/list/${movie.id}`} rel="noopener noreferrer">
                                             <div className=" relative overflow-hidden">
@@ -63,8 +63,8 @@ export default function MoviesSimilar({ similar }) {
                                 </CarouselItem>
                             ))
                         ) : (
-                            <div className=" flex justify-center items-center w-full">
-                                <h1 className="font-bold text-2xl text-error md:text-xl italic">there is no similar movies.</h1>
+                            <div className=" flex justify-center items-center w-full ">
+                                <h1 className="border rounded-md border-red-700 w-fit p-2 font-bold text-2xl text-red-700 md:text-xl italic">there is no similar movies.</h1>
                             </div>
                         )
                         }

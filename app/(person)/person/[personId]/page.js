@@ -1,24 +1,9 @@
-import { RiHeartsFill } from "react-icons/ri";
-import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardFooter,
-    CardHeader,
-    CardTitle,
-} from "@/components/ui/card"
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
+
 import Link from "next/link"
 import Image from "next/image"
 import no_image from '../../../../public/image/no_image4.webp'
 import { getCombinedCreditPerson, getExternelIdsPerson, getPersonsId, getPersonsImage, urlImagesPerson } from "@/app/libs/DataFetchingPerson"
-import { getPersonPopular, getPersonPopularPage2 } from "@/app/libs/DataFetching"
-import {
-    Accordion,
-    AccordionContent,
-    AccordionItem,
-    AccordionTrigger,
-} from "@/components/ui/accordion"
+import {getPersonPopularPage2 } from "@/app/libs/DataFetching"
 import { LiaImdb } from "react-icons/lia";
 import { SlSocialInstagram } from "react-icons/sl"
 import { BsFacebook, BsTwitterX, BsYoutube } from "react-icons/bs"
@@ -181,7 +166,14 @@ export default async function Person({ params }) {
             <div className="">
                 <CombinedCreditsPerson dataCombined={dataCombined && dataCombined.cast ? dataCombined.cast : []} />
             </div>
-
+            <div className="mt-7 ">
+                <div className="ml-6 flex justify-start gap-2 items-center md:flex-wrap">
+                    <h1 className="bg-gradient-to-r from-[#ff40c6] via-[#9c40ff] to-[#ff4040] bg-[length:200%_auto] bg-clip-text text-transparent animate-gradient font-bold text-3xl scroll-m-20 tracking-tigh md:first:m-0 ">Meet the Stars </h1>
+                    <RiHeartsFill size={32} className=" xl:size-[2rem] animate-pulse text-[#ff40c6] " />
+                </div>
+                {/* popular person details */}
+                <PopularPersonDetails />
+            </div>
         </div>
     )
 }

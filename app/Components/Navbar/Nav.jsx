@@ -47,7 +47,7 @@ export async function TextGradientAnimate() {
   return (
     <div className="z-10 bg-transparent border-none">
       <AnimatedGradientText className={` bg-background `}>
-        
+
         <span
           className={cn(
             `inline animate-gradient bg-gradient-to-r from-[#ffaa40] via-[#9c40ff] to-[#ffaa40] bg-[length:var(--bg-size)_100%] bg-clip-text text-transparent xl:text-2xl trext-xl`,
@@ -78,17 +78,12 @@ export default async function NavBar() {
           hieght={32}
           alt="Magix_Movies_Logo"
           className=""
-        // placeholder="blur"
-        />
-            <h1
-      className={cn('text-center text-2xl font-bold   md:hidden  bg-gradient-to-r from-[#b62323] via-[#9c40ff] to-[#b62323] bg-[length:200%_auto] bg-clip-text text-transparent animate-gradient')}
-      text="Magix Movies"
-    >Magix Movies</h1>
-        {/* <TextGradientAnimate /> */}
-        {/* <AnimatedGradientText>
 
-            <h1 className={cn(`inline animate-gradient bg-gradient-to-r from-[#ffaa40] via-[#9c40ff] to-[#ffaa40] bg-[length:var(--bg-size)_100%] bg-clip-text text-transparen`)}>MAGIX MOVIES</h1>
-            </AnimatedGradientText> */}
+        />
+        <h1
+          className={cn('text-center text-2xl font-bold   md:hidden  bg-gradient-to-r from-[#b62323] via-[#9c40ff] to-[#b62323] bg-[length:200%_auto] bg-clip-text text-transparent animate-gradient')}
+          text="Magix Movies"
+        >Magix Movies</h1>
       </Link>
 
       <div className=" flex justify-between items-center gap-6">

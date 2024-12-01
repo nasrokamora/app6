@@ -42,6 +42,7 @@ import { cn } from "@/lib/utils";
 import { ChevronRight } from "lucide-react";
 import SparklesText from "@/components/ui/sparkles-text";
 import GradualSpacing from "@/components/ui/gradual-spacing";
+import GenresListMovies from "@/app/(movies)/Components/GenresListMovies/GenresListMovies";
 
 export async function TextGradientAnimate() {
   return (
@@ -92,11 +93,10 @@ export default async function NavBar() {
         ) : (
 
           <DropdownMenu className=" ">
-            <DropdownMenuTrigger className=" rounded-full  border"><VscAccount size={23} className="" /></DropdownMenuTrigger>
+            <DropdownMenuTrigger className=" rounded-full  border"><VscAccount size={23} className=" mb-1" /></DropdownMenuTrigger>
             <DropdownMenuContent className="w-auto">
               {user?.picture && (
                 <div>
-
                   <DropdownMenuLabel className=" flex justify-between items-center gap-4">
 
                     <Avatar>
@@ -123,8 +123,15 @@ export default async function NavBar() {
             </DropdownMenuContent>
           </DropdownMenu>
         )}
-
-        <div className=" order-2">
+        {/* Genres */}
+        <div className="">
+          <GenresListMovies />
+        </div>
+        {/* Search */}
+        <div className=" ">
+          <SearchMultiPage />
+        </div>
+        <div className=" ">
 
           <Sheet className="">
             <SheetTrigger><TfiMenu size={25} /></SheetTrigger>
@@ -159,9 +166,8 @@ export default async function NavBar() {
           </Sheet>
         </div>
 
-        <div className=" order-1">
-          <SearchMultiPage />
-        </div>
+
+
       </div>
     </div>
   );

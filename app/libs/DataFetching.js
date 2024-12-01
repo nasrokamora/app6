@@ -1,3 +1,4 @@
+import { cache } from "react"
 
 export const urlImage = "https://image.tmdb.org/t/p/original"
 
@@ -77,7 +78,43 @@ export async function getReleasDateMovies({ id }) {
 
 }
 
+//get Movies by genre
+export async function getMoviesGenre(id) {
+  try {
+    const response = await fetch(`${process.env.TMDB_BASE_URL}/discover/movie?with_genres=${id}`, {
+      headers: headers
+    },
+      {
+        next: {
+          revalidate: 3600
+        }
+      })
+    return response.json()
+  } catch (error) {
+    if (process.env.NODE_ENV !== "production") {
+      console.error(error, "failed to fetch data genre")
+    }
+    return { error: true, message: error.message };
+  }
+}
 
+//get Movies by genre List
+export async function getMoviesGenreList() {
+  try {
+    const response = await fetch(`${process.env.TMDB_BASE_URL}/genre/movie/list`, {
+      headers: headers
+    },
+      {
+      cache: "force-cache"
+    })
+    return response.json()
+  } catch (error) {
+    if (process.env.NODE_ENV !== "production") {
+      console.error(error, "failed to fetch data genre")
+    }
+    return { error: true, message: error.message };
+  }
+}
 
 
 //Popular Movies

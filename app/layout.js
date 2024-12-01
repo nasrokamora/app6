@@ -32,15 +32,18 @@ export const metadata = {
 
 export default function RootLayout({ children}) {
   return (
+    
     <html lang="en" suppressHydrationWarning 
     className="dark">
-      <body className={cn("min-h-screen bg-background font-sans antialiased", inter.variable)}>
-        <Nav/>
 
+      <body className={cn("min-h-screen bg-background font-sans antialiased", inter.variable)}>
+
+        <Nav/>
         {children}
 
         <Footer/>
         </body>
+
     </html>
   );
 }

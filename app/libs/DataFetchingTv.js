@@ -113,21 +113,28 @@ export async function getExternalIdTv(id) {
 
 
 export async function getPersonsIdTv(person_id) {
-    const res = await fetch(`${process.env.TMDB_BASE_URL}/person/${person_id}?api_key=${process.env.NEXT_API_KEY}`,
-        {
-            headers: {
-                Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
-                accept: "application/json"
-            },
-            next: {
-                revalidate: 3600
+        try {
+            const res = await fetch(`${process.env.TMDB_BASE_URL}/person/${person_id}?api_key=${process.env.NEXT_API_KEY}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
+                        accept: "application/json"
+                    },
+                    next: {
+                        revalidate: 3600
+                    }
+                }
+            )
+            if (!res.ok) {
+                throw new Error("failed to fetch data PersonsIdTv")
             }
+            return res.json()
+        } catch (error) {
+            if(process.env.NODE_ENV !== "production") {
+                console.log(error, 'Failed to fetch data PersonsIdTv');
+            }
+            return { error: true, message: error.message };
         }
-    )
-    if (!res.ok) {
-        throw new Error("failed to fetch data PersonsIdTv")
-    }
-    return res.json()
 }
 
 
@@ -204,6 +211,43 @@ export async function getTopTv() {
         return { error: true, message: error.message };
     }
 
+}
+
+
+//fetch Genres Tv
+
+export async function getGenreTvList() {
+    try {
+        const res = await fetch(`${process.env.TMDB_BASE_URL}/genre/tv/list?api_key=${process.env.NEXT_API_KEY}`,
+            {
+                headers: {
+                    Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
+                    accept: "application/json"
+                },
+                cache: "force-cache"
+            }
+        )
+        if(!res.ok) {
+            throw new Error("failed to fetch data GenreTvList")
+        }
+        return res.json()
+    } catch (error) {
+        if(process.env.NODE_ENV !== "production") {
+            console.log(error, 'Failed to fetch data GenreTvList');
+        }
+        return { error: true, message: error.message };
+    }
+}
+
+
+//genres tv by id
+
+export async function getGenreTv(id) {
+    try {
+        const response = await fetch(`${process.env.TMDB_BASE_URL}discover/tv?api_key=${process.env.NEXT_API_KEY}&with_genres=${id}`,)
+    } catch (error) {
+        
+    }
 }
 
 /** end fetching  */

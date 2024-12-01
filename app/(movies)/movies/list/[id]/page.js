@@ -127,7 +127,9 @@ export default async function DynamicMoviesList({ params }) {
                         {data.genres && data.genres.length > 0 ? (
                             data.genres.map((genre) => (
                                 <div className="pb-2 " key={genre.id}>
+                                    <Link href={`/movies/genre/${genre.id}`}>
                                     <Badge variant={"destructive"} className={cn('font-bold text-[#ffebcd]  ')} >{genre.name ? genre.name : "Genre not found"}</Badge>
+                                    </Link>
                                 </div>
                             ))
                         ) : (

@@ -243,11 +243,26 @@ export async function getGenreTvList() {
 //genres tv by id
 
 export async function getGenreTv(id) {
-    try {
-        const response = await fetch(`${process.env.TMDB_BASE_URL}discover/tv?api_key=${process.env.NEXT_API_KEY}&with_genres=${id}`,)
-    } catch (error) {
-        
+try {
+    const res = await fetch(`${process.env.TMDB_BASE_URL}/discover/tv?api_key=${process.env.NEXT_API_KEY}&with_genres=${id}`,
+        {headers:
+            {
+                Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
+                accept: "application/json"
+            },
+            cache: "force-cache"
+        }
+    )
+    if(!res.ok) {
+        throw new Error("failed to fetch data GenreTv")
     }
+    return res.json()
+} catch (error) {
+    if(process.env.NODE_ENV !== "production") {
+        console.log(error, 'Failed to fetch data GenreTv');
+    }
+    return { error: true, message: error.message };
+}
 }
 
 /** end fetching  */

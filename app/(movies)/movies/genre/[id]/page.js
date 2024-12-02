@@ -17,7 +17,7 @@ export default async function MoviesGenre({ params }) {
     const dataResult = data.results
 
     return(
-        <div className="">
+        <div className=" w-full h-screen">
             {dataResult.map((movie) => (
                 <div key={movie.id}>
                     <h1>{movie.title}</h1>

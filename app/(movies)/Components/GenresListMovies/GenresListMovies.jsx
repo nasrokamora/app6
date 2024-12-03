@@ -46,6 +46,7 @@ async function ListGenre() {
                 </SheetClose>
             ))}
             <br />
+            <br />
             <div className="flex justify-start items-center  flex-wrap text-center font-bold text-xl gap-2">
                 <h1>Choose your favorite TV show genre and dive into endless entertainment.
                 </h1>

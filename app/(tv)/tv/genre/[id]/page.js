@@ -11,8 +11,8 @@ import {
 import Image from "next/image"
 import Link from "next/link"
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
-
-
+import { BiSolidUpvote, BiUpvote } from "react-icons/bi";
+import { BiSolidDownvote } from "react-icons/bi";
 
 
 
@@ -30,9 +30,10 @@ const ImageCover = ({ item }) => {
         <div className=" h-[35rem] relative z-0">
             <Image src={`${urlImageTv}${item.backdrop_path}`}
                 fill
-                priority
+                priority={true}
                 style={{ objectFit: "cover", backgroundPosition: "center" }}
                 className="blur-right "
+                loading="eager"
                 alt={item.name} />
         </div>
     )
@@ -47,7 +48,7 @@ export default async function GenrePageTv({ params }) {
     return (
         <div className="h-screen w-full p-4">
 
-            <ScrollArea className=" w-full  whitespace-nowrap h-screen">
+            <ScrollArea className=" w-full  whitespace-nowrap h-[26rem]">
                 <div className=" ">
                     {resultsGenre.map((item) => (
                         <div key={item.id} className=" ">
@@ -60,25 +61,36 @@ export default async function GenrePageTv({ params }) {
                                         <CardTitle className=""> {item.name ?? item.original_name} </CardTitle>
                                         <CardDescription className=" text-slate-300 font-semibold"> {item.first_air_date} & {item.original_language}</CardDescription>
                                     </CardHeader>
-                                    <CardContent className="flex justify-start items-start gap-4 font-semibold">
-                                        <div>
+                                    <CardContent className="flex justify-around items-start gap-4 font-semibold">
+                                        <div className=" overflow-hidden relative">
                                             <Image src={`${urlImageTv}${item.poster_path}`}
-                                                width={150}
-                                                height={150}
+                                                width={120}
+                                                height={100}
                                                 alt={item.name}
                                                 className=" rounded-lg"
                                                 priority
+                                                style={{ width: "auto" }}
+                                                loading="eager"
                                             />
+                                            <div className=" fixed inset-0 h-[3rem] top-[16rem] w-[3rem] left-[7rem]   rounded-full bg-black/80 flex border border-yellow-800 justify-center items-center">
+                                                <h1 className=" font-bold border-purple-700">
+                                                    {Number(item.vote_average.toFixed(1)) < 5.5 ? <span className="text-red-500"> {item.vote_average.toFixed(1)} </span> : <span className="text-green-500"> {item.vote_average.toFixed(1)} </span>}
+                                                </h1>
+                                                <h2>
+                                                    {Number(item.vote_average.toFixed(1)) < 5.5 ? <BiSolidDownvote className="text-red-500" /> : <BiSolidUpvote className="text-green-500" />}
+                                                </h2>
+                                            </div>
                                         </div>
                                         <div>
                                             <div className=" flex justify-start gap-1 items-center">
                                                 <h1> Original language : </h1>
                                                 <h2> {item.original_language}</h2>
                                             </div>
+
                                         </div>
                                     </CardContent>
-                                    <CardFooter>
-                                            <p>Footer</p>
+                                    <CardFooter className="">
+                                        <div></div>
                                     </CardFooter>
                                 </div>
                             </Card>

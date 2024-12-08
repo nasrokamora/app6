@@ -27,13 +27,14 @@ export async function generateStaticParams() {
 
 const ImageCover = ({ item }) => {
     return (
-        <div className=" h-[35rem] relative z-0">
+        <div className=" h-[35rem] relative z-0 md:blur-left">
             <Image src={`${urlImageTv}${item.backdrop_path}`}
                 fill
                 priority={true}
                 style={{ objectFit: "cover", backgroundPosition: "center" }}
                 className="blur-right "
                 loading="eager"
+                draggable={false}
                 alt={item.name} />
         </div>
     )
@@ -46,22 +47,22 @@ export default async function GenrePageTv({ params }) {
     // console.log(resultsGenre);
 
     return (
-        <div className="h-screen w-full p-4">
+        <div className="h-screen w-full p-4 md:h-auto">
 
-            <ScrollArea className=" w-full  whitespace-nowrap h-[26rem]">
+            <ScrollArea className=" w-full  whitespace-nowrap h-[26rem] md:h-min">
                 <div className=" ">
                     {resultsGenre.map((item) => (
                         <div key={item.id} className=" ">
-                            <Card className=" w-full h-[25rem] overflow-hidden relative mt-2">
+                            <Card className=" w-full h-[25rem] overflow-hidden relative mt-2 ">
                                 {/* image cover */}
                                 <ImageCover item={item} />
-                                <div className=" absolute top-0 m-4 rounded-md bg-black/50  backdrop-blur  ">
+                                <div className=" absolute top-0 m-2 rounded-md bg-black/50  backdrop-blur  ">
 
                                     <CardHeader>
-                                        <CardTitle className=""> {item.name ?? item.original_name} </CardTitle>
+                                        <CardTitle className=" flex flex-wrap justify-start"> {item.name ?? item.original_name} </CardTitle>
                                         <CardDescription className=" text-slate-300 font-semibold"> {item.first_air_date} & {item.original_language}</CardDescription>
                                     </CardHeader>
-                                    <CardContent className="flex justify-around items-start gap-4 font-semibold">
+                                    <CardContent className="flex justify-around items-start gap-4 font-semibold md:flex-col">
                                         <div className=" overflow-hidden relative">
                                             <Image src={`${urlImageTv}${item.poster_path}`}
                                                 width={120}
@@ -69,6 +70,7 @@ export default async function GenrePageTv({ params }) {
                                                 alt={item.name}
                                                 className=" rounded-lg"
                                                 priority
+                                                draggable={false}
                                                 style={{ width: "auto" }}
                                                 loading="eager"
                                             />

@@ -1,4 +1,3 @@
-"use server"
 import {
   Sheet,
   SheetClose,
@@ -43,6 +42,7 @@ import { ChevronRight } from "lucide-react";
 import SparklesText from "@/components/ui/sparkles-text";
 import GradualSpacing from "@/components/ui/gradual-spacing";
 import GenresListMovies from "@/app/(movies)/Components/GenresListMovies/GenresListMovies";
+import FetchUserSession from "@/app/api/auth/UserSession/FetchUserSession";
 
 export async function TextGradientAnimate() {
   return (
@@ -65,8 +65,8 @@ export async function TextGradientAnimate() {
 
 
 export default async function NavBar() {
-  const { isAuthenticated, getUser } = getKindeServerSession();
-  const user = await getUser()
+  const { isAuthenticated, user } = await FetchUserSession();
+
 
   return (
     <div className=" px-6  navbar border-b   md:flex  md:items-center flex justify-between items-center">
@@ -79,7 +79,6 @@ export default async function NavBar() {
           hieght={32}
           alt="Magix_Movies_Logo"
           className=""
-
         />
         <h1
           className={cn('text-center text-2xl font-bold   md:hidden  bg-gradient-to-r from-[#b62323] via-[#9c40ff] to-[#b62323] bg-[length:200%_auto] bg-clip-text text-transparent animate-gradient')}
@@ -88,10 +87,9 @@ export default async function NavBar() {
       </Link>
 
       <div className=" flex justify-between items-center gap-6">
-        {!(await isAuthenticated()) ? (
+        {!isAuthenticated ? (
           <LogIn />
         ) : (
-
           <DropdownMenu className=" ">
             <DropdownMenuTrigger className=" rounded-full  border"><VscAccount size={23} className=" mb-1" /></DropdownMenuTrigger>
             <DropdownMenuContent className="w-auto">

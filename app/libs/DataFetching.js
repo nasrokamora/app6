@@ -1,6 +1,17 @@
+import next from "next"
 import { cache } from "react"
 
 export const urlImage = "https://image.tmdb.org/t/p/original"
+
+const Options = {
+  headers: {
+    "Authorization": `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
+    "accept": "application/json"
+  },
+  next: {
+    revalidate: 3600
+  }
+}
 
 export const headers = {
   "Authorization": `Bearer ${process.env.NEXT_API_TOKEN}`,
@@ -12,16 +23,12 @@ export const HEADERS = {
   "Authorization": `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`
 }
 
+
+
 // getDiscoverMovies
 export async function getDiscoverMovies() {
   try {
-    const res = await fetch(`${process.env.TMDB_BASE_URL}/discover/movie`, {
-      headers: headers
-    }, {
-      next: {
-        revalidate: 3600
-      }
-    })
+    const res = await fetch(`${process.env.TMDB_BASE_URL}/discover/movie`, Options)
     if (!res.ok) {
       throw new Error('failed to fetch data discover')
     }
@@ -39,13 +46,7 @@ export async function getDiscoverMovies() {
 //get Movies by id
 export async function getMoviesId(id) {
   try {
-    const response = await fetch(`${process.env.TMDB_BASE_URL}/movie/${id}`,
-      { headers: headers },
-      {
-        next: {
-          revalidate: 3600
-        }
-      })
+    const response = await fetch(`${process.env.TMDB_BASE_URL}/movie/${id}`,Options)
 
     if (!response.ok) {
       throw new Error('failed to fetch data id')
@@ -66,7 +67,10 @@ export async function getReleasDateMovies({ id }) {
 
   try {
     const response = await fetch(`${process.env.TMDB_BASE_URL}/movie/${id}/release_dates`, {
-      headers: headers
+      Options,
+      next: {
+        revalidate: 3600
+      }
     })
     return response.json()
   } catch (error) {
@@ -105,8 +109,8 @@ export async function getMoviesGenreList() {
       headers: headers
     },
       {
-      cache: "force-cache"
-    })
+        cache: "force-cache"
+      })
     return response.json()
   } catch (error) {
     if (process.env.NODE_ENV !== "production") {
@@ -407,4 +411,17 @@ export async function getExternalIdMovies(id) {
     }
     return { error: true, message: error.message }
   }
+}
+
+export async function Get() {
+  const response = await fetch('http://localhost:3000/api/movies',
+    {
+      headers: headers,
+      Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
+      accept: "application/json",
+      next: {
+        revalidate: 3500
+      }
+    })
+  return response.json()
 }

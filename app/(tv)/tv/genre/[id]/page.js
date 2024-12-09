@@ -67,7 +67,7 @@ export default async function GenrePageTv({ params }) {
                                             <Image src={`${urlImageTv}${item.poster_path}`}
                                                 width={120}
                                                 height={100}
-                                                alt={item.name}
+                                                alt={item.name ?? "poster"}
                                                 className=" rounded-lg"
                                                 priority
                                                 draggable={false}

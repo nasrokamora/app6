@@ -13,12 +13,10 @@ import Link from "next/link"
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 import { BiSolidUpvote, BiUpvote } from "react-icons/bi";
 import { BiSolidDownvote } from "react-icons/bi";
-
-
-
+import { FaUserFriends } from "react-icons/fa";
+import { RiStarSFill } from "react-icons/ri";
 export async function generateStaticParams() {
     const genresTv = await getGenreTvList()
-
     return genresTv.genres.map((genre) => ({
         id: genre.id.toString()
     }))
@@ -52,17 +50,17 @@ export default async function GenrePageTv({ params }) {
             <ScrollArea className=" w-full  whitespace-nowrap h-[26rem] md:h-min">
                 <div className=" ">
                     {resultsGenre.map((item) => (
-                        <div key={item.id} className=" ">
-                            <Card className=" w-full h-[25rem] overflow-hidden relative mt-2 ">
+                        <div key={item.id} className=" flex justify-start gap-4 items-center">
+                            <Card className=" w-full h-[25rem] overflow-hidden relative mt-2 md:h-auto">
                                 {/* image cover */}
                                 <ImageCover item={item} />
                                 <div className=" absolute top-0 m-2 rounded-md bg-black/50  backdrop-blur  ">
 
-                                    <CardHeader>
-                                        <CardTitle className=" flex flex-wrap justify-start"> {item.name ?? item.original_name} </CardTitle>
+                                    <CardHeader className="">
+                                        <CardTitle className=" flex flex-wrap justify-start text-wrap "> {item.name ?? item.original_name} </CardTitle>
                                         <CardDescription className=" text-slate-300 font-semibold"> {item.first_air_date} & {item.original_language}</CardDescription>
                                     </CardHeader>
-                                    <CardContent className="flex justify-around items-start gap-4 font-semibold md:flex-col">
+                                    <CardContent className="flex justify-around items-start gap-4 font-semibold flex-wrap">
                                         <div className=" overflow-hidden relative">
                                             <Image src={`${urlImageTv}${item.poster_path}`}
                                                 width={120}
@@ -83,18 +81,30 @@ export default async function GenrePageTv({ params }) {
                                                 </h2>
                                             </div>
                                         </div>
-                                        <div>
+                                        <div className=" flex justify-start items-start flex-col gap-2 ">
                                             <div className=" flex justify-start gap-1 items-center">
-                                                <h1> Original language : </h1>
-                                                <h2> {item.original_language}</h2>
+                                                <h1 className=" font-bold "> Original language : </h1>
+                                                <h2 className=" font-semibold"> {item.original_language}</h2>
                                             </div>
-
+                                            <div className=" flex justify-start gap-1 items-center">
+                                                <h1 className=" font-bold ">Popularity :</h1>
+                                                <h2 className=" font-bold flex gap-1 justify-center items-center "> {item.popularity ? item.popularity.toFixed(1) : "N/A"}
+                                                    <span className=""><FaUserFriends className=" text-slate-300" size={20} /></span></h2>
+                                            </div>
+                                            <div className=" flex justify-start gap-1 items-center font-bold">
+                                                <h1> Rating : </h1>
+                                                <h2 className={`${Number(item.vote_average.toFixed(1)) < 5.5 ? "text-red-500" : "text-yellow-500"}`}> {item.vote_average.toFixed(1)}/10 </h2>
+                                                <span>
+                                                <RiStarSFill size={20} className=" text-yellow-500" />
+                                                </span>
+                                            </div>
                                         </div>
                                     </CardContent>
                                     <CardFooter className="">
                                         <div></div>
                                     </CardFooter>
                                 </div>
+                                    
                             </Card>
                         </div>
                     ))}

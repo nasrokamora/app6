@@ -50,8 +50,11 @@ export default function Loading(){
       exit={{ opacity: 0 }}
     >
       <div className=' flex justify-center items-center  overflow-hidden relative flex-col gap-4 h-screen'>
-        <Image src={icon_magix} width={300} height={300} alt="logo" priority className=' animate-pulse'
-        />
+        <h1 className='font-bold text-xl text-wrap'>
+          Please wait while we prepare your experience for your visit.
+        </h1>
+        {/* <Image src={icon_magix} width={300} height={300} alt="logo" priority className=' animate-pulse'
+        /> */}
         <motion.h1
         initial={{opacity:0,}}
         animate={{opacity:1, }}

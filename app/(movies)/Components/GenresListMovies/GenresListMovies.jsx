@@ -30,21 +30,27 @@ async function GenresListTvShows() {
 
 async function ListGenre() {
     const dataGenreMovie = getMoviesGenreList()
-
     const dataGenresTv = getGenreTvList()
     const [dataGenres, dataGenresListTv] = await Promise.all([dataGenreMovie, dataGenresTv])
-
     return (
         <div className=" flex justify-start items-center flex-wrap gap-2">
 
-            {dataGenres.genres.map((genre) => (
-                <SheetClose asChild key={genre.id}>
-                    <Link href={`/movies/genre/${genre.id}`} className={buttonVariants({ variant: "outline"},cva("hover:bg-red-800 "))}>
-                        <span className=" hover:btn-link ">{genre.name}
-                        </span>
-                    </Link>
-                </SheetClose>
-            ))}
+            {dataGenres && dataGenres.genres.length > 0 ? (
+
+                dataGenres.genres.map((genre) => (
+                    <SheetClose asChild key={genre.id}>
+                        <Link href={`/movies/genre/${genre.id}`} className={buttonVariants({ variant: "outline" }, cva("hover:bg-red-800 "))}>
+                            <span className=" hover:btn-link ">{genre.name}
+                            </span>
+                        </Link>
+                    </SheetClose>
+                ))
+            ) : (
+                <div className="flex justify-center items-center">
+                    <h1 className="text-2xl font-bold text-red-700">Oops ! No genres available at the moment.</h1>
+                </div>
+            )
+            }
             <br />
             <br />
             <div className="flex justify-start items-center  flex-wrap text-center font-bold text-xl gap-2">

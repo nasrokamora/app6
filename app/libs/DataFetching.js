@@ -1,5 +1,4 @@
-import next from "next"
-import { cache } from "react"
+
 
 export const urlImage = "https://image.tmdb.org/t/p/original"
 
@@ -7,15 +6,7 @@ const Options = {
   headers: {
     "Authorization": `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
     "accept": "application/json"
-  },
-  next: {
-    revalidate: 3600
   }
-}
-
-export const headers = {
-  "Authorization": `Bearer ${process.env.NEXT_API_TOKEN}`,
-  "accept": "application/json"
 }
 
 export const HEADERS = {
@@ -46,7 +37,12 @@ export async function getDiscoverMovies() {
 //get Movies by id
 export async function getMoviesId(id) {
   try {
-    const response = await fetch(`${process.env.TMDB_BASE_URL}/movie/${id}`,Options)
+    const response = await fetch(`${process.env.TMDB_BASE_URL}/movie/${id}`, {
+      ...Options,
+      next: {
+        revalidate: 3600
+      }
+    })
 
     if (!response.ok) {
       throw new Error('failed to fetch data id')
@@ -67,7 +63,7 @@ export async function getReleasDateMovies({ id }) {
 
   try {
     const response = await fetch(`${process.env.TMDB_BASE_URL}/movie/${id}/release_dates`, {
-      Options,
+      ...Options,
       next: {
         revalidate: 3600
       }
@@ -86,13 +82,12 @@ export async function getReleasDateMovies({ id }) {
 export async function getMoviesGenre(id) {
   try {
     const response = await fetch(`${process.env.TMDB_BASE_URL}/discover/movie?with_genres=${id}`, {
-      headers: headers
-    },
-      {
-        next: {
-          revalidate: 3600
-        }
-      })
+    ...Options, 
+    next: {
+      revalidate: 3600
+    }
+  }
+)
     return response.json()
   } catch (error) {
     if (process.env.NODE_ENV !== "production") {
@@ -106,11 +101,10 @@ export async function getMoviesGenre(id) {
 export async function getMoviesGenreList() {
   try {
     const response = await fetch(`${process.env.TMDB_BASE_URL}/genre/movie/list`, {
-      headers: headers
+      ...Options,
+      cache: "force-cache"
     },
-      {
-        cache: "force-cache"
-      })
+)
     return response.json()
   } catch (error) {
     if (process.env.NODE_ENV !== "production") {
@@ -125,13 +119,12 @@ export async function getMoviesGenreList() {
 export async function getPopularMovies() {
   try {
     const response = await fetch(`${process.env.TMDB_BASE_URL}/movie/popular?page=2`, {
-      headers: headers
-    },
-      {
-        next: {
-          revalidate: 3600
-        }
-      })
+      ...Options,
+      next: {
+        revalidate: 3600
+      }
+    }
+)
     return response.json()
 
   } catch (error) {
@@ -146,10 +139,8 @@ export async function getPopularMovies() {
 export async function getImageMoviesId(id) {
   try {
     const res = await fetch(`${process.env.TMDB_BASE_URL}/movie/${id}/images`, {
-      headers: headers
-    },
-      {
-        cache: "force-cache"
+      ...Options,
+      cache: "force-cache"
       })
     return res.json()
   } catch (error) {
@@ -162,12 +153,7 @@ export async function getImageMoviesId(id) {
 // Moveis Credits
 export async function getCriditsMovies(id) {
   try {
-    const res = await fetch(`${process.env.TMDB_BASE_URL}/movie/${id}/credits`, {
-      headers: {
-        Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
-        accept: "application/json"
-      }
-    })
+    const res = await fetch(`${process.env.TMDB_BASE_URL}/movie/${id}/credits`, Options)
     return res.json()
   } catch (error) {
     if (process.env.NODE_ENV !== "production") {
@@ -182,10 +168,8 @@ export async function getCriditsMovies(id) {
 export async function getCreditsId(credit_id) {
   try {
     const res = await fetch(`${process.env.TMDB_BASE_URL}/credit/${credit_id}`, {
-      headers: {
-        Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
-        accept: "application/json"
-      }, next: {
+      ...Options,
+      next: {
         revalidate: 3600
       }
     })
@@ -208,10 +192,8 @@ export async function getCreditsId(credit_id) {
 export async function getReviewsMovies(id) {
   try {
     const res = await fetch(`${process.env.TMDB_BASE_URL}/movie/${id}/reviews?api_key=${process.env.NEXT_API_KEY}`, {
-      headers: {
-        Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
-        accept: "application/json"
-      }, next: {
+      ...Options,
+      next: {
         revalidate: 240
       }
     })
@@ -230,16 +212,10 @@ export async function getReviewsMovies(id) {
 export async function getMoviesSimilar(id) {
   try {
     const res = await fetch(`${process.env.TMDB_BASE_URL}/movie/${id}/similar?api_key=${process.env.NEXT_API_KEY}`, {
-      headers: {
-        Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
-        accept: "application/json"
-      }
-    }, {
+      ...Options,
       cache: "force-cache"
     })
-
     return res.json()
-
   } catch (error) {
     if (process.env.NODE_ENV !== "production") {
       console.error(error, "failed to fetch data Similar Movies")
@@ -253,10 +229,7 @@ export async function getMoviesSimilar(id) {
 export async function getTrendingMovies() {
   try {
     const res = await fetch(`${process.env.TMDB_BASE_URL}/trending/movie/day`, {
-      headers: {
-        Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
-        accept: "application/json"
-      },
+      ...Options,
       next: {
         revalidate: 3600
       }
@@ -276,10 +249,8 @@ export async function getRecommendationMovies(id) {
 
   try {
     const response = await fetch(`${process.env.TMDB_BASE_URL}/movie/${id}/recommendations?api_key=${process.env.NEXT_API_KEY}`, {
-      headers: {
-        Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
-        accept: "application/json"
-      }, next: {
+      ...Options,
+      next: {
         revalidate: 1800
       }
     })
@@ -300,10 +271,8 @@ export async function getMoviesNowPlaying() {
 
   try {
     const res = await fetch(`${process.env.TMDB_BASE_URL}/movie/now_playing?&page=4`, {
-      headers: {
-        Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
-        accept: "application/json"
-      }, next: {
+      ...Options,
+      next: {
         revalidate: 3600
       }
     })
@@ -321,10 +290,8 @@ export async function getPersonPopular() {
 
   try {
     const response = await fetch(`${process.env.TMDB_BASE_URL}/person/popular`, {
-      headers: {
-        Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
-        accept: "application/json"
-      }, next: {
+      ...Options,
+      next: {
         revalidate: 3600
       }
     })
@@ -342,10 +309,8 @@ export async function getPersonPopular() {
 export async function getPersonPopularPage2() {
   try {
     const response = await fetch(`${process.env.TMDB_BASE_URL}/person/popular?&page=2`, {
-      headers: {
-        Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
-        accept: "application/json"
-      }, next: {
+      ...Options,
+      next: {
         revalidate: 3600
       }
     })
@@ -364,12 +329,7 @@ export async function getPersonPopularPage2() {
 //get Trelair
 export async function getTrailer(id) {
   try {
-    const res = await fetch(`${process.env.TMDB_BASE_URL}/movie/${id}/videos`, {
-      headers: {
-        Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
-        accept: "application/json"
-      }
-    })
+    const res = await fetch(`${process.env.TMDB_BASE_URL}/movie/${id}/videos`, Options)
 
     return res.json()
   } catch (error) {
@@ -382,10 +342,7 @@ export async function getTrailer(id) {
 
 export async function getPersonId(person_id) {
   try {
-    const response = await fetch(`${process.env.TMDB_BASE_URL}/person/${person_id}`, {
-      headers: headers,
-    }
-    )
+    const response = await fetch(`${process.env.TMDB_BASE_URL}/person/${person_id}`, Options)
     return response.json()
 
   } catch (error) {
@@ -399,7 +356,8 @@ export async function getPersonId(person_id) {
 export async function getExternalIdMovies(id) {
   try {
     const response = await fetch(`${process.env.TMDB_BASE_URL}/movie/${id}/external_ids`, {
-      headers: headers
+      ...Options,
+      cache: "force-cache"
     })
     if (!response.ok) {
       throw new Error("failed to fetch data external id")
@@ -411,17 +369,4 @@ export async function getExternalIdMovies(id) {
     }
     return { error: true, message: error.message }
   }
-}
-
-export async function Get() {
-  const response = await fetch('http://localhost:3000/api/movies',
-    {
-      headers: headers,
-      Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
-      accept: "application/json",
-      next: {
-        revalidate: 3500
-      }
-    })
-  return response.json()
 }

@@ -1,3 +1,4 @@
+
 import {
     Sheet,
     SheetClose,
@@ -15,15 +16,7 @@ import { buttonVariants } from "@/components/ui/button"
 import Link from "next/link";
 import { getGenreTvList } from "@/app/libs/DataFetchingTv";
 import { MdLiveTv } from "react-icons/md";
-import { cn } from "@/lib/utils";
 import { cva } from "class-variance-authority";
-async function GenresListTvShows() {
-    const data = await getGenreTvList()
-    const dataGenresTv = data.genres
-    return (
-        <div></div>
-    )
-}
 
 
 

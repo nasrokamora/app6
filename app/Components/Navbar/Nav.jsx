@@ -15,7 +15,7 @@ import { DataLink } from "@/app/libs/DataLink";
 import TrendingMovies from "@/app/(movies)/Components/TrendingMovies/TrendingMovies";
 import SearchMultiPage from "@/app/(movies)/Components/SearchMulti/SearchMultiPage";
 import LogIn from "@/app/api/(auth)/@signUp/page";
-import { getKindeServerSession, LogoutLink } from "@kinde-oss/kinde-auth-nextjs/server";
+import {LogoutLink } from "@kinde-oss/kinde-auth-nextjs/server";
 import {
   LogOut,
 } from "lucide-react"
@@ -35,32 +35,16 @@ import {
 import { VscAccount } from "react-icons/vsc";
 import LogoIcon from '../../../public/icon/Icon.png'
 import Image from "next/image"
-import AnimatedGradientText from "@/components/ui/animated-gradient-text";
+// import AnimatedGradientText from "@/components/ui/animated-gradient-text";
 import { cn } from "@/lib/utils";
 // import AnimatedGradientText from "@/components/magicui/animated-gradient-text";
-import { ChevronRight } from "lucide-react";
-import SparklesText from "@/components/ui/sparkles-text";
-import GradualSpacing from "@/components/ui/gradual-spacing";
-import GenresListMovies from "@/app/(movies)/Components/GenresListMovies/GenresListMovies";
+// import { ChevronRight } from "lucide-react";
+// import SparklesText from "@/components/ui/sparkles-text";
+// import GradualSpacing from "@/components/ui/gradual-spacing";
+// import GenresListMovies from "@/app/(movies)/Components/GenresListMovies/GenresListMovies";
 import FetchUserSession from "@/app/api/auth/UserSession/FetchUserSession";
 
-export async function TextGradientAnimate() {
-  return (
-    <div className="z-10 bg-transparent border-none">
-      <AnimatedGradientText className={` bg-background `}>
 
-        <span
-          className={cn(
-            `inline animate-gradient bg-gradient-to-r from-[#ffaa40] via-[#9c40ff] to-[#ffaa40] bg-[length:var(--bg-size)_100%] bg-clip-text text-transparent xl:text-2xl trext-xl`,
-          )}
-        >
-          Magix Movies
-        </span>
-
-      </AnimatedGradientText>
-    </div>
-  )
-}
 
 
 
@@ -87,7 +71,7 @@ export default async function NavBar() {
       </Link>
 
       <div className=" flex justify-between items-center gap-6">
-        {!isAuthenticated ? (
+        {isAuthenticated ? (
           <LogIn />
         ) : (
           <DropdownMenu className=" ">
@@ -122,9 +106,9 @@ export default async function NavBar() {
           </DropdownMenu>
         )}
         {/* Genres */}
-        <div className="">
+        {/* <div className="">
           <GenresListMovies />
-        </div>
+        </div> */}
         {/* Search */}
         <div className=" ">
           <SearchMultiPage />

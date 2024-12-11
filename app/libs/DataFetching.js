@@ -83,9 +83,7 @@ export async function getMoviesGenre(id) {
   try {
     const response = await fetch(`${process.env.TMDB_BASE_URL}/discover/movie?with_genres=${id}`, {
     ...Options, 
-    next: {
-      revalidate: 3600
-    }
+
   }
 )
     return response.json()
@@ -100,11 +98,7 @@ export async function getMoviesGenre(id) {
 //get Movies by genre List
 export async function getMoviesGenreList() {
   try {
-    const response = await fetch(`${process.env.TMDB_BASE_URL}/genre/movie/list`, {
-      ...Options,
-      cache: "force-cache"
-    },
-)
+    const response = await fetch(`${process.env.TMDB_BASE_URL}/genre/movie/list`,Options)
     return response.json()
   } catch (error) {
     if (process.env.NODE_ENV !== "production") {

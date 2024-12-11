@@ -250,7 +250,6 @@ try {
                 Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
                 accept: "application/json"
             },
-            cache: "force-cache"
         }
     )
     if(!res.ok) {

@@ -30,7 +30,7 @@ export default async function PersonDetails({ person_id }) {
   const data = await getPersonId(person_id)
 
   //error handling
-  if (!data) return <Alert variant="destructive">
+  if (data.length < 0) return <Alert variant="destructive">
     <AlertCircle className="h-4 w-4" />
     <AlertTitle>Error</AlertTitle>
     <AlertDescription>

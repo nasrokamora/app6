@@ -71,7 +71,7 @@ export default async function NavBar() {
       </Link>
 
       <div className=" flex justify-between items-center gap-6">
-        {isAuthenticated ? (
+        {!isAuthenticated ? (
           <LogIn />
         ) : (
           <DropdownMenu className=" ">

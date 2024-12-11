@@ -6,7 +6,7 @@ export const config = {
   matcher: ["/",
     "/movies/:path*",
     "/tv/:path*",
-    '/((?!not-found|api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)',
+    '/((?!|api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)',
 
   ]
-};
+}

@@ -217,14 +217,16 @@ export async function getTopTv() {
 //fetch Genres Tv
 
 export async function getGenreTvList() {
+
     try {
-        const res = await fetch(`${process.env.TMDB_BASE_URL}/genre/tv/list?api_key=${process.env.NEXT_API_KEY}`,
+        const res = await fetch(`${process.env.TMDB_BASE_URL}/genre/tv/list`,
             {
+                method: "GET",
                 headers: {
                     Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
                     accept: "application/json"
                 },
-                cache: "force-cache"
+                cache: "no-store"
             }
         )
         if(!res.ok) {
@@ -244,12 +246,15 @@ export async function getGenreTvList() {
 
 export async function getGenreTv(id) {
 try {
-    const res = await fetch(`${process.env.TMDB_BASE_URL}/discover/tv?api_key=${process.env.NEXT_API_KEY}&with_genres=${id}`,
-        {headers:
+    const res = await fetch(`${process.env.TMDB_BASE_URL}/discover/tv?with_genres=${id}`,
+        {
+            method: "GET",
+            headers:
             {
                 Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
                 accept: "application/json"
             },
+            cache: "no-store"
         }
     )
     if(!res.ok) {

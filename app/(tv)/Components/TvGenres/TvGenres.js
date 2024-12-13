@@ -22,6 +22,7 @@ import { FaRegStar } from "react-icons/fa"
 import LoadingGenreCarousel from "@/app/Components/LoadingUi/LoadingGenreCarousel"
 import { AlertCircle } from "lucide-react"
 import no_image from "../../../../public/image/no_image4.webp"
+import { getDataGenreTv } from "./dataTvGenre"
 
 
 export default function TvGenres() {
@@ -38,9 +39,11 @@ export default function TvGenres() {
 
     const fetchTvWithGenres = async () => {
         try {
-            const response = await fetch(`https://api.themoviedb.org/3/genre/tv/list?api_key=${process.env.NEXT_PUBLIC_API_KEY}`, {
-            })
-            const data = await response.json()
+            const response = await fetch('/api/GetGenres',)
+            const text = await response.text()
+            const data = JSON.parse(text)
+
+            // const data = await response.json()
             setGenres(data.genres)
             if (data.genres.length > 0) {
                 getTv(data.genres[0].id)
@@ -54,18 +57,25 @@ export default function TvGenres() {
     }
 
     const getTv = useCallback(async (genreId) => {
+        setIsLoading(true); 
         try {
-            const response = await fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${process.env.NEXT_PUBLIC_API_KEY}&with_genres=${genreId}`, {
-            })
-            const data = await response.json()
-            setTvList(data.results)
-            setIsLoading(true)
+          const response = await fetch(`/api/tv?genreId=${genreId}`, {
+            method: 'GET',
+            cache: 'no-cache',
+          });
+    
+          if (!response.ok) {
+            throw new Error("Failed to fetch TV shows");
+          }
+    
+          const data = await response.json();
+          setTvList(data.results);
         } catch (error) {
-            console.error(error, 'Error fetch genres Tv')
-        }finally{
-            setIsLoading(false)
+          console.error(error.message, "Error fetching genres TV");
+        } finally {
+          setIsLoading(false); 
         }
-    },[])
+      }, []);
 
     const handleClick = useCallback( async(genreId) =>{
         setIsLoading(true)

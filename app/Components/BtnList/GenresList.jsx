@@ -94,9 +94,9 @@ export default function GenresList() {
 
     const fetchGenres = async () => {
         try {
-            const response = await fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.NEXT_PUBLIC_API_KEY}`, {
+            const response = await fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.NEXT_TMDB_API_KEY}`, {
                 headers: {
-                    Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`
+                    Authorization: `Bearer ${process.env.NEXT_TMDB_API_TOKEN}`
                 }
             })
             const data = await response.json()
@@ -115,9 +115,9 @@ export default function GenresList() {
 
     const fetchMovies = useCallback(async (genreId) => {
         try {
-            const response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.NEXT_PUBLIC_API_KEY}&with_genres=${genreId}`, {
+            const response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.NEXT_TMDB_API_KEY}&with_genres=${genreId}`, {
                 headers: {
-                    Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`
+                    Authorization: `Bearer ${process.env.NEXT_TMDB_API_TOKEN}`
                 }
             })
             const data = await response.json()

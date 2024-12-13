@@ -33,6 +33,38 @@ import { FaRegStar } from "react-icons/fa"
 import BlurFade from "@/components/ui/blur-fade"
 
 
+async function fetchPagination({cachRef,setDataMovies, setIsLoading, setError, page}) {
+    try {
+        // if (cachRef.current[page]) {
+        //     setDataMovies(cachRef.current[page])
+        //     setIsLoading(false)
+        //     return;
+        // }
+        setIsLoading(true)
+        setError(null)
+
+        const response = await fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.NEXT_TMDB_API_KEY}&page=${page}`, {
+            headers: {
+                Authorization: `Bearer ${process.env.NEXT_TMDB_API_TOKEN}`,
+                accept: "application/json"
+            },
+            method: "GET",
+        })
+
+        if (!response.ok) {
+            throw new Error(error, "failed fetch top rated movie")
+        }
+
+        const data = await response.json()
+        setDataMovies(data.results)
+        // cachRef.current[page] = data.results
+    } catch (error) {
+        console.log(error.message)
+    }
+    setIsLoading(false)
+}
+
+
 
 export default function PaginationMovies() {
     const [currentPage, setCurrentPage] = useState(1)
@@ -42,37 +74,37 @@ export default function PaginationMovies() {
     const cachRef = useRef({})
 
     useEffect(() => {
-        fetchMovies(currentPage)
+        fetchPagination({cachRef,setDataMovies, setIsLoading, setError, page: currentPage})
     }, [currentPage])
 
 
 
-    async function fetchMovies(page) {
-        try {
-            if (cachRef.current[page]) {
-                setDataMovies(cachRef.current[page])
-                setIsLoading(false)
-                return;
-            }
-            setIsLoading(true)
-            setError(null)
+    // async function fetchMovies(page) {
+    //     try {
+    //         if (cachRef.current[page]) {
+    //             setDataMovies(cachRef.current[page])
+    //             setIsLoading(false)
+    //             return;
+    //         }
+    //         setIsLoading(true)
+    //         setError(null)
 
-            const response = await fetch(`https://api.themoviedb.org/3/movie/top_rated?&page=${page}`, {
-                headers: HEADERS
-            })
+    //         const response = await fetch(`https://api.themoviedb.org/3/movie/top_rated?&page=${page}`, {
+    //             headers: HEADERS
+    //         })
 
-            if (!response.ok) {
-                throw new Error(error, "failed fetch top rated movie")
-            }
+    //         if (!response.ok) {
+    //             throw new Error(error, "failed fetch top rated movie")
+    //         }
 
-            const data = await response.json()
-            setDataMovies(data.results)
-            cachRef.current[page] = data.results
-        } catch (error) {
-            console.log(error.message)
-        }
-        setIsLoading(false)
-    }
+    //         const data = await response.json()
+    //         setDataMovies(data.results)
+    //         cachRef.current[page] = data.results
+    //     } catch (error) {
+    //         console.log(error.message)
+    //     }
+    //     setIsLoading(false)
+    // }
     
     function handlePageChange(newPage) {
         if (newPage < 1) return
@@ -90,7 +122,7 @@ export default function PaginationMovies() {
                 <div className="text-center">
                     <h1>Error: {error}</h1>
                     <button
-                        onClick={() => fetchMovies(currentPage)}
+                        onClick={() => fetchPagination(currentPage)}
                         className="px-4 py-2 mt-2 text-white bg-red-500 rounded text-xl"
                     >
                         Retry

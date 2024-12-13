@@ -26,11 +26,12 @@ export default function TrendingMovies() {
 
 
     const fetchTredingMovies = async (page) => {
-        const response = await fetch(`https://api.themoviedb.org/3/trending/movie/week?api_key=${process.env.NEXT_PUBLIC_API_KEY}&page=${page}`, {
+        const response = await fetch(`https://api.themoviedb.org/3/trending/movie/week?page=${page}`, {
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": `${process.env.NEXT_PUBLIC_API_TOKEN}`
-            }
+                "Authorization": `${process.env.NEXT_TMDB_API_TOKEN}`
+            },
+            cache:'no-store'
         })
         const data = await response.json()
         setDataTrendingMovies(data.results)

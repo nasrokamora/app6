@@ -39,17 +39,22 @@ import Image from "next/image"
 import { cn } from "@/lib/utils";
 // import AnimatedGradientText from "@/components/magicui/animated-gradient-text";
 // import { ChevronRight } from "lucide-react";
-// import SparklesText from "@/components/ui/sparkles-text";
+
 // import GradualSpacing from "@/components/ui/gradual-spacing";
-// import GenresListMovies from "@/app/(movies)/Components/GenresListMovies/GenresListMovies";
+import GenresListMovies from "@/app/(movies)/Components/GenresListMovies/GenresListMovies";
 import FetchUserSession from "@/app/api/auth/UserSession/FetchUserSession";
+import { redirect } from "next/navigation";
+import Profile from "@/app/Profile/page";
 
 
 
 
 
-export default async function NavBar() {
-  const { isAuthenticated, user } = await FetchUserSession();
+
+
+
+export default function NavBar() {
+
 
 
   return (
@@ -71,44 +76,12 @@ export default async function NavBar() {
       </Link>
 
       <div className=" flex justify-between items-center gap-6">
-        {!isAuthenticated ? (
-          <LogIn />
-        ) : (
-          <DropdownMenu className=" ">
-            <DropdownMenuTrigger className=" rounded-full  border"><VscAccount size={23} className=" mb-1" /></DropdownMenuTrigger>
-            <DropdownMenuContent className="w-auto">
-              {user?.picture && (
-                <div>
-                  <DropdownMenuLabel className=" flex justify-between items-center gap-4">
-
-                    <Avatar>
-                      <AvatarImage src={user?.picture} />
-                      <AvatarFallback>
-                        {user?.given_name.slice(0, 3)}
-                      </AvatarFallback>
-                    </Avatar>
-                    {user?.given_name}
-                    {user?.family_name}
-                  </DropdownMenuLabel>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem>
-                    <LogoutLink className="text-subtle p-1 flex">
-                      <LogOut className="mr-2 h-4 w-4" />
-                      LOGOUT
-                    </LogoutLink>
-
-
-                  </DropdownMenuItem>
-                </div>
-              )}
-
-            </DropdownMenuContent>
-          </DropdownMenu>
-        )}
+        <Profile />
         {/* Genres */}
-        {/* <div className="">
+        <div className="">
           <GenresListMovies />
-        </div> */}
+        </div>
+        
         {/* Search */}
         <div className=" ">
           <SearchMultiPage />

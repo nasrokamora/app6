@@ -4,7 +4,7 @@ export const urlImage = "https://image.tmdb.org/t/p/original"
 
 const Options = {
   headers: {
-    "Authorization": `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
+    "Authorization": `Bearer ${process.env.NEXT_API_TOKEN}`,
     "accept": "application/json"
   }
 }
@@ -185,7 +185,7 @@ export async function getCreditsId(credit_id) {
 
 export async function getReviewsMovies(id) {
   try {
-    const res = await fetch(`${process.env.TMDB_BASE_URL}/movie/${id}/reviews?api_key=${process.env.NEXT_API_KEY}`, {
+    const res = await fetch(`${process.env.TMDB_BASE_URL}/movie/${id}/reviews`, {
       ...Options,
       next: {
         revalidate: 240
@@ -242,7 +242,7 @@ export async function getTrendingMovies() {
 export async function getRecommendationMovies(id) {
 
   try {
-    const response = await fetch(`${process.env.TMDB_BASE_URL}/movie/${id}/recommendations?api_key=${process.env.NEXT_API_KEY}`, {
+    const response = await fetch(`${process.env.TMDB_BASE_URL}/movie/${id}/recommendations`, {
       ...Options,
       next: {
         revalidate: 1800

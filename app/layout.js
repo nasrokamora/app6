@@ -3,11 +3,10 @@
 import "./globals.css";
 // import Navbar from "./Components/Navbar/NavBar";
 import Footer from "./Components/Footer/Footer";
-import { ThemeProvider } from "./Components/theme-provider";
-import { Inter} from "next/font/google"
+import { Inter } from "next/font/google"
 import { cn } from "@/lib/utils";
 import Nav from "./Components/Navbar/Nav";
-import ToggleButton from "./(movies)/Components/ToggleButton/ToggleButton";
+
 
 
 
@@ -26,24 +25,25 @@ export const metadata = {
   title: "Magix Movies",
   description: "movies app",
   icons: {
-    icon:"/favicon.ico",
+    icon: "/favicon.ico",
   }
 };
 
-export default function RootLayout({ children}) {
+export default function RootLayout({ children }) {
   return (
-    
-    <html lang="en" suppressHydrationWarning 
-    className="dark">
 
-      <body className={cn("min-h-screen bg-background font-sans antialiased", inter.variable)}>
 
-        <Nav/>
-        {children}
+      <html lang="en" suppressHydrationWarning
+        className="dark">
+        <body className={cn("min-h-screen bg-background font-sans antialiased", inter.variable)}>
 
-        <Footer/>
+          <Nav />
+          {children}
+
+          <Footer />
         </body>
 
-    </html>
+      </html>
+
   );
 }

@@ -35,21 +35,15 @@ import BlurFade from "@/components/ui/blur-fade"
 
 async function fetchPagination({cachRef,setDataMovies, setIsLoading, setError, page}) {
     try {
-        // if (cachRef.current[page]) {
-        //     setDataMovies(cachRef.current[page])
-        //     setIsLoading(false)
-        //     return;
-        // }
+        if (cachRef.current[page]) {
+            setDataMovies(cachRef.current[page])
+            setIsLoading(false)
+            return;
+        }
         setIsLoading(true)
         setError(null)
 
-        const response = await fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.NEXT_TMDB_API_KEY}&page=${page}`, {
-            headers: {
-                Authorization: `Bearer ${process.env.NEXT_TMDB_API_TOKEN}`,
-                accept: "application/json"
-            },
-            method: "GET",
-        })
+        const response = await fetch(`/api/fetchTopRated?page=${page}`, )
 
         if (!response.ok) {
             throw new Error(error, "failed fetch top rated movie")
@@ -57,9 +51,12 @@ async function fetchPagination({cachRef,setDataMovies, setIsLoading, setError, p
 
         const data = await response.json()
         setDataMovies(data.results)
-        // cachRef.current[page] = data.results
+        cachRef.current[page] = data.results
     } catch (error) {
-        console.log(error.message)
+        if(process.env.NODE_ENV !== "production") {
+            console.log(error.message)
+        }
+        setError(error)
     }
     setIsLoading(false)
 }
@@ -74,37 +71,9 @@ export default function PaginationMovies() {
     const cachRef = useRef({})
 
     useEffect(() => {
+        setIsLoading(true)
         fetchPagination({cachRef,setDataMovies, setIsLoading, setError, page: currentPage})
     }, [currentPage])
-
-
-
-    // async function fetchMovies(page) {
-    //     try {
-    //         if (cachRef.current[page]) {
-    //             setDataMovies(cachRef.current[page])
-    //             setIsLoading(false)
-    //             return;
-    //         }
-    //         setIsLoading(true)
-    //         setError(null)
-
-    //         const response = await fetch(`https://api.themoviedb.org/3/movie/top_rated?&page=${page}`, {
-    //             headers: HEADERS
-    //         })
-
-    //         if (!response.ok) {
-    //             throw new Error(error, "failed fetch top rated movie")
-    //         }
-
-    //         const data = await response.json()
-    //         setDataMovies(data.results)
-    //         cachRef.current[page] = data.results
-    //     } catch (error) {
-    //         console.log(error.message)
-    //     }
-    //     setIsLoading(false)
-    // }
     
     function handlePageChange(newPage) {
         if (newPage < 1) return

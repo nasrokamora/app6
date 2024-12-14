@@ -61,12 +61,12 @@ export default async function Home() {
       </section>
 
       {/* section Genres Movies */}
-      {/* <div className="ml-6 md:ml-0 mt-7 md:flex md:justify-center md:items-center">
+      <div className="ml-6 md:ml-0 mt-7 md:flex md:justify-center md:items-center">
         <h1 className="text-4xl font-extrabold  scroll-m-20 lg:text-3xl md:text-3xl">Explore by Genres</h1>
       </div>
       <section className=" mt-7">
         <GenresList />
-      </section> */}
+      </section>
 
       {/*   section Tv & series & season */}
       <div className="ml-6 md:ml-0  mt-7 md:flex md:justify-center md:items-center ">
@@ -80,14 +80,14 @@ export default async function Home() {
 
 
       {/* section tv genres */}
-      {/* <div className=" ml-6   scroll-m-20 text-3xl font-extrabold  md:flex md:justify-center md:items-center md:flex-wrap md:text-center  mt-10 lg:mt-11 md:text-3xl md:ml-0 md:mt-8">
+      <div className=" ml-6   scroll-m-20 text-3xl font-extrabold  md:flex md:justify-center md:items-center md:flex-wrap md:text-center  mt-10 lg:mt-11 md:text-3xl md:ml-0 md:mt-8">
         <h1 className=" relative bg-gradient-to-r from-[#000000] via-[#2044e2] to-[#000000] text-transparent bg-clip-text animate-gradient bg-[length:200%_auto] ">
         TV Genres <span className="bg-gradient-to-r from-[#0062f4] via-[#000000] to-[#0062f4] text-transparent bg-clip-text animate-gradient bg-[length:200%_auto_]">Made for</span> <span className=" bg-gradient-to-r from-[#ffffff] via-[#2054e2] to-[#ffffff] text-transparent bg-clip-text animate-gradient bg-[length:200%_auto]">You</span><span className=""><GiPopcorn className="inline-block text-[#0065ff] absolute inset-0 -top-2 left-32 rotate-45" size={22} /></span>
         </h1>
       </div>
       <section className="mt-7">
         <TvGenres />
-      </section> */}
+      </section>
 
       {/* section popular person */}
       <section className=" mt-7">

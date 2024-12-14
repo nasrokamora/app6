@@ -22,7 +22,7 @@ import { FaRegStar } from "react-icons/fa"
 import LoadingGenreCarousel from "@/app/Components/LoadingUi/LoadingGenreCarousel"
 import { AlertCircle } from "lucide-react"
 import no_image from "../../../../public/image/no_image4.webp"
-import { getDataGenreTv } from "./dataTvGenre"
+
 
 
 export default function TvGenres() {
@@ -39,11 +39,13 @@ export default function TvGenres() {
 
     const fetchTvWithGenres = async () => {
         try {
-            const response = await fetch('/api/GetGenres',)
-            const text = await response.text()
-            const data = JSON.parse(text)
-
-            // const data = await response.json()
+            const response = await fetch(`/api/fetchGenresTvList`)
+            const data = await response.json()
+           
+            if (!response.ok) {
+                throw new Error('Failed to fetch data')
+            }
+           
             setGenres(data.genres)
             if (data.genres.length > 0) {
                 getTv(data.genres[0].id)
@@ -52,17 +54,17 @@ export default function TvGenres() {
 
             }
         } catch (error) {
-            console.error(error)
+            if(process.env.NODE_ENV !== "production") {
+                console.error(error, "Error fetch data Genres")
+            }
+            return { error: true, message: error.message };
         }
     }
 
     const getTv = useCallback(async (genreId) => {
         setIsLoading(true); 
         try {
-          const response = await fetch(`/api/tv?genreId=${genreId}`, {
-            method: 'GET',
-            cache: 'no-cache',
-          });
+          const response = await fetch(`/api/fetchTvWithGenres?genreId=${genreId}`);
     
           if (!response.ok) {
             throw new Error("Failed to fetch TV shows");
@@ -71,10 +73,14 @@ export default function TvGenres() {
           const data = await response.json();
           setTvList(data.results);
         } catch (error) {
-          console.error(error.message, "Error fetching genres TV");
+            if(process.env.NODE_ENV !== "production"){
+
+                console.error(error.message, "Error fetching genres TV");
+            }
         } finally {
           setIsLoading(false); 
         }
+
       }, []);
 
     const handleClick = useCallback( async(genreId) =>{
@@ -131,7 +137,7 @@ export default function TvGenres() {
 
                                     <CarouselItem key={tv.id} className="p-2 md:basis-1/2 basis-1/6 lg:basis-1/5">
                                         <div className="relative overflow-hidden lg:hover:scale-90 lg:hover:duration-500 xl:hover:scale-90 xl:hover:duration-500 2xl:hover:scale-90 2xl:hover:duration-500">
-                                            <Link href={`/tv/list/${tv.id}`} rel="noopener noreferrer" as={`/tv/list/${tv.id}`}>
+                                            <Link href={`/tv/list/${tv.id}`}  as={`/tv/list/${tv.id}`}>
                                                 <Image
                                                     src={tv.poster_path ?
                                                         

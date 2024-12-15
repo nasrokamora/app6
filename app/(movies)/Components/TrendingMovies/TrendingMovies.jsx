@@ -26,7 +26,7 @@ export default function TrendingMovies() {
 
 
     const fetchTredingMovies = async (page) => {
-        const response = await fetch(`api/getTrendingMovies?page=${page}`)
+        const response = await fetch(`/api/getTrendingMovies?page=${page}`)
         const data = await response.json()
         setDataTrendingMovies(data.results)
         setIsLoading(false)

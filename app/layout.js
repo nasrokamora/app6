@@ -6,6 +6,7 @@ import Footer from "./Components/Footer/Footer";
 import { Inter } from "next/font/google"
 import { cn } from "@/lib/utils";
 import Nav from "./Components/Navbar/Nav";
+import NextTopLoader from "nextjs-toploader";
 
 
 
@@ -36,7 +37,17 @@ export default function RootLayout({ children }) {
       <html lang="en" suppressHydrationWarning
         className="dark">
         <body className={cn("min-h-screen bg-background font-sans antialiased", inter.variable)}>
-
+        <NextTopLoader
+       color="#d50634"
+       initialPosition={0.08}
+       crawlSpeed={200}
+       height={3}
+       crawl={true}
+       showSpinner={true}
+       easing="ease"
+       speed={200}
+       shadow="0 0 10px #a632aa,0 0 5px #9c39ed"
+      />
           <Nav />
           {children}
 

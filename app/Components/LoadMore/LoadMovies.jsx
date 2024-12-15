@@ -13,18 +13,11 @@ import {
 import { urlImage } from "@/app/libs/DataFetching"
 import BlurFade from "@/components/ui/blur-fade"
 async function getMoviesWithPage(page) {
-    const response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.NEXT_PUBLIC_API_KEY}&page=${page}`, {
-        next: {
-            revalidate: 120
-        }
-    })
+    const response = await fetch(`/api/getMoviesWithPage?page=${page}`)
     if (!response.ok)
         throw new Error("failed to fetch all movie data")
-
     return response.json()
 }
-
-
 
 
 export default function LoadMovies() {
@@ -32,32 +25,29 @@ export default function LoadMovies() {
     const [dataMovies, setDataMovies] = useState([])
     const [hasMore, setHasMore] = useState(true)
 
-
     useEffect(() => {
         fetchMovies(page)
     }, [page])
 
     const fetchMovies = async () => {
-
         try {
             const data = await getMoviesWithPage(page)
             setDataMovies((prevMovies) => [...prevMovies, ...newMovies])
             const newMovies = data.results.filter(movie => !dataMovies.some(m => m.id === movie.id))
             if (page >= data.total_pages) {
                 setHasMore(false)
-
             }
-
-
         } catch (error) {
-            console.error(error)
+            if(process.env.NODE_ENV !== "production") {
+                console.log(error, 'Failed to fetch data MoviesWithPage');
+            }
+            return { error: true, message: error.message };
         }
     }
-
     const fetchMoreMovies = () => {
         setPage((prevPage) => prevPage + 1)
-
     }
+
     return (
         <InfiniteScroll
 
@@ -85,21 +75,14 @@ export default function LoadMovies() {
                                     loading="eager"
                                     priority={true}
                                 />
-
-
                                 <h1 className="font-bold ">
                                     {movie.title.length > 14 ? movie.title.slice(0, 14) + "..." : movie.title}
                                 </h1>
-
                             </Link>
-
-
                         </div>
                     </BlurFade>
-
                 ))}
             </div>
         </InfiniteScroll>
     )
-
 }

@@ -6,19 +6,12 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 import Image from "next/image"
 import Link from "next/link"
 import { urlImageTv } from "@/app/libs/DataFetchingTv"
+import BlurFade from "@/components/ui/blur-fade"
 
 
 async function getTvWithPage(page) {
     try {
-        const response = await fetch(`https://api.themoviedb.org/3/discover/tv?&page=${page}`, {
-            headers: {
-                "accept": "application/json",
-                "Authorization": `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`
-            },
-            next: {
-                revalidate: 3600
-            }
-        })
+        const response = await fetch(`/api/getTvWithPage?page=${page}`)
         if (!response.ok) {
             throw new Error('failed')
         }
@@ -44,15 +37,19 @@ export default function LoadMoreTv() {
     async function fetchTvLoadMore() {
         try {
             const data = await getTvWithPage(page)
-
             setDataTv((prevTv) => [...prevTv, ...newTv])
+
             const newTv = data.results.filter(tv => !dataTv.some(t => t.id === tv.id))
+
             if (page >= data.total_pages) {
-                hasMore(false)
+                setHasMore(false)
             }
 
         } catch (error) {
-            console.log(error.message, "failed fetch tv load more")
+            if (process.env.NODE_ENV !== "production") {
+                console.log(error, 'Failed to fetch data TvWithPage');
+            }
+            return { error: true, message: error.message };
         }
     }
 
@@ -74,29 +71,31 @@ export default function LoadMoreTv() {
             </div>
             <div className="grid grid-cols-6 gap-8 p-8 md:grid-cols-3 lg:grid-cols-5">
                 {dataTv.map((tv, index) => (
+                    <BlurFade key={tv.id - index} delay={0.10 + index * 0.05} inView>
 
-                    <div key={`${tv.id}-${index}`} className="relative flex flex-col items-center justify-center overflow-hidden hover:scale-110 hover:duration-300">
+                        <div key={`${tv.id}-${index}`} className="relative flex flex-col items-center justify-center overflow-hidden hover:scale-110 hover:duration-300">
 
-                        <Link href={`/tv/list/${tv.id}`} >
+                            <Link href={`/tv/list/${tv.id}`} >
 
-                            <Image src={`${urlImageTv}${tv.poster_path}`}
-                                alt={tv.name}
-                                width={200}
-                                height={150}
-                                priority={true}
-                                style={{ width: "auto" }}
-                                className="rounded-md "
-                                loading="eager"
+                                <Image src={`${urlImageTv}${tv.poster_path}`}
+                                    alt={tv.name}
+                                    width={200}
+                                    height={150}
+                                    priority={true}
+                                    style={{ width: "auto" }}
+                                    className="rounded-md "
+                                    loading="eager"
 
-                            />
-                            <h1 className="font-bold  md:hidden">
-                                {tv.name.length > 10 ? tv.name.slice(0, 10) + "..." : tv.name}
-                            </h1>
+                                />
+                                <h1 className="font-bold  md:hidden">
+                                    {tv.name.length > 10 ? tv.name.slice(0, 10) + "..." : tv.name}
+                                </h1>
 
-                        </Link>
+                            </Link>
 
 
-                    </div>
+                        </div>
+                    </BlurFade>
 
                 ))}
             </div>

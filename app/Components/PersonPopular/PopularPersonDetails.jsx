@@ -81,15 +81,7 @@ export default function PopularPersonDetails() {
 
 
         try {
-            const response = await fetch(`https://api.themoviedb.org/3/person/popular?api_key=${process.env.NEXT_PUBLIC_API_KEY}&page=${page}`, {
-                headers: {
-                    Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
-                    accept: "application/json"
-                },
-                next: {
-                    revalidate: 3600
-                }
-            })
+            const response = await fetch(`/api/getPersonPopular?page=${page}`)
             const data = await response.json()
             setDataPersonPopular(data.results)
             setTotalPages(data.total_pages)

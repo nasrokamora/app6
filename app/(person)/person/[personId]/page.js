@@ -110,7 +110,7 @@ export default async function Person({ params }) {
                                 <ul className="  flex justify-start gap-3 items-center list-none flex-wrap">
 
                                     <li className=" hover:animate-pulse">
-                                        <Link href={dataExtPerson.imdb_id ? `https://www.imdb.com/title/${dataExtPerson.imdb_id}` : "https://www.imdb.com/title/"} target="_blank"><SiImdb size={24} /></Link>
+                                        <Link href={dataExtPerson.imdb_id ? `https://www.imdb.com/name/${dataExtPerson.imdb_id}` : "https://www.imdb.com/title/"} target="_blank"><SiImdb size={24} /></Link>
                                     </li>
                                     <li className=" hover:animate-pulse">
                                         <Link href={dataExtPerson.instagram_id ? `https://www.instagram.com/${dataExtPerson.instagram_id}/` : "https://www.instagram.com/"} target="_blank"><SlSocialInstagram size={24} /></Link>

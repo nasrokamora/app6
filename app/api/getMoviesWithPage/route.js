@@ -8,8 +8,9 @@ export async function GET(request){
         const response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.NEXT_API_KEY}&page=${page}`, {
             headers: {
                 Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
-                accept: "application/json"
-            }
+                accept: "application/json",
+            },
+            cache:"no-store"
         })
         if(!response.ok) {
             throw new Error('Failed to fetch data')

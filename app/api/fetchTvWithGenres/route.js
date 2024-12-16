@@ -12,7 +12,8 @@ export async function GET(req) {
             headers:{
                 Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
                 accept: "application/json"
-            }
+            },
+            cache: 'no-cache'
         })
         if(!response.ok) {
             throw new Error('Failed to fetch data')

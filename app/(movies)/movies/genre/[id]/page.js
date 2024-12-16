@@ -1,14 +1,6 @@
 import { getMoviesGenre, getMoviesGenreList } from "@/app/libs/DataFetching";
 
-export const dynamicParams = true;
 
-export async function generateStaticParams() {
-    const genres = await getMoviesGenreList()
-
-    return genres.genres.map((genre) => ({
-        id: genre.id.toString()
-    }))
-}
 
 
 

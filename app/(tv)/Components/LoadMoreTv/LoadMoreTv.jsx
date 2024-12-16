@@ -6,7 +6,7 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 import Image from "next/image"
 import Link from "next/link"
 import { urlImageTv } from "@/app/libs/DataFetchingTv"
-import BlurFade from "@/components/ui/blur-fade"
+import {motion} from "framer-motion"
 
 
 async function getTvWithPage(page) {
@@ -71,7 +71,11 @@ export default function LoadMoreTv() {
             </div>
             <div className="grid grid-cols-6 gap-8 p-8 md:grid-cols-3 lg:grid-cols-5">
                 {dataTv.map((tv, index) => (
-                    <BlurFade key={tv.id - index} delay={0.10 + index * 0.05} inView>
+                    <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.2, delay: 0.2, ease: "easeInOut" }}
+                    >
 
                         <div key={`${tv.id}-${index}`} className="relative flex flex-col items-center justify-center overflow-hidden hover:scale-110 hover:duration-300">
 
@@ -95,7 +99,7 @@ export default function LoadMoreTv() {
 
 
                         </div>
-                    </BlurFade>
+                    </motion.div>
 
                 ))}
             </div>

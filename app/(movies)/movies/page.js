@@ -1,8 +1,7 @@
 import LoadMovies from "@/app/Components/LoadMore/LoadMovies";
 import ToggleButton from "../Components/ToggleButton/ToggleButton";
-
 export const metadata = {
-    title: 'Movies'
+    title: 'Magix | Movies',
 }
 
 

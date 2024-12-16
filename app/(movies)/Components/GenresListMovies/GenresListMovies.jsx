@@ -28,7 +28,7 @@ async function ListGenre() {
     return (
         <div className=" flex justify-start items-center flex-wrap gap-2">
 
-            {dataGenres && dataGenres.genres.length > 0 ? (
+            {dataGenres.genres.length > 0 ? (
 
                 dataGenres.genres.map((genre) => (
                     <SheetClose asChild key={genre.id}>
@@ -53,13 +53,17 @@ async function ListGenre() {
             </div>
 
 
-            {dataGenresListTv.genres.map((genre) => (
-                <SheetClose asChild key={genre.id}>
-                    <Link href={`/tv/genre/${genre.id}`} className={buttonVariants({ variant: "outline" })}>
-                        {genre.name}
-                    </Link>
-                </SheetClose>
-            ))}
+            {dataGenresListTv.genres && (
+                
+                dataGenresListTv.genres.map((genre) => (
+                    <SheetClose asChild key={genre.id}>
+                        <Link href={`/tv/genre/${genre.id}`} className={buttonVariants({ variant: "outline" })}>
+                            {genre.name}
+                        </Link>
+                    </SheetClose>
+                ))
+            )
+        }
         </div>
     )
 }

@@ -4,20 +4,16 @@ import { useEffect, useState } from "react"
 import InfiniteScroll from 'react-infinite-scroll-component'
 import Image from "next/image"
 import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import {
-    HoverCard,
-    HoverCardContent,
-    HoverCardTrigger,
-} from "@/components/ui/hover-card"
 import { urlImage } from "@/app/libs/DataFetching"
 import BlurFade from "@/components/ui/blur-fade"
+
 async function getMoviesWithPage(page) {
     const response = await fetch(`/api/getMoviesWithPage?page=${page}`)
     if (!response.ok)
         throw new Error("failed to fetch all movie data")
     return response.json()
 }
+
 
 
 export default function LoadMovies() {

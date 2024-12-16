@@ -14,42 +14,11 @@ import Link from "next/link"
 import { DataLink } from "@/app/libs/DataLink";
 import TrendingMovies from "@/app/(movies)/Components/TrendingMovies/TrendingMovies";
 import SearchMultiPage from "@/app/(movies)/Components/SearchMulti/SearchMultiPage";
-import LogIn from "@/app/api/(auth)/@signUp/page";
-import {LogoutLink } from "@kinde-oss/kinde-auth-nextjs/server";
-import {
-  LogOut,
-} from "lucide-react"
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "@/components/ui/avatar"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { VscAccount } from "react-icons/vsc";
 import LogoIcon from '../../../public/icon/Icon.png'
 import Image from "next/image"
-// import AnimatedGradientText from "@/components/ui/animated-gradient-text";
 import { cn } from "@/lib/utils";
-// import AnimatedGradientText from "@/components/magicui/animated-gradient-text";
-// import { ChevronRight } from "lucide-react";
-
-// import GradualSpacing from "@/components/ui/gradual-spacing";
 import GenresListMovies from "@/app/(movies)/Components/GenresListMovies/GenresListMovies";
-import FetchUserSession from "@/app/api/auth/UserSession/FetchUserSession";
-import { redirect } from "next/navigation";
 import Profile from "@/app/Profile/page";
-
-
-
-
-
 
 
 

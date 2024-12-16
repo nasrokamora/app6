@@ -12,17 +12,15 @@ import PaginationMovies from "./(movies)/Components/PaginationMovies/PaginationM
 import { MdStars } from "react-icons/md";
 import { Clapperboard, ClapperboardIcon } from 'lucide-react';
 import { GiPopcorn } from "react-icons/gi";
-import FetchUserSession from "./api/auth/UserSession/FetchUserSession"
-import { redirect } from "next/navigation"
 
 
+export const metadata = {
+  title: 'Magix Movies | Home',
+}
 
 
 
 export default async function Home() {
-
-
-
   const data =  getDiscoverMovies()
   const popularData =  getPopularMovies()
   const tvData =  getDiscoverTv()

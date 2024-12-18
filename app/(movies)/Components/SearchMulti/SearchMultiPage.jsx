@@ -23,11 +23,20 @@ import {
 import { IoSearch } from "react-icons/io5";
 
 async function SearchMulti(query) {
-
-    const response = await fetch(`https://api.themoviedb.org/3/search/multi?api_key=${process.env.NEXT_PUBLIC_API_KEY}&query=${encodeURIComponent(query)}`,)
-
-    const data = await response.json()
-    return data
+    try {
+        const response = await fetch(`/api/getSearchMulti?query=${query}`)
+        const data = await response.json()
+        if (!response.ok) {
+            throw new Error('Failed to fetch data')
+        }
+        return data
+        
+    } catch (error) {
+        if(process.env.NODE_ENV !== "production") {
+            console.log(error, 'Failed to fetch data SearchMulti');
+        }
+        return { error: true, message: error.message };
+    }
 }
 
 
@@ -54,11 +63,11 @@ export default function SearchMultiPage() {
     }
     // console.log(movies)
 
-
+    
     return (
         <>
             <Sheet className=" ">
-                <SheetTrigger><IoSearch size={25} /></SheetTrigger>
+                <SheetTrigger><IoSearch size={25} className="hover:scale-125 transition-transform duration-500  active:scale-90 " /></SheetTrigger>
                 <SheetContent className="" side={"top"}>
                     <SheetHeader>
                         <SheetTitle>Explorer Movies on Magix</SheetTitle>

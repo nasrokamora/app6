@@ -9,6 +9,9 @@ export async function GET(request) {
             headers: {
                 Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
                 accept: "application/json"
+            },
+            next:{
+                revalidate: 3600
             }
         })
         const data = await response.json()

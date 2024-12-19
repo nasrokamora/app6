@@ -17,7 +17,10 @@ export async function GET(){
     } catch (error) {
         if(process.env.NODE_ENV !== "production") {
             console.log(error, 'Failed to fetch data GenresList');
+        }else{
+            console.error('Error occurred:', error.message)
         }
-        return new Response(JSON.stringify({error:true, message: error.message}),{status:500})
+        return new Response(JSON.stringify({error:true, 
+            message: process.env.NODE_ENV !== "production" ? 'An unexpected error occurred.' : error.message}),{status:500})
     }
 }

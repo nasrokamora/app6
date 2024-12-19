@@ -29,7 +29,7 @@ export default async function Home() {
   const [dataDiscoverMovies, dataPopular, dataTv, dataPersonPopular] = await Promise.all([data, popularData, tvData, personPopular]);
 
   return (
-    <main className={`w-full h-auto text-white `}>
+    <main className={`w-full h-auto text-white pt-24 `}>
       {/* section Discover */}
       <AnimateScroll />
       <div className={`scroll-m-20 text-4xl  tracking-tight lg:text-3xl ml-6 md:ml-0  title font-extrabold md:flex md:justify-center md:items-center   mt-7 md:mt-3 text-red-700 `}>

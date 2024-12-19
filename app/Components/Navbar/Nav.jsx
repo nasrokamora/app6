@@ -19,6 +19,7 @@ import Image from "next/image"
 import { cn } from "@/lib/utils";
 import GenresListMovies from "@/app/(movies)/Components/GenresListMovies/GenresListMovies";
 import Profile from "@/app/Profile/page";
+import NavMenu from "./NavBar";
 
 
 
@@ -27,7 +28,9 @@ export default function NavBar() {
 
 
   return (
-    <div className=" px-6  navbar border-b   md:flex  md:items-center flex justify-between items-center">
+    <NavMenu>
+
+    <div className="w-full flex justify-between items-center">
 
 
       <Link href={'/'} className=" flex justify-center items-center ">
@@ -94,5 +97,6 @@ export default function NavBar() {
 
       </div>
     </div>
+    </NavMenu>
   );
 }

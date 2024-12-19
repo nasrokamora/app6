@@ -68,7 +68,7 @@ export default async function DynamicMoviesList({ params }) {
 
 
     return (
-        <div className="w-full h-auto p-5">
+        <div className="w-full h-auto p-5 pt-20">
             {/*  bg image cover  */}
             <BgImageCover dataImageList={dataImageList}
             />
@@ -87,7 +87,7 @@ export default async function DynamicMoviesList({ params }) {
                         width={250}
                         height={250}
                         className="rounded-md  "
-                        style={{ width: "auto",height:'auto' }}
+                        style={{ width: "auto", height: 'auto' }}
                         priority
                         alt={data.title ? data.title : "Title image not found"} />
 
@@ -116,7 +116,7 @@ export default async function DynamicMoviesList({ params }) {
                         <h2 className=" text-amber-600 scroll-m-20 md:text-lg black-shadow-text first:mt-0">Release Date :</h2>
                         <h1 className=" tracking-tight text-gray-400  scroll-m-20 md:text-lg first:mt-0">{data.release_date ? data.release_date.replace(/-/g, "/") : <ErrorMessage />}</h1>
                         <h2 className=" text-amber-600 scroll-m-20 md:text-lg black-shadow-text ">Runtime :</h2>
-                        <h1 className=" text-red-300 scroll-m-20 md:text-xl first:mt-0 black-shadow-text">{data.runtime ? <span>{data.runtime} min</span> : <span   className=" border-none font-bold text-red-700"> Not found</span>}</h1>
+                        <h1 className=" text-red-300 scroll-m-20 md:text-xl first:mt-0 black-shadow-text">{data.runtime ? <span>{data.runtime} min</span> : <span className=" border-none font-bold text-red-700"> Not found</span>}</h1>
                     </div>
 
                     <Separator className="mt-4" />
@@ -128,7 +128,7 @@ export default async function DynamicMoviesList({ params }) {
                             data.genres.map((genre) => (
                                 <div className="pb-2 " key={genre.id}>
                                     <Link href={`/movies/genre/${genre.id}`}>
-                                    <Badge variant={"destructive"} className={cn('font-bold text-[#ffebcd]  ')} >{genre.name ? genre.name : "Genre not found"}</Badge>
+                                        <Badge variant={"destructive"} className={cn('font-bold text-[#ffebcd]  ')} >{genre.name ? genre.name : "Genre not found"}</Badge>
                                     </Link>
                                 </div>
                             ))

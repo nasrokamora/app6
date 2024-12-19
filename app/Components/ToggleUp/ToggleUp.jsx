@@ -2,18 +2,19 @@
 
 import { Button } from "@/components/ui/button"
 import { useEffect, useState } from "react"
+import { FaAngleDoubleUp } from "react-icons/fa";
 
-export default function ToggleUp(){
-    
+export default function ToggleUp() {
+
     const [toggle, setToggle] = useState(false)
-    
+
 
     useEffect(() => {
 
         const handleScroll = () => {
-            if(window.scrollY > 150){
+            if (window.scrollY > 150) {
                 setToggle(true);
-            }else{
+            } else {
                 setToggle(false);
             }
         }
@@ -21,19 +22,21 @@ export default function ToggleUp(){
         window.addEventListener('scroll', handleScroll);
 
         return () => window.removeEventListener('scroll', handleScroll);
-    },[])
-    
-    function ScrollUp(){
+    }, [])
+
+    function ScrollUp() {
         window.scrollTo({
             top: 0,
             behavior: 'smooth'
         })
     }
-    
-    return(
-        <div>
+
+    return (
+        <div className=" rounded-full">
             {toggle && (
-                <Button variant="outline" className="fixed z-50 bottom-40 right-10   font-bold  rounded-md" onClick={ScrollUp}>Go to Top</Button>
+                <Button variant="outline" className="fixed z-50 bottom-40 right-10   font-bold  rounded-full hover:animate-pulse" onClick={ScrollUp}>
+                    <FaAngleDoubleUp className=" " />
+                </Button>
             )}
         </div>
     )

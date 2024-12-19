@@ -55,7 +55,7 @@ export default async function SeasonDetailTvSeries({ params }) {
     const color = "#ffffff"
 
     return (
-        <div className="w-full h-auto p-5 font-semibold">
+        <div className="w-full h-auto pt-20 p-5 font-semibold">
             <Particles
                 className="absolute inset-0"
                 quantity={100}

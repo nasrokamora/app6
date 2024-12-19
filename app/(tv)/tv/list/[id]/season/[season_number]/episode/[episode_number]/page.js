@@ -54,7 +54,7 @@ export default async function EpisodeDetailsTv({ params }) {
     const color = "#fffc40"
 
     return (
-        <div className="w-full h-auto p-5">
+        <div className="w-full h-auto pt-20 p-5">
             <ToggleButton />
             <Particles
                 className="absolute inset-0 top-10 h-screen "
@@ -111,7 +111,7 @@ export default async function EpisodeDetailsTv({ params }) {
                                                     <h2 className="text-orange-500"> {item.known_for_department ?? "Unknown"} </h2>
                                                 </div>
 
-                                                <div className="lg:hidden xl:hidden 2xl:hidden border p-1 rounded-md font-bold active:scale-110 active:bg-zinc-500 active:duration-500">
+                                                <div className="lg:hidden xl:hidden 2xl:hidden border p-2 transition-colors rounded-md font-bold active:scale-110 hover:bg-zinc-700 active:bg-zinc-500 active:duration-500">
                                                     <Link href={`/person/${item.id}`}>See more</Link>
                                                 </div>
                                             </div>

@@ -72,7 +72,7 @@ export default async function DynamicTvListPage({ params }) {
     const [detailTv, imageTv, creditsTv, externalData, dataRecommend, dataVideosTv, dataTrending] = await Promise.all([data, dataImage, dataCredits, dataExt, dataRecommendation, videosTv, dataTrend])
 
     return (
-        <div className="w-full h-auto px-6 pt-6 ">
+            <div className="w-full h-auto px-6 pt-2 ">
 
             <div className="flex flex-col items-center justify-center text-4xl font-extrabold tracking-tight scroll-m-20 lg:text-4xl">
                 <WordPullUp

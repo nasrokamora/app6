@@ -56,7 +56,7 @@ export default async function Person({ params }) {
     const [dataPersonPopular, personDetails, ImagePerson, dataExtPerson, dataCombined] = await Promise.all([personData, detailsPerson, dataImagePerson, ExtDataPerson, combinedCredits])
     // console.log(dataPersonPopular)
     return (
-        <div className="w-full h-auto mt-7 pl-6 pr-6">
+        <div className="w-full h-auto p-6 pt-20">
             <ButtonBack />
 
             <div className=" w-full ">

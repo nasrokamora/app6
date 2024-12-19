@@ -27,7 +27,7 @@ export const metadata = {
 export const dynamic = 'force-dynamic'
 const ImageCover = ({ item }) => {
     return (
-        <div className=" h-[35rem] relative z-0 md:blur-left">
+        <div className=" h-[25rem] relative z-0 md:blur-left">
             <Image src={`${urlImageTv}${item.backdrop_path}`}
                 fill
                 priority={true}
@@ -44,15 +44,15 @@ export default async function GenrePageTv({ params }) {
     const { id } = params
     const data = await getGenreTv(id)
     const resultsGenre = data.results
-    console.log(resultsGenre);
+    // console.log(resultsGenre);
 
     return (
-        <div className="h-screen w-full p-4 md:h-auto">
+        <div className="h-auto w-full p-4 md:h-auto pt-20">
             <div className="flex justify-center items-center ">
                 <h1 className=" font-bold text-2xl">Explore the world of TV Shows</h1>
             </div>
-            <ScrollArea className=" mt-4 w-full  whitespace-nowrap h-[26rem] md:h-min">
-                <div className=" ">
+            <ScrollArea className=" mt-4 w-full  whitespace-nowrap  md:h-min">
+                <div className="">
                     {resultsGenre.map((item) => (
                         <div key={item.id} className=" flex justify-start gap-4 items-center">
                             <Card className=" w-full h-[25rem] overflow-hidden relative mt-2 md:h-auto">
@@ -62,10 +62,10 @@ export default async function GenrePageTv({ params }) {
 
                                     <CardHeader className="">
                                         <CardTitle className=" flex flex-wrap justify-start text-wrap "> {item.name ?? item.original_name} </CardTitle>
-                                        <CardDescription className=" text-slate-300 font-semibold"> {item.first_air_date} & {item.original_language}</CardDescription>
+                                        <CardDescription className=" text-slate-300 font-semibold"> {item.first_air_date}</CardDescription>
                                     </CardHeader>
                                     <CardContent className="flex justify-around items-start gap-4 font-semibold flex-wrap">
-                                        <div className=" overflow-hidden relative">
+                                        <div className=" overflow-hidden relative w-fit">
                                             <Image src={`${urlImageTv}${item.poster_path}`}
                                                 width={120}
                                                 height={100}
@@ -109,6 +109,13 @@ export default async function GenrePageTv({ params }) {
                                     </CardFooter>
                                 </div>
                                     
+                                <div className=" absolute top-0 m-2 left-1/3  rounded-md bg-black/50  backdrop-blur h-auto overflow-hidden flex flex-col gap-1">
+                            <CardContent className=" ">
+
+                                <h1>Overview</h1>
+                                    <p className=" text-wrap"> {item.overview} </p>
+                            </CardContent>
+                                </div>
                             </Card>
                         </div>
                     ))}

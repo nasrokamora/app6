@@ -1,9 +1,7 @@
 import {
-    getDetailsSeasonTv,
     getDetailsTv,
     getExternalIdTv,
     getImageTv,
-    getLatestTv,
     getRecommendationsTv,
     getTrendingTv,
     getTvCredits,
@@ -11,7 +9,6 @@ import {
     urlImageTv
 } from "@/app/libs/DataFetchingTv"
 import Image from "next/image"
-import { IoTimerOutline } from "react-icons/io5";
 import { PiShootingStarLight } from "react-icons/pi";
 import { MdOutlineStackedBarChart } from "react-icons/md";
 import { Separator } from "@/components/ui/separator"
@@ -30,14 +27,7 @@ import TrendingTv from "@/app/(tv)/Components/TrendingTv/TrendingTv";
 import TrailerTv from "@/app/(tv)/Components/TrailerTV/TrailerTv";
 import no_image from '../../../../../public/image/no_image4.webp'
 import { RiBarChartGroupedLine } from "react-icons/ri";
-import {
-    Accordion,
-    AccordionContent,
-    AccordionItem,
-    AccordionTrigger,
-} from "@/components/ui/accordion"
 import { MdOutlineTransitEnterexit } from "react-icons/md";
-import RatingTvShow from "@/app/(tv)/Components/RatingTvShow/RatingTvShow";
 import WordPullUp from "@/components/ui/word-pull-up";
 import BlurFade from "@/components/ui/blur-fade";
 
@@ -51,7 +41,7 @@ export async function generateMetadata({ params }) {
     const { id } = params
     const data = await getDetailsTv(id)
     return {
-        title: data.name
+        title: data.name? data.name : data.original_name,
     }
 }
 
@@ -106,9 +96,7 @@ export default async function DynamicTvListPage({ params }) {
                         </Link>
                     </div>
                 </div>
-
-
-
+                {/* details  */}
                 <div className="flex flex-col items-start justify-start gap-1 ">
 
                     <div className="flex flex-wrap items-center justify-center gap-1 ">

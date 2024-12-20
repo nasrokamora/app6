@@ -10,6 +10,7 @@ import Image from "next/image"
 import Link from "next/link"
 import no_image from '../../../../public/image/no_image4.webp'
 import { FaRegStar } from "react-icons/fa"
+import { MdOutlineMovieFilter } from "react-icons/md";
 
 
 export default function RecommendationMovies({ dataRecommend }) {
@@ -17,8 +18,14 @@ export default function RecommendationMovies({ dataRecommend }) {
 
   return (
     <>
-      <div>
-        <h1 className=" bg-gradient-to-r from-[#3500f4] via-[#ff0000] to-[#f400ab] text-transparent bg-clip-text bg-[length:200%] animate-gradient scroll-m-20 text-3xl md:text-2xl font-extrabold   lg:text-2xl   ">Suggested Movies </h1>
+      <div className="w-fit relative z-50">
+        <div className=" flex gap-2 items-center justify-center">
+        <h1 className="  bg-gradient-to-r from-[#3500f4] via-[#ff0000] to-[#f400ab] text-transparent bg-clip-text bg-[length:200%] animate-gradient scroll-m-20 text-3xl md:text-2xl font-extrabold lg:text-2xl ">
+          Suggested Movies
+        </h1>
+          <MdOutlineMovieFilter className="text-[#ff0000] rotate-45 md:size-6"  size={30}/>
+        </div>
+          
       </div>
       <div className="  w-full pt-10 flex justify-center items-center relative h-fit md:mt-4">
         <Carousel className=" bg-black/60 backdrop-blur p-4 rounded-md w-full md:max-w-sm max-w-5xl 2xl:max-w-full " opts={{ loop: true, align: "start" }}

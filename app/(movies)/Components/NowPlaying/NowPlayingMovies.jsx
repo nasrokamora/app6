@@ -22,9 +22,9 @@ import AutoCarousel from "@/app/Components/AutoCarousel/AutoCarousel"
 export default function NowPlayingMovies({dataPlaying }) {
 
   return (
-    <div>
-      <div>
-        <h1 className="mt-10 text-2xl font-bold text-red-800 underline scroll-m-20 md:text-xl decoration-red-800 first:mt-0 black-shadow-text">Now playing on Magix</h1>
+    <div className=" mt-3">
+      <div className=" relative z-50">
+        <h1 className=" bg-gradient-to-r from-pink-600 via-purple-700 to-pink-600 bg-clip-text text-transparent bg-[length:200%] animate-gradient  scroll-m-20 text-3xl md:text-2xl font-extrabold lg:text-2xl">Now playing on Magix</h1>
       </div>
 
 
@@ -63,7 +63,7 @@ export default function NowPlayingMovies({dataPlaying }) {
           ) : (
             <Alert variant="destructive" className=" bg-black/30 backdrop-blur">
             <AlertCircle className="w-4 h-4" />
-            <AlertTitle>Error</AlertTitle>
+            <AlertTitle>Oops!</AlertTitle>
             <AlertDescription>
               Something went wrong.
             </AlertDescription>

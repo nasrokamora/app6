@@ -18,7 +18,7 @@ export default function Loading() {
 
     <div className="relative flex flex-col items-center justify-center h-screen bg-gradient-to-b from-black via-gray-900 to-black text-white">
       {/* خلفية متحركة */}
-      <div className="absolute inset-0 bg-[url('/images/cinema-bg.jpg')] bg-cover bg-center opacity-10 blur-sm"></div>
+      <div className="absolute inset-0  bg-cover bg-center opacity-10 blur-sm"></div>
 
       {/* شعار متحرك */}
       <div className="relative z-10 text-center animate-fade-in">

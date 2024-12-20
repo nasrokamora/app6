@@ -1,8 +1,5 @@
 import { LogoutLink } from "@kinde-oss/kinde-auth-nextjs/server";
 import {
-    LogOut,
-} from "lucide-react"
-import {
     Avatar,
     AvatarFallback,
     AvatarImage,
@@ -32,7 +29,7 @@ export default async function Profile() {
                 </div>
             ) : (
                 <DropdownMenu>
-                    <DropdownMenuTrigger className="rounded-full border">
+                    <DropdownMenuTrigger className="">
                         <VscAccount size={23} className="mb-1" />
                     </DropdownMenuTrigger>
                     <DropdownMenuContent className="w-auto">

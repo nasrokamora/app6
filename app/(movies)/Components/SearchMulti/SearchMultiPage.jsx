@@ -35,7 +35,7 @@ async function SearchMulti(query) {
         if(process.env.NODE_ENV !== "production") {
             console.log(error, 'Failed to fetch data SearchMulti');
         }
-        return { error: true, message: error.message };
+        return { error: true, message: process.env.NODE_ENV === 'production' ? "An unexpected error occurred." : error.message };
     }
 }
 

@@ -1,7 +1,4 @@
-"use server"
-
 import {
-    getChangesMovies,
     getCriditsMovies,
     getExternalIdMovies,
     getImageMoviesId,
@@ -23,7 +20,6 @@ import { FaRankingStar } from "react-icons/fa6";
 import { GiStarsStack } from "react-icons/gi";
 import Link from "next/link"
 import { TbExternalLink } from "react-icons/tb";
-
 import MoviesSimilar from "@/app/(movies)/Components/MoviesSimilar/MoviesSimilar"
 import MoviesCredits from "@/app/(movies)/Components/MoviesCredits/MoviesCredits"
 import ToggleButton from "@/app/(movies)/Components/ToggleButton/ToggleButton"
@@ -156,7 +152,6 @@ export default async function DynamicMoviesList({ params }) {
                         <Separator className="mt-4" />
                         {/* section popularity & vote average & vote count & status */}
                         <div className="flex flex-wrap items-center justify-start gap-5 md:justify-stretch">
-
                             <div className="flex items-center justify-start gap-3 mt-5 md:flex-wrap">
                                 <h2 className="text-2xl font-bold black-shadow-text scroll-m-20 md:text-lg first:mt-0text-slate-600">Popularity :</h2>
                                 <h1 className="flex items-center justify-start gap-2 text-2xl font-bold tracking-tight text-yellow-500 transition-colors scroll-m-20 md:text-xl first:mt-0">{data.popularity ? data.popularity.toFixed(2) : <ErrorMessage />} <FaRankingStar size={28} className="text-yellow-500 " /></h1>
@@ -205,9 +200,7 @@ export default async function DynamicMoviesList({ params }) {
                             </ul>
                         </div>
                     </div>
-
                     <Separator className="mt-4" />
-
                 </div>
             </div>
             {/* section images scroll */}
@@ -226,29 +219,19 @@ export default async function DynamicMoviesList({ params }) {
                 <ReviewsList dataReview={dataReview && dataReview.results && dataReview.results.length > 0 ? dataReview : []} />
 
             </div>
-
-
             <Separator className="my-4 " />
 
             {/* section Recommendation Movies */}
-
             <div>
                 <RecommendationMovies dataRecommend={dataRecommend.results} />
             </div>
-
             <Separator className="my-4 " />
-
 
             {/* section of movies now playing */}
             <div>
                 <NowPlayingMovies dataPlaying={dataPlaying.results} />
-
-
             </div>
-
-
             <Separator className={cn('my-4 bg-red-700')} />
-
 
             {/* section Similar movies */}
             <div>

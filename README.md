@@ -56,6 +56,7 @@ This project is developed by **Nasreddine Abdellouche**, a proficient web develo
 - **Email:** Nas_dev@outlook.com
 - **Email:** nanim2@outlook.fr
 - **LinkedIn:** [Nasreddine AB LinkedIn](https://www.linkedin.com/in/nasdev)  
+- **Portfolio:** https://nasreddine-abdellouche.vercel.app/
 
 Feel free to reach out for collaboration or inquiries!
 

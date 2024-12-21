@@ -13,7 +13,6 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { VscAccount } from "react-icons/vsc";
-import Image from "next/image"
 import FetchUserSession from "../api/auth/UserSession/FetchUserSession";
 import LogIn from "../api/(auth)/@signUp/page";
 
@@ -22,7 +21,7 @@ import LogIn from "../api/(auth)/@signUp/page";
 export default async function Profile() {
     const { user, isAuthenticated } = await FetchUserSession();
     return (
-        <div className=" mt-[0.5rem]">
+        <div className=" mt-[0.5rem] ">
             {!isAuthenticated ? (
                 <div className="">
                     <LogIn />

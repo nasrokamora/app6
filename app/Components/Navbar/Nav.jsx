@@ -18,14 +18,13 @@ import LogoIcon from '../../../public/icon/Icon.png'
 import Image from "next/image"
 import { cn } from "@/lib/utils";
 import GenresListMovies from "@/app/(movies)/Components/GenresListMovies/GenresListMovies";
-import Profile from "@/app/Profile/page";
+// import Profile from "@/app/Profile/page";
 import NavMenu from "./NavBar";
+import Profile from "@/app/libs/Profile";
 
 
 
 export default function NavBar() {
-
-
 
   return (
     <NavMenu>

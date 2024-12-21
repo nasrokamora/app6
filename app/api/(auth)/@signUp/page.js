@@ -1,7 +1,5 @@
-import InteractiveHoverButton from "@/components/ui/interactive-hover-button";
+
 import { RegisterLink, LoginLink } from "@kinde-oss/kinde-auth-nextjs/components";
-import { Button } from "@/components/ui/button"
-import { cva } from "class-variance-authority";
 import { IoLogInOutline, IoPersonAddOutline } from "react-icons/io5";
 export default function LogIn() {
 

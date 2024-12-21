@@ -27,14 +27,14 @@ export default async function MoviesCard({ dataDiscoverMovies }) {
             <div className="">
             </div>
             <div className="flex items-center justify-center pt-2 md:mt-10">
-                <Carousel className="w-full max-w-5xl md:max-w-md text-white  2xl:max-w-full" opts={{ loop: true, align: "center" }}>
+                <Carousel className="w-full max-w-5xl md:max-w-md text-white xl:max-w-6xl  2xl:max-w-full" opts={{ loop: true, align: "center" }}>
                     <CarouselContent className="-ml-1">
                         {dataDiscoverMovies && dataDiscoverMovies.length > 0 ? (
                             dataDiscoverMovies.map((movie, index) => (
-                                <CarouselItem key={index} className="pl-1 md:basis-1/2 lg:basis-1/5 xl:basis-1/5 basis-1/6 ">
+                                <CarouselItem key={index} className="pl-1 md:basis-1/2 lg:basis-1/5 xl:basis-1/6 basis-1/6 ">
                                     <div className="flex flex-col w-full p-1 hover:scale-90 hover:duration-500">
-                                        <Link varient="link" className="" href={`/movies/list/${movie.id}`}>
-                                            <div className='relative  hover:grayscale  hover:duration-700 hover:translate-x-6 '>
+                                        <Link varient="link" className="hover:grayscale  hover:duration-700 hover:translate-x-6" href={`/movies/list/${movie.id}`}>
+                                            <div className='relative rounded-md  '>
                                                 <Image
                                                     src={movie.poster_path ?
                                                         `${urlImage}/${movie.poster_path}`
@@ -44,8 +44,8 @@ export default async function MoviesCard({ dataDiscoverMovies }) {
                                                     alt="image_movies"
                                                     width={300} height={200}
                                                     priority={index < 6}
-                                                    className=" rounded-md  "
-                                                    style={{ width: "auto" }}
+                                                    className="   "
+                                                    style={{ width: "auto",borderRadius:"4px" }}
                                                     draggable={false}
                                                     loading="eager"
                                                 />

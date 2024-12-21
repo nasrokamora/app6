@@ -19,6 +19,6 @@ export async function GET(req){
         if(process.env.NODE_ENV !== "production"){
             console.log(error, 'Failed to fetch data GenresTvList');
         }
-        return new Response(JSON.stringify({error:true, message: error.message}),{status:500})
+        return new Response(JSON.stringify({error:true, message: process.env.NODE_ENV === "production" ? 'An unexpected error occurred.' : error.message}),{status:500})
     }
 }

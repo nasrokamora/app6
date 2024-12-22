@@ -19,7 +19,7 @@ export default function TvSeries({ dataTv }) {
             <Carousel opts={{
                 align: "center",
                 loop: true,
-            }} className="w-full md:max-w-md  max-w-5xl 2xl:max-w-7xl lg:max-w-4xl" >
+            }} className="w-full md:max-w-md  max-w-5xl 2xl:max-w-full lg:max-w-4xl" >
                 <CarouselContent className="   ">
                     {dataTv.map((tv, index) => (
 

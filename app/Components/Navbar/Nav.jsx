@@ -29,7 +29,7 @@ export default function NavBar() {
   return (
     <NavMenu>
 
-    <div className="w-full flex justify-between items-center">
+    <div className="w-full flex justify-between items-center pt-2">
 
 
       <Link href={'/'} className=" flex justify-center items-center ">
@@ -60,7 +60,7 @@ export default function NavBar() {
         <div className=" ">
 
           <Sheet className="">
-            <SheetTrigger><TfiMenu size={25} /></SheetTrigger>
+            <SheetTrigger><TfiMenu size={25} className="2xl:size-8" /></SheetTrigger>
             <SheetContent>
               <SheetHeader>
                 <SheetTitle>Magix Movies</SheetTitle>

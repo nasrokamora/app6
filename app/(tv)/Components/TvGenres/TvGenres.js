@@ -2,7 +2,6 @@
 
 import LoadingGenreButton from "@/app/Components/LoadingUi/LoadingGenreList"
 import { useCallback, useEffect, useState } from "react"
-import { Card, CardContent } from "@/components/ui/card"
 import {
     Carousel,
     CarouselContent,
@@ -153,10 +152,10 @@ export default function TvGenres() {
                                                 />
                                                 <p className="flex justify-start pt-2 mb-1 font-bold ">{tv.original_name.length > 14 ? tv.original_name.slice(0, 14) + "..." : tv.original_name}</p>
                                                 <div className="flex items-center justify-between w-full ">
-                                                    <p className="flex items-center justify-between w-full fonb">
+                                                    <p className="flex items-center justify-between w-full 2xl:font-bold font-semibold ">
                                                         {tv.first_air_date && new Date(tv.first_air_date).getFullYear()}
                                                     </p>
-                                                    <div className="">
+                                                    <div className="font-semibold 2xl:text-xl">
                                                         <div className="flex items-center justify-between space-x-1 ">
                                                             <FaRegStar className="text-[#FFC300]" />
                                                             <span className="">

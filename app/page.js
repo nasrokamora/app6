@@ -39,12 +39,12 @@ export default async function Home() {
         <h1 className={'md:text-3xl md:flex md:justify-center md:items-center md:ml-0 bg-gradient-to-r from-[#ffae00] via-[#911818] to-[#ffae00] bg-[length:200%_auto] bg-clip-text text-transparent animate-gradient'}>Discover<GiFilmProjector className="inline-block text-red-700 mb-4 " size={42} />
           <span className="bg-gradient-to-r from-[#911818] via-[#ffae00] to-[#911818]  bg-[length:200%_auto] bg-clip-text text-transparent animate-gradient">Magix</span> </h1>
       </div>
-      <section className="flex justify-center  w-full mt-7 bg-gradient-to-r from-[#000000] via-[#690000] to-[#ffae00] backdrop-blur-md">
+      <section className="flex justify-center  w-full mt-3 ">
         <MoviesCard dataDiscoverMovies={dataDiscoverMovies.results} />
       </section>
 
       {/* section highest rated movies */}
-      <section className="mt-7  ">
+      <section className="mt-16  ">
         <div className="ml-6 md:ml-0 md:flex md:justify-center md:items-center ">
 
           <h1 className="text-4xl  font-extrabold  scroll-m-20 lg:text-3xl md:mb-11">Highest <span className="text-[#00f4e1] relative">Rated <span className="absolute inset-0 left-11 -top-4"><TbHeartUp size={30} className="inline-block text-[#00f4e1]" /></span></span> <span className=" md:text-center md:flex md: justify-center  md:items-center ">Movies

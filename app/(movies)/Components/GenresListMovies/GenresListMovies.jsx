@@ -74,7 +74,7 @@ export default function GenresListMovies() {
 
             <Sheet>
                 <SheetTrigger>
-                    <FaTheaterMasks size={25} />
+                    <FaTheaterMasks size={25} className="2xl:size-8" />
                 </SheetTrigger>
                 <SheetContent side="left" className=" h-auto overflow-y-scroll">
                     <SheetHeader>

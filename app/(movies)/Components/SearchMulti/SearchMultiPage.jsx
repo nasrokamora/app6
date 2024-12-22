@@ -67,7 +67,7 @@ export default function SearchMultiPage() {
     return (
         <>
             <Sheet className=" ">
-                <SheetTrigger><IoSearch size={25} className="hover:scale-125 transition-transform duration-500  active:scale-90 " /></SheetTrigger>
+                <SheetTrigger><IoSearch size={25} className="hover:scale-125 transition-transform duration-500  active:scale-90 2xl:size-8" /></SheetTrigger>
                 <SheetContent className="" side={"top"}>
                     <SheetHeader>
                         <SheetTitle>Explorer Movies on Magix</SheetTitle>

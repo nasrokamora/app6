@@ -100,7 +100,7 @@ export default function PaginationMovies() {
             ) : (
                 <div className="w-full gap-2 flex justify-center md:mt-6  h-max">
 
-                    <Carousel className="w-full max-w-5xl md:max-w-sm 2xl:max-w-7xl lg:max-w-4xl"
+                    <Carousel className="w-full max-w-5xl md:max-w-sm 2xl:max-w-full lg:max-w-4xl"
                         opts={{
                             loop: true,
                             align: "center"

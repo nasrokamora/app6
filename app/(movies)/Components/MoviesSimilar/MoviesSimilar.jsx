@@ -63,8 +63,8 @@ export default function MoviesSimilar({ similar }) {
                                 </CarouselItem>
                             ))
                         ) : (
-                            <div className=" flex justify-center items-center w-full ">
-                                <h1 className="border rounded-md border-red-700 w-fit p-2 font-bold text-2xl text-red-700 md:text-xl italic">there is no similar movies.</h1>
+                            <div className=" flex justify-center items-center w-full  ">
+                                <h1 className="border rounded-md border-red-700 w-fit bg-black p-2 font-bold text-2xl text-red-700 md:text-xl italic animate-pulse ">there is no similar movies.</h1>
                             </div>
                         )
                         }

@@ -8,15 +8,17 @@ import no_image from '../../../../public/image/no_image4.webp'
 
 
 
-export default function CardResults({ movie, handleClick, handleClose }) {
+export default function CardResults({ movie, handleClick, handleClose,isLoading }) {
     /** conmponent for search */
     const hasResults = movie && movie.length > 0
 
 
     return (
         <div className="  p-4    z-50 gap-5 w-full ">
-            {hasResults && (
-                <ScrollArea className="w-full  whitespace-nowrap  h-[80vh] xl:h-[50vh] " >
+            {
+
+                hasResults && (
+                    <ScrollArea className="w-full  whitespace-nowrap  h-[80vh] xl:h-[50vh] " >
                     <div className="grid grid-cols-4 xl:grid-cols-5 md:grid-cols-3 md:overflow-hidden gap-3 border rounded-lg w-full h-[180vh] xl:h-[150vh] p-4">
 
                         {movie.map((movie) => (
@@ -40,14 +42,15 @@ export default function CardResults({ movie, handleClick, handleClose }) {
                             </div>
                         ))}
                         <Button variant="outline" onClick={() => handleClose()}>Close</Button>
+                        
+                        </div>
+                        {/* <ScrollBar orientation="vertical" /> */}
+                        </ScrollArea>
+                    )
 
-                    </div>
-                    {/* <ScrollBar orientation="vertical" /> */}
-                </ScrollArea>
 
 
-            )
-            }
+        }
         </div>
     )
 }

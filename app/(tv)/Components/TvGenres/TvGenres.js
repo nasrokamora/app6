@@ -21,6 +21,7 @@ import { FaRegStar } from "react-icons/fa"
 import LoadingGenreCarousel from "@/app/Components/LoadingUi/LoadingGenreCarousel"
 import { AlertCircle } from "lucide-react"
 import no_image from "../../../../public/image/no_image4.webp"
+import { urlImageTv } from "@/app/libs/DataFetchingTv"
 
 
 
@@ -36,6 +37,7 @@ export default function TvGenres() {
         fetchTvWithGenres()
     }, [])
 
+    // Fetch genres with tv shows
     const fetchTvWithGenres = async () => {
         try {
             const response = await fetch(`/api/fetchGenresTvList`)
@@ -52,19 +54,20 @@ export default function TvGenres() {
                 setIsLoadingGenre(false)
 
             }
+            
         } catch (error) {
             if(process.env.NODE_ENV !== "production") {
                 console.error(error, "Error fetch data Genres")
             }
-            return { error: true, message: error.message };
+            return { error: true, message: process.env.NODE_ENV === 'production' ? "An unexpected error occurred." : error.message };
         }
     }
 
+    // Fetch tv shows with genres
     const getTv = useCallback(async (genreId) => {
         setIsLoading(true); 
         try {
-          const response = await fetch(`/api/fetchTvWithGenres?genreId=${genreId}`);
-    
+          const response = await fetch(`/api/fetchTvWithGenres?genreId=${genreId}`);    
           if (!response.ok) {
             throw new Error("Failed to fetch TV shows");
           }
@@ -82,6 +85,7 @@ export default function TvGenres() {
 
       }, []);
 
+      // Handle click event for genres button
     const handleClick = useCallback( async(genreId) =>{
         setIsLoading(true)
         setSelected(genreId)
@@ -140,7 +144,7 @@ export default function TvGenres() {
                                                 <Image
                                                     src={tv.poster_path ?
                                                         
-                                                        `https://image.tmdb.org/t/p/original${tv.poster_path}`
+                                                        `${urlImageTv}${tv.poster_path}`
                                                         :
                                                         no_image
                                                     }

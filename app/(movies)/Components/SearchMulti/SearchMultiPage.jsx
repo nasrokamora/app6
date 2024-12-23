@@ -4,18 +4,11 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import CardResults from "./CardResult"
 import { useState } from "react"
-import {
-    Popover,
-    PopoverContent,
-    PopoverTrigger,
-} from "@/components/ui/popover"
-
+import forbiddenWordsData from "../../../libs/forbiddenWords.json"
 import {
     Sheet,
-    SheetClose,
     SheetContent,
     SheetDescription,
-    SheetFooter,
     SheetHeader,
     SheetTitle,
     SheetTrigger,
@@ -30,9 +23,9 @@ async function SearchMulti(query) {
             throw new Error('Failed to fetch data')
         }
         return data
-        
+
     } catch (error) {
-        if(process.env.NODE_ENV !== "production") {
+        if (process.env.NODE_ENV !== "production") {
             console.log(error, 'Failed to fetch data SearchMulti');
         }
         return { error: true, message: process.env.NODE_ENV === 'production' ? "An unexpected error occurred." : error.message };
@@ -44,7 +37,10 @@ export default function SearchMultiPage() {
     const [query, setQuery] = useState('')
     const [movies, setMovies] = useState([])
     const [selectedMovie, setSelectedMovie] = useState(null)
+    const [errorMessage, setErrorMessage] = useState('')
+    const [isLoading, setIsLoading] = useState(false)
     if (!movies) return null
+
 
     function handleClick(movie) {
         setSelectedMovie(movie)
@@ -53,17 +49,30 @@ export default function SearchMultiPage() {
         setSelectedMovie(null)
         setMovies([])
     }
-    async function handleSearch(e) {
+    async function handleSearch(e, language) {
         e.preventDefault()
-        if (!query) return;
+        setIsLoading(true)
+        const forbidden = forbiddenWordsData[language] || []
+        const isForbidden = forbidden.some((word) => query.toLowerCase().includes(word.toLowerCase()))
+        if (isForbidden) {
+            setErrorMessage('The search term contains forbidden content.')
+            setIsLoading(false)
+            return
+        }
+
         const data = await SearchMulti(query)
         setMovies(data.results)
+        if (data.results.length === 0) {
+            setErrorMessage('Kindly provide a valid search term')
+            setIsLoading(false)
+            return
+        }
         setQuery('')
+        setErrorMessage('')
+        setIsLoading(false)
 
     }
-    // console.log(movies)
 
-    
     return (
         <>
             <Sheet className=" ">
@@ -76,18 +85,25 @@ export default function SearchMultiPage() {
                         </SheetDescription>
                     </SheetHeader>
                     <main className="  py-2 w-full" onClick={() => handleClose()} >
-                        <form onSubmit={handleSearch} className="flex w-full max-w-sm items-center space-x-2">
+                        <form onSubmit={(e) => handleSearch(e, 'en')} className="flex w-full max-w-sm items-center space-x-2">
                             <Input
                                 type="text"
                                 placeholder="Search..."
                                 value={query}
-                                onChange={(e) => setQuery(e.target.value)}
+                                onChange={(e) => {
+                                    setQuery(e.target.value)
+                                    setErrorMessage('')
+                                }}
                             />
-                            <Button type="submit" disabled={query.length < 3}>Search</Button>
+                            <Button type="submit" disabled={query.length < 3 || isLoading }>Search</Button>
                         </form>
+                        {isLoading && (
+                            <p className="text-blue-700 font-semibold pt-6 xl:text-xl 2xl:text-2xl">Loading your results, one moment please...</p>
+                        )}
+                        {errorMessage && <p className="text-red-700 font-semibold pt-6 xl:text-xl 2xl:text-2xl ">{errorMessage}</p>}
                     </main>
 
-                    <CardResults movie={movies} handleClick={handleClick} handleClose={handleClose} />
+                    <CardResults movie={movies} handleClick={handleClick} handleClose={handleClose} isLoading={isLoading} />
                 </SheetContent>
             </Sheet>
 

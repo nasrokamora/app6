@@ -11,15 +11,13 @@ import { FaRegStar } from "react-icons/fa6"
 import BlurFade from "@/components/ui/blur-fade"
 import no_image from '../../../../public/image/no_image4.webp'
 import { urlImageTv } from "@/app/libs/DataFetchingTv"
+import CarouselAutoshow from "@/app/Animations/CarouselAuto/AutoCarousel"
 
 export default function TvSeries({ dataTv }) {
 
     return (
         <div className=" mt-12 flex justify-center w-full bg-gradient-to-br from-[black] to-[#318ffa] p-6 2xl:text-lg ">
-            <Carousel opts={{
-                align: "center",
-                loop: true,
-            }} className="w-full md:max-w-md  max-w-5xl 2xl:max-w-full lg:max-w-4xl" >
+            <CarouselAutoshow  >
                 <CarouselContent className="   ">
                     {dataTv.map((tv, index) => (
 
@@ -69,7 +67,7 @@ export default function TvSeries({ dataTv }) {
                     <CarouselPrevious />
                     <CarouselNext />
                 </div>
-            </Carousel>
+            </CarouselAutoshow>
         </div>
 
     )

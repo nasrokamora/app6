@@ -72,8 +72,8 @@ export default async function DynamicMoviesList({ params }) {
             <ToggleButton />
 
             {/* container details movies */}
-            <div className="flex items-center justify-between pb-4 " >
-                <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl md:text-3xl  text-base-100 drop-shadow-[0_5px_10px_rgba(255,145,0,10.25)]">{data.original_title ? data.original_title : data.title}</h1>
+            <div className="flex items-center justify-between pb-4" >
+                <h1 className="scroll-m-20 text-4xl text-white font-extrabold tracking-tight lg:text-5xl md:text-3xl   drop-shadow-[0_5px_10px_rgba(255,145,0,10.25)]">{data.original_title ? data.original_title : data.title}</h1>
             </div>
             <div className="w-full flex items-center justify-start gap-3 p-4 mt-4 rounded-md shadow-xl md:flex-col shadow-black/30 bg-black/50 backdrop-blur 2xl:justify-evenly">
 

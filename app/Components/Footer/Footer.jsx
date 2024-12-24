@@ -7,7 +7,7 @@ export default function Footer() {
         <footer className=" font-semibold  relative  footer-center p-10 bg-[#09090b] backdrop-blur text-base-100 rounded z-40 w-full footer">
 
         <aside>
-            <p className="font-semibold">Copyright © 2023 - All right reserved by Nas@Dev, Nasreddine Abdellouche</p>
+            <p className="font-semibold">Copyright © 2024 - All right reserved by Nas@Dev, Nasreddine Abdellouche</p>
         </aside>
 
             {/* <div className="flex justify-start items-start gap-4">

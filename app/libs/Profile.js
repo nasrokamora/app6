@@ -29,7 +29,7 @@ export default async function Profile() {
             ) : (
                 <DropdownMenu>
                     <DropdownMenuTrigger className="">
-                        <VscAccount size={23} className="mb-1" />
+                        <VscAccount size={23} className="mb-1 hover:scale-110 transition-transform  hover:animate-pulse hover:duration-700 hover:text-green-500" />
                     </DropdownMenuTrigger>
                     <DropdownMenuContent className="w-auto">
                         {user?.picture && (
@@ -46,7 +46,7 @@ export default async function Profile() {
                                 <DropdownMenuSeparator />
                                 <DropdownMenuItem>
                                     <LogoutLink className="text-subtle ">
-                                    
+
                                         <button
                                             className="group flex items-center justify-start w-11 h-11 bg-red-600 rounded-full cursor-pointer relative overflow-hidden transition-all duration-200 shadow-lg hover:w-32 hover:rounded-lg active:translate-x-1 active:translate-y-1"
                                         >

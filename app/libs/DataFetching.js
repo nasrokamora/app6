@@ -28,7 +28,7 @@ export async function getDiscoverMovies() {
     if (process.env.NODE_ENV !== "production") {
       console.error(error, "failed to fetch data discover")
     }
-    return { error: true, message: error.message };
+    return { error: true, message: process.env.NODE_ENV !== "production" ? error.message : "An unexpected error occurred, please try again." };
 
   }
 
@@ -53,7 +53,7 @@ export async function getMoviesId(id) {
     if (process.env.NODE_ENV !== "production") {
       console.error(error, "failed to fetch data id")
     }
-    return { error: true, message: error.message };
+    return { error: true, message: process.env.NODE_ENV !== "production" ? error.message : "An unexpected error occurred, please try again." };
   }
 }
 
@@ -73,7 +73,7 @@ export async function getReleasDateMovies({ id }) {
     if (process.env.NODE_ENV !== "production") {
       console.error(error, "failed to fetch data release")
     }
-    return { error: true, message: error.message };
+    return { error: true, message: process.env.NODE_ENV !== "production" ? error.message : "An unexpected error occurred, please try again." };
   }
 
 }
@@ -91,7 +91,7 @@ export async function getMoviesGenre(id) {
     if (process.env.NODE_ENV !== "production") {
       console.error(error, "failed to fetch data genre")
     }
-    return { error: true, message: error.message };
+    return { error: true, message: process.env.NODE_ENV !== "production" ? error.message : "An unexpected error occurred, please try again." };
   }
 }
 
@@ -104,7 +104,7 @@ export async function getMoviesGenreList() {
     if (process.env.NODE_ENV !== "production") {
       console.error(error, "failed to fetch data genre")
     }
-    return { error: true, message: error.message };
+    return { error: true, message: process.env.NODE_ENV !== "production" ? error.message : "An unexpected error occurred, please try again." };
   }
 }
 
@@ -125,7 +125,7 @@ export async function getPopularMovies() {
     if (process.env.NODE_ENV !== "production") {
       console.error(error, "failed to fetch data popular")
     }
-    return { error: true, message: error.message };
+    return { error: true, message: process.env.NODE_ENV !== "production" ? error.message : "An unexpected error occurred, please try again." };
   }
 }
 
@@ -153,7 +153,7 @@ export async function getCriditsMovies(id) {
     if (process.env.NODE_ENV !== "production") {
       console.error(error, "failed to fetch data Credits Movies")
     }
-    return { error: true, message: error.message };
+    return { error: true, message: process.env.NODE_ENV === "production" ? "An unexpected error occurred, please try again." : error.message};
   }
 }
 
@@ -177,7 +177,7 @@ export async function getCreditsId(credit_id) {
     if (process.env.NODE_ENV !== "production") {
       console.error(error, "failed to fetch data Credits Id")
     }
-    return { error: true, message: error.message };
+    return { error: true, message: process.env.NODE_ENV !== "production" ? error.message : "An unexpected error occurred, please try again." };
   }
 
 

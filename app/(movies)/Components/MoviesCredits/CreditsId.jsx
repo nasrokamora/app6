@@ -6,7 +6,7 @@ export default async function CreditsId({ credit_id }) {
 
   return (
     <section>
-      <PersonDetails person_id={dataCreditId.person.id} />
+      <PersonDetails person_id={dataCreditId.person.id ? dataCreditId.person.id : "An unexpected error occurred, please try again."} />
     </section>
   )
 }

@@ -7,7 +7,7 @@ import { FaAngleDoubleUp } from "react-icons/fa";
 export default function ToggleUp() {
 
     const [toggle, setToggle] = useState(false)
-
+    
 
     useEffect(() => {
 

@@ -1,46 +1,74 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState, useEffect } from 'react';
 
-
-export default function Loading() {
-  const [progress, setProgress] = useState(0);
+export default function LoadingScreen() {
+  const [dots, setDots] = useState('');
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setProgress((prev) => (prev < 100 ? prev + 5 : 100));
-    }, 100);
-
+      setDots((prev) => (prev.length < 3 ? prev + '.' : ''));
+    }, 500);
     return () => clearInterval(interval);
   }, []);
 
   return (
-
-    <div className="relative flex flex-col items-center justify-center h-screen bg-gradient-to-b from-black via-gray-900 to-black text-white">
-      {/* خلفية متحركة */}
-      <div className="absolute inset-0  bg-cover bg-center opacity-10 blur-sm"></div>
-
-      {/* شعار متحرك */}
-      <div className="relative z-10 text-center animate-fade-in">
-        <h1 className="text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#b62323] via-[#9c40ff] to-[#b62323] animate-text-glow">
-          Magix Movies
-        </h1>
-        <p className="mt-4 text-xl font-medium">Loading {progress}%</p>
+    <div className="flex items-center justify-center h-screen bg-[#09090b] text-white">
+      <div className="text-center text-xl">
+        <h1 className="text-3xl font-bold">Loading{dots}</h1>
+        <p className="mt-2 text-xl font-semibold text-gray-400">Just a moment, we’re getting things ready !</p>
+        <div className="mt-4 w-16 h-1 bg-blue-500 animate-pulse mx-auto"></div>
       </div>
-
-      {/* شريط تحميل */}
-      <div className="relative w-64 h-2 mt-6 bg-gray-700 rounded-full overflow-hidden shadow-lg">
-        <div
-          className="absolute h-2 bg-gradient-to-r from-[#b62323] via-[#9c40ff] to-[#b62323] transition-all duration-300"
-          style={{ width: `${progress}%` }}
-        ></div>
-      </div>
-
-      {/* دوائر متحركة */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full border-4 border-[#b62323] animate-spin-slow opacity-20"></div>
-      <div className="absolute bottom-1/4 right-1/4 w-72 h-72 rounded-full border-4 border-[#9c40ff] animate-spin-slow opacity-20"></div>
     </div>
   );
+}
+
+
+
+
+// "use client";
+
+// import { useEffect, useState } from "react";
+
+
+// export default function Loading() {
+//   const [progress, setProgress] = useState(0);
+
+//   useEffect(() => {
+//     const interval = setInterval(() => {
+//       setProgress((prev) => (prev < 100 ? prev + 5 : 100));
+//     }, 100);
+
+//     return () => clearInterval(interval);
+//   }, []);
+
+//   return (
+
+//     <div className="relative flex flex-col items-center justify-center h-screen bg-gradient-to-b from-black via-gray-900 to-black text-white">
+//       {/* خلفية متحركة */}
+//       <div className="absolute inset-0  bg-cover bg-center opacity-10 blur-sm"></div>
+
+//       {/* شعار متحرك */}
+//       <div className="relative z-10 text-center animate-fade-in">
+//         <h1 className="text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#b62323] via-[#9c40ff] to-[#b62323] animate-text-glow">
+//           Magix Movies
+//         </h1>
+//         <p className="mt-4 text-xl font-medium">Loading {progress}%</p>
+//       </div>
+
+//       {/* شريط تحميل */}
+//       <div className="relative w-64 h-2 mt-6 bg-gray-700 rounded-full overflow-hidden shadow-lg">
+//         <div
+//           className="absolute h-2 bg-gradient-to-r from-[#b62323] via-[#9c40ff] to-[#b62323] transition-all duration-300"
+//           style={{ width: `${progress}%` }}
+//         ></div>
+//       </div>
+
+//       {/* دوائر متحركة */}
+//       <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full border-4 border-[#b62323] animate-spin-slow opacity-20"></div>
+//       <div className="absolute bottom-1/4 right-1/4 w-72 h-72 rounded-full border-4 border-[#9c40ff] animate-spin-slow opacity-20"></div>
+//     </div>
+//   );
   // <motion.div
   //   className="loading-container h-screen w-full flex flex-col justify-center items-center bg-[#09090b]"
   //   initial={{ opacity: 0 }}
@@ -64,4 +92,4 @@ export default function Loading() {
   //   <span className="mt-2 text-lg font-medium">{percentage}%</span>
   // </motion.div>
 
-}
+// }

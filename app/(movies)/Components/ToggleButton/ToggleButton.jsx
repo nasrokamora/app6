@@ -55,10 +55,10 @@ export default function ToggleButton(){
         <div className=" relative">
             {isVisible && toggle && (
                 <div className="">
-                <Button variant="outline" className="fixed z-50 mb-11 bottom-10  right-10 bg-black/30 backdrop-blur text-white font-bold py-2 px-4 rounded-full md:active:scale-95" onClick={ScrollUp}>
+                <Button variant="outline" className="fixed z-50 mb-11 bottom-10  right-10 bg-black/50 backdrop-blur text-white font-bold py-2 px-4 rounded-full md:active:scale-95" onClick={ScrollUp}>
                     <FaAngleDoubleUp className=" " />
                 </Button>
-                <button className=" md:active:scale-95 fixed z-50 bottom-10 right-10 bg-red-500 text-white font-bold py-2 px-4 rounded-full shadow-md hover:bg-red-600" onClick={() => router.back()}><RiArrowGoBackFill size={20}  />
+                <button className=" md:active:scale-95 fixed z-50 bottom-10 right-10 bg-black/50 backdrop-blur text-white font-bold py-2 px-4 rounded-full shadow-md hover:bg-red-600" onClick={() => router.back()}><RiArrowGoBackFill size={20}  />
 
                 </button>
                 </div>

@@ -48,8 +48,8 @@ export default function ReviewsList({ dataReview }) {
                             : (
                                 <Alert variant="destructive" className=" bg-black font-bold">
                                     <AlertCircle className="h-4 w-4" />
-                                    <AlertTitle>Error</AlertTitle>
-                                    <AlertDescription>
+                                    <AlertTitle>Oops !</AlertTitle>
+                                    <AlertDescription className=" xl:text-xl 2xl:text-2xl">
                                         There are no reviews in this movie.
                                     </AlertDescription>
                                 </Alert>

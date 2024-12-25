@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import CardResults from "./CardResult"
-import { useState } from "react"
+import { useCallback, useState } from "react"
 import forbiddenWordsData from "../../../libs/forbiddenWords.json"
 import {
     Sheet,
@@ -42,19 +42,17 @@ export default function SearchMultiPage() {
     if (!movies) return null
 
 
-    function handleClick(movie) {
-        setSelectedMovie(movie)
-    }
-    function handleClose() {
-        setSelectedMovie(null)
-        setMovies([])
-    }
-    async function handleSearch(e, language) {
+
+    const isQueryForbidden = useCallback((query, language) => {
+        const forbidden = forbiddenWordsData[language] || []
+        return forbidden.some((word) => query.toLowerCase().includes(word.toLowerCase()))
+    }, [])
+
+    const handleSearch = useCallback(async (e, language) => {
         e.preventDefault()
         setIsLoading(true)
-        const forbidden = forbiddenWordsData[language] || []
-        const isForbidden = forbidden.some((word) => query.toLowerCase().includes(word.toLowerCase()))
-        if (isForbidden) {
+
+        if (isQueryForbidden(query, language)) {
             setErrorMessage('The search term contains forbidden content.')
             setIsLoading(false)
             return
@@ -63,7 +61,7 @@ export default function SearchMultiPage() {
         const data = await SearchMulti(query)
         setMovies(data.results)
         if (data.results.length === 0) {
-            setErrorMessage('Kindly provide a valid search term')
+            setErrorMessage('No results found. Please try a different search term.')
             setIsLoading(false)
             return
         }
@@ -71,7 +69,18 @@ export default function SearchMultiPage() {
         setErrorMessage('')
         setIsLoading(false)
 
-    }
+    }, [query, isQueryForbidden])
+
+    const handleClick = useCallback((movie) => {
+        setSelectedMovie(movie)
+    }, [])
+
+
+    const handleClose = useCallback(() => {
+        setSelectedMovie(null)
+        setMovies([])
+    }, [])
+
 
     return (
         <>
@@ -95,7 +104,7 @@ export default function SearchMultiPage() {
                                     setErrorMessage('')
                                 }}
                             />
-                            <Button type="submit" disabled={query.length < 3 || isLoading }>Search</Button>
+                            <Button type="submit" disabled={query.length < 3 || isLoading}>{isLoading ? "Loading..." : "Search"}</Button>
                         </form>
                         {isLoading && (
                             <p className="text-blue-700 font-semibold pt-6 xl:text-xl 2xl:text-2xl">Loading your results, one moment please...</p>

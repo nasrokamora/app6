@@ -30,14 +30,17 @@ export default async function PersonDetails({ person_id }) {
   const data = await getPersonId(person_id)
 
   //error handling
-  if (data.length < 0) return <Alert variant="destructive">
-    <AlertCircle className="h-4 w-4" />
-    <AlertTitle>Error</AlertTitle>
-    <AlertDescription>
-      Error fetching data.
-    </AlertDescription>
-  </Alert>
-
+  if (!data && Object.keys(data).length === 0) {
+    return (
+      <Alert variant="destructive">
+        <AlertCircle className="h-4 w-4" />
+        <AlertTitle>Error</AlertTitle>
+        <AlertDescription>
+          Something went wrong.
+        </AlertDescription>
+      </Alert>
+    )
+  }
 
   return (
     <section>
@@ -71,7 +74,7 @@ export default async function PersonDetails({ person_id }) {
                   priority
                   placeholder="blur"
                   src={no_image}
-                  
+
                 />
 
               )

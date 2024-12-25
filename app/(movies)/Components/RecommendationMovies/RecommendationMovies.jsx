@@ -18,14 +18,14 @@ export default function RecommendationMovies({ dataRecommend }) {
 
   return (
     <>
-      <div className="w-fit relative z-50">
-        <div className=" flex gap-2 items-center justify-center">
-        <h1 className="  bg-gradient-to-r from-[#3500f4] via-[#ff0000] to-[#f400ab] text-transparent bg-clip-text bg-[length:200%] animate-gradient scroll-m-20 text-3xl md:text-2xl font-extrabold lg:text-2xl ">
-          Suggested Movies
-        </h1>
-          <MdOutlineMovieFilter className="text-[#ff0000] rotate-45 md:size-6"  size={30}/>
+      <div className="w-full ">
+        <div className=" flex gap-2 items-center justify-start md:justify-center ">
+          <h1 className="  bg-gradient-to-r from-[#3500f4] via-[#ff0000] to-[#f400ab] text-transparent bg-clip-text bg-[length:200%] animate-gradient scroll-m-20 text-4xl md:text-center font-extrabold lg:text-3xl  p-4 drop-shadow-lg w-fit">
+            Suggested Movies
+          </h1>
+          <MdOutlineMovieFilter className="text-[#ff0000] rotate-45 md:hidden " size={30} />
         </div>
-          
+
       </div>
       <div className="  w-full pt-10 flex justify-center items-center relative h-fit md:mt-4">
         <Carousel className=" bg-black/60 backdrop-blur p-4 rounded-md w-full md:max-w-sm max-w-5xl 2xl:max-w-full " opts={{ loop: true, align: "start" }}

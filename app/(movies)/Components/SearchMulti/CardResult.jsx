@@ -8,7 +8,7 @@ import no_image from '../../../../public/image/no_image4.webp'
 
 
 
-export default function CardResults({ movie, handleClick, handleClose,isLoading }) {
+export default function CardResults({ movie, handleClick, handleClose }) {
     /** conmponent for search */
     const hasResults = movie && movie.length > 0
 

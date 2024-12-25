@@ -1,4 +1,4 @@
-import { getCreditsId, getPersonsId, urlImage } from "@/app/libs/DataFetching"
+import { getCreditsId, } from "@/app/libs/DataFetching"
 import PersonDetails from "./PersonDetails"
 
 export default async function CreditsId({ credit_id }) {
@@ -6,7 +6,7 @@ export default async function CreditsId({ credit_id }) {
 
   return (
     <section>
-      <PersonDetails person_id={dataCreditId.person.id ? dataCreditId.person.id : "An unexpected error occurred, please try again."} />
+      <PersonDetails person_id={dataCreditId?.person?.id} />
     </section>
   )
 }

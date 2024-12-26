@@ -6,7 +6,7 @@ import {
     CarouselNext,
     CarouselPrevious,
 } from "@/components/ui/carousel"
-import { useEffect, useRef, useState } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 import {
     Pagination,
     PaginationContent,
@@ -16,10 +16,7 @@ import {
     PaginationNext,
     PaginationPrevious,
 } from "@/components/ui/pagination"
-import { HEADERS } from "@/app/libs/DataFetching"
-import LoadingGenreCarousel from "@/app/Components/LoadingUi/LoadingGenreCarousel";
 import no_image from '../../../../public/image/no_image4.webp';
-
 import Image from "next/image";
 import { AlertCircle } from "lucide-react"
 import {
@@ -55,6 +52,9 @@ async function fetchPagination({cachRef,setDataMovies, setIsLoading, setError, p
     } catch (error) {
         if(process.env.NODE_ENV !== "production") {
             console.log(error.message)
+            return {error:true, message: process.env.NODE_ENV === "production" ? "Something went wrong" : error.message,
+                details: process.env.NODE_ENV !== "production" ? error.stack : undefined 
+            }
         }
         setError(error)
     }
@@ -75,10 +75,10 @@ export default function PaginationMovies() {
         fetchPagination({cachRef,setDataMovies, setIsLoading, setError, page: currentPage})
     }, [currentPage])
     
-    function handlePageChange(newPage) {
+    const  handlePageChange = useCallback((newPage)=> {
         if (newPage < 1) return
         setCurrentPage(newPage)
-    }
+    },[])
 
     return (
         <div className=" w-full ">
@@ -99,19 +99,16 @@ export default function PaginationMovies() {
                 </div>
             ) : (
                 <div className="w-full gap-2 flex justify-center md:mt-6  h-max">
-
                     <Carousel className="w-full max-w-5xl md:max-w-sm 2xl:max-w-full lg:max-w-4xl"
                         opts={{
                             loop: true,
                             align: "center"
                         }}>
                         <CarouselContent className="-ml-1">
-
                             {dataMovies && dataMovies.length > 0 ? (
                                 dataMovies.map((movie,index) => (
                                     <CarouselItem key={movie.id} className=" p-2 md:basis-1/2 basis-1/6 lg:basis-1/5">
                                         <BlurFade delay={0.10} inView>
-
                                         <div className="relative overflow-hidden md:active:scale-90 hover:scale-90 hover:duration-500  ">
                                             <Link className=" font-bold" href={`/movies/list/${movie.id}`}>
                                                 <Image
@@ -152,9 +149,9 @@ export default function PaginationMovies() {
                             ) : (
                                 <Alert variant="destructive">
                                     <AlertCircle className="h-4 w-4" />
-                                    <AlertTitle>Error</AlertTitle>
+                                    <AlertTitle>Oops !</AlertTitle>
                                     <AlertDescription>
-                                        Something went wrong. Please try again later.
+                                        There are no movies in this page.
                                     </AlertDescription>
                                 </Alert>
                             )}
@@ -192,7 +189,6 @@ export default function PaginationMovies() {
                     <PaginationItem >
                         <PaginationEllipsis />
                     </PaginationItem>
-
                     <PaginationItem className="2xl:text-xl">
                         <PaginationNext
                             className="cursor-pointer font-semibold"

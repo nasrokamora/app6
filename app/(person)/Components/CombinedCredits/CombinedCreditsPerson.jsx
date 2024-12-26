@@ -46,7 +46,7 @@ export default function CombinedCreditsPerson({ dataCombined }) {
                                 <Card className="" key={index - item.id}>
                                     <CardHeader>
                                         <CardTitle className="  "> {dataCombined.media_type === "tv" ? item.name : item.title || item.original_name || item.original_title} </CardTitle>
-                                        <CardDescription> {item.release_date ? item.release_date : item.first_air_date} </CardDescription>
+                                        <CardDescription className="font-semibold italic"> {item.release_date ? item.release_date : item.first_air_date} </CardDescription>
                                     </CardHeader>
                                     <CardContent className=" flex justify-start gap-2 ">
                                         <div className=" w-max ">

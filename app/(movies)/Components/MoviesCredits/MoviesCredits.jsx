@@ -30,7 +30,6 @@ import Link from "next/link"
 
 export default async function MoviesCredits({ credits }) {
     const dataCredit = credits.cast
-    // console.log(dataCredit);
 
     return (
         <div className=" h-auto w-full mt-6 ">

@@ -1,4 +1,3 @@
-
 import {
     Alert,
     AlertDescription,
@@ -15,22 +14,15 @@ import {
     CarouselNext,
     CarouselPrevious,
 } from "@/components/ui/carousel"
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 import { urlImage } from "@/app/libs/DataFetching"
-import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardFooter,
-    CardHeader,
-    CardTitle,
-} from "@/components/ui/card"
+import { Card } from "@/components/ui/card"
 import { FaRegStar } from "react-icons/fa"
+import CarouselPerson from "./CarouselPerson"
 export default function PopularPerson({ dataPersonPopular }) {
 
     return (
         <div className="  flex justify-center items-center w-full h-auto mt-7 md:mt-12">
-            <Carousel className='w-full max-w-5xl md:max-w-sm 2xl:max-w-full' opts={{ loop: true, align: 'start' }} >
+            <CarouselPerson>
                 <CarouselContent className='-ml-1'>
                     {dataPersonPopular && dataPersonPopular.length > 0 ? (
                         dataPersonPopular.map((person) => (
@@ -39,7 +31,7 @@ export default function PopularPerson({ dataPersonPopular }) {
                                     <Link href={`/person/${person.id}`} className="hover:scale-90 hover:duration-500 md:active:scale-90">
                                         <div className=" relative overflow-hidden">
                                             <Image src={person.profile_path ? `${urlImage}${person.profile_path}` : no_image}
-                                                alt={person.name? person.name : "No name"}
+                                                alt={person.name ? person.name : "No name"}
                                                 width={150}
                                                 height={150}
                                                 priority={true}
@@ -51,9 +43,9 @@ export default function PopularPerson({ dataPersonPopular }) {
                                             {person.name ? person.name.length > 12 ? person.name.slice(0, 12) + "..." : person.name : "No name"}
                                         </h2>
                                         <div className="flex items-center justify-between w-full">
-                                            <p className=" font-semibold 2xl:text-xl">{person.known_for_department}</p>
+                                            <p className=" font-semibold 2xl:text-xl text-[#ff007c]">{person.known_for_department}</p>
                                             <div className="flex items-center justify-between space-x-1 2xl:text-xl">
-                                                <FaRegStar className="text-[#003cff]" />
+                                                <FaRegStar className="text-[#ffd000]" />
                                                 <span className="">
                                                     {person.popularity.toFixed(1)}
                                                 </span>
@@ -87,7 +79,7 @@ export default function PopularPerson({ dataPersonPopular }) {
                     <CarouselPrevious />
                     <CarouselNext />
                 </div>
-            </Carousel>
+            </CarouselPerson>
         </div>
     )
 }

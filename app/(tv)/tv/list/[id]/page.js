@@ -17,12 +17,10 @@ import AnimateNumber from "@/app/Animations/AnimationNumber/AnimateNumber";
 import CreditsDetailsTv from "@/app/(tv)/Components/CreditsDetailsTv/CreditsDetailsTv";
 import { SlSocialInstagram } from "react-icons/sl";
 import { BsTwitterX } from "react-icons/bs";
-import { SiWikidata } from "react-icons/si";
 import { FaFacebook } from "react-icons/fa6";
 import Link from "next/link"
 import RecommendationTv from "@/app/(tv)/Components/RecommendationTv/RecommendationTv";
 import ToggleButton from "@/app/(movies)/Components/ToggleButton/ToggleButton";
-import LatestTv from "@/app/(tv)/Components/LatestTv/LatestTv";
 import TrendingTv from "@/app/(tv)/Components/TrendingTv/TrendingTv";
 import TrailerTv from "@/app/(tv)/Components/TrailerTV/TrailerTv";
 import no_image from '../../../../../public/image/no_image4.webp'
@@ -41,7 +39,7 @@ export async function generateMetadata({ params }) {
     const { id } = params
     const data = await getDetailsTv(id)
     return {
-        title: data.name? data.name : data.original_name,
+        title: data.name ? data.name : data.original_name,
     }
 }
 
@@ -62,7 +60,7 @@ export default async function DynamicTvListPage({ params }) {
     const [detailTv, imageTv, creditsTv, externalData, dataRecommend, dataVideosTv, dataTrending] = await Promise.all([data, dataImage, dataCredits, dataExt, dataRecommendation, videosTv, dataTrend])
 
     return (
-            <div className="w-full h-auto px-6 pt-20 ">
+        <div className="w-full h-auto px-6 pt-20 ">
 
             <div className="flex flex-col items-center justify-center text-4xl font-extrabold tracking-tight scroll-m-20 lg:text-4xl">
                 <WordPullUp
@@ -73,8 +71,6 @@ export default async function DynamicTvListPage({ params }) {
             </div>
             <div className="flex items-start justify-start gap-4 mt-8 md:flex-col">
                 <div className=" w-[70%] xl:w-full  flex justify-center items-center flex-col   relative md:w-full  overflow-hidden md:flex md:justify-center md:items-center">
-
-
                     <Image src={detailTv.poster_path ? `${urlImageTv}${detailTv.poster_path}` : no_image}
                         priority
                         width={400}
@@ -85,20 +81,17 @@ export default async function DynamicTvListPage({ params }) {
                         alt={data.name ? data.name : data.original_name || <h1 className="">Image Tv</h1>}
                         loading="eager"
                     />
-
+                    {/* trailer */}
                     <div className="flex items-center justify-center w-full gap-6 mt-6 ">
-
                         <TrailerTv dataVideos={dataVideosTv && dataVideosTv.results.length > 0 ? dataVideosTv.results.slice(0, 1) : []} />
                         <Link href={detailTv.homepage} target="_blank" rel="noopener noreferrer">
-
                             <MdOutlineTransitEnterexit size={52} className="text-[#f8ea25] hover:scale-110 duration-300 cursor-pointer" />
-
                         </Link>
                     </div>
                 </div>
+
                 {/* details  */}
                 <div className="flex flex-col items-start justify-start gap-1 ">
-
                     <div className="flex flex-wrap items-center justify-center gap-1 ">
                         <strong className="text-2xl font-bold scroll-m-20 text-zinc-600">First air date : </strong>
                         <h1 className="text-xl font-semibold text-transparent scroll-m-20 xl:text-2xl bg-clip-text bg-gradient-to-tr from-blue-400 to-blue-700">
@@ -109,29 +102,34 @@ export default async function DynamicTvListPage({ params }) {
 
                     {/* genres */}
                     <div className="flex flex-wrap items-center justify-start w-full gap-2 pt-3 ">
-                        {detailTv.genres.map((genre) => (
-                            <div key={genre.id} className=" badge badge-info">
-                                <h1 className="font-semibold scroll-m-20 md:font-bold">{genre.name}</h1>
+                        {detailTv.genres ? (
+                            detailTv.genres.map((genre) => (
+                                <div key={genre.id} className=" badge badge-info">
+                                    <h1 className="font-semibold scroll-m-20 md:font-bold">{genre.name}</h1>
+                                </div>
+                            ))
+                        ) : (
+                            <div>
+                                <h1 className="p-2 font-semibold text-red-700 bg-blue-800 border border-blue-800 badge scroll-m-20 md:font-bold"> Undefined</h1>
                             </div>
-                        ))}
+                        )}
                     </div>
                     <div className="flex flex-wrap items-center gap-2 pt-3 ">
-
                         <div>
-                            <h1 className="p-2 font-semibold text-yellow-500 bg-blue-800 border border-blue-800 badge scroll-m-20 md:font-bold">{detailTv.number_of_episodes}  Episodes</h1>
+                            <h1 className="p-2 font-semibold text-yellow-500 bg-blue-800 border border-blue-800 badge scroll-m-20 md:font-bold">{detailTv.number_of_episodes ? detailTv.number_of_episodes : "Undefined"} Episodes</h1>
                         </div>
                         <div>
-                            <h1 className="p-2 font-semibold text-yellow-500 bg-blue-800 border border-blue-800 badge scroll-m-20 md:font-bold">{detailTv.number_of_seasons}  Seasons</h1>
+                            <h1 className="p-2 font-semibold text-yellow-500 bg-blue-800 border border-blue-800 badge scroll-m-20 md:font-bold">{detailTv.number_of_seasons ? detailTv.number_of_seasons : "Undefined"}  Seasons</h1>
                         </div>
                         <div>
-                            <h1 className="p-2 font-semibold text-yellow-500 bg-blue-800 border border-blue-800 badge scroll-m-20 md:font-bold"> Original language :    {detailTv.original_language}</h1>
+                            <h1 className="p-2 font-semibold text-yellow-500 bg-blue-800 border border-blue-800 badge scroll-m-20 md:font-bold"> Original language :    {detailTv.original_language ? detailTv.original_language : "Undefined"}</h1>
                         </div>
                         <div className="">
                             <h1 className="p-2 font-semibold text-yellow-500 bg-blue-800 border border-blue-800 badge scroll-m-20 md:font-bold"> {detailTv.episode_run_time[0] ? detailTv.episode_run_time[0] : "Undefined"} min</h1>
                         </div>
                     </div>
-
                     <Separator className="mt-4" />
+
                     {/* production & status & type */}
                     <div className="flex flex-wrap items-center justify-start gap-4 pt-4 ">
                         <div className="flex items-center justify-center gap-2 ">
@@ -221,16 +219,13 @@ export default async function DynamicTvListPage({ params }) {
                         <strong></strong>
                     </div>
 
-
                     {/* created by */}
                     <div className="flex flex-wrap items-center justify-start gap-2 mt-6 ">
                         <strong className="text-2xl font-bold text-zinc-600 md:text-xl">Created by : </strong>
                         {detailTv.created_by && detailTv.created_by.length > 0 ? (
                             detailTv.created_by.map((creator) => (
                                 <div key={creator.id} className="border-red-700 shadow-sm badge badge-outline shadow-red-700">
-
                                     <h1 className="font-semibold scroll-m-20 text-error">{creator.name}</h1>
-
                                 </div>
                             ))
                         ) : (
@@ -247,23 +242,20 @@ export default async function DynamicTvListPage({ params }) {
                         <RatingTvShow id={detailTv.id} />
                     </div> */}
 
+                        {/* toggle button */}
                     <ToggleButton />
-
                 </div>
-
-
             </div>
-
             <Separator className="mt-4" />
+
             {/* Last Episode to air */}
             <BlurFade delay={0.25} inView>
-
                 <div className="mt-6 ">
                     <strong className="text-2xl font-bold text-[#3f7eab] md:text-xl">Last episode to air :</strong>
                 </div>
+
                 {detailTv.last_episode_to_air ? (
                     <div className=" h-[20rem] md:h-auto w-full xl:h-[22rem] relative">
-
                         <div className="relative flex items-start justify-between w-full gap-2 mt-6 ">
                             <div className=" overflow-hidden relative  h-[20rem] w-full ">
                                 <Image
@@ -288,7 +280,7 @@ export default async function DynamicTvListPage({ params }) {
                                     <strong className="text-2xl font-bold text-zinc-400 md:hidden">Name :</strong>
                                     <h1 className="text-xl font-bold scroll-m-20 xl:text-2xl"> {detailTv.last_episode_to_air.name ? detailTv.last_episode_to_air.name : <span className="text-2xl font-bold text-error rounded-xl md:text-xl">unknown !</span>} </h1>
                                 </div>
- 
+
                                 <div className="flex flex-wrap items-center justify-start order-3 gap-2 ">
                                     <div className="flex flex-col gap-2 ">
 
@@ -305,8 +297,6 @@ export default async function DynamicTvListPage({ params }) {
                                             </h1>
                                         </div>
                                     </div>
-
-
 
                                 </div>
                                 <div className="flex flex-wrap items-center justify-start order-4 gap-2 ">
@@ -335,25 +325,19 @@ export default async function DynamicTvListPage({ params }) {
             </div>
             <Separator className="mt-4 bg-gradient-to-r from-[#0742a1] via-[#b60c00] to-[#0742a1]" />
 
-
             {/* recommend section */}
             <div className="mt-4">
 
                 <h1 className="mt-4 text-3xl font-extrabold  scroll-m-20 lg:text-3xl bg-gradient-to-tr from-[#ff3300] mb-1 via-[#fbff00] to-[#0047ca] bg-clip-text text-transparent md:flex md:flex-wrap md:justify-center md:items-center md:gap-1">Your <span className="text-[##FE8FF5]">Turn</span> <span className="">to </span>Choose </h1>
                 <RecommendationTv dataRecommend={dataRecommend.results} />
             </div>
-
             <Separator className="mt-4 bg-gradient-to-r from-[#0742a1] via-[#b60c00] to-[#0742a1]" />
+            
             {/* trending  */}
             <div className="mt-8">
                 <h1 className=' bg-gradient-to-tr from-[#f2f2f2] mb-1 via-[#f96d00] to-[#f96d00]  bg-clip-text text-transparent 2xl:text-4xl  text-3xl font-extrabold tracking-tight scroll-m-20 lg:text-3xl '>Hot <span>on</span> <span className=" ">TV Now</span></h1>
                 <TrendingTv dataTrending={dataTrending.results} />
             </div>
-
-
-
-
-
         </div>
     )
 }

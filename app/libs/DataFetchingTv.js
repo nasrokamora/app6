@@ -1,7 +1,5 @@
 import { notFound } from "next/navigation"
 
-
-
 export const urlImageTv = "https://image.tmdb.org/t/p/original"
 export const urlImageTv500 = "https://image.tmdb.org/t/p/w500"
 
@@ -15,12 +13,19 @@ export async function getDiscoverTv() {
                 revalidate: 3600
             }
         })
+        if (!res.ok) {
+            throw new Error("failed to fetch data DiscoverTv")
+        }
         return res.json()
     } catch (error) {
-        if(process.env.NODE_ENV !== "production") {
+        if (process.env.NODE_ENV !== "production") {
             console.log(error, 'Failed to fetch data DiscoverTv');
         }
-        return { error: true, message: error.message };
+        return {
+            error: true,
+            message: process.env.NODE_ENV === "production" ? "An unexpected error occurred, please try again." : error.message,
+            details: process.env.NODE_ENV !== "production" ? error.stack : undefined
+        };
     }
 
 }
@@ -36,12 +41,19 @@ export async function getDetailsTv(id) {
                 }
             }
         )
+        if (!res.ok) {
+            throw new Error("failed to fetch data DetailsTv")
+        }
         return res.json()
     } catch (error) {
-        if(process.env.NODE_ENV !== "production") {
+        if (process.env.NODE_ENV !== "production") {
             console.log(error, 'Failed to fetch data DetailsTv');
         }
-        return { error: true, message: error.message };
+        return {
+            error: true,
+            message: process.env.NODE_ENV === "production" ? "An unexpected error occurred, please try again." : error.message,
+            details: process.env.NODE_ENV !== "production" ? error.stack : undefined
+        };
     }
 }
 
@@ -55,17 +67,22 @@ export async function getImageTv(id) {
                     Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
                     accept: "application/json"
                 },
-
             }, {
             cache: "force-cache"
         }
         )
+        if (!res.ok) {
+            throw new Error("failed to fetch data ImageTv")
+        }
         return res.json()
     } catch (error) {
-        if(process.env.NODE_ENV !== "production") {
+        if (process.env.NODE_ENV !== "production") {
             console.log(error, 'Failed to fetch data ImageTv');
         }
-        return { error: true, message: error.message };
+        return {
+            error: true, message: process.env.NODE_ENV === "production" ? "An unexpected error occurred, please try again." : error.message,
+            details: process.env.NODE_ENV !== "production" ? error.stack : undefined
+        };
     }
 }
 
@@ -80,12 +97,19 @@ export async function getTvCredits(id) {
                 }
             }
         )
+        if (!res.ok) {
+            throw new Error("failed to fetch data TvCredits")
+        }
         return res.json()
     } catch (error) {
-        if(process.env.NODE_ENV !== "production") {
-            console.log(error, 'Failed to fetch data TvCredits');    
+        if (process.env.NODE_ENV !== "production") {
+            console.log(error, 'Failed to fetch data TvCredits');
         }
-        return { error: true, message: error.message };
+        return {
+            error: true,
+            message: process.env.NODE_ENV === "production" ? "An unexpected error occurred, please try again." : error.message,
+            details: process.env.NODE_ENV !== "production" ? error.stack : undefined
+        };
     }
 }
 
@@ -100,41 +124,52 @@ export async function getExternalIdTv(id) {
                 }
             }
         )
+        if (!response.ok) {
+            throw new Error("failed to fetch data ExternalIdTv")
+        }
         return response.json()
 
     } catch (error) {
-        if(process.env.NODE_ENV !== "production") {
+        if (process.env.NODE_ENV !== "production") {
             console.log(error, 'Failed to fetch data ExternalIdTv');
         }
-        return { error: true, message: error.message };
+        return {
+            error: true,
+            message: process.env.NODE_ENV === "production" ? "An unexpected error occurred, please try again." : error.message,
+            details: process.env.NODE_ENV !== "production" ? error.stack : undefined
+        };
     }
 }
 
 
 
 export async function getPersonsIdTv(person_id) {
-        try {
-            const res = await fetch(`${process.env.TMDB_BASE_URL}/person/${person_id}?api_key=${process.env.NEXT_API_KEY}`,
-                {
-                    headers: {
-                        Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
-                        accept: "application/json"
-                    },
-                    next: {
-                        revalidate: 3600
-                    }
+    try {
+        const res = await fetch(`${process.env.TMDB_BASE_URL}/person/${person_id}?api_key=${process.env.NEXT_API_KEY}`,
+            {
+                headers: {
+                    Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
+                    accept: "application/json"
+                },
+                next: {
+                    revalidate: 3600
                 }
-            )
-            if (!res.ok) {
-                throw new Error("failed to fetch data PersonsIdTv")
             }
-            return res.json()
-        } catch (error) {
-            if(process.env.NODE_ENV !== "production") {
-                console.log(error, 'Failed to fetch data PersonsIdTv');
-            }
-            return { error: true, message: error.message };
+        )
+        if (!res.ok) {
+            throw new Error("failed to fetch data PersonsIdTv")
         }
+        return res.json()
+    } catch (error) {
+        if (process.env.NODE_ENV !== "production") {
+            console.log(error, 'Failed to fetch data PersonsIdTv');
+        }
+        return {
+            error: true,
+            message: process.env.NODE_ENV === "production" ? "An unexpected error occurred, please try again." : error.message,
+            details: process.env.NODE_ENV !== "production" ? error.stack : undefined
+        };
+    }
 }
 
 
@@ -151,12 +186,19 @@ export async function getExtPersonsIdTv(person_id) {
             cache: "force-cache"
         }
         )
+        if (!res.ok) {
+            throw new Error("failed to fetch data ExtPersonsIdTv")
+        }
         return res.json()
     } catch (error) {
-        if(process.env.NODE_ENV !== "production") {
+        if (process.env.NODE_ENV !== "production") {
             console.log(error, 'Failed to fetch data ExtPersonsIdTv');
         }
-        return { error: true, message: error.message };
+        return {
+            error: true,
+            message: process.env.NODE_ENV === "production" ? "An unexpected error occurred, please try again." : error.message,
+            details: process.env.NODE_ENV !== "production" ? error.stack : undefined
+        };
     }
 }
 
@@ -175,12 +217,19 @@ export async function getDetailAllCredits(credit_id) {
                 }
             }
         )
+        if (!res.ok) {
+            throw new Error("failed to fetch data DetailAllCredits")
+        }
         return res.json()
     } catch (error) {
-        if(process.env.NODE_ENV !== "production") {
+        if (process.env.NODE_ENV !== "production") {
             console.log(error, 'Failed to fetch data DetailAllCredits');
         }
-        return { error: true, message: error.message };
+        return {
+            error: true,
+            message: process.env.NODE_ENV === "production" ? "An unexpected error occurred, please try again." : error.message,
+            details: process.env.NODE_ENV !== "production" ? error.stack : undefined
+        };
     }
 }
 
@@ -202,13 +251,20 @@ export async function getTopTv() {
                 }
             }
         )
+        if (!res.ok) {
+            throw new Error("failed to fetch data TopTv")
+        }
         const data = await res.json()
         return data
     } catch (error) {
-        if(process.env.NODE_ENV !== "production") {
+        if (process.env.NODE_ENV !== "production") {
             console.log(error, 'Failed to fetch data TopTv');
         }
-        return { error: true, message: error.message };
+        return {
+            error: true,
+            message: process.env.NODE_ENV === "production" ? "An unexpected error occurred, please try again." : error.message,
+            details: process.env.NODE_ENV !== "production" ? error.stack : undefined
+        };
     }
 
 }
@@ -229,15 +285,19 @@ export async function getGenreTvList() {
                 cache: "no-store"
             }
         )
-        if(!res.ok) {
+        if (!res.ok) {
             throw new Error("failed to fetch data GenreTvList")
         }
         return res.json()
     } catch (error) {
-        if(process.env.NODE_ENV !== "production") {
+        if (process.env.NODE_ENV !== "production") {
             console.log(error, 'Failed to fetch data GenreTvList');
         }
-        return { error: true, message: error.message };
+        return {
+            error: true,
+            message: process.env.NODE_ENV === "production" ? "An unexpected error occurred, please try again." : error.message,
+            details: process.env.NODE_ENV !== "production" ? error.stack : undefined
+        };
     }
 }
 
@@ -245,28 +305,32 @@ export async function getGenreTvList() {
 //genres tv by id
 
 export async function getGenreTv(id) {
-try {
-    const res = await fetch(`${process.env.TMDB_BASE_URL}/discover/tv?with_genres=${id}`,
-        {
-            method: "GET",
-            headers:
+    try {
+        const res = await fetch(`${process.env.TMDB_BASE_URL}/discover/tv?with_genres=${id}`,
             {
-                Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
-                accept: "application/json"
-            },
-            cache: "no-store"
+                method: "GET",
+                headers:
+                {
+                    Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
+                    accept: "application/json"
+                },
+                cache: "no-store"
+            }
+        )
+        if (!res.ok) {
+            throw new Error("failed to fetch data GenreTv")
         }
-    )
-    if(!res.ok) {
-        throw new Error("failed to fetch data GenreTv")
+        return res.json()
+    } catch (error) {
+        if (process.env.NODE_ENV !== "production") {
+            console.log(error, 'Failed to fetch data GenreTv');
+        }
+        return {
+            error: true,
+            message: process.env.NODE_ENV === "production" ? "An unexpected error occurred, please try again." : error.message,
+            details: process.env.NODE_ENV !== "production" ? error.stack : undefined
+        };
     }
-    return res.json()
-} catch (error) {
-    if(process.env.NODE_ENV !== "production") {
-        console.log(error, 'Failed to fetch data GenreTv');
-    }
-    return { error: true, message: error.message };
-}
 }
 
 /** end fetching  */
@@ -281,15 +345,19 @@ export async function getDetailsSeasonTv(id, season_number) {
                     accept: "application/json"
                 }
             })
-            if(!response.ok){
-                return notFound()
-            }
-            return response.json()
+        if (!response.ok) {
+            return notFound()
+        }
+        return response.json()
     } catch (error) {
-      if(process.env.NODE_ENV !== "production") {
-        console.log(error, 'Failed to fetch data DetailsSeasonTv');
-      }
-      return { error: true, message: error.message };
+        if (process.env.NODE_ENV !== "production") {
+            console.log(error, 'Failed to fetch data DetailsSeasonTv');
+        }
+        return {
+            error: true,
+            message: process.env.NODE_ENV === "production" ? "An unexpected error occurred, please try again." : error.message,
+            details: process.env.NODE_ENV !== "production" ? error.stack : undefined
+        };
     }
 }
 
@@ -307,15 +375,19 @@ export async function getSeasonImagesTv(id, season_number) {
                 cache: "force-cache"
             }
         )
-        if(!res.ok){ 
+        if (!res.ok) {
             throw new Error("failed to fetch data SeasonImagesTv")
         }
         return res.json()
     } catch (error) {
-       if(process.env.NODE_ENV !== "production") {
-           console.log(error, 'Failed to fetch data SeasonImagesTv');
-       }
-       return { error: true, message: error.message };
+        if (process.env.NODE_ENV !== "production") {
+            console.log(error, 'Failed to fetch data SeasonImagesTv');
+        }
+        return {
+            error: true,
+            message: process.env.NODE_ENV === "production" ? "An unexpected error occurred, please try again." : error.message,
+            details: process.env.NODE_ENV !== "production" ? error.stack : undefined
+        };
     }
 }
 
@@ -323,22 +395,26 @@ export async function getSeasonImagesTv(id, season_number) {
 
 export async function getSeasonExternalIdsTv(id, season_number) {
     try {
-        const response = await fetch(`${process.env.TMDB_BASE_URL}/tv/${id}/season/${season_number}/external_ids`,{
+        const response = await fetch(`${process.env.TMDB_BASE_URL}/tv/${id}/season/${season_number}/external_ids`, {
             headers: {
                 Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
                 accept: "application/json"
             },
             cache: "force-cache"
         })
-        if(!response.ok){
+        if (!response.ok) {
             throw new Error("failed to fetch data SeasonExternalIdsTv")
         }
         return response.json()
     } catch (error) {
-        if(process.env.NODE_ENV !== "production") {
+        if (process.env.NODE_ENV !== "production") {
             console.log(error, 'Failed to fetch data SeasonExternalIdsTv');
         }
-        return { error: true, message: error.message };
+        return {
+            error: true,
+            message: process.env.NODE_ENV === "production" ? "An unexpected error occurred, please try again." : error.message,
+            details: process.env.NODE_ENV !== "production" ? error.stack : undefined
+        };
     }
 }
 
@@ -358,10 +434,14 @@ export async function getDetailsSeasonCreditsTv(id, season_number) {
         }
         return res.json()
     } catch (error) {
-        if(process.env.NODE_ENV !== "production") {
+        if (process.env.NODE_ENV !== "production") {
             console.log(error, 'Failed to fetch data DetailsSeasonCreditsTv');
         }
-        return { error: true, message: error.message };
+        return {
+            error: true,
+            message: process.env.NODE_ENV === "production" ? "An unexpected error occurred, please try again." : error.message,
+            details: process.env.NODE_ENV !== "production" ? error.stack : undefined
+        };
     }
 }
 
@@ -377,12 +457,19 @@ export async function getDetailsEpisodesTv(id, season_number, episode_number) {
                 }
             }
         )
-        return res.json()        
+        if (!res.ok) {
+            throw new Error("failed to fetch data DetailsEpisodesTv")
+        }
+        return res.json()
     } catch (error) {
-        if(process.env.NODE_ENV !== "production"){
+        if (process.env.NODE_ENV !== "production") {
             console.log(error, 'Failed to fetch data DetailsEpisodesTv');
         }
-        return { error: true, message: error.message };
+        return {
+            error: true,
+            message: process.env.NODE_ENV === "production" ? "An unexpected error occurred, please try again." : error.message,
+            details: process.env.NODE_ENV !== "production" ? error.stack : undefined
+        };
     }
 }
 
@@ -398,28 +485,35 @@ export async function getEpisodesImagesTv(id, season_number, episode_number) {
                 }
             }
         )
+        if (!res.ok) {
+            throw new Error("failed to fetch data EpisodesImagesTv")
+        }
         return res.json()
     } catch (error) {
-        if(process.env.NODE_ENV !== "production"){
+        if (process.env.NODE_ENV !== "production") {
             console.log(error, 'Failed to fetch data EpisodesImagesTv');
         }
-        return { error: true, message: error.message };
+        return {
+            error: true,
+            message: process.env.NODE_ENV === "production" ? "An unexpected error occurred, please try again." : error.message,
+            details: process.env.NODE_ENV !== "production" ? error.stack : undefined
+        };
     }
 }
 
 //fetching episodes credits
 export async function getEpisodesCreditsTv(id, season_number, episode_number) {
     try {
-        const response  = await fetch(`${process.env.TMDB_BASE_URL}/tv/${id}/season/${season_number}/episode/${episode_number}/credits?api_key=${process.env.NEXT_API_KEY}`,{
-            next:{
-                revalidate: 3600, 
+        const response = await fetch(`${process.env.TMDB_BASE_URL}/tv/${id}/season/${season_number}/episode/${episode_number}/credits?api_key=${process.env.NEXT_API_KEY}`, {
+            next: {
+                revalidate: 3600,
             },
             headers: {
                 Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
                 accept: "application/json"
             }
         })
-        if(!response.ok){
+        if (!response.ok) {
             throw new Error("failed to fetch data EpisodesCreditsTv")
         }
         return response.json()
@@ -427,7 +521,11 @@ export async function getEpisodesCreditsTv(id, season_number, episode_number) {
         if (process.env.NODE_ENV !== "production") {
             console.log(error, 'Failed to fetch data EpisodesCreditsTv');
         }
-        return { error: true, message: error.message };
+        return {
+            error: true,
+            message: process.env.NODE_ENV === "production" ? "An unexpected error occurred, please try again." : error.message,
+            details: process.env.NODE_ENV !== "production" ? error.stack : undefined
+        };
     }
 }
 
@@ -442,12 +540,19 @@ export async function getTrailerEpisodesTv(id, season_number, episode_number) {
                 }
             }
         )
+        if (!res.ok) {
+            throw new Error("failed to fetch data TrailerEpisodesTv")
+        }
         return res.json()
     } catch (error) {
-        if(process.env.NODE_ENV !== "production"){
+        if (process.env.NODE_ENV !== "production") {
             console.log(error, 'Failed to fetch data TrailerEpisodesTv');
         }
-        return { error: true, message: error.message };
+        return {
+            error: true,
+            message: process.env.NODE_ENV === "production" ? "An unexpected error occurred, please try again." : error.message,
+            details: process.env.NODE_ENV !== "production" ? error.stack : undefined
+        };
     }
 }
 
@@ -471,10 +576,14 @@ export async function getRecommendationsTv(id) {
         }
         return res.json()
     } catch (error) {
-     if(process.env.NODE_ENV !== "production") {
-        console.log(error, 'Failed to fetch data RecommendationsTv');
-     }
-     return { error: true, message: error.message };
+        if (process.env.NODE_ENV !== "production") {
+            console.log(error, 'Failed to fetch data RecommendationsTv');
+        }
+        return {
+            error: true,
+            message: process.env.NODE_ENV === "production" ? "An unexpected error occurred, please try again." : error.message,
+            details: process.env.NODE_ENV !== "production" ? error.stack : undefined
+        };
     }
 }
 
@@ -496,10 +605,14 @@ export async function getTrendingTv() {
         }
         return res.json()
     } catch (error) {
-      if(process.env.NODE_ENV !== "production") {
-        console.log(error, 'Failed to fetch data TrendingTv');
-      }
-      return { error: true, message: error.message };
+        if (process.env.NODE_ENV !== "production") {
+            console.log(error, 'Failed to fetch data TrendingTv');
+        }
+        return {
+            error: true,
+            message: process.env.NODE_ENV === "production" ? "An unexpected error occurred, please try again." : error.message,
+            details: process.env.NODE_ENV !== "production" ? error.stack : undefined
+        };
     }
 }
 // Latest Tv
@@ -528,36 +641,44 @@ export async function getVideosTv(id) {
             }
         })
         if (!response.ok && response.status !== 200) {
-            throw new Error("failed to fetch data VideosTv") 
+            throw new Error("failed to fetch data VideosTv")
         }
         return response.json()
     } catch (error) {
-       if(process.env.NODE_ENV !== "production") {
-        console.log(error, 'Failed to fetch data VideosTv');
-       }
-       return { error: true, message: error.message };
+        if (process.env.NODE_ENV !== "production") {
+            console.log(error, 'Failed to fetch data VideosTv');
+        }
+        return {
+            error: true,
+            message: process.env.NODE_ENV === "production" ? "An unexpected error occurred, please try again." : error.message,
+            details: process.env.NODE_ENV !== "production" ? error.stack : undefined
+        };
     }
 }
 
 // similar tv shows
 
 export async function getSimilarTv(id) {
-    try {     
+    try {
         const response = await fetch(`${process.env.TMDB_BASE_URL}/tv/${id}/similar`, {
             headers: {
                 Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
                 accept: "application/json"
             }
         })
-        if(response.ok){
-            throw new Error("failed fetch similar tv");        
+        if (response.ok) {
+            throw new Error("failed fetch similar tv");
         }
         return response.json()
     } catch (error) {
-       if(process.env.NODE_ENV !== "production") {
-        console.log(error, 'Failed to fetch data SimilarTv');
-       }
-       return { error: true, message: error.message };
+        if (process.env.NODE_ENV !== "production") {
+            console.log(error, 'Failed to fetch data SimilarTv');
+        }
+        return {
+            error: true, message:
+                process.env.NODE_ENV === "production" ? "An unexpected error occurred, please try again." : error.message,
+            details: process.env.NODE_ENV !== "production" ? error.stack : undefined
+        };
     }
 }
 
@@ -573,14 +694,18 @@ export async function grtTrailerSeason(id, season_number) {
             }
         })
         if (!response.ok) {
-            throw new Error("failed to fetch data trailerSeason");  
+            throw new Error("failed to fetch data trailerSeason");
         }
         return response.json()
     } catch (error) {
         if (process.env.NODE_ENV !== "production") {
             console.log(error, 'Failed to fetch data trailerSeason');
         }
-        return {error:true, message: error.message};
+        return {
+            error: true,
+            message: process.env.NODE_ENV === "production" ? "An unexpected error occurred, please try again." : error.message,
+            details: process.env.NODE_ENV !== "production" ? error.stack : undefined
+        };
     }
 }
 
@@ -596,14 +721,17 @@ export async function getAllTrending() {
             }
         })
         if (!response.ok) {
-            throw new Error("failed to fetch data trailerSeason");  
+            throw new Error("failed to fetch data trailerSeason");
         }
         return response.json()
     } catch (error) {
         if (process.env.NODE_ENV !== "production") {
             console.log(error, 'Failed to fetch data TrendingAll');
         }
-        return {error:true, message: error.message};
+        return {
+            error: true,
+            message: process.env.NODE_ENV === "production" ? "An unexpected error occurred, please try again." : error.message,
+            details: process.env.NODE_ENV !== "production" ? error.stack : undefined
+        };
     }
-    
 }

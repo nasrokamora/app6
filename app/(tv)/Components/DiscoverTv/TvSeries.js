@@ -26,18 +26,20 @@ export default function TvSeries({ dataTv }) {
 
                                 <div className="hover:duration-500 hover:scale-90 ">
 
-                                    <Link className="" href={`/tv/list/${tv.id}`} rel="noopener noreferrer" as={`/tv/list/${tv.id}`}>
-                                        <div className="relative overflow-hidden  rounded-md">
+                                    <Link className="" href={`/tv/list/${tv.id}`}>
+                                        <div className="relative overflow-hidden  ">
 
                                             <Image
                                                 src={tv.poster_path ?
                                                     `${urlImageTv}${tv.poster_path}` : no_image}
                                                 alt="image_tv_Show"
                                                 width={300} height={250}
-                                                className="  rounded-lg"
+                                                className="rounded-lg"
                                                 style={{ width: "auto" }}
-                                                priority
+                                                priority={true}
+                                                loading="eager"
                                                 draggable="false"
+
                                             />
                                         </div>
                                         <p className=" font-bold flex justify-start  pt-2 mb-1">{tv.original_name.length > 14 ? tv.original_name.slice(0, 14) + "..." : tv.original_name}

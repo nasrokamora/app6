@@ -26,46 +26,44 @@ async function ListGenre() {
     const dataGenresTv = getGenreTvList()
     const [dataGenres, dataGenresListTv] = await Promise.all([dataGenreMovie, dataGenresTv])
     return (
-        <div className=" flex justify-start items-center flex-wrap gap-2">
+        <div className=" flex justify-start items-center flex-col gap-2">
+            <div className="">
 
-            {dataGenres.genres.length > 0 ? (
+                {dataGenres.genres.length > 0 ? (
 
-                dataGenres.genres.map((genre) => (
-                    <SheetClose asChild key={genre.id}>
-                        <Link href={`/movies/genre/${genre.id}`} className={buttonVariants({ variant: "outline" }, cva("hover:bg-red-800 "))}>
-                            <span className=" hover:btn-link ">{genre.name}
-                            </span>
-                        </Link>
-                    </SheetClose>
-                ))
-            ) : (
-                <div className="flex justify-center items-center">
-                    <h1 className="text-2xl font-bold text-red-700">Oops ! No genres available at the moment.</h1>
-                </div>
-            )
-            }
-            <br />
-            <br />
-            <br />
-            <br />
-            <div className="flex justify-start items-center  flex-wrap text-center font-bold text-xl gap-2">
-                <h1>Choose your favorite TV show genre and dive into endless entertainment.
-                </h1>
-                <h2><MdLiveTv size={48} className="" /></h2>
+                    dataGenres.genres.map((genre) => (
+                        <SheetClose asChild key={genre.id} className="m-1">
+                            <Link href={`/movies/genre/${genre.id}`} className={buttonVariants({ variant: "outline" }, cva("hover:bg-red-800 "))}>
+                                <span className=" hover:btn-link ">{genre.name}
+                                </span>
+                            </Link>
+                        </SheetClose>
+                    ))
+                ) : (
+                    <div className="flex justify-center items-center">
+                        <h1 className="text-2xl font-bold text-red-700">Oops ! No genres available at the moment.</h1>
+                    </div>
+                )
+                }
             </div>
+            <div className="">
+
+                <div className="  text-center font-bold text-xl ">
+                    <h1>Choose your favorite TV show genre and dive into endless entertainment. <span className="inline-block lg:hidden "> <MdLiveTv size={30} className="md:hidden pt-1 " /></span></h1>
+                </div>
 
 
-            {dataGenresListTv.genres && (
-                
-                dataGenresListTv.genres.map((genre) => (
-                    <SheetClose asChild key={genre.id}>
-                        <Link href={`/tv/genre/${genre.id}`} className={buttonVariants({ variant: "outline" })}>
-                            {genre.name}
-                        </Link>
-                    </SheetClose>
-                ))
-            )
-        }
+                {dataGenresListTv.genres && (
+
+                    dataGenresListTv.genres.map((genre) => (
+                        <SheetClose asChild key={genre.id} className="m-1">
+                            <Link href={`/tv/genre/${genre.id}`} className={buttonVariants({ variant: "outline" })}>
+                                {genre.name}
+                            </Link>
+                        </SheetClose>
+                    ))
+                )}
+            </div>
         </div>
     )
 }

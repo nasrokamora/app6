@@ -1,8 +1,11 @@
 import LoadMovies from "@/app/Components/LoadMore/LoadMovies";
 import ToggleButton from "../Components/ToggleButton/ToggleButton";
+
 export const metadata = {
     title: 'Magix | Movies',
 }
+export const dynamic = 'force-dynamic';
+
 
 
 export default function Movies() {

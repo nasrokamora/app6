@@ -16,6 +16,7 @@ import { GiFilmProjector } from "react-icons/gi";
 import { FcFilmReel } from "react-icons/fc";
 import { TbHeartUp } from "react-icons/tb";
 
+export const dynamic = 'force-dynamic';
 
 export const metadata = {
   title: 'Magix Movies | Home',

@@ -13,6 +13,8 @@ import no_image from '../../../../public/image/no_image4.webp'
 import { urlImageTv } from "@/app/libs/DataFetchingTv"
 import CarouselAutoshow from "@/app/Animations/CarouselAuto/AutoCarousel"
 
+export const dynamic = 'force-dynamic';
+
 export default function TvSeries({ dataTv }) {
 
     return (

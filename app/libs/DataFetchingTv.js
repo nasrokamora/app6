@@ -634,7 +634,7 @@ export async function getLatestTv() {
 
 export async function getVideosTv(id) {
     try {
-        const response = await fetch(`${process.env.TMDB_BASE_URL}/tv/${id}/videos?api_key=${process.env.NEXT_API_KEY}`, {
+        const response = await fetch(`${process.env.TMDB_BASE_URL}/tv/${id}/videos?api_key=${process.env.NEXT_API_KEY}&with_genres=true`, {
             headers: {
                 Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
                 accept: "application/json"

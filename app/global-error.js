@@ -1,12 +1,15 @@
 'use client'
 
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+
 
 
 
 export default function GlobalError({ error, reset }) {
   const [isOnline, setIsOnline] = useState(true);
 
+  const router = useRouter()
   useEffect(() => {
     // Check the connection status when the page loads
     setIsOnline(navigator.onLine);
@@ -28,14 +31,14 @@ export default function GlobalError({ error, reset }) {
     <html>
       <body className="w-full flex justify-center items-center p-6">
         {!isOnline ? (
-          <div className="w-full flex justify-center items-center flex-col p-6  border border-red-700 text-3xl md:text-xl">
+          <div className="w-full flex justify-center items-center flex-col p-6  border border-red-700 text-3xl md:text-xl font-bold">
             <h2 >Internet connection lost!</h2>
             <p>Please check your internet connection and try again.</p>
           </div>
         ) : (
-          <div className='w-full flex justify-center items-center flex-col p-6  border border-red-700'>
+          <div className='w-full flex justify-center items-center flex-col p-6  border border-red-700 text-white'>
             <h2 className=" text-3xl md:text-xl">Something went wrong!</h2>
-            <button onClick={() => reset()}>Try again</button>
+            <button className=' font-bold py-2 px-4 rounded-full shadow-md hover:bg-red-600' onClick={() => router.refresh()}>Try again</button>
           </div>
         )}
       </body>

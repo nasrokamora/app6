@@ -14,9 +14,14 @@ import {
     SheetTrigger,
 } from "@/components/ui/sheet"
 import { IoSearch } from "react-icons/io5";
+import { searchQuerySchema } from "@/app/libs/searchQuerySchema"
+import { z } from "zod"
 
 async function SearchMulti(query) {
     try {
+
+        searchQuerySchema.parse(query)
+
         const response = await fetch(`/api/getSearchMulti?query=${query}`)
         const data = await response.json()
         if (!response.ok) {
@@ -25,10 +30,21 @@ async function SearchMulti(query) {
         return data
 
     } catch (error) {
+        if (error instanceof z.ZodError) {
+            const isProduction = process.env.NODE_ENV === 'production'
+            return {
+                error: true,
+                message: isProduction ? 'An unexpected error occurred.' : error.errors[0].message || "An unexpected error occurred."
+            }
+        }
+
         if (process.env.NODE_ENV !== "production") {
             console.log(error, 'Failed to fetch data SearchMulti');
         }
-        return { error: true, message: process.env.NODE_ENV === 'production' ? "An unexpected error occurred." : error.message };
+        return {
+            error: true,
+            message: process.env.NODE_ENV === 'production' ? "An unexpected error occurred." : error.message
+        };
     }
 }
 
@@ -42,12 +58,13 @@ export default function SearchMultiPage() {
     if (!movies) return null
 
 
-
+        // Check if the query contains forbidden words
     const isQueryForbidden = useCallback((query, language) => {
         const forbidden = forbiddenWordsData[language] || []
         return forbidden.some((word) => query.toLowerCase().includes(word.toLowerCase()))
     }, [])
 
+     // Handle the search form submission
     const handleSearch = useCallback(async (e, language) => {
         e.preventDefault()
         setIsLoading(true)
@@ -59,6 +76,17 @@ export default function SearchMultiPage() {
         }
 
         const data = await SearchMulti(query)
+        if (data.error) {
+            if (process.env.NODE_ENV === "production") {
+                setErrorMessage("An unexpected error occurred, please try again later.")
+            }else {
+                setErrorMessage(data.message)
+            }
+            setIsLoading(false)
+            return
+        }
+
+
         setMovies(data.results)
         if (data.results.length === 0) {
             setErrorMessage('No results found. Please try a different search term.')

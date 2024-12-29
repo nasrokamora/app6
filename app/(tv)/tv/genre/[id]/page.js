@@ -27,7 +27,13 @@ import no_image from "../../../../../public/image/no_image4.webp"
 import ReactPlayer from "react-player";
 import { YouTubeEmbed } from "@next/third-parties/google";
 import HeroVideoDialog from "@/components/ui/hero-video-dialog";
-
+import { AlertCircle } from "lucide-react"
+ 
+import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+} from "@/components/ui/alert"
 export const metadata = {
     title: 'Magix Movies | TV Genres',
     description: 'Explore a variety of TV genres and find your favorite shows.',
@@ -69,7 +75,8 @@ export default async function GenrePageTv({ params }) {
                 <CarouselContent className=" -ml-1">
                     {resultsGenre.results.map((item) => (
                         <CarouselItem key={item.id} className=" basis-full ">
-                            <Card className=" w-full h-[35rem] overflow-hidden relative mt-2 md:h-auto">
+
+                            <Card className=" w-full h-[35rem] lg:h-[35rem]  overflow-hidden relative mt-2 md:h-auto ">
                                 {/* image cover */}
                                 <ImageCover item={item} />
                                 <div className=" absolute top-0 m-2 rounded-md bg-black/50  backdrop-blur  w-full">
@@ -78,8 +85,8 @@ export default async function GenrePageTv({ params }) {
                                         <CardTitle className=" flex flex-wrap justify-start text-wrap "> {item.name ?? item.original_name} </CardTitle>
                                         <CardDescription className=" text-slate-300 font-semibold"> {item.first_air_date}</CardDescription>
                                     </CardHeader>
-                                    <CardContent className="flex justify-start items-start gap-4 font-semibold  ">
-                                        <div className=" flex justify-start items-start gap-2 flex-wrap  ">
+                                    <CardContent className="flex justify-start items-start gap-4 font-semibold md:flex-col md:gap-8  ">
+                                        <div className=" flex justify-start items-start gap-2 flex-wrap ">
 
                                             <div className=" overflow-hidden relative w-fit">
                                                 <Image src={`${urlImageTv}${item.poster_path}`}
@@ -155,17 +162,23 @@ export default async function GenrePageTv({ params }) {
 async function DetailsTvGenre({ id }) {
     const data = await getVideosTv(id)
     const dataTrailer = data.results.slice(0, 1)
-    console.log(dataTrailer);
+    // console.log(dataTrailer);
 
     return (
-        <div>
+        <div className="">
+            <div>
+                <h1>TV Show Trailer</h1>
+            </div>
             {dataTrailer &&
                 dataTrailer.length > 0 ? (
                 dataTrailer.map((item) => (
-                    <div className="relative" key={item.id}>
+                    <div className="relative md:w-1/2 w-full lg:w-1/2" key={item.id}>
+                        <div>
+                            <h1>{item.name}</h1>
+                        </div>
                         <HeroVideoDialog
                             animationStyle="from-center"
-                            className="dark:hidden block"
+                            className="dark:hidden block "
                             videoSrc={`https://www.youtube.com/embed/${item.key}`}
                             thumbnailSrc={`https://img.youtube.com/vi/${item.key}/0.jpg`}
                             thumbnailAlt={item.name}

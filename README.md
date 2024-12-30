@@ -13,6 +13,7 @@ This is a **work-in-progress** project for a Movies & TV Shows website, built wi
 - [Framer Motion](https://motion.dev) (Animation Library)
 - [Zod](https://zod.dev)(Schema validation for Javascript)
 - **TMDB API** for movies and TV shows data.
+
 -**Forbidden Words JSON: A .json file containing a list of forbidden words for validation or filtering.
 
 ---

@@ -12,14 +12,16 @@ This is a **work-in-progress** project for a Movies & TV Shows website, built wi
 - [KindeAuth](https://kinde.com) (Authentication)
 - [Framer Motion](https://motion.dev) (Animation Library)
 - [Zod](https://zod.dev)(Schema validation for Javascript)
-- **TMDB API** for movies and TV shows data
+- **TMDB API** for movies and TV shows data.
+-**Forbidden Words JSON: A .json file containing a list of forbidden words for validation or filtering.
 
 ---
 
 ## 🚀 Features (Planned)
 - **Dynamic Routes** to provide seamless navigation for:
   - Movie details: `/movies/[id]`
-  - TV show details: `/tv-shows/[id]`
+  - TV show details: `/tv/[id]`
+  - Person details: `/person/[id]`
 - Browse the latest movies and TV shows using data from **TMDB API**.
 - User authentication and authorization powered by **KindeAuth**.
 - Fully responsive and accessible design.

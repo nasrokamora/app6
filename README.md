@@ -11,6 +11,7 @@ This is a **work-in-progress** project for a Movies & TV Shows website, built wi
 - [Magic UI](https://magic.design) (UI Enhancements)
 - [KindeAuth](https://kinde.com) (Authentication)
 - [Framer Motion](https://motion.dev) (Animation Library)
+- [Zod](https://zod.dev)(Schema validation for Javascript)
 - **TMDB API** for movies and TV shows data
 
 ---

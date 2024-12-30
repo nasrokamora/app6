@@ -11,14 +11,16 @@ This is a **work-in-progress** project for a Movies & TV Shows website, built wi
 - [Magic UI](https://magic.design) (UI Enhancements)
 - [KindeAuth](https://kinde.com) (Authentication)
 - [Framer Motion](https://motion.dev) (Animation Library)
-- **TMDB API** for movies and TV shows data
+- [Zod](https://zod.dev)(Schema validation for Javascript)
+- **TMDB API** for movies and TV shows data.
 
 ---
 
 ## 🚀 Features (Planned)
 - **Dynamic Routes** to provide seamless navigation for:
   - Movie details: `/movies/[id]`
-  - TV show details: `/tv-shows/[id]`
+  - TV show details: `/tv/[id]`
+  - Person details: `/person/[id]`
 - Browse the latest movies and TV shows using data from **TMDB API**.
 - User authentication and authorization powered by **KindeAuth**.
 - Fully responsive and accessible design.
@@ -55,7 +57,7 @@ This project is developed by **Nasreddine Abdellouche**, a proficient web develo
 - **Email:** nasreddine-ab@outlook.com
 - **Email:** Nas_dev@outlook.com
 - **Email:** nanim2@outlook.fr
-- **LinkedIn:** [Nasreddine AB LinkedIn](https://www.linkedin.com/in/nasdev)  
+- **LinkedIn:** [Nasreddine AB](https://www.linkedin.com/in/nasdev)  
 - **Portfolio:** https://nasreddine-abdellouche.vercel.app/
 
 Feel free to reach out for collaboration or inquiries!

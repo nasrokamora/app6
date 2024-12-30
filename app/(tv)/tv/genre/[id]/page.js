@@ -28,12 +28,13 @@ import ReactPlayer from "react-player";
 import { YouTubeEmbed } from "@next/third-parties/google";
 import HeroVideoDialog from "@/components/ui/hero-video-dialog";
 import { AlertCircle } from "lucide-react"
- 
 import {
   Alert,
   AlertDescription,
   AlertTitle,
 } from "@/components/ui/alert"
+
+
 export const metadata = {
     title: 'Magix Movies | TV Genres',
     description: 'Explore a variety of TV genres and find your favorite shows.',

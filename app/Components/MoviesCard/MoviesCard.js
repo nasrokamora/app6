@@ -43,8 +43,8 @@ export default async function MoviesCard({ dataDiscoverMovies }) {
                                                     }
                                                     alt="image_movies"
                                                     width={300} height={200}
-                                                    priority={index < 6}
-                                                    className="   "
+                                                    priority={true}
+                                                    className=""
                                                     style={{ width: "auto",borderRadius:"4px" }}
                                                     draggable={false}
                                                     loading="eager"

@@ -6,7 +6,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { urlImage } from "@/app/libs/DataFetching"
 import BlurFade from "@/components/ui/blur-fade"
-
+// import styles from '../../styles/LoadingAnimate.module.css'
 async function getMoviesWithPage(page) {
     const response = await fetch(`/api/getMoviesWithPage?page=${page}`)
     if (!response.ok)
@@ -34,7 +34,7 @@ export default function LoadMovies() {
                 setHasMore(false)
             }
         } catch (error) {
-            if(process.env.NODE_ENV !== "production") {
+            if (process.env.NODE_ENV !== "production") {
                 console.log(error, 'Failed to fetch data MoviesWithPage');
             }
             return { error: true, message: error.message };
@@ -50,10 +50,10 @@ export default function LoadMovies() {
             dataLength={dataMovies.length}
             next={fetchMoreMovies}
             hasMore={hasMore}
-            loader={<h4 className="">Loading...</h4>}
-            endMessage={<p className="text-2xl text-center">No more movies to show</p>}
+            loader={<p className=" text-center font-bold text-white text-2xl ">Loading...</p>}
+            endMessage={<p className="text-2xl text-center font-bold">No more movies to show</p>}
         >
-            <div className="flex items-center justify-center mt-8 text-3xl font-semibold ">
+            <div className="flex items-center justify-center pt-20 text-3xl font-semibold ">
                 <h1>Explore all movies on Magix</h1>
             </div>
             <div className="grid grid-cols-6 gap-8 p-8 md:grid-cols-3 lg:grid-cols-4">

@@ -29,7 +29,7 @@ export default async function Home() {
   const popularData = getPopularMovies()
   const tvData = getDiscoverTv()
   const personPopular = getPersonPopular()
-
+  
   const [dataDiscoverMovies, dataPopular, dataTv, dataPersonPopular] = await Promise.all([data, popularData, tvData, personPopular]);
 
   return (
@@ -48,7 +48,7 @@ export default async function Home() {
       <section className="mt-16  ">
         <div className="ml-6 md:ml-0 md:flex md:justify-center md:items-center ">
 
-          <h1 className="text-4xl  font-extrabold  scroll-m-20 lg:text-3xl md:mb-11">Highest <span className="text-[#00f4e1] relative">Rated <span className="absolute inset-0 left-11 -top-4"><TbHeartUp size={30} className="inline-block text-[#00f4e1]" /></span></span> <span className=" md:text-center md:flex md: justify-center  md:items-center ">Movies
+          <h1 className="text-3xl  font-extrabold md:mb-11">Highest <span className="text-[#00f4e1] relative">Rated <span className="absolute inset-0 left-11 -top-4"><TbHeartUp size={30} className="inline-block text-[#00f4e1]" /></span></span> <span className=" md:text-center md:flex md: justify-center  md:items-center ">Movies
           </span> </h1>
         </div>
         <div className="bg-gradient-to-bl from-[#00f4e0] from-[20%] to-[#09090b] to-[60%] mt-7 ">

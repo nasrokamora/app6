@@ -1,3 +1,4 @@
+import { HandleErrors } from "./ErrorsHandler"
 
 
 export const urlImage = "https://image.tmdb.org/t/p/original"
@@ -20,14 +21,8 @@ export async function getDiscoverMovies() {
     }
     return res.json()
   } catch (error) {
-    if (process.env.NODE_ENV !== "production") {
-      console.error(error, "failed to fetch data discover")
-    }
-    return { error: true, message: process.env.NODE_ENV === "production" ? "An unexpected error occurred, please try again." : error.message,
-      details: process.env.NODE_ENV !== "production" ? error.stack : undefined};
-
+      return HandleErrors(error, "failed to fetch data discover")
   }
-
 }
 
 //get Movies by id
@@ -46,12 +41,7 @@ export async function getMoviesId(id) {
     return response.json()
 
   } catch (error) {
-    if (process.env.NODE_ENV !== "production") {
-      console.error(error, "failed to fetch data id")
-    }
-    return { error: true, message: process.env.NODE_ENV === "production" ? "An unexpected error occurred, please try again." : error.message,
-      details: process.env.NODE_ENV !== "production" ? error.stack : undefined
-    };
+    return HandleErrors(error, "failed to fetch data id")
   }
 }
 
@@ -71,14 +61,8 @@ export async function getReleasDateMovies({ id }) {
     }
     return response.json()
   } catch (error) {
-    if (process.env.NODE_ENV !== "production") {
-      console.error(error, "failed to fetch data release")
-    }
-    return { error: true, 
-      message: process.env.NODE_ENV === "production" ? "An unexpected error occurred, please try again." : error.message,
-      details: process.env.NODE_ENV !== "production" ? error.stack : undefined};
+      return HandleErrors(error, "failed to fetch data release")
   }
-
 }
 
 //get Movies by genre
@@ -94,14 +78,7 @@ export async function getMoviesGenre(id) {
     }
     return response.json()
   } catch (error) {
-    if (process.env.NODE_ENV !== "production") {
-      console.error(error, "failed to fetch data genre")
-    }
-    return {
-      error: true, 
-      message: process.env.NODE_ENV === "production" ? "An unexpected error occurred, please try again." : error.message,
-      details: process.env.NODE_ENV !== "production" ? error.stack : undefined
-    };
+    return HandleErrors(error, "failed to fetch data genre")
   }
 }
 
@@ -116,14 +93,7 @@ export async function getMoviesGenreList() {
 
     return response.json()
   } catch (error) {
-    if (process.env.NODE_ENV !== "production") {
-      console.error(error, "failed to fetch data genre")
-    }
-    return {
-      error: true, 
-      message: process.env.NODE_ENV === "production" ? "An unexpected error occurred, please try again." : error.message,
-      details: process.env.NODE_ENV !== "production" ? error.stack : undefined
-    };
+    return HandleErrors(error, "failed to fetch data genre")
   }
 }
 
@@ -144,13 +114,7 @@ export async function getPopularMovies() {
     return response.json()
 
   } catch (error) {
-    if (process.env.NODE_ENV !== "production") {
-      console.error(error, "failed to fetch data popular")
-    }
-    return {
-      error: true, message: process.env.NODE_ENV === "production" ? "An unexpected error occurred, please try again." : error.message,
-      details: process.env.NODE_ENV !== "production" ? error.stack : undefined
-    };
+    return HandleErrors(error, "failed to fetch data popular")
   }
 }
 
@@ -168,14 +132,7 @@ export async function getImageMoviesId(id) {
 
     return res.json()
   } catch (error) {
-    if (process.env.NODE_ENV !== "production") {
-      console.error(error, "failed to fetch data image")
-    }
-    return {
-      error: true,
-      message: process.env.NODE_ENV === "production" ? "An unexpected error occurred, please try again." : error.message,
-      details: process.env.NODE_ENV !== "production" ? error.stack : undefined
-    };
+    return HandleErrors(error, "failed to fetch data image")
   }
 }
 
@@ -191,24 +148,18 @@ export async function getCriditsMovies(id) {
     return res.json()
 
   } catch (error) {
-    if (process.env.NODE_ENV !== "production") {
-      console.error(error, "failed to fetch data Credits Movies")
-    }
-    return {
-      error: true, message: process.env.NODE_ENV === "production" ? "An unexpected error occurred, please try again." : error.message,
-      details: process.env.NODE_ENV !== "production" ? error.stack : undefined
-    };
+    return HandleErrors(error, "failed to fetch data Credits Movies")
   }
 }
 
 
-
+// get Credits Id
 export async function getCreditsId(credit_id) {
   try {
     const res = await fetch(`${process.env.TMDB_BASE_URL}/credit/${credit_id}`, {
       ...Options,
       next: {
-        revalidate: 3600
+        revalidate: 1700
       }
     })
 
@@ -218,13 +169,7 @@ export async function getCreditsId(credit_id) {
     return res.json()
 
   } catch (error) {
-    if (process.env.NODE_ENV !== "production") {
-      console.error(error, "failed to fetch data Credits Id")
-    }
-    return {
-      error: true, message: process.env.NODE_ENV === "production" ? "An unexpected error occurred, please try again." : error.message,
-      details: process.env.NODE_ENV !== "production" ? error.stack : undefined
-    };
+    return HandleErrors(error, "failed to fetch data Credits Id")
   }
 }
 
@@ -232,24 +177,15 @@ export async function getReviewsMovies(id) {
   try {
     const res = await fetch(`${process.env.TMDB_BASE_URL}/movie/${id}/reviews`, {
       ...Options,
-      next: {
-        revalidate: 240
-      }
+        cache:'no-store'
     })
     if (!res.ok) {
       throw new Error('failed to fetch data Reviews Movies')
     }
-
     return res.json()
 
   } catch (error) {
-    if (process.env.NODE_ENV !== "production") {
-      console.error(error, "failed to fetch data Reviews Movies")
-    }
-    return {
-      error: true, message: process.env.NODE_ENV === "production" ? "An unexpected error occurred, please try again." : error.message,
-      details: process.env.NODE_ENV !== "production" ? error.stack : undefined
-    };
+    return HandleErrors(error, "failed to fetch data Reviews Movies")
   }
 }
 
@@ -258,7 +194,9 @@ export async function getMoviesSimilar(id) {
   try {
     const res = await fetch(`${process.env.TMDB_BASE_URL}/movie/${id}/similar?api_key=${process.env.NEXT_API_KEY}`, {
       ...Options,
-      cache: "force-cache"
+      next: {
+        revalidate: 3600
+      }
     })
 
     if (!res.ok) {
@@ -267,13 +205,7 @@ export async function getMoviesSimilar(id) {
 
     return res.json()
   } catch (error) {
-    if (process.env.NODE_ENV !== "production") {
-      console.error(error, "failed to fetch data Similar Movies")
-    }
-    return {
-      error: true, message: process.env.NODE_ENV === "production" ? "An unexpected error occurred, please try again." : error.message,
-      details: process.env.NODE_ENV !== "production" ? error.stack : undefined
-    };
+    return HandleErrors(error, "failed to fetch data Similar Movies")
   }
 }
 
@@ -293,13 +225,7 @@ export async function getTrendingMovies() {
 
     return res.json()
   } catch (error) {
-    if (process.env.NODE_ENV !== "production") {
-      console.error(error, "failed to fetch data Trending Movies")
-    }
-    return {
-      error: true, message: process.env.NODE_ENV === "production" ? "An unexpected error occurred, please try again." : error.message,
-      details: process.env.NODE_ENV !== "production" ? error.stack : undefined
-    };
+    return HandleErrors(error, "failed to fetch data Trending Movies")
   }
 }
 
@@ -320,13 +246,7 @@ export async function getRecommendationMovies(id) {
     return response.json()
 
   } catch (error) {
-    if (process.env.NODE_ENV !== "production") {
-      console.error(error, "failed to fetch data Recommendation")
-    }
-    return {
-      error: true, message: process.env.NODE_ENV === "production" ? "An unexpected error occurred, please try again." : error.message,
-      details: process.env.NODE_ENV !== "production" ? error.stack : undefined
-    };
+    return HandleErrors(error, "failed to fetch data Recommendation")
   }
 
 }
@@ -345,14 +265,7 @@ export async function getMoviesNowPlaying() {
     }
     return res.json()
   } catch (error) {
-    if (process.env.NODE_ENV !== "production") {
-      console.error(error, "failed to fetch data Now Playing")
-    }
-    return {
-      error: true,
-      message: process.env.NODE_ENV === "production" ? "An unexpected error occurred, please try again." : error.message,
-      details: process.env.NODE_ENV !== "production" ? error.stack : undefined
-    };
+    return HandleErrors(error, "failed to fetch data Now Playing")
   }
 }
 
@@ -369,14 +282,7 @@ export async function getPersonPopular() {
 
     return response.json()
   } catch (error) {
-    if (process.env.NODE_ENV !== "production") {
-      console.error(error, "failed to fetch data Person")
-    }
-    return {
-      error: true,
-      message: process.env.NODE_ENV === "production" ? "An unexpected error occurred, please try again." : error.message,
-      details: process.env.NODE_ENV !== "production" ? error.stack : undefined
-    };
+    return HandleErrors(error, "failed to fetch data Person")
   }
 }
 
@@ -394,13 +300,7 @@ export async function getPersonPopularPage2() {
     }
     return response.json()
   } catch (error) {
-    if (process.env.NODE_ENV !== "production") {
-      console.error(error, "failed to fetch data Person")
-    }
-    return {
-      error: true, message: process.env.NODE_ENV === "production" ? "An unexpected error occurred, please try again." : error.message,
-      details: process.env.NODE_ENV !== "production" ? error.stack : undefined
-    };
+    return HandleErrors(error, "failed to fetch data Person")
   }
 }
 
@@ -415,13 +315,7 @@ export async function getTrailer(id) {
     }
     return res.json()
   } catch (error) {
-    if (process.env.NODE_ENV !== "production") {
-      console.error(error, "failed to fetch data Trailer", error)
-    }
-    return {
-      error: true, message: process.env.NODE_ENV === "production" ? "An unexpected error occurred, please try again." : error.message,
-      details: process.env.NODE_ENV !== "production" ? error.stack : undefined
-    }
+    return HandleErrors(error, "failed to fetch data Trailer")
   }
 }
 
@@ -434,14 +328,7 @@ export async function getPersonId(person_id) {
     return response.json()
 
   } catch (error) {
-    if (process.env.NODE_ENV !== "production") {
-      console.error(error, "failed to fetch data Person")
-    }
-    return {
-      error: true,
-      message: process.env.NODE_ENV === "production" ? "An unexpected error occurred, please try again." : error.message,
-      details: process.env.NODE_ENV !== "production" ? error.stack : undefined
-    };
+    return HandleErrors(error, "failed to fetch data Person")
   }
 }
 
@@ -456,9 +343,6 @@ export async function getExternalIdMovies(id) {
     }
     return response.json()
   } catch (error) {
-    if (process.env.NODE_ENV !== "production") {
-      console.log(error, 'failed to fetch data external id')
-    }
-    return { error: true, message: process.env.NODE_ENV === "production" ? "An unexpected error occurred, please try again." : error.message };
+    return HandleErrors(error, "failed to fetch data external id")
   }
 }

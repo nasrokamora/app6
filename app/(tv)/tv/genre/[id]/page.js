@@ -128,9 +128,9 @@ export default async function GenrePageTv({ params }) {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div>
+                                        {/* <div>
                                             <DetailsTvGenre id={item.id} />
-                                        </div>
+                                        </div> */}
                                     </CardContent>
                                     <CardFooter className="">
                                         <div></div>

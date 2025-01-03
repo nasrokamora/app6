@@ -70,7 +70,9 @@ export async function getMoviesGenre(id) {
   try {
     const response = await fetch(`${process.env.TMDB_BASE_URL}/discover/movie?with_genres=${id}`, {
       ...Options,
-
+      next: {
+        revalidate: 7200
+      }
     }
     )
     if (!response.ok) {

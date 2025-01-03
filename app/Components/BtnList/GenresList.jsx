@@ -103,7 +103,7 @@ export default function GenresList() {
             if(process.env.NODE_ENV !== "production") {
                 console.error(error, "Error fetch data Genres")
             }
-            return { error: true, message: error.message };
+            return { error: true, message: process.env.NODE_ENV === "production" ? "An unexpected error occurred, please try again." : error.message };
         }
     }
     const fetchMovies = useCallback(async (genreId) => {
@@ -116,7 +116,7 @@ export default function GenresList() {
             if(process.env.NODE_ENV !== "production") {
                 console.error(error, "Error fetch data MoviesWithGenres")
             }
-            return { error: true, message: error.message };
+            return { error: true, message: process.env.NODE_ENV === "production" ? "An unexpected error occurred, please try again." : error.message };
         }
     }, [])
 

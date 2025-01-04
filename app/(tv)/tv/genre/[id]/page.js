@@ -55,6 +55,7 @@ const ImageCover = ({ item }) => {
                 loading="eager"
                 draggable={false}
                 alt={item.name} />
+
         </div>
     )
 }
@@ -66,7 +67,6 @@ export default async function GenrePageTv({ params }) {
     const trailer = getGenreTvList(id)
     const [resultsGenre, trailerData] = await Promise.all([genreData, trailer])
     // console.log(trailerData.results);
-
     return (
         <div className="h-screen w-full p-4 md:h-auto pt-20">
             <div className="flex justify-center items-center ">

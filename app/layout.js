@@ -10,12 +10,6 @@ import NextTopLoader from "nextjs-toploader";
 
 
 
-
-
-
-// const inter = Inter({ subsets: ["latin"] });
-// const doppioOne = Doppio_One({ subsets: ["latin"], weight: "400" });
-
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-sans",
@@ -29,17 +23,39 @@ export const metadata = {
   keywords: [
     "movies",
     "series",
+    "movie",
+    "serie",
+    "2024 movies",
+    "2024 series",
+    "2023 movies",
+    "2023 series",
     "movie reviews",
     "series reviews",
     "top movies",
     "top series",
     "movie ratings",
+    "series ratings",
+    "best movies",
+    "best series",
+    ["action movies","comedy movies","drama movies","romance movies","horror movies","thriller movies","adventure movies","animation movies","biography movies","crime movies","musical movies","mystery movies","scifi movies","war movies","western movies"],
+    [""],
     "Nasreddine Abdellouche",
     "Nasreddine AB",
     "nasreddine ab",
     "Magix Movies",
     "entertainment",
+    "movies and series",
+    "movie recommendations",
+    "series recommendations",
+    "movie trailers",
+    "series trailers",
+    "movie summaries",
+    "series summaries",
+
   ],
+  author: 'Nasreddine Abdellouche',
+  executiveDirector: 'Nasreddine Abdellouche',
+  uiDesigner: 'Nasreddine Abdellouche',
   icons: {
     icon: "/favicon.ico",
   }
@@ -63,10 +79,10 @@ export default function RootLayout({ children }) {
           speed={200}
           shadow="0 0 10px #a632aa,0 0 5px #9c39ed"
         />
-        
-          <Nav />
-          {children}
-          <Footer />
+
+        <Nav />
+        {children}
+        <Footer />
 
       </body>
 

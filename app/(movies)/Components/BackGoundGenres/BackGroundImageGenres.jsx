@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { useCallback, useEffect, useReducer, useRef, useState } from "react"
 
 import Image from "next/image"
 import {
@@ -11,40 +11,86 @@ import {
     CarouselPrevious,
 } from "@/components/ui/carousel"
 import { urlImageTv } from "@/app/libs/DataFetchingTv"
+import blurImage from '../../../../public/image/blurImage.webp'
+
+const initialState = {
+    currentMovie: {
+        image: "",
+        title: "",
+        releaseDate: "",
+        voteAverage: "",
+        overview: "",
+        popularity: "",
+        voteCount: "",
+        isLoading: false
+    }
+}
+
+const movieReducer = (state, action) => {
+    switch (action.type) {
+        case 'SET_MOVIE':
+            return {
+                ...state,
+                currentMovie: action.payload,
+                isLoading: false
+            }
+        case 'SET_LOADING':
+            return {
+                ...state,
+                isLoading: action.payload
+            }
+        default:
+            return state
+    }
+}
+
+
+
 
 
 export default function BackGroundImageGenres({ dataResult }) {
-    const [backGoundImage, setBackGoundImage] = useState({
-        image: dataResult[0]?.backdrop_path ? `${urlImageTv}/${dataResult[0].backdrop_path}` : "",
-        title: dataResult[0]?.original_title
-    })
-    const itemRef = useRef([])
-    const [loading, setLoading] = useState(false)
 
+    const [state, dispatch] = useReducer(movieReducer, initialState)
+    const itemRef = useRef([])
     
-    const handleChangeBackGroundImage = (movie) => {
-        setLoading(true)
-        const newImage = movie.backdrop_path ? `${urlImageTv}/${movie.backdrop_path}` : ""
+    // handle background image and loading with reducer
+    const updateCurretMovie = useCallback((movie) => {
+
+        //set loading state
+        dispatch({ type: "SET_LOADING", payload: true })
+
+        const newImage = movie.backdrop_path ? `${urlImageTv}/${movie.backdrop_path}` : blurImage
         const img = new window.Image()
         img.src = newImage
+        
+        //image load and set state
         img.onload = () => {
-            setBackGoundImage({
-                image: newImage,
-                title: movie.original_title ? movie.original_title : movie.title,
+            dispatch({
+                type: "SET_MOVIE",
+                payload: {
+                    image: newImage,
+                    title: movie.original_title ? movie.original_title : movie.title,
+                    releaseDate: movie.release_date || "N/A",
+                    voteAverage: movie.vote_average || "N/A",
+                    overview: movie.overview || "Unknown",
+                    popularity: movie.popularity || "N/A",
+                    voteCount: movie.vote_count || "N/A",
+                    isLoading: false
+                }
             })
-            setLoading(false)
         }
-    }
+    },[]) 
 
 
-
+    // handle background image
     useEffect(() => {
+        //observer
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
                     const movieIndex = entry.target.getAttribute('data-index')
                     const movie = dataResult[movieIndex]
-                    handleChangeBackGroundImage(movie)
+                    updateCurretMovie(movie)
                 }
             })
         },
@@ -52,11 +98,13 @@ export default function BackGroundImageGenres({ dataResult }) {
                 root: null,
                 threshold: 0.5
             }
-
         )
+        //observer
         itemRef.current.forEach((ref) => {
             if (ref) observer.observe(ref);
         });
+        
+        //cleanup
         return () => {
             observer.disconnect()
         }
@@ -64,51 +112,58 @@ export default function BackGroundImageGenres({ dataResult }) {
     }, [dataResult])
 
     return (
-        <div className={`w-full  h-screen flex justify-center md:h-screen  overflow-hidden relative `}
+        <div className={`w-full  h-screen flex justify-center md:h-screen  overflow-hidden relative `}  
         // style={{
-        //     backgroundImage: loading ? undefined : `url(${backGoundImage.image})`,
+        //     backgroundImage: `url(${state.currentMovie.image || blurImage})`,
         //     backgroundSize: "cover",
         //     backgroundPosition: "center",
         //     transition: "background-image 0.5s ease",
-        // }}
-        >
-
-            <Image src={backGoundImage.image}
-                // loader={()=> loading ? undefined : `${backGoundImage.image}`}
-                alt={backGoundImage.title}
+        //     width: "100%",
+        //     height: "100%",
+        //   }}
+          >
+            
+            <Image src={state.currentMovie.image || blurImage}
+                alt={state.currentMovie.title}
                 fill={true}
-                loading="lazy"
-                style={{ objectFit: "cover", }}
+                loading="eager"
+                style={{ objectFit: "cover",transition:0.5,transitionTimingFunction:"ease-in-out" }}
                 draggable={false}
-                className="blur-right bg-center bg-no-repeat "
+                className="blur-right bg-center bg-no-repeat ease-in-out"
                 sizes="(max-width: 768px) 100vw, 100vw"
 
             />
 
-            {loading && (
+            {state.isLoading && (
                 <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
-                    <div className="w-12 h-12 border-4 border-t-transparent border-white rounded-full animate-spin"></div>
+                    <div className="w-12 h-12 border-4 border-t-transparent border-[#c8081e] rounded-full animate-spin"></div>
                 </div>
             )}
-
+      <div className="absolute bottom-10 left-10 top-28 inset-0 text-white">
+        <h1 className="text-4xl font-bold">{state.currentMovie.title}</h1>
+        <h2>Release Date: {state.currentMovie.releaseDate}</h2>
+        <p>Popularity: {state.currentMovie.popularity }</p>
+        <p>Vote Average: {state.currentMovie.voteAverage }</p>
+      </div>
             <div className="mb-4 flex justify-center items-end">
                 <Carousel className="w-full md:max-w-md  xl:max-w-6xl 2xl:max-w-full lg:max-w-4xl" opts={{ align: "start", loop: true }}>
                     <CarouselContent>
                         {dataResult.map((movie, index) => (
-                            <CarouselItem className="basis-1/7 xl:basis-1/6 md:basis-1/3 lg:basis-1/5 2xl:basis-1/6" key={movie.id}
+                            <CarouselItem className="basis-1/8 xl:basis-1/6 md:basis-1/3 lg:basis-1/5 2xl:basis-1/6" key={movie.id}
                                 data-index={index}
                                 ref={(el) => (itemRef.current[index] = el)}
                             >
                                 <div
-                                    className="cursor-pointer"
+                                    className="cursor-pointer hover:-translate-y-2 transition-all duration-300 ease-in-out"
                                     onClick={() =>
-                                        handleChangeBackGroundImage(movie)
+                                        updateCurretMovie(movie)
                                     }
-                                    onMouseEnter={() => {
-                                        if (window.innerWidth > 1024) {
-                                            handleChangeBackGroundImage(movie)
-                                        }
-                                    }}>
+                                    // onMouseEnter={() => {
+                                    //     if (window.innerWidth > 1024) {
+                                    //         updateCurretMovie(movie)
+                                    //     }
+                                    // }}
+                                    >
                                     <Image
                                         src={`${urlImageTv}${movie.poster_path}`}
                                         alt="movie poster"

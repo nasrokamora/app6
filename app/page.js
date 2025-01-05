@@ -3,23 +3,23 @@ import MoviePopular from "./Components/MoviePopular/MoviePopular"
 import GenresList from "./Components/BtnList/GenresList"
 import TvSeries from "./(tv)/Components/DiscoverTv/TvSeries"
 import TvGenres from "./(tv)/Components/TvGenres/TvGenres"
-import { ErrorMessage, getDiscoverMovies, getPersonPopular, getPopularMovies } from "./libs/DataFetching"
+import {getDiscoverMovies, getPersonPopular, getPopularMovies } from "./libs/DataFetching"
 import { getDiscoverTv } from "./libs/DataFetchingTv"
 import AnimateScroll from "./Animations/AnimationNumber/AnimateScroll/AnimationScroll"
-import styles from './styles/Animat.module.css'
 import PopularPerson from "./Components/PopularPerson/PopularPerson"
 import PaginationMovies from "./(movies)/Components/PaginationMovies/PaginationMovies"
 import { MdStars } from "react-icons/md";
-import { Clapperboard, ClapperboardIcon } from 'lucide-react';
+import {ClapperboardIcon } from 'lucide-react';
 import { GiPopcorn } from "react-icons/gi";
 import { GiFilmProjector } from "react-icons/gi";
-import { FcFilmReel } from "react-icons/fc";
 import { TbHeartUp } from "react-icons/tb";
-
 export const dynamic = 'force-dynamic';
 
+//metadata for SEO
 export const metadata = {
   title: 'Magix Movies | Home',
+  discription: "explore movies and tv series on magix movies",
+
 }
 
 
@@ -29,7 +29,7 @@ export default async function Home() {
   const popularData = getPopularMovies()
   const tvData = getDiscoverTv()
   const personPopular = getPersonPopular()
-  
+
   const [dataDiscoverMovies, dataPopular, dataTv, dataPersonPopular] = await Promise.all([data, popularData, tvData, personPopular]);
 
   return (

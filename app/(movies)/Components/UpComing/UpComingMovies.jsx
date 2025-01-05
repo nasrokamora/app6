@@ -14,9 +14,6 @@ import { UpComingMovie } from "@/app/libs/FetchingMoviesList";
 export default async function UpComingMovies(){
     const data = await UpComingMovie()
     const dataUpComing = data.results
-
-
-    
     return(
         <div className=" mt-8 flex justify-center w-full">
         <Carousel opts={{

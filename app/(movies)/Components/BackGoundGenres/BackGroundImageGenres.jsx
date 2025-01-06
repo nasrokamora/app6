@@ -109,7 +109,7 @@ export default function BackGroundImageGenres({ dataResult }) {
             observer.disconnect()
         }
 
-    }, [dataResult])
+    }, [dataResult,updateCurretMovie])
 
     return (
         <div className={`w-full  h-screen flex justify-center md:h-screen  overflow-hidden relative `}  

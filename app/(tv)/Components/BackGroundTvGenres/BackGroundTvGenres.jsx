@@ -11,8 +11,8 @@ import {
     CarouselPrevious,
 } from "@/components/ui/carousel"
 import blurImage from "../../../../public/image/no_image2.webp"
-
-
+import { FaStar } from "react-icons/fa";
+import { SiSoundcharts } from "react-icons/si";
 
 const initialState = {
     currentTv: {
@@ -49,9 +49,9 @@ export default function BackGroundTvGenres({ resultTvGenres }) {
     const itemTvRef = useRef([])
 
     const updateCurretTv = useCallback((tv) => {
-        
+
         dispatch({ type: "SET_LOADING", payload: true })
-        
+
         const newImage = tv.backdrop_path ? `${urlImageTv}/${tv.backdrop_path}` : blurImage
         const img = new window.Image()
         img.src = newImage
@@ -63,7 +63,7 @@ export default function BackGroundTvGenres({ resultTvGenres }) {
                     name: tv.original_name ? tv.original_name : tv.name,
                     firstAirDate: tv.first_air_date || "N/A",
                     overview: tv.overview || "Unknown",
-                    voteAverage: tv.vote_average || "N/A",
+                    voteAverage: tv.vote_average.toFixed(1) || "N/A",
                     popularity: tv.popularity || "N/A",
                     voteCount: tv.vote_count || "N/A",
                     isLoading: false
@@ -126,11 +126,16 @@ export default function BackGroundTvGenres({ resultTvGenres }) {
                     <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-500"></div>
                 </div>
             )}
-            <div className="absolute bottom-10 left-10 top-28 inset-0 text-white">
-                <h1 className="text-4xl font-bold">{state.currentTv.title}</h1>
-                <h2>Release Date: {state.currentTv.releaseDate}</h2>
-                <p>Popularity: {state.currentTv.popularity}</p>
-                <p>Vote Average: {state.currentTv.voteAverage}</p>
+            <div className="absolute bottom-10 left-10 top-28 right-10 rounded-lg inset-0 text-white bg-black/50 backdrop-blur w-fit h-fit p-3">
+                <div className=" flex flex-col gap-5">
+
+                    <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight">{state.currentTv.name}</h1>
+                    <h2 className="font-bold text-2xl text-zinc-200 border-l-2 border-yellow-500 pl-2">Release Date: {state.currentTv.firstAirDate.replace(/-/g, "/")}</h2>
+
+                    <p className=" font-bold flex justify-start items-center gap-2 text-2xl border-l-2 border-green-500 pl-2">Popularity: {(state.currentTv.popularity / 10).toFixed(0)} <span><SiSoundcharts className="text-green-500" />
+                    </span></p>
+                    <p className=" font-bold flex justify-start items-center gap-2 text-2xl border-l-2 border-oronge-500 pl-2">Vote Average: <span>{(state.currentTv.voteAverage)} </span> <span><FaStar className="text-yellow-500" /></span></p>
+                </div>
             </div>
 
             <div className="mb-4 flex justify-center items-end">
@@ -156,7 +161,7 @@ export default function BackGroundTvGenres({ resultTvGenres }) {
                                         priority={true}
                                         loading="eager"
                                         style={{ width: "auto", borderRadius: '2px' }}
-                                        // unoptimized 
+                                    // unoptimized 
                                     />
                                 </div>
                             </CarouselItem>

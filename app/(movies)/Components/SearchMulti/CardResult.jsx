@@ -5,6 +5,7 @@ import Image from "next/image"
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 import Link from "next/link"
 import no_image from '../../../../public/image/no_image4.webp'
+import { urlImage } from "@/app/libs/DataFetching"
 
 
 
@@ -12,6 +13,20 @@ export default function CardResults({ movie, handleClick, handleClose }) {
     /** conmponent for search */
     const hasResults = movie && movie.length > 0
 
+    // switch path by media type
+    const getMediaTypePath = (mediaType) => {
+        switch(mediaType) {
+            case 'movie':
+                return 'movies/list';
+                case 'tv':
+                return 'tv/list';
+                case 'person':
+                return 'person';
+                default:
+                return 'unknown';
+        }
+    }
+    //path image in search 
 
     return (
         <div className="  p-4    z-50 gap-5 w-full ">
@@ -24,10 +39,10 @@ export default function CardResults({ movie, handleClick, handleClose }) {
                         {movie.map((movie) => (
                             <div key={movie.id} className=" overflow-hidden">
                                 <div onClick={() => handleClick(movie)} className=" hover:scale-105 h-fit hover:duration-300 ">
-                                    <Link href={`/${movie.media_type === 'movie' ? 'movies' : 'tv'}/list/${movie.id}`} >
+                                    <Link href={`/${getMediaTypePath(movie.media_type)}/${movie.id}`} >
                                         <div className="  overflow-hidden  flex justify-center items-center flex-col " onClick={() => handleClose()} >
-                                            <Image src={movie.poster_path ? `https://image.tmdb.org/t/p/original/${movie.poster_path}` : no_image}
-                                                alt={movie.title || movie.name}
+                                            <Image src={movie.poster_path ? `${urlImage}${movie.poster_path}`: movie.profile_path ? `${urlImage}${movie.profile_path}`: no_image}
+                                                alt={movie.title || movie.name }
                                                 width={100}
                                                 height={100}
                                                 priority

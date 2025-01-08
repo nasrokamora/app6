@@ -43,7 +43,7 @@ const TvReducer = (state, action) => {
             return state
     }
 }
-export default function BackGroundTvGenres({ resultTvGenres }) {
+export default function BackGroundTvGenres({ resultTvGenres, filterById }) {
 
     const [state, dispatch] = useReducer(TvReducer, initialState)
     const itemTvRef = useRef([])
@@ -62,7 +62,7 @@ export default function BackGroundTvGenres({ resultTvGenres }) {
                     image: newImage,
                     name: tv.original_name ? tv.original_name : tv.name,
                     firstAirDate: tv.first_air_date || "N/A",
-                    overview: tv.overview || "Unknown",
+                    overview: tv.overview.slice(0, 500) || "Unknown",
                     voteAverage: tv.vote_average.toFixed(1) || "N/A",
                     popularity: tv.popularity || "N/A",
                     voteCount: tv.vote_count || "N/A",
@@ -113,28 +113,43 @@ export default function BackGroundTvGenres({ resultTvGenres }) {
 
 
     return (
-        <div className="`w-full  h-screen flex justify-center md:h-screen  overflow-hidden relative " style={{
-            backgroundImage: `url(${state.currentTv.image})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            transition: "background-image 0.5s ease-in-out",
-            width: "100%",
-            height: "100%"
-        }}>
+        <div className="`w-full  h-screen flex justify-center md:h-screen  overflow-hidden relative "
+
+        //  style={{
+        //     backgroundImage: `url(${state.currentTv.image})`,
+        //     backgroundSize: "cover",
+        //     backgroundPosition: "center",
+        //     transition: "background-image 0.5s ease-in-out",
+        //     width: "100%",
+        //     height: "100%"
+        // }}
+        >
+            <Image src={state.currentTv.image || blurImage}
+                alt={state.currentTv.name || "image_tv_cover"}
+                fill={true}
+                loading="lazy"
+                style={{ objectFit: "cover" }}
+                draggable={false}
+                className=" bg-center"
+                quality={100}
+                sizes="(max-width: 768px) 100vw"
+
+            />
             {state.isLoading && (
                 <div className="absolute inset-0 flex items-center justify-center bg-transparent bg-opacity-50">
                     <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-500"></div>
                 </div>
             )}
-            <div className="absolute bottom-10 left-10 top-28 right-10 rounded-lg inset-0 text-white bg-black/50 backdrop-blur w-fit h-fit p-3">
-                <div className=" flex flex-col gap-5">
+            <div className="absolute bottom-10 left-10 top-28 right-10 rounded-lg inset-0 text-white bg-black/50 backdrop-blur w-fit h-fit p-3 md:h-fit">
+                <div className=" flex flex-col gap-5 ">
 
-                    <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight">{state.currentTv.name}</h1>
-                    <h2 className="font-bold text-2xl text-zinc-200 border-l-2 border-yellow-500 pl-2">Release Date: {state.currentTv.firstAirDate.replace(/-/g, "/")}</h2>
+                    <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight md:text-3xl md:text-center">{state.currentTv.name}</h1>
+                    <h2 className="font-bold text-2xl text-zinc-200 border-l-2 border-yellow-500 pl-2 md:text-lg">Release Date: {state.currentTv.firstAirDate.replace(/-/g, "/")}</h2>
 
-                    <p className=" font-bold flex justify-start items-center gap-2 text-2xl border-l-2 border-green-500 pl-2">Popularity: {(state.currentTv.popularity / 10).toFixed(0)} <span><SiSoundcharts className="text-green-500" />
+                    <p className=" font-bold flex justify-start items-center gap-2 text-2xl border-l-2 border-green-500 pl-2 md:text-lg">Popularity: <span className="text-green-500">{(state.currentTv.popularity / 10).toFixed(0)} </span> <span><SiSoundcharts className="text-green-500" />
                     </span></p>
-                    <p className=" font-bold flex justify-start items-center gap-2 text-2xl border-l-2 border-oronge-500 pl-2">Vote Average: <span>{(state.currentTv.voteAverage)} </span> <span><FaStar className="text-yellow-500" /></span></p>
+                    <p className=" font-bold flex justify-start items-center gap-2 text-2xl border-l-2 border-oronge-500 pl-2 md:text-lg">Vote Average: <span className="text-yellow-500">{(state.currentTv.voteAverage)} </span> <span><FaStar className="text-yellow-500" /></span></p>
+                    <p className=" font-bold text-2xl border-l-2 border-oronge-500 pl-2 md:text-lg md:hidden">Overview: <span className="text-base font-semibold italic">{state.currentTv.overview}</span></p>
                 </div>
             </div>
 

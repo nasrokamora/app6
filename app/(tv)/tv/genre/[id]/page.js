@@ -1,3 +1,4 @@
+
 import ToggleUp from "@/app/Components/ToggleUp/ToggleUp";
 import { getDetailsTv, getGenreTv, getGenreTvList, getVideosTv, urlImageTv } from "@/app/libs/DataFetchingTv";
 import {
@@ -29,9 +30,9 @@ import { YouTubeEmbed } from "@next/third-parties/google";
 import HeroVideoDialog from "@/components/ui/hero-video-dialog";
 import { AlertCircle } from "lucide-react"
 import {
-  Alert,
-  AlertDescription,
-  AlertTitle,
+    Alert,
+    AlertDescription,
+    AlertTitle,
 } from "@/components/ui/alert"
 import BackGroundTvGenres from "@/app/(tv)/Components/BackGroundTvGenres/BackGroundTvGenres";
 
@@ -43,36 +44,21 @@ export const metadata = {
 
 
 
-export const dynamic = 'force-dynamic'
-// const ImageCover = ({ item }) => {
-//     return (
-//         <div className="  h-[70vh] bg-bottom relative z-0 md:blur-left">
-//             <Image src={item.backdrop_path ?
-//                 `${urlImageTv}${item.backdrop_path}` : no_image}
-//                 fill
-//                 priority={true}
-//                 style={{ objectFit: "cover" }}
-//                 className="blur-right"
-//                 loading="eager"
-//                 draggable={false}
-//                 alt={item.name} />
-
-//         </div>
-//     )
-// }
 
 export default async function GenrePageTv({ params }) {
     const { id } = params
     const genreData = getGenreTv(id)
 
-    const trailer = getGenreTvList(id)
-    const [resultsGenre, trailerData] = await Promise.all([genreData, trailer])
-    const resultsGenreTv = resultsGenre.results 
+    const genresTv = getDetailsTv(id)
+    const [resultsGenre, tvGenres] = await Promise.all([genreData, genresTv])
+    const resultsGenreTv = resultsGenre.results
+    // console.log(filterById);
+    const filterById = (id) => resultsGenreTv.filter(tv => tv.id === id)
+
     return (
         <div className="h-screen w-full">
             <BackGroundTvGenres resultTvGenres={resultsGenreTv} />
             <ToggleUp />
-
         </div>
     );
 }

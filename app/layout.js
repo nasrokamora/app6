@@ -18,44 +18,30 @@ const inter = Inter({
 
 
 export const metadata = {
-  title: "Magix Movies",
-  description: "Explore the latest movies and series with detailed summaries, ratings, and reviews. Magix Movies is your ultimate destination for all things entertainment.",
+  title: "Magix Movies | Crafted by Nasreddine Abdellouche",
+  description: 
+    "Magix Movies is a premium platform designed by Nasreddine Abdellouche, offering curated content for movie and series enthusiasts. Dive into detailed reviews, ratings, and recommendations tailored to your taste.",
   keywords: [
-    "movies",
-    "series",
-    "movie",
-    "serie",
-    "2024 movies",
-    "2024 series",
-    "2023 movies",
-    "2023 series",
-    "movie reviews",
-    "series reviews",
-    "top movies",
-    "top series",
-    "movie ratings",
-    "series ratings",
-    "best movies",
-    "best series",
-    ["action movies","comedy movies","drama movies","romance movies","horror movies","thriller movies","adventure movies","animation movies","biography movies","crime movies","musical movies","mystery movies","scifi movies","war movies","western movies"],
-    [""],
-    "Nasreddine Abdellouche",
-    "Nasreddine AB",
-    "nasreddine ab",
-    "Magix Movies",
-    "entertainment",
-    "movies and series",
-    "movie recommendations",
-    "series recommendations",
-    "movie trailers",
-    "series trailers",
-    "movie summaries",
-    "series summaries",
-
+    "Magix Movies", "Nasreddine Abdellouche", "movies", 
+    "series", "entertainment", "movie reviews", "series reviews", 
+    "top movies", "top series", "Nasreddine AB","nasreddine AB", "movie ratings", 
+    "series ratings", "customized recommendations", 
+    "2024 movies", "2024 series", "movie platform", "series platform"
   ],
-  author: 'Nasreddine Abdellouche',
-  executiveDirector: 'Nasreddine Abdellouche',
-  uiDesigner: 'Nasreddine Abdellouche',
+  author: "Nasreddine Abdellouche",
+  team: {
+    founder: "Nasreddine Abdellouche",
+    executiveDirector: "Nasreddine Abdellouche",
+    uiDesigner: "Nasreddine Abdellouche",
+    developer: "Nasreddine Abdellouche",
+    contentCurator: "Nasreddine Abdellouche",
+  },
+  links: {
+    portfolio: "https://nasreddine-abdellouche.vercel.app/",
+    linkedIn: "https://linkedin.com/in/nasdev",
+    github: "https://github.com/nasrokamora",
+  },
+  
   icons: {
     icon: "/favicon.ico",
   }

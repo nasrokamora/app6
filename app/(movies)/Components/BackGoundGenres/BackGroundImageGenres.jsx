@@ -59,7 +59,7 @@ export default function BackGroundImageGenres({ dataResult }) {
         //set loading state
         dispatch({ type: "SET_LOADING", payload: true })
 
-        const newImage = movie.backdrop_path ? `${urlImageTv}/${movie.backdrop_path}` : blurImage
+        const newImage = movie.backdrop_path ? `${urlImageTv}${movie.backdrop_path}` : blurImage
         const img = new window.Image()
         img.src = newImage
         
@@ -124,18 +124,19 @@ export default function BackGroundImageGenres({ dataResult }) {
           >
             
             <Image src={state.currentMovie.image || blurImage}
-                alt={state.currentMovie.title}
+                alt={state.currentMovie.title || "image_cover_movie"}
                 fill={true}
-                loading="eager"
-                style={{ objectFit: "cover",transition:0.5,transitionTimingFunction:"ease-in-out" }}
+                loading="lazy"
+                style={{ objectFit: "cover" }}
                 draggable={false}
-                className="blur-right bg-center bg-no-repeat ease-in-out"
-                sizes="(max-width: 768px) 100vw, 100vw"
+                className=" bg-center"
+                quality={100}
+                sizes="(max-width: 768px) 100vw"
 
             />
 
             {state.isLoading && (
-                <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                <div className="absolute inset-0 flex items-center justify-center bg-transparent bg-opacity-50">
                     <div className="w-12 h-12 border-4 border-t-transparent border-[#c8081e] rounded-full animate-spin"></div>
                 </div>
             )}
@@ -169,6 +170,7 @@ export default function BackGroundImageGenres({ dataResult }) {
                                         alt="movie poster"
                                         width={150}
                                         height={150}
+                                        className=""
                                         priority={true}
                                         loading="eager"
                                         style={{ width: "auto", borderRadius: '2px' }}

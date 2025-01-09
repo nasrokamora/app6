@@ -22,6 +22,9 @@ const initialState = {
         overview: "",
         popularity: "",
         voteCount: "",
+        details: {
+            budget: "",
+        },
         isLoading: false
     }
 }
@@ -62,23 +65,48 @@ export default function BackGroundImageGenres({ dataResult }) {
         const newImage = movie.backdrop_path ? `${urlImageTv}${movie.backdrop_path}` : blurImage
         const img = new window.Image()
         img.src = newImage
-        
+
+ 
+
         //image load and set state
         img.onload = () => {
-            dispatch({
-                type: "SET_MOVIE",
-                payload: {
-                    image: newImage,
-                    title: movie.original_title ? movie.original_title : movie.title,
-                    releaseDate: movie.release_date || "N/A",
-                    voteAverage: movie.vote_average || "N/A",
-                    overview: movie.overview || "Unknown",
-                    popularity: movie.popularity || "N/A",
-                    voteCount: movie.vote_count || "N/A",
-                    isLoading: false
-                }
+            fetchMoviesByid(movie.id).then((detials) => {
+                dispatch({
+                    type: "SET_MOVIE",
+                    payload: {
+                        image: newImage,
+                        title: movie.original_title ? movie.original_title : movie.title,
+                        releaseDate: movie.release_date || "N/A",
+                        voteAverage: movie.vote_average || "N/A",
+                        overview: movie.overview || "Unknown",
+                        popularity: movie.popularity || "N/A",
+                        voteCount: movie.vote_count || "N/A",
+                        details: detials || [],
+                        isLoading: false
+                    }
+                })
+                console.log(detials)
             })
         }
+
+        const fetchMoviesByid = async (movieId) => {
+            try {
+                const response = await fetch(`/api/getMoviesById?movieId=${movieId}`)
+                if (!response.ok) {
+                    throw new Error(response.statusText)
+                }
+                const data = await response.json()
+                return data
+                
+            } catch (error) {
+                if (process.env.NODE_ENV !== "production") {
+                    console.log(error, 'Failed to fetch data MoviesById')
+                }
+                return {}
+            }
+            
+        }
+
     },[]) 
 
 
@@ -112,16 +140,7 @@ export default function BackGroundImageGenres({ dataResult }) {
     }, [dataResult,updateCurretMovie])
 
     return (
-        <div className={`w-full  h-screen flex justify-center md:h-screen  overflow-hidden relative `}  
-        // style={{
-        //     backgroundImage: `url(${state.currentMovie.image || blurImage})`,
-        //     backgroundSize: "cover",
-        //     backgroundPosition: "center",
-        //     transition: "background-image 0.5s ease",
-        //     width: "100%",
-        //     height: "100%",
-        //   }}
-          >
+        <div className={`w-full  h-screen flex justify-center md:h-screen  overflow-hidden relative `}>
             
             <Image src={state.currentMovie.image || blurImage}
                 alt={state.currentMovie.title || "image_cover_movie"}
@@ -141,10 +160,16 @@ export default function BackGroundImageGenres({ dataResult }) {
                 </div>
             )}
       <div className="absolute bottom-10 left-10 top-28 inset-0 text-white">
+        <div>
+
         <h1 className="text-4xl font-bold">{state.currentMovie.title}</h1>
         <h2>Release Date: {state.currentMovie.releaseDate}</h2>
         <p>Popularity: {state.currentMovie.popularity }</p>
         <p>Vote Average: {state.currentMovie.voteAverage }</p>
+        </div>
+        <div>
+            <h1> {state.currentMovie.details.budget || "Unknown"} </h1>
+        </div>
       </div>
             <div className="mb-4 flex justify-center items-end">
                 <Carousel className="w-full md:max-w-md  xl:max-w-6xl 2xl:max-w-full lg:max-w-4xl" opts={{ align: "start", loop: true }}>

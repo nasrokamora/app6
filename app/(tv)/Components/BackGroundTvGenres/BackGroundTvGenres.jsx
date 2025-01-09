@@ -114,15 +114,6 @@ export default function BackGroundTvGenres({ resultTvGenres, filterById }) {
 
     return (
         <div className="`w-full  h-screen flex justify-center md:h-screen  overflow-hidden relative "
-
-        //  style={{
-        //     backgroundImage: `url(${state.currentTv.image})`,
-        //     backgroundSize: "cover",
-        //     backgroundPosition: "center",
-        //     transition: "background-image 0.5s ease-in-out",
-        //     width: "100%",
-        //     height: "100%"
-        // }}
         >
             <Image src={state.currentTv.image || blurImage}
                 alt={state.currentTv.name || "image_tv_cover"}

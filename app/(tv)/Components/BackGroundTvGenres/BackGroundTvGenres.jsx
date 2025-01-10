@@ -23,6 +23,21 @@ const initialState = {
         voteAverage: "",
         popularity: "",
         voteCount: "",
+        detailsTv: {
+            homePage: "",
+            genres :[
+                {
+                    name:""
+                }
+            ],
+            episondeRuntime: "",
+            createdBy:[
+                {
+                    name:"",
+                    profilePath:""
+                }
+            ]
+        },
         isLoading: false
     }
 }
@@ -43,7 +58,7 @@ const TvReducer = (state, action) => {
             return state
     }
 }
-export default function BackGroundTvGenres({ resultTvGenres, filterById }) {
+export default function BackGroundTvGenres({ resultTvGenres}) {
 
     const [state, dispatch] = useReducer(TvReducer, initialState)
     const itemTvRef = useRef([])
@@ -56,20 +71,41 @@ export default function BackGroundTvGenres({ resultTvGenres, filterById }) {
         const img = new window.Image()
         img.src = newImage
         img.onload = () => {
-            dispatch({
-                type: "SET_CURRENT_TV",
-                payload: {
-                    image: newImage,
-                    name: tv.original_name ? tv.original_name : tv.name,
-                    firstAirDate: tv.first_air_date || "N/A",
-                    overview: tv.overview.slice(0, 500) || "Unknown",
-                    voteAverage: tv.vote_average.toFixed(1) || "N/A",
-                    popularity: tv.popularity || "N/A",
-                    voteCount: tv.vote_count || "N/A",
-                    isLoading: false
-                }
+            fetchDetailsTvById(tv.id).then((detailsTv)=>{
+                dispatch({
+                    type: "SET_CURRENT_TV",
+                    payload: {
+                        image: newImage,
+                        name: tv.original_name ? tv.original_name : tv.name,
+                        firstAirDate: tv.first_air_date || "N/A",
+                        overview: tv.overview.slice(0, 500) || "Unknown",
+                        voteAverage: tv.vote_average.toFixed(1) || "N/A",
+                        popularity: tv.popularity || "N/A",
+                        voteCount: tv.vote_count || "N/A",
+                        detailsTv: detailsTv || {},
+                        isLoading: false
+                    }       
+            })
+            console.log(detailsTv)
             })
         }
+
+        const fetchDetailsTvById = async (tvId) => {
+            try {
+                const response = await fetch(`/api/getDetailsTv?tvId=${tvId}`)
+                if (!response.ok) {
+                    throw new Error('Failed to fetch data')
+                }
+                const data = await response.json()
+                return data
+            } catch (error) {
+                if (process.env.NODE_ENV !== "production") {
+                    console.error(error, "Failed to fetch data DetailsTv")
+                }
+                return {}
+            }
+        }
+
         img.onerror = (error) => {
             if (process.env.NODE_ENV !== "production") {
                 console.error(error, "Failed to load image for tv genre")

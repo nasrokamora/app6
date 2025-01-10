@@ -47,17 +47,14 @@ export const metadata = {
 
 export default async function GenrePageTv({ params }) {
     const { id } = params
-    const genreData = getGenreTv(id)
-
-    const genresTv = getDetailsTv(id)
-    const [resultsGenre, tvGenres] = await Promise.all([genreData, genresTv])
-    const resultsGenreTv = resultsGenre.results
+    const genreData = await getGenreTv(id)
+    const resultsGenre = genreData.results
     // console.log(filterById);
-    const filterById = (id) => resultsGenreTv.filter(tv => tv.id === id)
+
 
     return (
         <div className="h-screen w-full">
-            <BackGroundTvGenres resultTvGenres={resultsGenreTv} />
+            <BackGroundTvGenres resultTvGenres={resultsGenre} />
             <ToggleUp />
         </div>
     );

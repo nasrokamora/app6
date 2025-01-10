@@ -88,7 +88,7 @@ export default async function DynamicMoviesList({ params }) {
                         alt={data.title ? data.title : "Title image not found"} />
 
                     <div className="flex justify-center gap-3 pt-5 ">
-                        <TrailerMovies dataTrailer={dataTrailer.results.slice(0, 1)} />
+                        <TrailerMovies dataTrailer={dataTrailer} />
                         <div>
                             <Link target="_blank" rel="noopener noreferrer" href={data.homepage ? data.homepage : "https://www.themoviedb.org/"}>
                                 <TbExternalLink size={45} className="text-[#f8e325] hover:scale-110 duration-300" />

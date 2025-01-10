@@ -22,9 +22,7 @@ const initialState = {
         overview: "",
         popularity: "",
         voteCount: "",
-        details: {
-            budget: "",
-        },
+        details: {},
         isLoading: false
     }
 }
@@ -70,7 +68,7 @@ export default function BackGroundImageGenres({ dataResult }) {
 
         //image load and set state
         img.onload = () => {
-            fetchMoviesByid(movie.id).then((detials) => {
+            fetchMoviesByid(movie.id).then((detailsMovie) => {
                 dispatch({
                     type: "SET_MOVIE",
                     payload: {
@@ -81,11 +79,11 @@ export default function BackGroundImageGenres({ dataResult }) {
                         overview: movie.overview || "Unknown",
                         popularity: movie.popularity || "N/A",
                         voteCount: movie.vote_count || "N/A",
-                        details: detials || [],
+                        details: detailsMovie || {},
                         isLoading: false
                     }
                 })
-                console.log(detials)
+                // console.log(detailsMovie)
             })
         }
 

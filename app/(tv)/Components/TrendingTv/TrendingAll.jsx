@@ -33,7 +33,7 @@ export default async function TrendingTvAll() {
         <h1 className="text-[#FFC107]">Best of the Week</h1>
       </div>
 
-      <div className="w-full pt-4 flex justify-center items-center relative h-fit bg-gradient-to-r from-[#000000] via-[#FFC107] to-[#000000] bg-[length:200%_auto] animate-gradient">
+      <div className="w-full pt-4 md:mt-12 flex justify-center items-center relative h-fit bg-gradient-to-r from-[#000000] via-[#FFC107] to-[#000000] bg-[length:200%_auto] animate-gradient">
         <Carousel
           opts={{
             align: "center",

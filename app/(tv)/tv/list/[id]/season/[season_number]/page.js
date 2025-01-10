@@ -127,10 +127,11 @@ export default async function SeasonDetailTvSeries({ params }) {
                 <ScrollArea className="max-w-5xl whitespace-nowrap ">
                     <div className="flex gap-2 w-full">
 
-                        {dataSeason.episodes.length === 0 ?
+                        {dataSeason.episodes &&
+                        dataSeason.episodes.length === 0 ?
                             <Alert variant="destructive">
                                 <AlertCircle className="h-4 w-4" />
-                                <AlertTitle>Error</AlertTitle>
+                                <AlertTitle>Oops !</AlertTitle>
                                 <AlertDescription>
                                     There is no episodes in this season.
                                 </AlertDescription>

@@ -9,7 +9,6 @@ import {
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 import { Button } from "@/components/ui/button"
-// import VideosTrailerPalyer from "./VideoPlayer/VideosTrailerPlayer"
 import { YouTubeEmbed } from '@next/third-parties/google'
 import { IoPlayCircleOutline } from "react-icons/io5"
 
@@ -17,7 +16,7 @@ import { IoPlayCircleOutline } from "react-icons/io5"
 
 
 export default async function TrailerMovies({ dataTrailer }) {
-
+    const dataTrailermovies = dataTrailer.results.slice(0, 1)
     // console.log(dataVideos)
     return (
         <div>
@@ -27,8 +26,8 @@ export default async function TrailerMovies({ dataTrailer }) {
                 <IoPlayCircleOutline size={48} className="text-[#f82525] hover:scale-110 duration-300 cursor-pointer" />
                 </AlertDialogTrigger>
                 <AlertDialogContent className=" lg:max-w-xl md:h-screen md:max-w-3xl md:flex md:justify-center md:items-center md:gap-2">
-                    {dataTrailer && dataTrailer.length > 0 ?(
-                    dataTrailer.map((item) => (
+                    {dataTrailermovies && dataTrailermovies.length > 0 ?(
+                    dataTrailermovies.map((item) => (
                         <div key={item.id}>
                             <AlertDialogHeader>
                                 <AlertDialogTitle>

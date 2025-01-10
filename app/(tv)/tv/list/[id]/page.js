@@ -235,7 +235,6 @@ export default async function DynamicTvListPage({ params }) {
                     </div>
 
                     <Separator className="mt-4" />
-
                     {/* rating */}
                     {/* <div>
                         <h1 className="pb-2 text-2xl font-bold text-slate-600">Rate this series</h1>

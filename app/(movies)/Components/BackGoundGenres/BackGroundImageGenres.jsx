@@ -1,6 +1,6 @@
 "use client"
 
-import { useCallback, useEffect, useReducer, useRef, useState } from "react"
+import {useEffect, useRef} from "react"
 
 import Image from "next/image"
 import {
@@ -12,101 +12,13 @@ import {
 } from "@/components/ui/carousel"
 import { urlImageTv } from "@/app/libs/DataFetchingTv"
 import blurImage from '../../../../public/image/blurImage.webp'
-
-const initialState = {
-    currentMovie: {
-        image: "",
-        title: "",
-        releaseDate: "",
-        voteAverage: "",
-        overview: "",
-        popularity: "",
-        voteCount: "",
-        details: {},
-        isLoading: false
-    }
-}
-
-const movieReducer = (state, action) => {
-    switch (action.type) {
-        case 'SET_MOVIE':
-            return {
-                ...state,
-                currentMovie: action.payload,
-                isLoading: false
-            }
-        case 'SET_LOADING':
-            return {
-                ...state,
-                isLoading: action.payload
-            }
-        default:
-            return state
-    }
-}
-
-
-
+import { useMediaContext } from "@/app/Context/MediaContext"
 
 
 export default function BackGroundImageGenres({ dataResult }) {
 
-    const [state, dispatch] = useReducer(movieReducer, initialState)
+    const {state,updateCurretMovie} = useMediaContext()
     const itemRef = useRef([])
-    
-    // handle background image and loading with reducer
-    const updateCurretMovie = useCallback((movie) => {
-
-        //set loading state
-        dispatch({ type: "SET_LOADING", payload: true })
-
-        const newImage = movie.backdrop_path ? `${urlImageTv}${movie.backdrop_path}` : blurImage
-        const img = new window.Image()
-        img.src = newImage
-
- 
-
-        //image load and set state
-        img.onload = () => {
-            fetchMoviesByid(movie.id).then((detailsMovie) => {
-                dispatch({
-                    type: "SET_MOVIE",
-                    payload: {
-                        image: newImage,
-                        title: movie.original_title ? movie.original_title : movie.title,
-                        releaseDate: movie.release_date || "N/A",
-                        voteAverage: movie.vote_average || "N/A",
-                        overview: movie.overview || "Unknown",
-                        popularity: movie.popularity || "N/A",
-                        voteCount: movie.vote_count || "N/A",
-                        details: detailsMovie || {},
-                        isLoading: false
-                    }
-                })
-                // console.log(detailsMovie)
-            })
-        }
-
-        const fetchMoviesByid = async (movieId) => {
-            try {
-                const response = await fetch(`/api/getMoviesById?movieId=${movieId}`)
-                if (!response.ok) {
-                    throw new Error(response.statusText)
-                }
-                const data = await response.json()
-                return data
-                
-            } catch (error) {
-                if (process.env.NODE_ENV !== "production") {
-                    console.log(error, 'Failed to fetch data MoviesById')
-                }
-                return {}
-            }
-            
-        }
-
-    },[]) 
-
 
     // handle background image
     useEffect(() => {
@@ -127,7 +39,7 @@ export default function BackGroundImageGenres({ dataResult }) {
         )
         //observer
         itemRef.current.forEach((ref) => {
-            if (ref) observer.observe(ref);
+            ref && observer.observe(ref);
         });
         
         //cleanup
@@ -152,11 +64,12 @@ export default function BackGroundImageGenres({ dataResult }) {
 
             />
 
-            {state.isLoading && (
+            {state.currentMovie.isLoading && (
                 <div className="absolute inset-0 flex items-center justify-center bg-transparent bg-opacity-50">
                     <div className="w-12 h-12 border-4 border-t-transparent border-[#c8081e] rounded-full animate-spin"></div>
                 </div>
             )}
+
       <div className="absolute bottom-10 left-10 top-28 inset-0 text-white">
         <div>
 
@@ -166,7 +79,7 @@ export default function BackGroundImageGenres({ dataResult }) {
         <p>Vote Average: {state.currentMovie.voteAverage }</p>
         </div>
         <div>
-            <h1> {state.currentMovie.details.budget || "Unknown"} </h1>
+            <h1> {state.currentMovie.detailsMovie.budget || "Unknown"} </h1>
         </div>
       </div>
             <div className="mb-4 flex justify-center items-end">

@@ -27,102 +27,99 @@ import {
 } from "@/components/ui/alert-dialog"
 import { Button } from "@/components/ui/button"
 import { buttonVariants } from "@/components/ui/button"
-
-
-
-
-const initialState = {
-    currentTv: {
-        image: "",
-        name: "",
-        firstAirDate: "",
-        overview: "",
-        voteAverage: "",
-        popularity: "",
-        voteCount: "",
-        detailsTv: {},
-        isLoading: false
-    }
-}
-const TvReducer = (state, action) => {
-    switch (action.type) {
-        case "SET_CURRENT_TV":
-            return {
-                ...state,
-                currentTv: action.payload,
-                isLoading: false
-            }
-        case "SET_LOADING":
-            return {
-                ...state,
-                isLoading: action.payload
-            }
-        default:
-            return state
-    }
-}
+import { useMediaContext } from "@/app/Context/MediaContext"
+// const initialState = {
+//     currentTv: {
+//         image: "",
+//         name: "",
+//         firstAirDate: "",
+//         overview: "",
+//         voteAverage: "",
+//         popularity: "",
+//         voteCount: "",
+//         detailsTv: {},
+//         isLoading: false
+//     }
+// }
+// const TvReducer = (state, action) => {
+//     switch (action.type) {
+//         case "SET_CURRENT_TV":
+//             return {
+//                 ...state,
+//                 currentTv: action.payload,
+//                 isLoading: false
+//             }
+//         case "SET_LOADING":
+//             return {
+//                 ...state,
+//                 isLoading: action.payload
+//             }
+//         default:
+//             return state
+//     }
+// }
 export default function BackGroundTvGenres({ resultTvGenres }) {
 
-    const [state, dispatch] = useReducer(TvReducer, initialState)
+    const { state, updateCurretTv } = useMediaContext()
     const itemTvRef = useRef([])
 
-    const updateCurretTv = useCallback((tv) => {
+    // const updateCurretTv = useCallback((tv) => {
 
-        dispatch({ type: "SET_LOADING", payload: true })
+    //     dispatch({ type: "SET_LOADING", payload: true })
 
-        const newImage = tv.backdrop_path ? `${urlImageTv}/${tv.backdrop_path}` : blurImage
-        const img = new window.Image()
-        img.src = newImage
-        img.onload = () => {
-            fetchDetailsTvById(tv.id).then((detailsTv) => {
+    //     const newImage = tv.backdrop_path ? `${urlImageTv}/${tv.backdrop_path}` : blurImage
+    //     const img = new window.Image()
+    //     img.src = newImage
+    //     img.onload = () => {
+    //         fetchDetailsTvById(tv.id).then((detailsTv) => {
 
-                dispatch({
-                    type: "SET_CURRENT_TV",
-                    payload: {
-                        image: newImage,
-                        name: tv.original_name ? tv.original_name : tv.name,
-                        firstAirDate: tv.first_air_date || "N/A",
-                        overview: tv.overview.slice(0, 500) || "Unknown",
-                        voteAverage: tv.vote_average.toFixed(1) || "N/A",
-                        popularity: tv.popularity || "N/A",
-                        voteCount: tv.vote_count || "N/A",
-                        detailsTv: detailsTv || {},
-                        isLoading: false
-                    }
-                })
-                // console.log(detailsTv)
-            })
-        }
+    //             dispatch({
+    //                 type: "SET_CURRENT_TV",
+    //                 payload: {
+    //                     image: newImage,
+    //                     name: tv.original_name ? tv.original_name : tv.name,
+    //                     firstAirDate: tv.first_air_date || "N/A",
+    //                     overview: tv.overview.slice(0, 500) || "Unknown",
+    //                     voteAverage: tv.vote_average.toFixed(1) || "N/A",
+    //                     popularity: tv.popularity || "N/A",
+    //                     voteCount: tv.vote_count || "N/A",
+    //                     detailsTv: detailsTv || {},
+    //                     isLoading: false
+    //                 }
+    //             })
+    //             // console.log(detailsTv)
+    //         })
+    //     }
 
-        const fetchDetailsTvById = async (tvId) => {
-            try {
-                const response = await fetch(`/api/getDetailsTv?tvId=${tvId}`)
-                if (!response.ok) {
-                    throw new Error('Failed to fetch data')
-                }
-                const data = await response.json()
-                return data
-            } catch (error) {
-                if (process.env.NODE_ENV !== "production") {
-                    console.error(error, "Failed to fetch data DetailsTv")
-                }
-                return {}
-            }
-        }
+    //     const fetchDetailsTvById = async (tvId) => {
+    //         try {
+    //             const response = await fetch(`/api/getDetailsTv?tvId=${tvId}`)
+    //             if (!response.ok) {
+    //                 throw new Error('Failed to fetch data')
+    //             }
+    //             const data = await response.json()
+    //             return data
+    //         } catch (error) {
+    //             if (process.env.NODE_ENV !== "production") {
+    //                 console.error(error, "Failed to fetch data DetailsTv")
+    //             }
+    //             return {}
+    //         }
+    //     }
 
-        img.onerror = (error) => {
-            if (process.env.NODE_ENV !== "production") {
-                console.error(error, "Failed to load image for tv genre")
-            }
-            dispatch({
-                type: "SET_LOADING",
-                payload: {
-                    isLoading: false
-                },
+    //     img.onerror = (error) => {
+    //         if (process.env.NODE_ENV !== "production") {
+    //             console.error(error, "Failed to load image for tv genre")
+    //         }
+    //         dispatch({
+    //             type: "SET_LOADING",
+    //             payload: {
+    //                 isLoading: false
+    //             },
 
-            })
-        }
-    }, [])
+    //         })
+    //     }
+    // }, [])
 
     useEffect(() => {
         const observer = new IntersectionObserver((entries) => {
@@ -140,7 +137,7 @@ export default function BackGroundTvGenres({ resultTvGenres }) {
 
         //observe all elements with data-tv attribute
         itemTvRef.current.forEach((ref) => {
-            if (ref) observer.observe(ref)
+            ref && observer.observe(ref);
         })
 
 
@@ -165,7 +162,7 @@ export default function BackGroundTvGenres({ resultTvGenres }) {
 
     return (
         <div className="w-full  h-screen flex justify-center md:h-screen  overflow-hidden relative">
-                {/* <Image src={state.currentTv.image || blurImage}
+            {/* <Image src={state.currentTv.image || blurImage}
                     alt={state.currentTv.name || "image_tv_cover"}
                     fill={true}
                     loading="eager"
@@ -197,7 +194,7 @@ export default function BackGroundTvGenres({ resultTvGenres }) {
             {/* Loading */}
 
 
-            {state.isLoading && (
+            {state.currentTv.isLoading && (
                 <div className="absolute inset-0 flex items-center justify-center bg-transparent bg-opacity-50">
                     <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-500"></div>
                 </div>
@@ -207,7 +204,7 @@ export default function BackGroundTvGenres({ resultTvGenres }) {
                 <div className=" flex flex-col gap-3 justify-start ">
 
                     <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight md:text-3xl md:text-center flex justify-start items-center gap-6  flex-wrap md:justify-center md:gap-1">{state.currentTv.name} <span className="text-yellow-500 flex justify-start items-center gap-2"><FaStar className="" /> {(state.currentTv.voteAverage)}</span> <span className="text-yellow-500"> </span> </h1>
-                    <h2 className="font-bold text-2xl text-zinc-200 border-l-2 border-yellow-500 pl-2 md:text-lg">Release Date: {state.currentTv.firstAirDate.replace(/-/g, "/")}</h2>
+                    <h2 className="font-bold text-2xl text-zinc-200 border-l-2 border-yellow-500 pl-2 md:text-lg">Release Date: {state.currentTv.firstAirDate}</h2>
 
                     <p className=" font-bold flex justify-start items-center gap-2 text-2xl border-l-2 border-green-500 pl-2 md:text-lg">Popularity: <span className="text-green-500">{(state.currentTv.popularity / 10).toFixed(0)} </span> <span><SiSoundcharts className="text-green-500" />
                     </span></p>
@@ -230,11 +227,17 @@ export default function BackGroundTvGenres({ resultTvGenres }) {
 
                     {/* status */}
                     <div className="font-bold text-2xl  md:text-lg border-l-2 border-[#ff9900] pl-2">
-                        <h1 >Status: <span className={getStatusColor(state.currentTv.detailsTv.status)}>{state.currentTv.detailsTv.status} </span> </h1>
+                        {/* <h1 >Status: <span className={getStatusColor(state.currentTv.detailsTv.status)}>  {state.currentTv.detailsTv && state.currentTv.detailsTv.status ? (
+    <span className={getStatusColor(state.currentTv.detailsTv.status)}>
+      {state.currentTv.detailsTv.status}
+    </span>
+  ) : (
+    "Loading..."
+  )} </span> </h1> */}
                     </div>
                     {/* Number of episodes &  */}
                     <div>
-                        <h1 className="font-bold text-2xl  md:text-lg border-l-2 border-[#ff9900] pl-2">Number of episodes & Seasons: <span className=" badge badge-ghost">  {state.currentTv.detailsTv.number_of_episodes} / S{state.currentTv.detailsTv.number_of_seasons}</span></h1>
+                        <h1 className="font-bold text-2xl  md:text-lg border-l-2 border-[#ff9900] pl-2">Number of episodes & Seasons: <span className=" badge badge-ghost">  {state.currentTv.detailsTv?.number_of_episodes || "Loading..."} / S{state.currentTv.detailsTv?.number_of_seasons || "Loading..."}</span></h1>
                     </div>
                     <div>
                         <SeasonsDialog state={state} />
@@ -286,8 +289,8 @@ export default function BackGroundTvGenres({ resultTvGenres }) {
                         <CarouselNext />
                     </div>
                 </Carousel>
-                </div>
             </div>
+        </div>
 
     )
 }
@@ -331,17 +334,17 @@ function SeasonsDialog({ state }) {
 
 function ImageCoverGenres({ state }) {
     return (
-                <Image src={state.currentTv.image || blurImage}
-                    alt={state.currentTv.name || "image_tv_cover"}
-                    fill={true}
-                    loading="eager"
-                    priority
-                    style={{ objectFit: "cover" }}
-                    draggable={false}
-                    className=" bg-center blur-lg "
-                    quality={100}
-                    sizes="(max-width: 768px) 100vw"
+        <Image src={state.currentTv.image || blurImage}
+            alt={state.currentTv.name || "image_tv_cover"}
+            fill={true}
+            loading="eager"
+            priority
+            style={{ objectFit: "cover" }}
+            draggable={false}
+            className=" bg-center blur-lg "
+            quality={100}
+            sizes="(max-width: 768px) 100vw"
 
-                />
+        />
     )
 }

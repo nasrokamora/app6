@@ -7,6 +7,7 @@ import { Inter } from "next/font/google"
 import { cn } from "@/lib/utils";
 import Nav from "./Components/Navbar/Nav";
 import NextTopLoader from "nextjs-toploader";
+import { MediaProvider } from "./Context/MediaContext";
 
 
 
@@ -18,7 +19,7 @@ const inter = Inter({
 
 
 export const metadata = {
-  title: "Magix Movies | Crafted by Nasreddine Abdellouche",
+  title: "Magix Movies |",
   description: 
     "Magix Movies is a premium platform designed by Nasreddine Abdellouche, offering curated content for movie and series enthusiasts. Dive into detailed reviews, ratings, and recommendations tailored to your taste.",
   keywords: [
@@ -67,7 +68,9 @@ export default function RootLayout({ children }) {
         />
 
         <Nav />
+        <MediaProvider>
         {children}
+        </MediaProvider>
         <Footer />
 
       </body>

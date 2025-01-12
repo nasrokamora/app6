@@ -21,6 +21,10 @@ This is a **work-in-progress** project for a Movies & TV Shows website, built wi
   - Movie details: `/movies/[id]`
   - TV show details: `/tv/[id]`
   - Person details: `/person/[id]`
+  - Movie genres: `/movies/genres`
+  - TV genres: `/tv/genres`
+  - TV seasons: `/tv/season/[id]`
+  - Season episodes: `/tv/season/[id]/episodes`
 - Browse the latest movies and TV shows using data from **TMDB API**.
 - User authentication and authorization powered by **KindeAuth**.
 - Fully responsive and accessible design.

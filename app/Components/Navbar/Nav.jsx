@@ -56,7 +56,7 @@ export default function NavBar() {
           <div className=" ">
 
             <Sheet className="">
-              <SheetTrigger><TfiMenu size={25} className="2xl:size-8" /></SheetTrigger>
+              <SheetTrigger><TfiMenu size={25} className="2xl:size-8 hover:text-red-700 hover:scale-110 duration-300" /></SheetTrigger>
               <SheetContent>
                 <SheetHeader>
                   <SheetTitle>Magix Movies</SheetTitle>

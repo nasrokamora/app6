@@ -109,11 +109,21 @@ export default function SearchMultiPage() {
         setMovies([])
     }, [])
 
+    function SearchLoading(){
+        return (
+          <div className="flex flex-col items-center justify-center min-h-screen space-y-4">
+            <div className="w-16 h-16 border-4 border-blue-700 border-t-transparent border-dashed rounded-full animate-spin"></div>
+            <p className="text-blue-700 font-semibold pt-6 xl:text-xl 2xl:text-2xl">
+              Loading your results, one moment please...
+            </p>
+          </div>
+        );
+      };
 
     return (
         <>
             <Sheet className=" ">
-                <SheetTrigger><IoSearch size={25} className="hover:scale-125 transition-transform duration-500  active:scale-90 2xl:size-8" /></SheetTrigger>
+                <SheetTrigger><IoSearch size={25} className="hover:scale-125 transition-transform duration-500  active:scale-90 2xl:size-8 hover:text-amber-500" /></SheetTrigger>
                 <SheetContent className="" side={"top"}>
                     <SheetHeader>
                         <SheetTitle>Explorer Movies on Magix</SheetTitle>
@@ -134,9 +144,7 @@ export default function SearchMultiPage() {
                             />
                             <Button type="submit" disabled={query.length < 3 || isLoading}>{isLoading ? "Loading..." : "Search"}</Button>
                         </form>
-                        {isLoading && (
-                            <p className="text-blue-700 font-semibold pt-6 xl:text-xl 2xl:text-2xl">Loading your results, one moment please...</p>
-                        )}
+                        {isLoading &&  <SearchLoading />}
                         {errorMessage && <p className="text-red-700 font-semibold pt-6 xl:text-xl 2xl:text-2xl ">{errorMessage}</p>}
                     </main>
 

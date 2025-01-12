@@ -40,7 +40,7 @@ export default function CardResults({ movie, handleClick, handleClose }) {
                             <div key={movie.id} className=" overflow-hidden">
                                 <div onClick={() => handleClick(movie)} className=" hover:scale-105 h-fit hover:duration-300 ">
                                     <Link href={`/${getMediaTypePath(movie.media_type)}/${movie.id}`} >
-                                        <div className="  overflow-hidden  flex justify-center items-center flex-col " onClick={() => handleClose()} >
+                                        <div className="  overflow-hidden  flex justify-center items-center flex-col p-2 " onClick={() => handleClose()} >
                                             <Image src={movie.poster_path ? `${urlImage}${movie.poster_path}`: movie.profile_path ? `${urlImage}${movie.profile_path}`: no_image}
                                                 alt={movie.title || movie.name }
                                                 width={100}

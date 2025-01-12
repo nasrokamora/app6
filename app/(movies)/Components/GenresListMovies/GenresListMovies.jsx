@@ -41,7 +41,7 @@ async function ListGenre() {
                     ))
                 ) : (
                     <div className="flex justify-center items-center">
-                        <h1 className="text-2xl font-bold text-red-700">Oops ! No genres available at the moment.</h1>
+                        <h1 className="text-xl font-bold text-red-700">Oops ! No genres available at the moment.</h1>
                     </div>
                 )
                 }
@@ -74,11 +74,11 @@ export default function GenresListMovies() {
 
             <Sheet>
                 <SheetTrigger>
-                    <FaTheaterMasks size={25} className="2xl:size-8" />
+                    <FaTheaterMasks size={25} className="2xl:size-8 hover:text-sky-500 duration-300" />
                 </SheetTrigger>
                 <SheetContent side="left" className=" h-auto overflow-y-scroll">
                     <SheetHeader>
-                        <SheetTitle>Explore Movie and TV Show Genres.</SheetTitle>
+                        <SheetTitle>Explore Movie and TV Show By Genres.</SheetTitle>
                         <SheetDescription>
                             Whether you're a fan of movies or TV shows, there's something here for everyone.
                         </SheetDescription>

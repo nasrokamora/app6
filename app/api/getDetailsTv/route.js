@@ -12,7 +12,7 @@ export async function GET(Request){
                 accept: "application/json"
             },
             next: {
-                revalidate: 3600
+                revalidate: 7200
             }
         })
         if(!response.ok) {
@@ -22,7 +22,7 @@ export async function GET(Request){
         return new Response(JSON.stringify(data),{
             status: 200,
             headers: {
-                'cache-control': 'sm-max-age=3600, stale-while-revalidate'
+                'cache-control': 'sm-max-age=7200, stale-while-revalidate'
             }
         })
     } catch (error) {

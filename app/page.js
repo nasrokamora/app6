@@ -36,16 +36,16 @@ export default async function Home() {
     <main className={`w-full h-auto text-white pt-24 `}>
       {/* section Discover */}
       <AnimateScroll />
-      <div className={`  scroll-m-20 text-4xl  tracking-tight lg:text-3xl ml-6 md:ml-0  title font-extrabold md:flex md:justify-center md:items-center   mt-7 md:mt-3  `}>
-        <h1 className={'md:text-4xl md:flex md:justify-center md:items-center md:ml-0 bg-gradient-to-r from-[#ffae00] via-[#911818] to-[#ffae00] bg-[length:200%_auto] bg-clip-text text-transparent animate-gradient'}>Discover<GiFilmProjector className="inline-block text-red-700 mb-4 " size={42} />
+      <div className={`md:text-3xl scroll-m-20 text-4xl  tracking-tight lg:text-3xl ml-6 md:ml-0 font-extrabold md:flex md:justify-center md:items-center   mt-7 md:mt-3  `}>
+        <h1 className={'  bg-gradient-to-r from-[#ffae00] via-[#911818] to-[#ffae00] bg-[length:200%_auto] bg-clip-text text-transparent animate-gradient'}>Discover<GiFilmProjector className="inline-block text-red-700 mb-4 " size={42} />
           <span className="bg-gradient-to-r from-[#911818] via-[#ffae00] to-[#911818]  bg-[length:200%_auto] bg-clip-text text-transparent animate-gradient">Magix</span> </h1>
       </div>
-      <section className="flex justify-center  w-full mt-3 ">
+      <section className="">
         <MoviesCard dataDiscoverMovies={dataDiscoverMovies.results} />
       </section>
 
       {/* section highest rated movies */}
-      <section className="mt-16  ">
+      <section className="mt-8  ">
         <div className="ml-6 md:ml-0 md:flex md:justify-center md:items-center ">
 
           <h1 className="text-3xl  font-extrabold md:mb-11">Highest <span className="text-[#00f4e1] relative">Rated <span className="absolute inset-0 left-11 -top-4"><TbHeartUp size={30} className="inline-block text-[#00f4e1]" /></span></span> <span className=" md:text-center md:flex md: justify-center  md:items-center ">Movies
@@ -57,7 +57,7 @@ export default async function Home() {
       </section>
 
       {/* section Popular */}
-      <div className=" xl:ml-6 2xl:ml-6 lg:ml-6 scroll-m-20 text-4xl font-extrabold  lg:text-3xl md:text-4xl mt-14  bg-gradient-to-r from-[#850000] via-[#ff0000] to-[#850000] bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient md:p-2 md:text-center  md:flex md:justify-center md:items-center items-center  lg:mt-11 md:mt-11">
+      <div className=" ml-6 md:ml-0  scroll-m-20 text-3xl font-extrabold  lg:text-3xl md:text-4xl mt-14  bg-gradient-to-r from-[#850000] via-[#ff0000] to-[#850000] bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient md:p-2 md:text-center  md:flex md:justify-center md:items-center items-center  lg:mt-11 md:mt-11">
         <h1 className="md:pb-4"> <span className="bg-gradient-to-r from-[#850000] via-black to-[#850000] bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient">Top</span> <span className="text-white">Picks</span>  <span className="bg-gradient-to-r from-[#850000] via-black to-[#850000] bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient">on</span> Magix</h1>
       </div>
       <section>

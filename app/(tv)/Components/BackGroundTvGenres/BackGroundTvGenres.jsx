@@ -337,12 +337,10 @@ function ImageCoverGenres({ state }) {
         <Image src={state.currentTv.image || blurImage}
             alt={state.currentTv.name || "image_tv_cover"}
             fill={true}
-            loading="eager"
-            priority
+            loading="lazy"
             style={{ objectFit: "cover" }}
             draggable={false}
             className=" bg-center blur-lg "
-            quality={100}
             sizes="(max-width: 768px) 100vw"
 
         />

@@ -14,7 +14,7 @@ export async function GET(Request) {
                 accept: "application/json"
             },
             next: {
-                revalidate: 3600
+                revalidate: 7200
             }
         })
         if (!response.ok) {
@@ -24,17 +24,17 @@ export async function GET(Request) {
         return new Response(JSON.stringify(data), {
             status: 200,
             headers: {
-                'cache-control': 'sm-max-age=3600, stale-while-revalidate'
+                'cache-control': 'sm-max-age=7200, stale-while-revalidate'
             }
         })
     } catch (error) {
         if (process.env.NODE_ENV !== "production") {
             console.log(error, 'Failed to fetch data MoviesById');
         }
-        return new Response.JSON.stringify({
+        return new Response(JSON.stringify({
             error: true,
             message: process.env.NODE_ENV === "production" ? 'An unexpected error occurred.' : error.message,
             status: 500
-        })
+        }))
     }
 }

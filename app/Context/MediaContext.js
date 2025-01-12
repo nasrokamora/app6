@@ -1,11 +1,7 @@
 "use client"
-
-
-import { createContext, useCallback, useReducer,useContext } from "react"
+import { createContext, useCallback, useReducer, useContext } from "react"
 import { urlImageTv } from "../libs/DataFetchingTv"
 import blurImage from "../../public/image/blurImage.webp"
-
-
 
 
 const initialState = {
@@ -153,7 +149,11 @@ export const MediaProvider = ({ children }) => {
 
     const fetchDetailsTvById = async (tvId) => {
         try {
-            const response = await fetch(`/api/getDetailsTv?tvId=${tvId}`)
+            const response = await fetch(`/api/getDetailsTv?tvId=${tvId}`,{
+                next:{
+                    revalidate:7200
+                }
+            })
             if (!response.ok) {
                 throw new Error("Network response was not ok")
             }
@@ -184,9 +184,9 @@ export const MediaProvider = ({ children }) => {
 
     return (
         <MediaContext.Provider value={{
-             state, updateCurretTv, updateCurretMovie 
-             }}
-             >
+            state, updateCurretTv, updateCurretMovie
+        }}
+        >
             {children}
         </MediaContext.Provider>
     )
@@ -194,7 +194,7 @@ export const MediaProvider = ({ children }) => {
 
 export const useMediaContext = () => {
     const context = useContext(MediaContext);
-    if(!context) {
+    if (!context) {
         throw new Error("useMediaContext must be used within a MediaProvider");
     }
     return context

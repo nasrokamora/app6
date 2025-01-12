@@ -15,7 +15,12 @@ const Options = {
 // getDiscoverMovies
 export async function getDiscoverMovies() {
   try {
-    const res = await fetch(`${process.env.TMDB_BASE_URL}/discover/movie`, Options)
+    const res = await fetch(`${process.env.TMDB_BASE_URL}/discover/movie`, {...Options,
+      next:{
+        revalidate: 3600
+      }
+
+    })
     if (!res.ok) {
       throw new Error('failed to fetch data discover')
     }

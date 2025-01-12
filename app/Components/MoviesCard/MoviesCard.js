@@ -24,10 +24,8 @@ export default async function MoviesCard({ dataDiscoverMovies }) {
         <TransitionCom>
 
         <div className="  w-full 2xl:text-2xl h-fit xl:h-[21rem]  ">
-            <div className="">
-            </div>
             <div className="flex items-center justify-center pt-2 md:mt-10">
-                <Carousel className="w-full max-w-5xl md:max-w-md text-white xl:max-w-6xl  2xl:max-w-full" opts={{ loop: true, align: "center" }}>
+                <Carousel className="w-full max-w-5xl md:max-w-sm text-white xl:max-w-6xl  2xl:max-w-full" opts={{ loop: true, align: "center" }}>
                     <CarouselContent className="-ml-1">
                         {dataDiscoverMovies && dataDiscoverMovies.length > 0 ? (
                             dataDiscoverMovies.map((movie, index) => (
@@ -44,7 +42,7 @@ export default async function MoviesCard({ dataDiscoverMovies }) {
                                                     alt="image_movies"
                                                     width={300} height={200}
                                                     priority={true}
-                                                    className=""
+                                                    
                                                     style={{ width: "auto",borderRadius:"4px" }}
                                                     draggable={false}
                                                     loading="eager"

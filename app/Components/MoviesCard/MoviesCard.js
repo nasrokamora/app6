@@ -30,7 +30,7 @@ export default async function MoviesCard({ dataDiscoverMovies }) {
                         {dataDiscoverMovies && dataDiscoverMovies.length > 0 ? (
                             dataDiscoverMovies.map((movie, index) => (
                                 <CarouselItem key={index} className="pl-1 md:basis-1/2 lg:basis-1/5 xl:basis-1/6 basis-1/6 ">
-                                    <div className="flex flex-col w-full p-1 hover:scale-90 hover:duration-500">
+                                    <div className="flex flex-col w-full p-1 hover:scale-90 duration-1000">
                                         <Link varient="link" className="hover:grayscale  hover:duration-700 hover:translate-x-6" href={`/movies/list/${movie.id}`}>
                                             <div className='relative rounded-md  '>
                                                 <Image

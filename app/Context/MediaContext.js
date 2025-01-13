@@ -1,29 +1,29 @@
 "use client"
 import { createContext, useCallback, useReducer, useContext } from "react"
-import { urlImageTv } from "../libs/DataFetchingTv"
+import { urlImageTv, urlImageTv500 } from "../libs/DataFetchingTv"
 import blurImage from "../../public/image/blurImage.webp"
 
 
 const initialState = {
     currentTv: {
         image: "",
-        name: "",
-        firstAirDate: "",
-        overview: "",
-        voteAverage: "",
-        popularity: "",
-        voteCount: "",
+        name: null,
+        firstAirDate: null,
+        overview: null,
+        voteAverage: null,
+        popularity: null,
+        voteCount: null,
         detailsTv: {},
         isLoading: false
     },
     currentMovie: {
         image: "",
-        title: "",
-        releaseDate: "",
-        voteAverage: "",
-        overview: "",
-        popularity: "",
-        voteCount: "",
+        title: null,
+        releaseDate: null,
+        voteAverage: null,
+        overview: null,
+        popularity: null,
+        voteCount: null,
         detailsMovie: {},
         isLoading: false
     }
@@ -67,6 +67,15 @@ const mediaReducer = (state, action) => {
 
 const MediaContext = createContext()
 
+const ErrorPathImage = () => {
+    if(!tv.backdrop_path){
+        return(
+            <h1>Image not found</h1>
+        )
+    }
+}
+
+
 export const MediaProvider = ({ children }) => {
     const [state, dispatch] = useReducer(mediaReducer, initialState)
 
@@ -74,7 +83,7 @@ export const MediaProvider = ({ children }) => {
     const updateCurretTv = useCallback(async (tv) => {
         dispatch({ type: "SET_LOADING", payload: true })
 
-        const newImage = tv.backdrop_path ? `${urlImageTv}/${tv.backdrop_path}` : blurImage
+        const newImage = tv.backdrop_path ? `${urlImageTv500}/${tv.backdrop_path}` : <ErrorPathImage />
         const img = new window.Image()
         img.src = newImage
         img.onload = async () => {
@@ -93,19 +102,19 @@ export const MediaProvider = ({ children }) => {
                     isLoading: false
                 }
             })
+            // onerror = (error) => {
+            //     if (process.env.NODE_ENV !== "production") {
+            //         console.error(error, "Failed to load image for tv genre")
+            //     }
+            //     dispatch({
+            //         type: "SET_LOADING",
+            //         payload: {
+            //             isLoading: false
+            //         },
+            //     })
+            // }
         }
         //on error
-        onerror = (error) => {
-            if (process.env.NODE_ENV !== "production") {
-                console.error(error, "Failed to load image for tv genre")
-            }
-            dispatch({
-                type: "SET_LOADING",
-                payload: {
-                    isLoading: false
-                },
-            })
-        }
     }, [])
 
     //function to update current movie
@@ -113,7 +122,7 @@ export const MediaProvider = ({ children }) => {
         dispatch({ type: "SET_LOADING", payload: true })
 
 
-        const newImage = movie.backdrop_path ? `${urlImageTv}/${movie.backdrop_path}` : blurImage
+        const newImage = movie.backdrop_path ? `${urlImageTv500}/${movie.backdrop_path}` : blurImage
         const img = new window.Image()
         img.src = newImage
         img.onload = async () => {
@@ -132,17 +141,17 @@ export const MediaProvider = ({ children }) => {
                     isLoading: false
                 }
             })
-        }
-        onerror = (error) => {
-            if (process.env.NODE_ENV !== "production") {
-                console.error(error, "Failed to load image for tv genre")
+            onerror = (error) => {
+                if (process.env.NODE_ENV !== "production") {
+                    console.error(error, "Failed to load image for tv genre")
+                }
+                dispatch({
+                    type: "SET_LOADING",
+                    payload: {
+                        isLoading: false
+                    },
+                })
             }
-            dispatch({
-                type: "SET_LOADING",
-                payload: {
-                    isLoading: false
-                },
-            })
         }
     }, [])
 
@@ -158,6 +167,7 @@ export const MediaProvider = ({ children }) => {
                 throw new Error("Network response was not ok")
             }
             const data = await response.json()
+            // console.log(data)
             return data
         } catch (error) {
             if (process.env.NODE_ENV !== "production") {

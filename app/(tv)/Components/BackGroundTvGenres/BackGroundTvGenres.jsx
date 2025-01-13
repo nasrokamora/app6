@@ -39,7 +39,7 @@ export default function BackGroundTvGenres({ resultTvGenres }) {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
-                    const tvIndex = entry.target.getAttribute("data-tv")
+                    const tvIndex = entry.target.getAttribute('data-tv')
                     const dataTv = resultTvGenres[tvIndex]
                     updateCurretTv(dataTv)
                 }
@@ -49,9 +49,11 @@ export default function BackGroundTvGenres({ resultTvGenres }) {
             threshold: 0.5
         })
 
-        //observe all elements with data-tv attribute
+        // observe all elements with data-tv attribute
         itemTvRef.current.forEach((ref) => {
-            ref && observer.observe(ref);
+            if(ref){
+                observer.observe(ref)
+            }
         })
 
 
@@ -121,7 +123,7 @@ export default function BackGroundTvGenres({ resultTvGenres }) {
                     </div>
                     {/* Number of episodes &  */}
                     <div>
-                        <h1 className="font-bold text-2xl  md:text-lg border-l-2 border-[#ff9900] pl-2">Number of episodes & Seasons: <span className=" badge badge-ghost">  {state.currentTv.detailsTv?.number_of_episodes || "Loading..."} / S{state.currentTv.detailsTv?.number_of_seasons || "Loading..."}</span></h1>
+                        <h1 className="font-bold text-2xl  md:text-lg border-l-2 border-[#ff9900] pl-2">Number of episodes & Seasons: <span className=" badge badge-ghost">  {state.currentTv.detailsTv?.number_of_episodes || "Loading..."} / S{state.currentTv.detailsTv?.number_of_seasons || ""}</span></h1>
                     </div>
                     <div>
                         <SeasonsDialog state={state} />
@@ -141,7 +143,7 @@ export default function BackGroundTvGenres({ resultTvGenres }) {
 
 
             <div className="mb-4 flex justify-center items-end">
-                <Carousel className="w-full md:max-w-md  xl:max-w-6xl 2xl:max-w-full lg:max-w-4xl" opts={{ align: "start", loop: true }}>
+                <Carousel className="w-full md:max-w-md  xl:max-6xl 2xl:max-w-full lg:max-w-4xl" opts={{ align: "start", loop: true }}>
                     <CarouselContent>
                         {resultTvGenres.map((tv, index) => (
                             <CarouselItem className="basis-1/8 xl:basis-1/6 md:basis-1/3 lg:basis-1/5 2xl:basis-1/6" key={tv.id}
@@ -159,9 +161,10 @@ export default function BackGroundTvGenres({ resultTvGenres }) {
                                             `${urlImageTv}${tv.poster_path}` : blurImage}
                                         alt="tv poster"
                                         width={150}
-                                        height={150}
+                                        height={100}
                                         loading="lazy"
-                                        style={{ width: "auto", borderRadius: '2px' }}
+                                        priority={false}
+                                        style={{ width: "auto", borderRadius: '2px',height:'auto' }}
                                     // unoptimized 
                                     />
                                 </div>

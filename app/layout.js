@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 import Nav from "./Components/Navbar/Nav";
 import NextTopLoader from "nextjs-toploader";
 import { MediaProvider } from "./Context/MediaContext";
+import { ContextProvider, MediasProvider } from "./Context/ContextMedia";
 
 
 
@@ -68,9 +69,9 @@ export default function RootLayout({ children }) {
         />
 
         <Nav />
-        <MediaProvider>
+        <ContextProvider>
         {children}
-        </MediaProvider>
+        </ContextProvider>
         <Footer />
 
       </body>

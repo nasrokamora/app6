@@ -60,38 +60,38 @@ export default async function GenrePageTv({ params }) {
     );
 }
 
-async function DetailsTvGenre({ id }) {
-    const data = await getVideosTv(id)
-    const dataTrailer = data.results.slice(0, 1)
-    // console.log(dataTrailer);
+// async function DetailsTvGenre({ id }) {
+//     const data = await getVideosTv(id)
+//     const dataTrailer = data.results.slice(0, 1)
 
-    return (
-        <div className="">
-            <div>
-                <h1>TV Show Trailer</h1>
-            </div>
-            {dataTrailer &&
-                dataTrailer.length > 0 ? (
-                dataTrailer.map((item) => (
-                    <div className="relative md:w-1/2 w-full lg:w-1/2" key={item.id}>
-                        <div>
-                            <h1>{item.name}</h1>
-                        </div>
-                        <HeroVideoDialog
-                            animationStyle="from-center"
-                            className="dark:hidden block "
-                            videoSrc={`https://www.youtube.com/embed/${item.key}`}
-                            thumbnailSrc={`https://img.youtube.com/vi/${item.key}/0.jpg`}
-                            thumbnailAlt={item.name}
-                        />
 
-                    </div>
-                ))
-            ) : (
-                <div> no found</div>
-            )}
-        </div>
-    )
-}
+//     return (
+//         <div className="">
+//             <div>
+//                 <h1>TV Show Trailer</h1>
+//             </div>
+//             {dataTrailer &&
+//                 dataTrailer.length > 0 ? (
+//                 dataTrailer.map((item) => (
+//                     <div className="relative md:w-1/2 w-full lg:w-1/2" key={item.id}>
+//                         <div>
+//                             <h1>{item.name}</h1>
+//                         </div>
+//                         <HeroVideoDialog
+//                             animationStyle="from-center"
+//                             className="dark:hidden block "
+//                             videoSrc={`https://www.youtube.com/embed/${item.key}`}
+//                             thumbnailSrc={`https://img.youtube.com/vi/${item.key}/0.jpg`}
+//                             thumbnailAlt={item.name}
+//                         />
+
+//                     </div>
+//                 ))
+//             ) : (
+//                 <div> no found</div>
+//             )}
+//         </div>
+//     )
+// }
 
 

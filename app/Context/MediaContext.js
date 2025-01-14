@@ -5,6 +5,7 @@ import blurImage from "../../public/image/blurImage.webp"
 
 
 const initialState = {
+    setCurentPage: null,
     currentTv: {
         image: "",
         name: null,
@@ -32,6 +33,7 @@ const initialState = {
 
 const mediaReducer = (state, action) => {
     switch (action.type) {
+        case "SET_CURENT_PAGE": return { ...state, setCurentPage: action.payload }
         case "SET_CURRENT_TV":
             return {
                 ...state,
@@ -68,8 +70,8 @@ const mediaReducer = (state, action) => {
 const MediaContext = createContext()
 
 const ErrorPathImage = () => {
-    if(!tv.backdrop_path){
-        return(
+    if (!tv.backdrop_path) {
+        return (
             <h1>Image not found</h1>
         )
     }
@@ -80,7 +82,7 @@ export const MediaProvider = ({ children }) => {
     const [state, dispatch] = useReducer(mediaReducer, initialState)
 
     //function to update current tv
-    const updateCurretTv = useCallback(async (tv) => {
+    const updateCurrentTv = useCallback(async (tv) => {
         dispatch({ type: "SET_LOADING", payload: true })
 
         const newImage = tv.backdrop_path ? `${urlImageTv500}/${tv.backdrop_path}` : <ErrorPathImage />
@@ -141,7 +143,7 @@ export const MediaProvider = ({ children }) => {
                     isLoading: false
                 }
             })
-            onerror = (error) => {
+            img.onerror = (error) => {
                 if (process.env.NODE_ENV !== "production") {
                     console.error(error, "Failed to load image for tv genre")
                 }
@@ -158,9 +160,9 @@ export const MediaProvider = ({ children }) => {
 
     const fetchDetailsTvById = async (tvId) => {
         try {
-            const response = await fetch(`/api/getDetailsTv?tvId=${tvId}`,{
-                next:{
-                    revalidate:7200
+            const response = await fetch(`/api/getDetailsTv?tvId=${tvId}`, {
+                next: {
+                    revalidate: 7200
                 }
             })
             if (!response.ok) {
@@ -194,7 +196,7 @@ export const MediaProvider = ({ children }) => {
 
     return (
         <MediaContext.Provider value={{
-            state, updateCurretTv, updateCurretMovie
+            state, updateCurrentTv, updateCurretMovie
         }}
         >
             {children}

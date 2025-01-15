@@ -1,14 +1,14 @@
 
 export async function GET(Request) {
     const { searchParams } = new URL(Request.url)
-    const id = searchParams.get('id')
-    if (!id)
+    const movieId = searchParams.get('movieId')
+    if (!movieId)
         return new Response(JSON.stringify({
             error: true,
-            message: 'Missing id'
+            message: 'Missing movieId'
         }), { status: 400 })
     try {
-        const response = await fetch(`${process.env.TMDB_BASE_URL}/movie/${id}?api_key=${process.env.NEXT_API_KEY}`, {
+        const response = await fetch(`${process.env.TMDB_BASE_URL}/movie/${movieId}?api_key=${process.env.NEXT_API_KEY}`, {
             headers: {
                 Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
                 accept: "application/json"

@@ -109,7 +109,7 @@ export default function PaginationMovies() {
                                 dataMovies.map((movie,index) => (
                                     <CarouselItem key={movie.id} className="p-2 md:basis-1/2 basis-1/6 lg:basis-1/5">
                                         <BlurFade delay={0.10} inView>
-                                        <div className="relative overflow-hidden md:active:scale-90 hover:scale-90 hover:duration-500  ">
+                                        <div className="relative overflow-hidden md:active:scale-90 hover:scale-90 duration-500  ">
                                             <Link className=" font-bold" href={`/movies/list/${movie.id}`}>
                                                 <Image
                                                     src={

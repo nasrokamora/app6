@@ -11,7 +11,7 @@ const initialState = {
     currentMedia: {
         image: "",
         title: "",
-        name: null,
+        name: "",
         firstAirDate: null,
         releaseDate: null,
         voteAverage: null,
@@ -68,8 +68,10 @@ export const ContextProvider = ({children}) => {
                 type: "SET_CURRENT_MEDIA",
                 payload: {
                     image: newImage,
-                    title:   media.title || media.name,
-                    releaseDate: media.first_air_date.replace(/-/g, "/")|| media.release_date.replace(/-/g, "/"),
+                    title:   media.title ? media.title : media.original_title,
+                    name: media.name ? media.name : media.original_name,
+                    releaseDate: media.release_date.replace(/-/g, "/") ? media.release_date.replace(/-/g, "/") : "N/A",
+                    firstAirDate: media.first_air_date.replace(/-/g, "/") || "N/A",
                     voteAverage: media.vote_average.toFixed(1) || media.vote_average.toFixed(1),
                     overview: media.overview.slice(0, 500) || "Unknown",
                     popularity: media.popularity || "N/A",
@@ -96,7 +98,9 @@ export const ContextProvider = ({children}) => {
         try {
             const endpoint = type === "tv" 
             ? `/api/getDetailsTv?tvId=${id}`
-            : `/api/getMoviesById?movieId=${id}`
+            : type === "movie"
+            ? `/api/getMoviesById?movieId=${id}`
+            : null
             const response = await fetch(endpoint,{
                 ...(type === "tv" && {next: {revalidate: 7200}})
             })

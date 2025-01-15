@@ -92,8 +92,8 @@ export default function BackGroundTvGenres({ resultTvGenres }) {
             <div className="   bg-black/70 w-fit h-fit absolute bottom-10 left-10 top-28 inset-0 text-white p-4 rounded-md">
                 <div className=" flex flex-col gap-3 justify-start ">
 
-                    <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight md:text-3xl md:text-center flex justify-start items-center gap-6  flex-wrap md:justify-center md:gap-1">{state.currentMedia.title} <span className="text-yellow-500 flex justify-start items-center gap-2"><FaStar className="" /> {(state.currentMedia.voteAverage)}</span> <span className="text-yellow-500"> </span> </h1>
-                    <h2 className="font-bold text-2xl text-zinc-200 border-l-2 border-yellow-500 pl-2 md:text-lg">Release Date: {state.currentMedia.firstAirDate}</h2>
+                    <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight md:text-3xl md:text-center flex justify-start items-center gap-6  flex-wrap md:justify-center md:gap-1">{state.currentMedia.name || ""} <span className="text-yellow-500 flex justify-start items-center gap-2"><FaStar className="" /> {(state.currentMedia.voteAverage)}</span> <span className="text-yellow-500"> </span> </h1>
+                    <h2 className="font-bold text-2xl text-zinc-200 border-l-2 border-yellow-500 pl-2 md:text-lg">First Air Date: {state.currentMedia.firstAirDate}</h2>
 
                     <p className=" font-bold flex justify-start items-center gap-2 text-2xl border-l-2 border-green-500 pl-2 md:text-lg">Popularity: <span className="text-green-500">{(state.currentMedia.popularity / 10).toFixed(0)} </span> <span><SiSoundcharts className="text-green-500" />
                     </span></p>

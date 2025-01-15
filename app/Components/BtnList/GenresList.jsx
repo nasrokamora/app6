@@ -39,10 +39,10 @@ const MoviesList = React.memo(({ movieList }) => {
     return (
         movieList.map((movie, index) => (
             <CarouselItem key={index} className="p-2 md:basis-1/2 basis-1/6 lg:basis-1/5">
-                <BlurFade key={movie.id} delay={0.5 + index * 0.05} inView>
+                <BlurFade key={movie.id} delay={0.2 + index * 0.02} inView>
 
 
-                    <div className="relative overflow-hidden lg:hover:scale-90 md:active:scale-110 hover:scale-90 hover:duration-500 ">
+                    <div className="relative overflow-hidden lg:hover:scale-90 md:active:scale-110 hover:scale-90 duration-500 ">
                         <Link href={`/movies/list/${movie.id}`} >
                             <Image
                                 src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}

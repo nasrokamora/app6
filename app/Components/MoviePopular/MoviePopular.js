@@ -34,7 +34,7 @@ export default function MoviePopular({ dataPopular }) {
                             <CarouselItem key={movie.id} className="  basis-1/5 lg:basis-1/4 md:basis-1/2 2xl:basis-1/7">
                                 <BlurFade key={movie.id} delay={0.25 + idx * 0.05} inView>
 
-                                    <div className="hover:scale-105  hover:duration-500 w-full ">
+                                    <div className="hover:scale-105  duration-500 w-full ">
 
                                         <Link className=" " href={`/movies/list/${movie.id}`}>
 

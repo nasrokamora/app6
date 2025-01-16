@@ -5,10 +5,10 @@ import blurImage from "../../public/image/blurImage.webp"
 
 
 const initialState = {
-    setCurentPage: null,
+    currentPageType: 'tv',
     currentTv: {
         image: "",
-        name: null,
+        name: "",
         firstAirDate: null,
         overview: null,
         voteAverage: null,
@@ -33,7 +33,10 @@ const initialState = {
 
 const mediaReducer = (state, action) => {
     switch (action.type) {
-        case "SET_CURENT_PAGE": return { ...state, setCurentPage: action.payload }
+        case "SET_CURENT_PAGE_TYPE": 
+        return { 
+            ...state, 
+            setCurentPageType: action.payload }
         case "SET_CURRENT_TV":
             return {
                 ...state,
@@ -84,6 +87,7 @@ export const MediaProvider = ({ children }) => {
     //function to update current tv
     const updateCurrentTv = useCallback(async (tv) => {
         dispatch({ type: "SET_LOADING", payload: true })
+        dispatch({ type: "SET_CURENT_PAGE_TYPE", payload: 'tv' })
 
         const newImage = tv.backdrop_path ? `${urlImageTv500}/${tv.backdrop_path}` : <ErrorPathImage />
         const img = new window.Image()
@@ -122,6 +126,8 @@ export const MediaProvider = ({ children }) => {
     //function to update current movie
     const updateCurretMovie = useCallback(async (movie) => {
         dispatch({ type: "SET_LOADING", payload: true })
+        dispatch({ type: "SET_CURENT_PAGE_TYPE", payload: 'movie' })
+        
 
 
         const newImage = movie.backdrop_path ? `${urlImageTv500}/${movie.backdrop_path}` : blurImage
@@ -159,6 +165,7 @@ export const MediaProvider = ({ children }) => {
 
 
     const fetchDetailsTvById = async (tvId) => {
+        console.log("Fetching TV details for ID:", tvId)
         try {
             const response = await fetch(`/api/getDetailsTv?tvId=${tvId}`, {
                 next: {

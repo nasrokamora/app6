@@ -69,9 +69,9 @@ export default function RootLayout({ children }) {
         />
 
         <Nav />
-        <ContextProvider>
+        <MediaProvider>
         {children}
-        </ContextProvider>
+        </MediaProvider>
         <Footer />
 
       </body>

@@ -18,7 +18,7 @@ import { useContextMedia } from "@/app/Context/ContextMedia"
 
 export default function BackGroundImageGenres({ dataResult }) {
 
-    const { state, updateCurrentMedia } = useContextMedia()
+    const { state, updateCurretMovie } = useMediaContext()
     const itemRef = useRef([])
 
     // handle background image
@@ -29,7 +29,7 @@ export default function BackGroundImageGenres({ dataResult }) {
                 if (entry.isIntersecting) {
                     const movieIndex = entry.target.getAttribute('data-index')
                     const movie = dataResult[movieIndex]
-                    updateCurrentMedia(movie)
+                    updateCurretMovie(movie)
                 }
             })
         },
@@ -48,13 +48,13 @@ export default function BackGroundImageGenres({ dataResult }) {
             observer.disconnect()
         }
 
-    }, [dataResult, updateCurrentMedia])
+    }, [dataResult, updateCurretMovie])
 
     return (
         <div className={`w-full  h-screen flex justify-center md:h-screen  overflow-hidden relative `}>
 
-            <Image src={state.currentMedia.image || blurImage}
-                alt={state.currentMedia.title || "image_cover_movie"}
+            <Image src={state.currentMovie.image || blurImage}
+                alt={state.currentMovie.title || "image_cover_movie"}
                 fill={true}
                 loading="lazy"
                 style={{ objectFit: "cover" }}
@@ -65,8 +65,8 @@ export default function BackGroundImageGenres({ dataResult }) {
 
             />
 
-            {state && state.currentMedia &&
-            state.currentMedia.isLoading && (
+            {state && state.currentMovie &&
+            state.currentMovie.isLoading && (
                 <div className="absolute inset-0 flex items-center justify-center bg-transparent bg-opacity-50">
                     <div className="w-12 h-12 border-4 border-t-transparent border-[#c8081e] rounded-full animate-spin"></div>
                 </div>
@@ -75,13 +75,13 @@ export default function BackGroundImageGenres({ dataResult }) {
             <div className="absolute bottom-10 left-10 top-28 inset-0 text-white">
                 <div>
 
-                    <h1 className="text-4xl font-bold">{state.currentMedia.title}</h1>
-                    <h2>Release Date: {state.currentMedia.releaseDate}</h2>
-                    <p>Popularity: {state.currentMedia.popularity}</p>
-                    <p>Vote Average: {state.currentMedia.voteAverage}</p>
+                    <h1 className="text-4xl font-bold">{state.currentMovie.title}</h1>
+                    <h2>Release Date: {state.currentMovie.releaseDate}</h2>
+                    <p>Popularity: {state.currentMovie.popularity}</p>
+                    <p>Vote Average: {state.currentMovie.voteAverage}</p>
                 </div>
                 <div>
-                    <h1> {state.currentMedia.detailsMovie.budget || "Unknown"} </h1>
+                    <h1> {state.currentMovie.detailsMovie.budget || "Unknown"} </h1>
                 </div>
             </div>
             <div className="mb-4 flex justify-center items-end">
@@ -95,7 +95,7 @@ export default function BackGroundImageGenres({ dataResult }) {
                                 <div
                                     className="cursor-pointer hover:-translate-y-2 transition-all duration-300 ease-in-out"
                                     onClick={() =>
-                                        updateCurrentMedia(movie)
+                                        updateCurretMovie(movie)
                                     }
                                 // onMouseEnter={() => {
                                 //     if (window.innerWidth > 1024) {

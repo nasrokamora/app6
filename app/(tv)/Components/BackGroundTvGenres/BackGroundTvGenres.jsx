@@ -70,13 +70,14 @@ const tvReducer = (state, action) => {
 
 export default function BackGroundTvGenres({ resultTvGenres }) {
 
-    const {state, dispatch} = useReducer(tvReducer, initialState)
+    const [state,dispatch] = useReducer(tvReducer, initialState)
     const itemTvRef = useRef([])
 
     const updateCurrentTv = useCallback(async(tv) => {
         dispatch({type: "SET_LOADING", payload: true})
+        
 
-        const newImage = tv.backdrop_path ? `${urlImageTv}/${tv.backdrop_path}` : <ErrorPathImage />
+        const newImage = tv.backdrop_path ? `${urlImageTv}${tv.backdrop_path}` : <ErrorPathImage />
         const img = new window.Image()
         img.src = newImage
         img.onload = async () => {
@@ -121,15 +122,16 @@ export default function BackGroundTvGenres({ resultTvGenres }) {
         }
     }
 
-
+    
 
 
     useEffect(() => {
+
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
                     const tvIndex = entry.target.getAttribute('data-tv')
-                    const dataTv = resultTvGenres[tvIndex]
+                    const dataTv = detailsTv[tvIndex]
                     updateCurrentTv(dataTv)
                 }
             })
@@ -145,12 +147,10 @@ export default function BackGroundTvGenres({ resultTvGenres }) {
             }
         })
 
-
-
         return () => {
             observer.disconnect()
         }
-    }, [resultTvGenres, updateCurrentTv])
+    }, [detailsTv, updateCurrentTv])
 
     const getStatusColor = (status) => {
         switch (status) {
@@ -164,7 +164,7 @@ export default function BackGroundTvGenres({ resultTvGenres }) {
                 return "text-white"
         }
     }
-    console.log(state)
+    // console.log(state)
 
     return (
         <div className="w-full  h-screen flex justify-center md:h-screen  overflow-hidden relative">
@@ -180,7 +180,7 @@ export default function BackGroundTvGenres({ resultTvGenres }) {
             <div className="   bg-black/70 w-fit h-fit absolute bottom-10 left-10 top-28 inset-0 text-white p-4 rounded-md">
                 <div className=" flex flex-col gap-3 justify-start ">
 
-                    <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight md:text-3xl md:text-center flex justify-start items-center gap-6  flex-wrap md:justify-center md:gap-1">{state?.currentTv?.name  || "N/A"} <span className="text-yellow-500 flex justify-start items-center gap-2"><FaStar className="" /> {(state.currentTv.voteAverage)}</span> <span className="text-yellow-500"> </span> </h1>
+                    <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight md:text-3xl md:text-center flex justify-start items-center gap-6  flex-wrap md:justify-center md:gap-1">{state.currentTv.name  || "N/A"} <span className="text-yellow-500 flex justify-start items-center gap-2"><FaStar className="" /> {(state.currentTv.voteAverage)}</span> <span className="text-yellow-500"> </span> </h1>
                     <h2 className="font-bold text-2xl text-zinc-200 border-l-2 border-yellow-500 pl-2 md:text-lg">First Air Date: {state.currentTv.firstAirDate}</h2>
 
                     <p className=" font-bold flex justify-start items-center gap-2 text-2xl border-l-2 border-green-500 pl-2 md:text-lg">Popularity: <span className="text-green-500">{(state.currentTv.popularity / 10).toFixed(0)} </span> <span><SiSoundcharts className="text-green-500" />
@@ -318,7 +318,7 @@ function ImageCoverGenres({ state }) {
             loading="lazy"
             style={{ objectFit: "cover" }}
             draggable={false}
-            className=" bg-center blur-lg "
+            className=" blur-lg "
             sizes="(max-width: 768px) 100vw"
 
         />

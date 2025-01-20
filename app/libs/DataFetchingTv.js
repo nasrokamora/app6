@@ -241,13 +241,12 @@ export async function getGenreTv(id) {
     try {
         const res = await fetch(`${process.env.TMDB_BASE_URL}/discover/tv?with_genres=${id}`,
             {
-                method: "GET",
                 headers:
                 {
                     Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
                     accept: "application/json"
                 },
-                cache: "no-store"
+                cache: 'force-cache'
             }
         )
         if (!res.ok) {

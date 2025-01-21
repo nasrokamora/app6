@@ -29,6 +29,7 @@ import { Button } from "@/components/ui/button"
 import { buttonVariants } from "@/components/ui/button"
 // import { useMediaContext } from "@/app/Context/MediaContext"
 // import { useContextMedia } from "@/app/Context/ContextMedia"
+import errorImage from '../../../../public/image/error_image.webp'
 
 
 const initialState = {
@@ -68,20 +69,20 @@ const tvReducer = (state, action) => {
 }
 
 
-export default function BackGroundTvGenres({ resultTvGenres }) {
+
+export default function BackGroundTvGenres({ resultTvGenres,detailsTv }) {
 
     const [state,dispatch] = useReducer(tvReducer, initialState)
     const itemTvRef = useRef([])
 
-    const updateCurrentTv = useCallback(async(tv) => {
+    const updateCurrentTv = useCallback((tv) => {
         dispatch({type: "SET_LOADING", payload: true})
         
 
-        const newImage = tv.backdrop_path ? `${urlImageTv}${tv.backdrop_path}` : <ErrorPathImage />
+        const newImage = tv.backdrop_path ? `${urlImageTv}${tv.backdrop_path}` : errorImage
         const img = new window.Image()
         img.src = newImage
-        img.onload = async () => {
-            const detailsTv = await fetchDetailsTvById(tv.id)
+        img.onload =  () => {
             dispatch({
                 type: "SET_CURRENT_TV",
                 payload: {
@@ -97,30 +98,49 @@ export default function BackGroundTvGenres({ resultTvGenres }) {
                 }
             })
         }
-
-    },[])
-
-    const fetchDetailsTvById = async (id) => {
-        console.log("Fetching TV details for ID:", id)
-        try {
-            const response = await fetch(`/api/getDetailsTv?tvId=${id}`, {
-                next: {
-                    revalidate: 7200
+        img.onerror = ()=>{
+            if (process.env.NODE_ENV !== "production") {
+                console.error("Failed to load image for tv genre")
+            }
+            dispatch({
+                type: "SET_LOADING",
+                payload: {
+                    isLoading: false
+                },
+            }),
+            dispatch({
+                type: "SET_CURRENT_TV",
+                payload:{
+                    image: errorImage,
+                    isLoading: false,
+                    detailsTv: detailsTv || {}
                 }
             })
-            if (!response.ok) {
-                throw new Error("Network response was not ok")
-            }
-            const data = await response.json()
-            // console.log(data)
-            return data
-        } catch (error) {
-            if (process.env.NODE_ENV !== "production") {
-                console.error(error, "Failed to fetch data DetailsTv");
-            }
-            return {}
         }
-    }
+        // console.log(detailsTv)
+    },[])
+
+    // const fetchDetailsTvById = async (id) => {
+    //     console.log("Fetching TV details for ID:", id)
+    //     try {
+    //         const response = await fetch(`/api/getDetailsTv?tvId=${id}`, {
+    //             next: {
+    //                 revalidate: 7200
+    //             }
+    //         })
+    //         if (!response.ok) {
+    //             throw new Error("Network response was not ok")
+    //         }
+    //         const data = await response.json()
+    //         // console.log(data)
+    //         return data
+    //     } catch (error) {
+    //         if (process.env.NODE_ENV !== "production") {
+    //             console.error(error, "Failed to fetch data DetailsTv");
+    //         }
+    //         return {}
+    //     }
+    // }
 
     
 
@@ -131,7 +151,7 @@ export default function BackGroundTvGenres({ resultTvGenres }) {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
                     const tvIndex = entry.target.getAttribute('data-tv')
-                    const dataTv = detailsTv[tvIndex]
+                    const dataTv = resultTvGenres[tvIndex]
                     updateCurrentTv(dataTv)
                 }
             })
@@ -150,16 +170,18 @@ export default function BackGroundTvGenres({ resultTvGenres }) {
         return () => {
             observer.disconnect()
         }
-    }, [detailsTv, updateCurrentTv])
+    }, [resultTvGenres, updateCurrentTv])
 
     const getStatusColor = (status) => {
         switch (status) {
             case "Returning Series":
                 return "text-green-500 underline decoration-green-500"
-            case "Ended":
+            case "Ended" || null || "Not available" || "Unknown" || "N/A" || "":
                 return "text-red-700 underline decoration-red-700"
             case "Canceled":
                 return "text-orange-500 underline decoration-orange-500"
+                case null:
+                    return "text-red-700"
             default:
                 return "text-white"
         }
@@ -204,13 +226,9 @@ export default function BackGroundTvGenres({ resultTvGenres }) {
 
                     {/* status */}
                     <div className="font-bold text-2xl  md:text-lg border-l-2 border-[#ff9900] pl-2">
-                        <h1 >Status: <span className={getStatusColor(state.currentTv.detailsTv.status)}>  {state.currentTv.detailsTv && state.currentTv.detailsTv.status ? (
-                            <span className={getStatusColor(state.currentTv.detailsTv.status)}>
-                                {state.currentTv.detailsTv.status}
+                        <h1 >Status: <span className={getStatusColor(state.currentTv?.detailsTv?.status)}>  {state.currentTv?.detailsTv?.status || null}
                             </span>
-                        ) : (
-                            "Loading..."
-                        )} </span> </h1>
+                        </h1>
                     </div>
                     {/* Number of episodes &  */}
                     <div>
@@ -312,7 +330,7 @@ function SeasonsDialog({ state }) {
 
 function ImageCoverGenres({ state }) {
     return (
-        <Image src={state.currentTv.image || blurImage}
+        <Image src={state.currentTv.image || errorImage}
             alt={state.currentTv.name || "image_tv_cover"}
             fill={true}
             loading="lazy"

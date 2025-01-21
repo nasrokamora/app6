@@ -35,6 +35,10 @@ import {
     AlertTitle,
 } from "@/components/ui/alert"
 import BackGroundTvGenres from "@/app/(tv)/Components/BackGroundTvGenres/BackGroundTvGenres";
+import { Suspense } from "react";
+
+
+
 
 
 export const metadata = {
@@ -49,49 +53,18 @@ export default async function GenrePageTv({ params }) {
     const { id } = params
     const genreData = await getGenreTv(id)
     const resultsGenre = genreData.results
-    // console.log(filterById);
-
-
+    const detailsTVById = resultsGenre.map(item => item.id)
+    const detailsTv = await getDetailsTv(detailsTVById)
+    // console.log(detailsTVById);
     return (
         <div className="h-screen w-full">
-            <BackGroundTvGenres resultTvGenres={resultsGenre} />
+            <Suspense fallback={<div>Loading TV Genres...</div>}>
+                <BackGroundTvGenres resultTvGenres={resultsGenre} detailsTv={detailsTv} />
+            </Suspense>
             <ToggleUp />
         </div>
     );
 }
 
-// async function DetailsTvGenre({ id }) {
-//     const data = await getVideosTv(id)
-//     const dataTrailer = data.results.slice(0, 1)
-
-
-//     return (
-//         <div className="">
-//             <div>
-//                 <h1>TV Show Trailer</h1>
-//             </div>
-//             {dataTrailer &&
-//                 dataTrailer.length > 0 ? (
-//                 dataTrailer.map((item) => (
-//                     <div className="relative md:w-1/2 w-full lg:w-1/2" key={item.id}>
-//                         <div>
-//                             <h1>{item.name}</h1>
-//                         </div>
-//                         <HeroVideoDialog
-//                             animationStyle="from-center"
-//                             className="dark:hidden block "
-//                             videoSrc={`https://www.youtube.com/embed/${item.key}`}
-//                             thumbnailSrc={`https://img.youtube.com/vi/${item.key}/0.jpg`}
-//                             thumbnailAlt={item.name}
-//                         />
-
-//                     </div>
-//                 ))
-//             ) : (
-//                 <div> no found</div>
-//             )}
-//         </div>
-//     )
-// }
 
 

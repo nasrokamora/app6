@@ -33,6 +33,9 @@ export async function getDetailsTv(id) {
                 headers: {
                     Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
                     accept: "application/json"
+                },
+                next: {
+                    revalidate: 3600  // 1 hour
                 }
             }
         )
@@ -222,7 +225,7 @@ export async function getGenreTvList() {
                     Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
                     accept: "application/json"
                 },
-                cache: "no-store"
+
             }
         )
         if (!res.ok) {
@@ -567,3 +570,5 @@ export async function getAllTrending() {
         return HandleErrors(error, "failed to fetch data TrailerSeason")
     }
 }
+
+

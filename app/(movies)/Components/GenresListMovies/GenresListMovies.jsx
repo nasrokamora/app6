@@ -29,7 +29,9 @@ async function ListGenre() {
         <div className=" flex justify-start items-center flex-col gap-2">
             <div className="">
 
-                {dataGenres.genres.length > 0 ? (
+                {dataGenres &&
+                dataGenres.genres &&
+                dataGenres.genres.length > 0 ? (
 
                     dataGenres.genres.map((genre) => (
                         <SheetClose asChild key={genre.id} className="m-1">

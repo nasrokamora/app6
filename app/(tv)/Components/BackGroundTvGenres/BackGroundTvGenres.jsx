@@ -120,31 +120,6 @@ export default function BackGroundTvGenres({ resultTvGenres,detailsTv }) {
         // console.log(detailsTv)
     },[])
 
-    // const fetchDetailsTvById = async (id) => {
-    //     console.log("Fetching TV details for ID:", id)
-    //     try {
-    //         const response = await fetch(`/api/getDetailsTv?tvId=${id}`, {
-    //             next: {
-    //                 revalidate: 7200
-    //             }
-    //         })
-    //         if (!response.ok) {
-    //             throw new Error("Network response was not ok")
-    //         }
-    //         const data = await response.json()
-    //         // console.log(data)
-    //         return data
-    //     } catch (error) {
-    //         if (process.env.NODE_ENV !== "production") {
-    //             console.error(error, "Failed to fetch data DetailsTv");
-    //         }
-    //         return {}
-    //     }
-    // }
-
-    
-
-
     useEffect(() => {
 
         const observer = new IntersectionObserver((entries) => {

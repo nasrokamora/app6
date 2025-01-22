@@ -20,7 +20,7 @@ const inter = Inter({
 
 
 export const metadata = {
-  title: "Magix Movies |",
+  title: "Magix Movies ",
   description: 
     "Magix Movies is a premium platform designed by Nasreddine Abdellouche, offering curated content for movie and series enthusiasts. Dive into detailed reviews, ratings, and recommendations tailored to your taste.",
   keywords: [
@@ -51,8 +51,6 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-
-
     <html lang="en" suppressHydrationWarning
       className="dark">
       <body className={cn("min-h-screen bg-background font-sans antialiased", inter.variable)}>
@@ -67,16 +65,10 @@ export default function RootLayout({ children }) {
           speed={200}
           shadow="0 0 10px #a632aa,0 0 5px #9c39ed"
         />
-
         <Nav />
-        <MediaProvider>
         {children}
-        </MediaProvider>
         <Footer />
-
       </body>
-
-
     </html>
 
   );

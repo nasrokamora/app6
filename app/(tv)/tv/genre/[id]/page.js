@@ -35,18 +35,12 @@ import {
     AlertTitle,
 } from "@/components/ui/alert"
 import BackGroundTvGenres from "@/app/(tv)/Components/BackGroundTvGenres/BackGroundTvGenres";
-import { Suspense } from "react";
-
-
-
 
 
 export const metadata = {
     title: 'Magix Movies | TV Genres',
     description: 'Explore a variety of TV genres and find your favorite shows.',
 }
-
-
 
 
 export default async function GenrePageTv({ params }) {
@@ -58,12 +52,10 @@ export default async function GenrePageTv({ params }) {
     // console.log(detailsTVById);
     return (
         <div className="h-screen w-full">
-            <Suspense fallback={<div>Loading TV Genres...</div>}>
                 <BackGroundTvGenres resultTvGenres={resultsGenre} detailsTv={detailsTv} />
-            </Suspense>
             <ToggleUp />
         </div>
-    );
+    )
 }
 
 

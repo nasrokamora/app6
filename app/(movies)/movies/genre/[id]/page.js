@@ -1,21 +1,4 @@
-import { getMoviesGenre, getMoviesGenreList } from "@/app/libs/DataFetching";
-import { Button } from "@/components/ui/button"
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
-import Image from "next/image"
-import {
-    Carousel,
-    CarouselContent,
-    CarouselItem,
-    CarouselNext,
-    CarouselPrevious,
-  } from "@/components/ui/carousel"
+import { getMoviesGenre, getMoviesGenreList, getMoviesId } from "@/app/libs/DataFetching";
 import BackGroundImageGenres from "@/app/(movies)/Components/BackGoundGenres/BackGroundImageGenres";
 
 
@@ -23,12 +6,12 @@ export default async function MoviesGenre({ params }) {
     const {id} = params
     const data = await getMoviesGenre(id)
     const dataResult = data.results
-    // console.log(dataResult)
-    const backdropImage = dataResult.flatMap((movie) => movie.backdrop_path)
-    const uniqueBackdropImage = [...new Set(backdropImage)]
+    const ids = dataResult.map(item => item.id)
+    const detailsMovies = await getMoviesId(ids)
+    console.log(detailsMovies)
     return(
         <div className=" w-full h-screen ">
-            <BackGroundImageGenres dataResult={dataResult} />
+            <BackGroundImageGenres dataResult={dataResult} detailsMovies={detailsMovies} />
                 
 
             {/* {uniqueBackdropImage.map((image,index) => (

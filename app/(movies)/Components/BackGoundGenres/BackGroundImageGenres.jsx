@@ -68,18 +68,18 @@ export default function BackGroundImageGenres({ dataResult, detailsMovies }) {
                 type: "SET_CURRENT_MOVIE",
                 payload: {
                     image: newImage,
-                    title: movie.title? movie.title : "Unknown",
-                    releaseDate: movie.release_date? movie.release_date : "Unknown",
-                    voteAverage: movie.vote_average? movie.vote_average : "Not Rated",
+                    title: movie.title ? movie.title : "Unknown",
+                    releaseDate: movie.release_date ? movie.release_date.slice(/-/g, "/") : "Unknown",
+                    voteAverage: movie.vote_average ? movie.vote_average.toFixed(1) : "Not Rated",
                     overview: movie.overview ? movie.overview : "No overview available",
-                    popularity: movie.popularity? movie.popularity : "Unknown",
-                    voteCount: movie.vote_count? movie.vote_count : "Unknown",
+                    popularity: movie.popularity ? movie.popularity : "Unknown",
+                    voteCount: movie.vote_count ? movie.vote_count : "Unknown",
                     detailsMovies: detailsMovies || {},
                     isLoading: false
                 }
             })
         }
-        img.onerror = ()=>{
+        img.onerror = () => {
             if (process.env.NODE_ENV !== "production") {
                 console.error("Failed to load image for movies genre")
             }
@@ -89,17 +89,17 @@ export default function BackGroundImageGenres({ dataResult, detailsMovies }) {
                     isLoading: false
                 },
             }),
-            dispatch({
-                type: "SET_CURRENT_MOVIE",
-                payload:{
-                    image: blurImage,
-                    isLoading: false,
-                    detailsTv: detailsMovies || {}
-                }
-            })
+                dispatch({
+                    type: "SET_CURRENT_MOVIE",
+                    payload: {
+                        image: blurImage,
+                        isLoading: false,
+                        detailsTv: detailsMovies || {}
+                    }
+                })
         }
 
-    },[])
+    }, [])
 
 
     // handle background image
@@ -131,6 +131,19 @@ export default function BackGroundImageGenres({ dataResult, detailsMovies }) {
 
     }, [dataResult, updateCurrentMovie])
 
+    const getStatusMovies = (status) => {
+        switch (status) {
+            case "Released":
+                return "text-green-500"
+            case "Upcoming":
+                return "text-orange-500"
+            case "In Production":
+                return "text-yellow-500"
+            default:
+                return "text-white"
+        }
+    }
+
     return (
         <div className={`w-full  h-screen flex justify-center md:h-screen  overflow-hidden relative  `}>
 
@@ -144,11 +157,11 @@ export default function BackGroundImageGenres({ dataResult, detailsMovies }) {
                 className=" bg-center animated-bg fade-in parallax"
                 quality={100}
                 priority
-                
+
                 sizes="(max-width: 768px) 100vw"
-                
-                />
-  
+
+            />
+
 
             {state && state.currentMovie &&
                 state.currentMovie.isLoading && (

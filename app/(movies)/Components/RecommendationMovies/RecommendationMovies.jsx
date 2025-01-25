@@ -19,8 +19,8 @@ export default function RecommendationMovies({ dataRecommend }) {
   return (
     <>
       <div className="w-full ">
-        <div className=" flex gap-2 items-center justify-start md:justify-center ">
-          <h1 className="  bg-gradient-to-r from-[#3500f4] via-[#ff0000] to-[#f400ab] text-transparent bg-clip-text bg-[length:200%] animate-gradient scroll-m-20 text-4xl md:text-center font-extrabold lg:text-3xl  p-4 drop-shadow-lg w-fit">
+        <div className=" flex gap-2 items-center justify-start md:justify-center  w-fit rounded-r-full bg-black/50 backdrop-blur border-r-2 border-r-[#3500f4]">
+          <h1 className=" border-l-2 border-[#3500f4]  bg-gradient-to-r from-[#3500f4] via-[#ff0000] to-[#f400ab] text-transparent bg-clip-text bg-[length:200%] animate-gradient  text-4xl md:text-center font-extrabold lg:text-3xl  p-4 drop-shadow-lg w-fit">
             Suggested Movies
           </h1>
           <MdOutlineMovieFilter className="text-[#ff0000] rotate-45 md:hidden " size={30} />

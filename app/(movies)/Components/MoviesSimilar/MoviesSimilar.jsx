@@ -14,7 +14,7 @@ export default function MoviesSimilar({ similar }) {
 
     return (
         <div className=" mt-8  ">
-            <div className="border-l-yellow-500 border-l-2 pl-2 flex justify-start items-center md:justify-center md:items-center w-full relative">
+            <div className="border-l-yellow-500 border-l-2 pl-2 flex justify-start items-center md:justify-center md:items-center w-fit rounded-r-full border-r-2  border-r-yellow-500  relative bg-black/50 backdrop-blur ">
                 <h1 className="  bg-gradient-to-r from-[#f4c700] via-[#00ccff] to-[#f4c700] bg-clip-text text-transparent animate-gradient bg-[length:200%_auto]    mt-10 scroll-m-20 p-4 md:text-wrap  text-4xl font-bold tracking-tight  first:mt-0">Similar Movies on Magix </h1>
 
             </div>

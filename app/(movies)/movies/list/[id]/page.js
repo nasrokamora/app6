@@ -231,7 +231,7 @@ export default async function DynamicMoviesList({ params }) {
             <div>
                 <NowPlayingMovies dataPlaying={dataPlaying.results} />
             </div>
-            <Separator className={cn('my-4 bg-red-700')} />
+            <Separator className={cn('my-4 bg-[#521285]')} />
 
             {/* section Similar movies */}
             <div>

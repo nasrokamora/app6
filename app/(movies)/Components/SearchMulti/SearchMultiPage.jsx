@@ -16,6 +16,7 @@ import {
 import { IoSearch } from "react-icons/io5";
 import { searchQuerySchema } from "@/app/libs/searchQuerySchema"
 import { z } from "zod"
+import ChatAi from "@/app/Components/Chat/ChatAi"
 
 async function SearchMulti(query) {
     try {
@@ -143,6 +144,7 @@ export default function SearchMultiPage() {
                                 }}
                             />
                             <Button type="submit" disabled={query.length < 3 || isLoading}>{isLoading ? "Loading..." : "Search"}</Button>
+                            <ChatAi />
                         </form>
                         {isLoading &&  <SearchLoading />}
                         {errorMessage && <p className="text-red-700 font-semibold pt-6 xl:text-xl 2xl:text-2xl ">{errorMessage}</p>}

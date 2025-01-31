@@ -1,57 +1,29 @@
-import { OpenAIStream, StreamingTextResponse } from "ai"
-import { Configuration, OpenAIApi } from "openai-edge"
+// import OpenAI from "openai";
 
-import { auth } from "@/auth"
-import { nanoid } from "@/lib/utils"
+// export const runtime = "edge"; // تحسين الأداء على Next.js
 
-export const runtime = "edge"
+// const openai = new OpenAI({
+//   apiKey: process.env.OPENAI_API_KEY,
+// });
 
-const configuration = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY
-})
+// export async function POST(req) {
+//   try {
+//     const { query } = await req.json();
 
-const openai = new OpenAIApi(configuration)
+//     const response = await openai.chat.completions.create({
+//       model: "gpt-3.5-turbo",
+//       messages: [{ role:"system", content: "You are a helpful assistant." }, , { role: "user", content: query }],
+//       stream: true, // ✅ تفعيل الـ Streaming
+//     });
 
-export async function POST(req) {
-  const json = await req.json()
-  const { messages, previewToken } = json
-
-  if (previewToken) {
-    configuration.apiKey = previewToken
-  }
-
-  const res = await openai.createChatCompletion({
-    model: "gpt-3.5-turbo", // "gpt-4"
-    messages,
-    temperature: 0.7,
-    stream: true
-  })
-
-  const stream = OpenAIStream(res, {
-    // This function is called when the API returns a response
-    async onCompletion(completion) {
-      const title = json.messages[0].content.substring(0, 100)
-      const id = json.id ?? nanoid()
-      const createdAt = Date.now()
-      const path = `/chat/${id}`
-      const payload = {
-        id,
-        title,
-        createdAt,
-        path,
-        messages: [
-          ...messages,
-          {
-            content: completion,
-            role: "assistant"
-          }
-        ]
-      }
-      console.log(payload)
-      // Here you can store the chat in database
-      // ...
-    }
-  })
-
-  return new StreamingTextResponse(stream)
-}
+//     // إرجاع الاستجابة كسلسلة من البيانات
+//     return new Response(response.toStream(), {
+//       headers: { "Content-Type": "text/event-stream" },
+//     });
+//   } catch (error) {
+//     return new Response(JSON.stringify({ error: error.message }), {
+//       status: 500,
+//       headers: { "Content-Type": "application/json" },
+//     });
+//   }
+// }

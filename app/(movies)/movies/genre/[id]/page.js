@@ -8,9 +8,9 @@ export default async function MoviesGenre({ params }) {
     const dataResult = data.results
     const ids = dataResult.map(item => item.id)
     const detailsMovies = await getMoviesId(ids)
-    console.log(detailsMovies)
+    // console.log(detailsMovies)
     return(
-        <div className=" w-full h-screen ">
+        <div className=" w-full h-auto ">
             <BackGroundImageGenres dataResult={dataResult} detailsMovies={detailsMovies} />
         </div>
     )

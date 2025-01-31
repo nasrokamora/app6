@@ -14,6 +14,7 @@ import blurImage from '../../../../public/image/blurImage.webp'
 import { useMediaContext } from "@/app/Context/MediaContext"
 import { urlImage } from "@/app/libs/DataFetching"
 import BlurFade from "@/components/ui/blur-fade"
+import { FaRegStar } from "react-icons/fa";
 
 const initialState = {
     currentMovie: {
@@ -69,7 +70,7 @@ export default function BackGroundImageGenres({ dataResult, detailsMovies }) {
                 payload: {
                     image: newImage,
                     title: movie.title ? movie.title : "Unknown",
-                    releaseDate: movie.release_date ? movie.release_date.slice(/-/g, "/") : "Unknown",
+                    releaseDate: movie.release_date.replace(/-/g, "/") ? movie.release_date.replace(/-/g, "/") : "Unknown",
                     voteAverage: movie.vote_average ? movie.vote_average.toFixed(1) : "Not Rated",
                     overview: movie.overview ? movie.overview : "No overview available",
                     popularity: movie.popularity ? movie.popularity : "Unknown",
@@ -154,7 +155,7 @@ export default function BackGroundImageGenres({ dataResult, detailsMovies }) {
                 loading="eager"
                 style={{ objectFit: "cover" }}
                 draggable={false}
-                className=" bg-center animated-bg fade-in parallax"
+                className=" bg-center animated-bg fade-in "
                 quality={100}
                 priority
 
@@ -170,13 +171,15 @@ export default function BackGroundImageGenres({ dataResult, detailsMovies }) {
                     </div>
                 )}
 
-            <div className="absolute bottom-10 left-10 top-28 inset-0 text-white">
+            <div className="absolute bottom-10 left-10 top-28 right-10 inset-0 text-white bg-black/60 backdrop-blur h-fit p-4 rounded-md ">
                 <div>
+                    <div className="flex items-center justify-center mb-8">
 
-                    <h1 className="text-4xl font-bold">{state.currentMovie.title}</h1>
-                    <h2>Release Date: {state.currentMovie.releaseDate}</h2>
-                    <p>Popularity: {state.currentMovie.popularity}</p>
-                    <p>Vote Average: {state.currentMovie.voteAverage}</p>
+                    <h1 className="text-4xl font-bold underline text-gray-300 decoration-red-600">{state.currentMovie.title}</h1>
+                    </div>
+                    <h2 className=" font-bold text-xl border-l-2 border-l-red-600 pl-2">Release Date <span className="font-semibold">{state.currentMovie.releaseDate}</span> </h2>
+                    <h3 className="font-bold text-xl border-l-2 border-l-red-600 pl-2">Popularity <span className="font-semibold">{state.currentMovie.popularity}</span> </h3>
+                    <h4 className=" flex justify-start items-center gap-2 font-bold text-xl border-l-2 border-l-red-600 pl-2 ">Vote Average <span className="font-extrabold flex justify-start items-center gap-1 text-yellow-500 ">{state.currentMovie.voteAverage}<FaRegStar className=" font-extrabold" /> </span> </h4>
                 </div>
                 <div>
                     <h1> {state.currentMovie?.detailsMovies?.budget || "Unknown"} </h1>

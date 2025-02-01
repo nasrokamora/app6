@@ -15,6 +15,10 @@ import { useMediaContext } from "@/app/Context/MediaContext"
 import { urlImage } from "@/app/libs/DataFetching"
 import BlurFade from "@/components/ui/blur-fade"
 import { FaRegStar } from "react-icons/fa";
+import Link from "next/link"
+
+
+
 
 const initialState = {
     currentMovie: {
@@ -173,18 +177,36 @@ export default function BackGroundImageGenres({ dataResult, detailsMovies }) {
 
             <div className="absolute bottom-10 left-10 top-28 right-10 inset-0 text-white bg-black/60 backdrop-blur h-fit p-4 rounded-md ">
                 <div>
-                    <div className="flex items-center justify-center mb-8">
+                    
+                    <div className="flex items-center justify-center mb-8 gap-4 md:gap-2 flex-wrap md:text-center">
 
-                    <h1 className="text-4xl font-bold underline text-gray-300 decoration-red-600">{state.currentMovie.title}</h1>
+                    <h1 className="text-4xl font-bold underline text-gray-300 decoration-red-600 md:text-2xl">{state.currentMovie.title}</h1>
+                    <span className="font-extrabold flex justify-start items-center gap-1 text-yellow-500  text-4xl md:text-2xl">{state.currentMovie.voteAverage}<FaRegStar className=" font-extrabold md:size-8" size={32} /> </span>
                     </div>
-                    <h2 className=" font-bold text-xl border-l-2 border-l-red-600 pl-2">Release Date <span className="font-semibold">{state.currentMovie.releaseDate}</span> </h2>
-                    <h3 className="font-bold text-xl border-l-2 border-l-red-600 pl-2">Popularity <span className="font-semibold">{state.currentMovie.popularity}</span> </h3>
-                    <h4 className=" flex justify-start items-center gap-2 font-bold text-xl border-l-2 border-l-red-600 pl-2 ">Vote Average <span className="font-extrabold flex justify-start items-center gap-1 text-yellow-500 ">{state.currentMovie.voteAverage}<FaRegStar className=" font-extrabold" /> </span> </h4>
+                    <h2 className=" text-gray-300 font-bold text-xl border-l-2 border-l-red-600 pl-2">Release Date <span className="text-white">{state.currentMovie.releaseDate}</span> </h2>
+                    <div className=" flex justify-start items-center gap-2 flex-wrap"> 
+                        <h2 className=" text-gray-300 font-bold text-xl border-l-2 border-l-red-600 pl-2">Genres</h2>
+                        {state.currentMovie.detailsMovies?.genres && (
+                                    state.currentMovie.detailsMovies.genres.map(genre =>(                                    
+                                    <Link href={`/movies/genre/${genre.id}`} className="badge bg-orange-600 text-black font-semibold hover:bg-red-600 hover:duration-300 md:active:scale-90 mt-2 md:mt-1" key={genre.id}>
+                                    {genre.name}
+                                </Link>                            
+
+                                )))}
+                    </div>
                 </div>
-                <div>
-                    <h1> {state.currentMovie?.detailsMovies?.budget || "Unknown"} </h1>
+                <div className="text-gray-300 font-bold text-xl border-l-2 border-l-red-600 pl-2">
+                    <h1 className=' '> status  <span className={`${getStatusMovies(state.currentMovie?.detailsMovies?.status || "Unknown")}`}>{state.currentMovie?.detailsMovies?.status || "Loading..."}</span></h1>
+                    <h1 className="flex justify-start items-center gap-1">Runtime <span className=" flex justify-start items-center gap-1">{state.currentMovie?.detailsMovies?.runtime} min
+                    </span></h1>
                 </div>
             </div>
+
+
+
+
+
+
             <div className="mb-4 flex justify-center items-end">
                 <Carousel className="w-full md:max-w-md  xl:max-w-6xl 2xl:max-w-full lg:max-w-4xl" opts={{ align: "start", loop: true }}>
                     <CarouselContent>

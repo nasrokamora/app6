@@ -207,10 +207,6 @@ export default function BackGroundImageGenres({ dataResult, detailsMovies }) {
                 </div>
 
 
-
-
-
-
             {/* carousel */}
             <BlurFade inView className="mb-4 flex justify-center items-end">
 

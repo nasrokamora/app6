@@ -9,7 +9,8 @@ import { IoLogoWhatsapp } from "react-icons/io";
 
 export default function Footer() {
     return (
-        <footer className="font-semibold relative footer-center gap-2 p-10  bg-[#09090b]  text-base-100 rounded z-40 w-full footer">
+        <footer className="font-semibold relative footer-center gap-2 p-10  bg-[#09090b] text-base-100 rounded z-40 w-full footer">
+
             <aside className="text-center text-base">
                 <p className="font-semibold text-base-content">
                     Copyright © 2024 - All rights reserved by Nas@Dev, Nasreddine Abdellouche

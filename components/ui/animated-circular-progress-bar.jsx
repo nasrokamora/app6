@@ -77,7 +77,7 @@ export default function AnimatedCircularProgressBar({
                 "calc(var(--stroke-percent) * var(--percent-to-px)) var(--circumference)",
 
               transition:
-                "var(--transition-length) ease var(--delay),stroke var(--transition-length) ease var(--delay)",
+                "var(--transition-length) ease delay-&lsqb,var(--delay)&rsqb,stroke duration-&lsqb,var(--transition-length)&rsqb ease var(--delay)",
 
               transitionProperty: "stroke-dasharray,transform",
 

@@ -24,11 +24,11 @@ import LoadingPaginationTv from "./LoadingPaginationTv";
 export default function PaginationTvShow() {
 
     
-    const [currentPage, setCurrentPage] = useState(1); // الحالة الحالية للصفحة
-    const [dataTv, setDataTv] = useState([]); // لتخزين بيانات المسلسلات
-    const [isLoading, setIsLoading] = useState(true); // حالة التحميل
-    const [error, setError] = useState(null); // لتخزين أي خطأ أثناء الجلب
-    const cacheRef = useRef({}); // لتخزين البيانات المجلوبة مؤقتًا
+    const [currentPage, setCurrentPage] = useState(1)
+    const [dataTv, setDataTv] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
+    const [error, setError] = useState(null)
+    const cacheRef = useRef({})
 
 
 

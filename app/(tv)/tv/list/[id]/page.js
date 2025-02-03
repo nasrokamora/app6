@@ -28,6 +28,7 @@ import { RiBarChartGroupedLine } from "react-icons/ri";
 import { MdOutlineTransitEnterexit } from "react-icons/md";
 import WordPullUp from "@/components/ui/word-pull-up";
 import BlurFade from "@/components/ui/blur-fade";
+import TextAnimate from "@/app/Animations/TextAurora/TextAnimate";
 
 
 
@@ -327,14 +328,14 @@ export default async function DynamicTvListPage({ params }) {
             {/* recommend section */}
             <div className="mt-4">
 
-                <h1 className="mt-4 text-3xl font-extrabold  scroll-m-20 lg:text-3xl bg-gradient-to-tr from-[#ff3300] mb-1 via-[#fbff00] to-[#0047ca] bg-clip-text text-transparent md:flex md:flex-wrap md:justify-center md:items-center md:gap-1">Your <span className="text-[##FE8FF5]">Turn</span> <span className="">to </span>Choose </h1>
+                <TextAnimate className={"bg-clip-text text-transparent bg-gradient-to-r from-[#0742a1] via-[#b60c00] to-[#0742a1] bg-[length:200%_auto] animate-gradient mt-4 mb-3 text-4xl md:text-3xl font-extrabold  scroll-m-20 lg:text-3xl"} > Your Turn to Choose </TextAnimate>
                 <RecommendationTv dataRecommend={dataRecommend.results} />
             </div>
             <Separator className="mt-4 bg-gradient-to-r from-[#0742a1] via-[#b60c00] to-[#0742a1]" />
             
             {/* trending  */}
             <div className="mt-8">
-                <h1 className=' bg-gradient-to-tr from-[#f2f2f2] mb-1 via-[#f96d00] to-[#f96d00]  bg-clip-text text-transparent 2xl:text-4xl  text-3xl font-extrabold tracking-tight scroll-m-20 lg:text-3xl '>Hot <span>on</span> <span className=" ">TV Now</span></h1>
+                <TextAnimate className=' bg-gradient-to-r from-[#2d132b] mb-1 via-[#f96d00] to-[#2d132b]  bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient  md:text-3xl  text-4xl font-extrabold tracking-tight scroll-m-20 lg:text-3xl '>Hot on Tv now</TextAnimate>
                 <TrendingTv dataTrending={dataTrending.results} />
             </div>
         </div>

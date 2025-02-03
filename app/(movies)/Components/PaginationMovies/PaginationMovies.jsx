@@ -28,6 +28,7 @@ import Link from 'next/link'
 import LoadingPaginationMovies from "./LoadingPaginationMovies";
 import { FaRegStar } from "react-icons/fa"
 import BlurFade from "@/components/ui/blur-fade"
+import { urlImage } from "@/app/libs/DataFetching";
 
 
 async function fetchPagination({cachRef,setDataMovies, setIsLoading, setError, page}) {
@@ -43,7 +44,7 @@ async function fetchPagination({cachRef,setDataMovies, setIsLoading, setError, p
         const response = await fetch(`/api/fetchTopRated?page=${page}`, )
 
         if (!response.ok) {
-            throw new Error(error, "failed fetch top rated movie")
+            throw new Error("failed fetch top rated movie")
         }
 
         const data = await response.json()
@@ -88,15 +89,10 @@ export default function PaginationMovies() {
                     <LoadingPaginationMovies />
                 </div>
             ) : error ? (
-                <div className="text-center">
-                    <h1>Error: {error}</h1>
-                    <button
-                        onClick={() => fetchPagination(currentPage)}
-                        className="px-4 py-2 mt-2 text-white bg-red-500 rounded text-xl"
-                    >
-                        Retry
-                    </button>
-                </div>
+                <ErrorMessageAndRetry error={error} fetchPagination={fetchPagination} currentPage={currentPage} cachRef={cachRef} 
+                setDataMovies={setDataMovies} 
+                setIsLoading={setIsLoading} 
+                setError={setError} />
             ) : (
                 <div className="w-full gap-2 flex justify-center md:mt-6  h-max">
                     <Carousel className="w-full max-w-5xl md:max-w-sm 2xl:max-w-full lg:max-w-4xl"
@@ -114,7 +110,7 @@ export default function PaginationMovies() {
                                                 <Image
                                                     src={
                                                         movie.poster_path
-                                                        ? `https://image.tmdb.org/t/p/original${movie.poster_path}`
+                                                        ? `${urlImage}${movie.poster_path}`
                                                         : no_image
                                                     }
                                                     alt="poster movies"
@@ -147,13 +143,7 @@ export default function PaginationMovies() {
                                     </CarouselItem>
                                 ))
                             ) : (
-                                <Alert variant="destructive">
-                                    <AlertCircle className="h-4 w-4" />
-                                    <AlertTitle>Oops !</AlertTitle>
-                                    <AlertDescription>
-                                        There are no movies in this page.
-                                    </AlertDescription>
-                                </Alert>
+                                <ErrorAlert />
                             )}
                         </CarouselContent>
                         <div className=" absolute left-[93%] md:left-[82%] md:top-[-2rem] top-[-2rem] ">
@@ -163,44 +153,74 @@ export default function PaginationMovies() {
                     </Carousel>
                 </div>
             )}
-
-            <Pagination className="mt-4">
-                <PaginationContent >
-                    <PaginationItem >
-                        <PaginationPrevious
-                            className='cursor-pointer font-semibold'
-                            onClick={() => handlePageChange(currentPage - 1)}
-                            disabled={currentPage === 1}
-                        />
-                    </PaginationItem>
-
-                    {[...Array(5).keys()].map((index) => (
-                        <PaginationItem key={index} className=" md:hidden">
-                            <PaginationLink
-                                className="cursor-pointer 2xl:text-xl font-semibold"
-                                onClick={() => handlePageChange(index + 1)}
-                                isActive={currentPage === index + 1}
-                            >
-                                {index + 1}
-                            </PaginationLink>
-                        </PaginationItem>
-                    ))}
-
-                    <PaginationItem >
-                        <PaginationEllipsis />
-                    </PaginationItem>
-                    <PaginationItem className="2xl:text-xl">
-                        <PaginationNext
-                            className="cursor-pointer font-semibold"
-                            onClick={() => handlePageChange(currentPage + 1)}
-                        />
-                    </PaginationItem>
-                </PaginationContent>
-            </Pagination>
-
-
+                {/* pagination movies */}
+                <PaginationPageMovies 
+                handlePageChange={handlePageChange} 
+                currentPage={currentPage} />
         </div>
     )
+}
 
 
+const PaginationPageMovies = ({handlePageChange, currentPage}) => {
+    return(
+        <Pagination className="mt-4">
+        <PaginationContent >
+            <PaginationItem >
+                <PaginationPrevious
+                    className='cursor-pointer font-semibold'
+                    onClick={() => handlePageChange(currentPage - 1)}
+                    disabled={currentPage === 1}
+                />
+            </PaginationItem>
+
+            {[...Array(5).keys()].map((index) => (
+                <PaginationItem key={index} className=" md:hidden">
+                    <PaginationLink
+                        className="cursor-pointer 2xl:text-xl font-semibold"
+                        onClick={() => handlePageChange(index + 1)}
+                        isActive={currentPage === index + 1}
+                    >
+                        {index + 1}
+                    </PaginationLink>
+                </PaginationItem>
+            ))}
+
+            <PaginationItem >
+                <PaginationEllipsis />
+            </PaginationItem>
+            <PaginationItem className="2xl:text-xl">
+                <PaginationNext
+                    className="cursor-pointer font-semibold"
+                    onClick={() => handlePageChange(currentPage + 1)}
+                />
+            </PaginationItem>
+        </PaginationContent>
+    </Pagination>
+    )
+}
+
+const ErrorAlert = () => {
+    return(
+        <Alert variant="destructive">
+        <AlertCircle className="h-4 w-4" />
+        <AlertTitle>Oops !</AlertTitle>
+        <AlertDescription>
+            There are no movies in this page.
+        </AlertDescription>
+    </Alert>
+    )
+}
+const ErrorMessageAndRetry = ({fetchPagination, error, currentPage, cachRef, setDataMovies, setIsLoading, setError}) => {
+    return(
+        <div className="text-center">
+        <h1>Error: {error}</h1>
+        <button
+            onClick={() => fetchPagination({cachRef,setDataMovies, setIsLoading, setError, page: currentPage})}
+            className="px-4 py-2 mt-2 text-white bg-red-500 rounded text-xl"
+        >
+            Retry
+        </button>
+    </div>
+    )
 }

@@ -19,10 +19,10 @@ export default async function MoviesGenre({ params }) {
     const detailsMovies = await getMoviesId(ids)
     // console.log(detailsMovies)
     return (
-        <div className=" w-full h-screen ">
-            <SkeletonBackGroundImageGenres >
+        <>
             <BackGroundImageGenres dataResult={dataResult} detailsMovies={detailsMovies} />
-            </SkeletonBackGroundImageGenres>
-        </div>
+            {/* <SkeletonBackGroundImageGenres >
+            </SkeletonBackGroundImageGenres> */}
+        </>
     )
 }

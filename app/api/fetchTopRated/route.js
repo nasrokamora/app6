@@ -11,9 +11,7 @@ export async function GET(req) {
                     Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
                     accept: "application/json"
                 },
-                next:{
-                    revalidate: 3600
-                }
+                cache:'force-cache'
             }
         )
         if (!response.ok) {

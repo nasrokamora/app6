@@ -21,7 +21,7 @@ import TransitionCom from "@/app/Animations/Transition/TransitionCom"
 
 export default async function MoviesCard({ dataDiscoverMovies }) {
     return (
-        <TransitionCom>
+        <>
 
         <div className="  w-full 2xl:text-2xl h-fit xl:h-[21rem]  ">
             <div className="flex items-center justify-center pt-2 md:mt-10">
@@ -76,6 +76,6 @@ export default async function MoviesCard({ dataDiscoverMovies }) {
 
 
         </div>
-                    </TransitionCom>
+                    </>
     )
 }

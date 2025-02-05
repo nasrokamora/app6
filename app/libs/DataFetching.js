@@ -16,15 +16,24 @@ const Options = {
 // getDiscoverMovies
 
 export async function getDiscoverMovies() {
-  return handleRedisCache("discoverMovies", 3600, async () => {
-    const res = await fetch(`${process.env.TMDB_BASE_URL}/discover/movie`, {
-      ...Options,
-      next: { revalidate: 3600 }
-    });
-    if (!res.ok) throw new Error('failed to fetch data discover');
-    return res.json();
-  });
+  return handleRedisCache('discoverMovies', 3600, async () => {
+    try {
+      const res = await fetch(`${process.env.TMDB_BASE_URL}/discover/movie`, {
+        ...Options,
+        next: {
+          revalidate: 3600
+        }
+      })
+      if (!res.ok) {
+        throw new Error('failed to fetch data discover')
+      }
+      return res.json()
+    } catch (error) {
+      return HandleErrors(error, "failed to fetch data discover")
+    }
+  })
 }
+
 
 
 // export async function getDiscoverMovies() {
@@ -40,20 +49,20 @@ export async function getDiscoverMovies() {
 //     }
 //     return res.json()
 //   })
-  // try {
-  //   const res = await fetch(`${process.env.TMDB_BASE_URL}/discover/movie`, {...Options,
-  //     next:{
-  //       revalidate: 3600
-  //     }
+// try {
+//   const res = await fetch(`${process.env.TMDB_BASE_URL}/discover/movie`, {...Options,
+//     next:{
+//       revalidate: 3600
+//     }
 
-  //   })
-  //   if (!res.ok) {
-  //     throw new Error('failed to fetch data discover')
-  //   }
-  //   return res.json()
-  // } catch (error) {
-  //     return HandleErrors(error, "failed to fetch data discover")
-  // }
+//   })
+//   if (!res.ok) {
+//     throw new Error('failed to fetch data discover')
+//   }
+//   return res.json()
+// } catch (error) {
+//     return HandleErrors(error, "failed to fetch data discover")
+// }
 
 
 //get Movies by id
@@ -92,7 +101,7 @@ export async function getReleasDateMovies({ id }) {
     }
     return response.json()
   } catch (error) {
-      return HandleErrors(error, "failed to fetch data release")
+    return HandleErrors(error, "failed to fetch data release")
   }
 }
 
@@ -210,7 +219,7 @@ export async function getReviewsMovies(id) {
   try {
     const res = await fetch(`${process.env.TMDB_BASE_URL}/movie/${id}/reviews`, {
       ...Options,
-        cache:'no-store'
+      cache: 'no-store'
     })
     if (!res.ok) {
       throw new Error('failed to fetch data Reviews Movies')
@@ -304,19 +313,33 @@ export async function getMoviesNowPlaying() {
 
 // Person Popular
 export async function getPersonPopular() {
+  return handleRedisCache("personPopular", 3600, async () => {
+    try {
+      const response = await fetch(`${process.env.TMDB_BASE_URL}/person/popular`, {
+        ...Options,
+        next: {
+          revalidate: 3600
+        }
+      })
+      return response.json()
+    } catch (error) {
+      return HandleErrors(error, "failed to fetch data Person")
+    }
+  })
 
-  try {
-    const response = await fetch(`${process.env.TMDB_BASE_URL}/person/popular`, {
-      ...Options,
-      next: {
-        revalidate: 3600
-      }
-    })
 
-    return response.json()
-  } catch (error) {
-    return HandleErrors(error, "failed to fetch data Person")
-  }
+  // try {
+  //   const response = await fetch(`${process.env.TMDB_BASE_URL}/person/popular`, {
+  //     ...Options,
+  //     next: {
+  //       revalidate: 3600
+  //     }
+  //   })
+
+  //   return response.json()
+  // } catch (error) {
+  //   return HandleErrors(error, "failed to fetch data Person")
+  // }
 }
 
 //get popular person page 2

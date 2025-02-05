@@ -25,12 +25,12 @@ export const metadata = {
 
 
 export default async function Home() {
-  const data = getDiscoverMovies()
+  const data = await getDiscoverMovies()
   const popularData = getPopularMovies()
   const tvData = getDiscoverTv()
-  const personPopular = getPersonPopular()
-
-  const [dataDiscoverMovies, dataPopular, dataTv, dataPersonPopular] = await Promise.all([data, popularData, tvData, personPopular]);
+  const personPopular = await getPersonPopular()
+const dataDiscoverMovies = data
+  const [ dataPopular, dataTv, dataPersonPopular] = await Promise.all([ popularData, tvData, personPopular]);
 
   return (
     <main className={`w-full h-auto text-white pt-24 `}>

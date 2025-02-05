@@ -1,21 +1,33 @@
+import { Redis } from "@upstash/redis";
 import { HandleErrors } from "./ErrorsHandler";
-import redis from "./radis";
+
+
+
+
+const redis = new Redis({
+    url: process.env.UPSTASH_REDIS_REST_URL,
+    token: process.env.UPSTASH_REDIS_REST_TOKEN,
+})
+
+if(!process.env.UPSTASH_REDIS_REST_URL || !process.env.UPSTASH_REDIS_REST_TOKEN){
+    console.error("missing redis env variables")
+}
 
 
 export async function handleRedisCache(cacheKey, ttl, fetchFunction){
 
     try {
-        const cacheData = await redis.get(cacheKey)
-        if(cacheData){
-            return JSON.parse(cacheData)
+        const response = await redis.get(cacheKey)
+        if(response && response.data){
+            return JSON.parse(response.data)
         }
     } catch (error) {
-        console.error(error, "failed to fetch data from redis")
+        console.error("failed to fetch data from redis",error)
     }
     const data = await fetchFunction()
 
     try {
-        await redis.setex(cacheKey, ttl, JSON.stringify(data))
+        await redis.setex(cacheKey, ttl, JSON.stringify(data), { ex:ttl})
     } catch (error) {
         HandleErrors(error, "failed to set data in redis")
     }

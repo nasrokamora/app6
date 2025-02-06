@@ -50,9 +50,11 @@ export default async function GenrePageTv({ params }) {
     const detailsTVById = resultsGenre.map(item => item.id)
     const detailsTv = await getDetailsTv(detailsTVById)
     // console.log(detailsTVById);
+    // console.log("Redis URL:", process.env.UPSTASH_REDIS_REST_URL);
+    // console.log("Redis Token:", process.env.UPSTASH_REDIS_REST_TOKEN);
     return (
         <div className="h-screen w-full">
-                <BackGroundTvGenres resultTvGenres={resultsGenre} detailsTv={detailsTv} />
+            <BackGroundTvGenres resultTvGenres={resultsGenre} detailsTv={detailsTv} />
             <ToggleUp />
         </div>
     )

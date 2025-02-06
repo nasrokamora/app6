@@ -1,5 +1,5 @@
 "use client"
-
+import { Loader2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import CardResults from "./CardResult"
@@ -143,7 +143,7 @@ export default function SearchMultiPage() {
                                     setErrorMessage('')
                                 }}
                             />
-                            <Button type="submit" disabled={query.length < 3 || isLoading}>{isLoading ? "Loading..." : "Search"}</Button>
+                            <Button type="submit" disabled={query.length < 3 || isLoading}>{isLoading ?<><Loader2 className="animate-spin" /> <h1>please wait</h1></> : "Search"}</Button>
                             {/* <ChatAi /> */}
                         </form>
                         {isLoading &&  <SearchLoading />}

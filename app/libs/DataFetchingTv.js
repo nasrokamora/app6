@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation"
 import { HandleErrors } from "./ErrorsHandler"
 import { cache } from "react"
+import { handleRedisCache } from "./handleRedisCache"
 
 export const urlImageTv = "https://image.tmdb.org/t/p/original"
 export const urlImageTv500 = "https://image.tmdb.org/t/p/w500"
@@ -241,6 +242,7 @@ export async function getGenreTvList() {
 //genres tv by id
 
 export async function getGenreTv(id) {
+    return handleRedisCache(`genreTv:${id}`, 86400, async () => {
     try {
         const res = await fetch(`${process.env.TMDB_BASE_URL}/discover/tv?with_genres=${id}`,
             {
@@ -259,6 +261,7 @@ export async function getGenreTv(id) {
     } catch (error) {
         return HandleErrors(error, "failed to fetch data GenreTv")
     }
+    })
 }
 
 /** end fetching  */

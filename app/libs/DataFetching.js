@@ -313,7 +313,7 @@ export async function getMoviesNowPlaying() {
 
 // Person Popular
 export async function getPersonPopular() {
-  return handleRedisCache("personPopular", 3600, async () => {
+  return handleRedisCache("personPopular", 7200, async () => {
     try {
       const response = await fetch(`${process.env.TMDB_BASE_URL}/person/popular`, {
         ...Options,

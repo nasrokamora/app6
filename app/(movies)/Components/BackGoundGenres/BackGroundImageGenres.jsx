@@ -1,5 +1,5 @@
 "use client"
-
+import { Button } from "@/components/ui/button"
 import { useCallback, useEffect, useReducer, useRef, useState } from "react"
 import Image from "next/image"
 import {
@@ -197,13 +197,13 @@ export default function BackGroundImageGenres({ dataResult, detailsMovies }) {
                     </div>
                     <div className="text-gray-300 font-bold text-xl border-l-2 border-l-red-600 pl-2">
                         <h1>overview:</h1>
-                        <p className=" italic font-semibold text-slate-200 text-base underline decoration-slate-700 ">{state.currentMovie.overview}</p>
+                        <p className=" italic font-semibold text-white text-base underline decoration-blue-500 ">{state.currentMovie.overview}</p>
                     </div>
                     <div className=" border-l-2 pt-2 border-l-red-600  font-bold text-xl  flex-col flex justify-start items-start text-gray-300 gap-1">
                         <div className=" pl-2 flex justify-start items-center gap-4">
                         <h1>link:</h1>
-                            <Link target="_blank" className=" hover:" href={`https://www.imdb.com/title/${state.currentMovie?.detailsMovies?.imdb_id}`}><LiaImdb size={42} /></Link>
-                            <span> <FiExternalLink size={35} /> </span>
+                            <Link target="_blank" className="text-[#e4b62f] hover:animate-pulse duration-500" href={`https://www.imdb.com/title/${state?.currentMovie?.detailsMovies?.imdb_id}`}><LiaImdb size={42} /></Link>
+                            <Link href={''} target="_blank"> <FiExternalLink size={35} /> </Link>
                             <span><TbListDetails size={35} /></span>
                         </div>
                     </div>
@@ -222,7 +222,7 @@ export default function BackGroundImageGenres({ dataResult, detailsMovies }) {
                                     ref={(el) => (itemRef.current[index] = el)}
                                 >
                                     <div
-                                        className="cursor-pointer hover:-translate-y-2 transition-all duration-300 ease-in-out"
+                                        className="cursor-pointer hover:-translate-y-2 transition-all duration-300 ease-in-out "
                                         onClick={() => updateCurrentMovie(movie)}>
                                         <Image
                                             src={`${urlImageTv}${movie.poster_path}`}

@@ -48,7 +48,7 @@ export default function CardResults({ movie, handleClick, handleClose }) {
                                                 priority
                                                 style={{ width: "auto" }}
                                                 className=" rounded-md "
-                                                loading="eager"
+                                                
                                             />
                                             <p className="font-semibold pt-1 ">{(movie.title || movie.name).length > 14 ? (movie.title || movie.name).slice(0, 14) + "..." : (movie.title || movie.name)}</p>
                                         </div>

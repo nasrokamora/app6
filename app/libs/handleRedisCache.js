@@ -9,9 +9,10 @@ const redis = new Redis({
     token: process.env.UPSTASH_REDIS_REST_TOKEN,
 })
 
-if(!process.env.UPSTASH_REDIS_REST_URL || !process.env.UPSTASH_REDIS_REST_TOKEN){
-    console.error("missing redis env variables")
-}
+// if(!process.env.UPSTASH_REDIS_REST_URL || !process.env.UPSTASH_REDIS_REST_TOKEN){
+//     console.error("missing redis env variables")
+// }
+// console.log("env radis", redis)
 
 
 export async function handleRedisCache(cacheKey, ttl, fetchFunction){
@@ -22,14 +23,14 @@ export async function handleRedisCache(cacheKey, ttl, fetchFunction){
             return JSON.parse(response.data)
         }
     } catch (error) {
-        console.error("failed to fetch data from redis",error)
+       return HandleErrors(error, "failed to get data from redis")
     }
     const data = await fetchFunction()
 
     try {
-        await redis.setex(cacheKey, ttl, JSON.stringify(data), { ex:ttl})
+        await redis.setex(cacheKey, ttl, JSON.stringify(data))
     } catch (error) {
-        HandleErrors(error, "failed to set data in redis")
+      return HandleErrors(error, "failed to set data in redis")
     }
     return data
 }

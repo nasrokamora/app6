@@ -555,6 +555,7 @@ export async function grtTrailerSeason(id, season_number) {
 }
 
 export async function getAllTrending() {
+    return handleRedisCache("trendingTvAll", 86400, async () => {
     try {
         const response = await fetch(`${process.env.TMDB_BASE_URL}/trending/tv/week?api_key=${process.env.NEXT_API_KEY}`, {
             headers: {
@@ -562,7 +563,7 @@ export async function getAllTrending() {
                 accept: "application/json"
             },
             next: {
-                revalidate: 3600
+                revalidate: 86400
             }
         })
         if (!response.ok) {
@@ -572,6 +573,7 @@ export async function getAllTrending() {
     } catch (error) {
         return HandleErrors(error, "failed to fetch data TrailerSeason")
     }
+    })
 }
 
 

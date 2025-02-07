@@ -15,6 +15,15 @@ This is a **work-in-progress** project for a Movies & TV Shows website, built wi
 - **TMDB API** for movies and TV shows data.
 - [Upstash Redis](https://upstash.com) (Serverless Redis Database & Caching)
 
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![ShadcnUI](https://img.shields.io/badge/ShadcnUI-000000?style=for-the-badge&logo=shadcn&logoColor=white)
+![Magic UI](https://img.shields.io/badge/Magic_UI-5A67D8?style=for-the-badge&logoColor=white)
+![KindeAuth](https://img.shields.io/badge/KindeAuth-2563EB?style=for-the-badge&logoColor=white)
+![Framer Motion](https://img.shields.io/badge/Framer_Motion-0055FF?style=for-the-badge&logo=framer&logoColor=white)
+![Zod](https://img.shields.io/badge/Zod-FA5252?style=for-the-badge&logoColor=white)
+![TMDB](https://img.shields.io/badge/TMDB-01B4E4?style=for-the-badge&logo=tmdb&logoColor=white)
+![Upstash Redis](https://img.shields.io/badge/Upstash_Redis-65A30D?style=for-the-badge&logo=redis&logoColor=white)
 ---
 
 ## 🚀 Features (Planned)

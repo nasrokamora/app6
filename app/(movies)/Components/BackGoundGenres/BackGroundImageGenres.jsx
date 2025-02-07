@@ -11,18 +11,12 @@ import {
 } from "@/components/ui/carousel"
 import { urlImageTv } from "@/app/libs/DataFetchingTv"
 import blurImage from '../../../../public/image/blurImage.webp'
-import { useMediaContext } from "@/app/Context/MediaContext"
 import { urlImage } from "@/app/libs/DataFetching"
 import BlurFade from "@/components/ui/blur-fade"
 import { FaRegStar } from "react-icons/fa";
 import Link from "next/link"
-import { SkeletonBackGroundImageGenres } from "./SkeletonGenres"
-import { LiaImdb } from "react-icons/lia";
-import { FiExternalLink } from "react-icons/fi";
-import { TbListDetails } from "react-icons/tb";
-import { buttonVariants } from "@/components/ui/button"
-import ToggleButton from "../ToggleButton/ToggleButton"
-import { Loader2 } from "lucide-react"
+
+
 
 const initialState = {
     currentMovie: {

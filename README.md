@@ -13,6 +13,18 @@ This is a **work-in-progress** project for a Movies & TV Shows website, built wi
 - [Framer Motion](https://motion.dev) (Animation Library)
 - [Zod](https://zod.dev)(Schema validation for Javascript)
 - **TMDB API** for movies and TV shows data.
+- [Upstash Redis](https://upstash.com) (Serverless Redis Database & Caching)
+
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![ShadcnUI](https://img.shields.io/badge/ShadcnUI-000000?style=for-the-badge&logo=shadcn&logoColor=white)
+![Magic UI](https://img.shields.io/badge/Magic_UI-5A67D8?style=for-the-badge&logoColor=white)
+![KindeAuth](https://img.shields.io/badge/KindeAuth-2563EB?style=for-the-badge&logoColor=white)
+![Framer Motion](https://img.shields.io/badge/Framer_Motion-0055FF?style=for-the-badge&logo=framer&logoColor=white)
+![Zod](https://img.shields.io/badge/Zod-FA5252?style=for-the-badge&logoColor=white)
+![TMDB](https://img.shields.io/badge/TMDB-01B4E4?style=for-the-badge&logo=tmdb&logoColor=white)
+![Upstash Redis](https://img.shields.io/badge/Upstash_Redis-65A30D?style=for-the-badge&logo=redis&logoColor=white)
+![Redis](https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white)
 
 ---
 
@@ -32,6 +44,8 @@ This is a **work-in-progress** project for a Movies & TV Shows website, built wi
 - Dynamic routing with **parallel routes**.
 - Beautiful and consistent UI built with **ShadcnUI** and **Magic UI**.
 - Smooth animations and transitions using **Framer Motion**.
+- **Upstash Redis** for:
+  - Caching API responses to improve performance
 
 ---
 
@@ -55,7 +69,7 @@ This project utilizes the [TMDB API](https://www.themoviedb.org/documentation/ap
 
 ## 👨‍💻 Developed By  
 
-This project is developed by **Nasreddine Abdellouche**, a proficient web developer with expertise in crafting high-performance websites and applications. He specializes in modern frameworks and technologies, including **Next.js**, **React.js**, **Tailwind CSS**, and the **MERN Stack**, among others. His work emphasizes scalability, responsiveness, and user-centric design, ensuring exceptional digital experiences.  
+This project is developed by **Nasreddine Abdellouche**, a skilled web developer passionate about building high-performance, scalable, and user-friendly applications. With expertise in **Next.js**, **React.js**, **Tailwind CSS**, and the **MERN Stack**, he specializes in crafting seamless digital experiences. His work focuses on performance optimization, responsive design, and modern development best practices to deliver exceptional web solutions.  
 
 - **GitHub:** [Nasreddine](https://github.com/nasrokamora)  
 - **Email:** nasreddine-ab@outlook.com

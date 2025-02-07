@@ -21,6 +21,8 @@ import GenresListMovies from "@/app/(movies)/Components/GenresListMovies/GenresL
 import NavMenu from "./NavBar";
 import Profile from "@/app/libs/Profile";
 import dynamic from "next/dynamic";
+import { Loader2 } from "lucide-react"
+import { Suspense } from "react";
 
 const SearchMultiPage = dynamic(() => import('@/app/(movies)/Components/SearchMulti/SearchMultiPage'), { ssr: false });
 const TrendingMovies = dynamic(() => import('@/app/(movies)/Components/TrendingMovies/TrendingMovies'), { ssr: false });
@@ -46,21 +48,21 @@ export default function NavBar() {
         <div className=" flex justify-between items-center gap-6">
           <Profile />
           {/* Genres */}
-          <div className="">
+          <div>
             <GenresListMovies />
           </div>
 
           {/* Search */}
-          <div className=" ">
+          <Suspense fallback={<Loader2 className="animate-spin" />}>
             <SearchMultiPage />
-          </div>
+          </Suspense>
           <div className=" ">
 
             <Sheet className="">
               <SheetTrigger><TfiMenu size={25} className="2xl:size-8 hover:text-red-700 hover:scale-110 duration-300" /></SheetTrigger>
               <SheetContent>
                 <SheetHeader>
-                  <SheetTitle>Magix Movies</SheetTitle>
+                  <SheetTitle className="bg-gradient-to-r from-[#b62323] via-[#9c40ff] to-[#b62323] bg-[length:200%_auto] bg-clip-text text-transparent animate-gradient">Magix Movies</SheetTitle>
                   <SheetDescription>The Best of Movies and TV</SheetDescription>
                 </SheetHeader>
                 <div className="w-full pt-5">

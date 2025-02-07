@@ -71,10 +71,7 @@ export default function TrendingMovies() {
             dispatch({type: "FETCH_ERROR", payload: error.message})
         }
     },[])
-    // // const response = await fetch(`/api/getTrendingMovies?page=${page}`)
-    // // const data = await response.json()
-    // // setDataTrendingMovies(data.results)
-    // // setIsLoading(false)
+
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -91,10 +88,7 @@ export default function TrendingMovies() {
     return (
         <div className=" w-full">
             <div className=" flex justify-start gap-2 items-center">
-                <h1 className="text-3xl md:text-xl font-bold">Trending on Magix </h1>
-                <Button variant="outline" onClick={() => dispatch({type: "INCREMENT_PAGE"})}>
-                    Next page
-                </Button>
+                <h1 className="text-3xl md:text-xl font-bold bg-gradient-to-r from-[#b6ac23] via-[#40b9ff] to-[#b6ac23] bg-[length:200%_auto] bg-clip-text text-transparent animate-gradient">Trending on Magix </h1>
             </div>
             <div className="flex justify-center w-full mt-6">
 
@@ -114,38 +108,6 @@ export default function TrendingMovies() {
                         ) : (
                             state.data.map((movie, index) => (
                                 <TrendingMoviesCard movie={movie} key={movie.id} />
-                                // <CarouselItem key={index} className="  basis-1/5 lg:basis-1/5 md:basis-1/2 2xl:basis-1/7">
-                                //     <Link className=" hover:grayscale hover:duration-500" href={`/movies/list/${movie.id}`}>
-
-                                //         <Image
-                                //             src={
-
-                                //                 `https://image.tmdb.org/t/p/original${movie.poster_path}`}
-                                //             alt={movie.title}
-                                //             width={180} height={180}
-                                //             className=" md:w-[200px]  lg:w-[200px] lg:h-[200px] xl:w-[150px] xl:h-[150px] 2xl:w-[250px] 2xl:h-[150px]  "
-                                //             style={{ height: "auto" }}
-
-                                //         />
-                                //         <p className=" font-bold flex justify-start  pt-2 mb-1">{movie.title.length > 14 ? movie.title.slice(0, 14) + "..." : movie.title}
-                                //         </p>
-                                //         <div className=" flex justify-between items-center w-full font-semibold">
-                                //             <p className=" fonb flex justify-between items-center w-full">
-                                //                 {new Date(movie.release_date).getFullYear()}
-                                //             </p>
-                                //             <div className=" ">
-                                //                 <div className=" space-x-1 flex justify-between items-center">
-                                //                     <FaRegStar className="text-[#FFC300]" />
-                                //                     <span className="">
-                                //                         {movie.vote_average.toFixed(1)}
-                                //                     </span>
-                                //                 </div>
-                                //             </div>
-
-                                //         </div>
-
-                                //     </Link>
-                                // </CarouselItem>
                             ))
                         )}
 

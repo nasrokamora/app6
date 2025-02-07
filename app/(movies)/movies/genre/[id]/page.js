@@ -1,6 +1,5 @@
-import SkeletonGenres, { SkeletonBackGroundImageGenres } from "@/app/(movies)/Components/BackGoundGenres/SkeletonGenres";
-import { getMoviesGenre, getMoviesGenreList, getMoviesId } from "@/app/libs/DataFetching";
-// import BackGroundImageGenres from "@/app/(movies)/Components/BackGoundGenres/BackGroundImageGenres";
+import SkeletonGenres from "@/app/(movies)/Components/BackGoundGenres/SkeletonGenres";
+import { getMoviesGenre, getMoviesId } from "@/app/libs/DataFetching";
 import dynamic from 'next/dynamic'
 import { Suspense } from "react";
 

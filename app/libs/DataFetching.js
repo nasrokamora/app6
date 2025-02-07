@@ -36,35 +36,6 @@ export async function getDiscoverMovies() {
 
 
 
-// export async function getDiscoverMovies() {
-//   return handleRedisCache("discoverMovies", 3600, async () => {
-//     const res = await fetch(`${process.env.TMDB_BASE_URL}/discover/movie`, {
-//       ...Options,
-//       next: {
-//         revalidate: 3600
-//       }
-//     })
-//     if (!res.ok) {
-//       throw new Error('failed to fetch data discover')
-//     }
-//     return res.json()
-//   })
-// try {
-//   const res = await fetch(`${process.env.TMDB_BASE_URL}/discover/movie`, {...Options,
-//     next:{
-//       revalidate: 3600
-//     }
-
-//   })
-//   if (!res.ok) {
-//     throw new Error('failed to fetch data discover')
-//   }
-//   return res.json()
-// } catch (error) {
-//     return HandleErrors(error, "failed to fetch data discover")
-// }
-
-
 //get Movies by id
 export async function getMoviesId(id) {
   try {

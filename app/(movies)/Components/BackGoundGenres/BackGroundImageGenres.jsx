@@ -205,9 +205,10 @@ export default function BackGroundImageGenres({ dataResult, detailsMovies }) {
                         <p className=" italic font-semibold text-white text-base underline decoration-blue-500 ">{state.currentMovie?.overview?.slice(0, 250)}</p>
                     </div>
                     <div className=" border-l-2 pt-2 border-l-red-600  font-bold text-xl  flex-col flex justify-start items-start text-gray-300 gap-1">
-                        <div className=" pl-2 flex justify-start items-center gap-4">
-                        <h1>link:</h1>
-                        <Link className={buttonVariants({ variant: "outline" })} href={`/movies/list/${state.currentMovie.id}`} >Click here</Link>
+                        <div className=" pl-2 ">
+                            <Button asChild variant='secondary'>
+                        <Link className="" href={`/movies/list/${state.currentMovie.id}`} >More details</Link>
+                            </Button>
 
                         </div>
                     </div>
@@ -233,8 +234,7 @@ export default function BackGroundImageGenres({ dataResult, detailsMovies }) {
                                             alt="movie poster"
                                             width={150}
                                             height={150}
-                                            priority={true}
-                                            loading="eager"
+                                            priority
                                             style={{ 
                                                 width: "auto",
                                                 height:"auto", 
@@ -265,7 +265,6 @@ const ImageMoviesCover = ({ state, blurImage }) => {
             <Image src={state.currentMovie.image || blurImage}
                 alt={state.currentMovie.title || "image_cover_movie"}
                 fill={true}
-                loading="eager"
                 style={{ objectFit: "cover" }}
                 draggable={false}
                 className={`bg-center animated-bg `}

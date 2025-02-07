@@ -16,7 +16,7 @@ import {
 import { IoSearch } from "react-icons/io5";
 import { searchQuerySchema } from "@/app/libs/searchQuerySchema"
 import { z } from "zod"
-import ChatAi from "@/app/Components/Chat/ChatAi"
+
 
 async function SearchMulti(query) {
     try {

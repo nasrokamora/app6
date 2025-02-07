@@ -44,6 +44,8 @@ This is a **work-in-progress** project for a Movies & TV Shows website, built wi
 - Dynamic routing with **parallel routes**.
 - Beautiful and consistent UI built with **ShadcnUI** and **Magic UI**.
 - Smooth animations and transitions using **Framer Motion**.
+- **Upstash Redis** for:
+  - Caching API responses to improve performance
 
 ---
 

@@ -22,7 +22,7 @@ import Link from "next/link"
 import { TbExternalLink } from "react-icons/tb";
 import MoviesSimilar from "@/app/(movies)/Components/MoviesSimilar/MoviesSimilar"
 import MoviesCredits from "@/app/(movies)/Components/MoviesCredits/MoviesCredits"
-import ToggleButton from "@/app/(movies)/Components/ToggleButton/ToggleButton"
+
 import no_image from '../../../../../public/image/no_image4.webp'
 import NowPlayingMovies from "@/app/(movies)/Components/NowPlaying/NowPlayingMovies"
 import TrailerMovies from "@/app/(movies)/Components/TrailerMovies/TrailerMovies"
@@ -34,8 +34,10 @@ import { FaFacebook, FaImdb } from "react-icons/fa"
 import { BsTwitterX } from "react-icons/bs"
 import { SlSocialInstagram } from "react-icons/sl"
 import ErrorMessage from "@/app/(tv)/Components/Error/ErrorMessage"
+import dynamic from "next/dynamic"
 
 
+const ToggleButton = dynamic(() => import('@/app/(movies)/Components/ToggleButton/ToggleButton'), { ssr: false })
 
 
 export async function generateMetadata({ params }) {

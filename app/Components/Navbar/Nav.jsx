@@ -12,17 +12,18 @@ import { Button } from "@/components/ui/button"
 import { TfiMenu } from "react-icons/tfi";
 import Link from "next/link"
 import { DataLink } from "@/app/libs/DataLink";
-import TrendingMovies from "@/app/(movies)/Components/TrendingMovies/TrendingMovies";
-import SearchMultiPage from "@/app/(movies)/Components/SearchMulti/SearchMultiPage";
+// import TrendingMovies from "@/app/(movies)/Components/TrendingMovies/TrendingMovies";
+// import SearchMultiPage from "@/app/(movies)/Components/SearchMulti/SearchMultiPage";
 import LogoIcon from '../../../public/icon/Icon.png'
 import Image from "next/image"
 import { cn } from "@/lib/utils";
 import GenresListMovies from "@/app/(movies)/Components/GenresListMovies/GenresListMovies";
 import NavMenu from "./NavBar";
 import Profile from "@/app/libs/Profile";
+import dynamic from "next/dynamic";
 
-
-
+const SearchMultiPage = dynamic(() => import('@/app/(movies)/Components/SearchMulti/SearchMultiPage'), { ssr: false });
+const TrendingMovies = dynamic(() => import('@/app/(movies)/Components/TrendingMovies/TrendingMovies'), { ssr: false });
 export default function NavBar() {
 
   return (

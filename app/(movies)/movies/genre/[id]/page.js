@@ -1,15 +1,15 @@
-import { SkeletonBackGroundImageGenres } from "@/app/(movies)/Components/BackGoundGenres/SkeletonGenres";
+import SkeletonGenres, { SkeletonBackGroundImageGenres } from "@/app/(movies)/Components/BackGoundGenres/SkeletonGenres";
 import { getMoviesGenre, getMoviesGenreList, getMoviesId } from "@/app/libs/DataFetching";
 // import BackGroundImageGenres from "@/app/(movies)/Components/BackGoundGenres/BackGroundImageGenres";
 import dynamic from 'next/dynamic'
 import { Suspense } from "react";
 
-const BackGroundImageGenres = dynamic(() => 
-    import("@/app/(movies)/Components/BackGoundGenres/BackGroundImageGenres"), 
-{ 
-    ssr: false 
+const BackGroundImageGenres = dynamic(() =>
+    import("@/app/(movies)/Components/BackGoundGenres/BackGroundImageGenres"),
+    {
+        ssr: false
 
-})
+    })
 
 export default async function MoviesGenre({ params }) {
     const { id } = params
@@ -19,10 +19,9 @@ export default async function MoviesGenre({ params }) {
     const detailsMovies = await getMoviesId(ids)
     // console.log(detailsMovies)
     return (
-        <>
-            <BackGroundImageGenres dataResult={dataResult} detailsMovies={detailsMovies} />
-            {/* <SkeletonBackGroundImageGenres >
-            </SkeletonBackGroundImageGenres> */}
-        </>
+        <Suspense fallback={<SkeletonGenres />}>
+                <BackGroundImageGenres dataResult={dataResult} detailsMovies={detailsMovies} />
+  
+        </Suspense>
     )
 }

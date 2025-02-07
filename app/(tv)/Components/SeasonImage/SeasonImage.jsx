@@ -6,10 +6,8 @@ import {
   AlertTitle,
 } from "@/components/ui/alert"
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
-import { urlImageTv } from "@/app/libs/DataFetchingTv";
 
-
-
+const urlImageTv = process.env.TMDB_IMAGES_ORIGINAL_URL
 
 export default function SeasonImage({ seasonImage }) {
     return (
@@ -24,7 +22,7 @@ export default function SeasonImage({ seasonImage }) {
                                 width={100} 
                                 height={100} 
                                 className=" rounded-md"
-                                priority
+                                loading="lazy"
                                 style={{ width: "auto" }}
                                 draggable={false}
                                 alt={image.file_path} />

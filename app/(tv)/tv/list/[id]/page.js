@@ -76,11 +76,11 @@ export default async function DynamicTvListPage({ params }) {
                         priority
                         width={400}
                         height={400}
-                        stryle={{ height: "auto" }}
+                        stryle={{ height: "auto", width:"auto" }}
                         className="rounded-md  md:w-[200px] lg:w-[350px]  "
                         draggable="false"
                         alt={data.name ? data.name : data.original_name || <h1 className="">Image Tv</h1>}
-                        loading="eager"
+                        
                     />
                     {/* trailer */}
                     <div className="flex items-center justify-center w-full gap-6 mt-6 ">

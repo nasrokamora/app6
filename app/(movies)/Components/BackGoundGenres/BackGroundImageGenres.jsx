@@ -20,9 +20,13 @@ import { SkeletonBackGroundImageGenres } from "./SkeletonGenres"
 import { LiaImdb } from "react-icons/lia";
 import { FiExternalLink } from "react-icons/fi";
 import { TbListDetails } from "react-icons/tb";
+import { buttonVariants } from "@/components/ui/button"
+import ToggleButton from "../ToggleButton/ToggleButton"
+import { Loader2 } from "lucide-react"
 
 const initialState = {
     currentMovie: {
+        id: null,
         image: "",
         title: "",
         releaseDate: null,
@@ -75,6 +79,7 @@ export default function BackGroundImageGenres({ dataResult, detailsMovies }) {
             dispatch({
                 type: "SET_CURRENT_MOVIE",
                 payload: {
+                    id: movie.id ? movie.id : "Unknown",
                     image: newImage,
                     title: movie.title ? movie.title : "Unknown",
                     releaseDate: movie.release_date.replace(/-/g, "/") ? movie.release_date.replace(/-/g, "/") : "Unknown",
@@ -155,9 +160,9 @@ export default function BackGroundImageGenres({ dataResult, detailsMovies }) {
 
     return (
         <main className="w-full h-screen md:h-auto ">
-            <ImageMoviesCover state={state} blurImage={blurImage} />
-
-            <div className={`   h-screen w-full md:h-auto relative`}>
+                <ImageMoviesCover state={state} blurImage={blurImage} />
+                <div className={`   h-screen w-full md:h-auto relative`}>
+            
 
 
                 {/* loading */}
@@ -172,7 +177,7 @@ export default function BackGroundImageGenres({ dataResult, detailsMovies }) {
                 {/* card details movie */}
 
 
-                <div className=" md:pt-28 pt-28  flex justify-start items-start flex-col relative   text-white bg-black/60 backdrop-blur  mb-4 p-4 rounded-md md:h-[80vh] h-fit overflow-hidden">
+                <div className=" md:pt-28 pt-28  flex justify-start items-start flex-col relative   text-white bg-black/60 backdrop-blur  mb-4 p-4 rounded-md md:h-[75vh] h-fit overflow-hidden">
 
                     <div className="flex items-center justify-center mb-8 gap-4 md:gap-2 flex-wrap md:text-center">
                         <h1 className="text-4xl font-bold underline text-gray-300 decoration-red-600 md:text-2xl">{state.currentMovie.title}</h1>
@@ -197,30 +202,29 @@ export default function BackGroundImageGenres({ dataResult, detailsMovies }) {
                     </div>
                     <div className="text-gray-300 font-bold text-xl border-l-2 border-l-red-600 pl-2">
                         <h1>overview:</h1>
-                        <p className=" italic font-semibold text-white text-base underline decoration-blue-500 ">{state.currentMovie.overview}</p>
+                        <p className=" italic font-semibold text-white text-base underline decoration-blue-500 ">{state.currentMovie?.overview?.slice(0, 250)}</p>
                     </div>
                     <div className=" border-l-2 pt-2 border-l-red-600  font-bold text-xl  flex-col flex justify-start items-start text-gray-300 gap-1">
                         <div className=" pl-2 flex justify-start items-center gap-4">
                         <h1>link:</h1>
-                            <Link target="_blank" className="text-[#e4b62f] hover:animate-pulse duration-500" href={`https://www.imdb.com/title/${state?.currentMovie?.detailsMovies?.imdb_id}`}><LiaImdb size={42} /></Link>
-                            <Link href={''} target="_blank"> <FiExternalLink size={35} /> </Link>
-                            <span><TbListDetails size={35} /></span>
+                        <Link className={buttonVariants({ variant: "outline" })} href={`/movies/list/${state.currentMovie.id}`} >Click here</Link>
+
                         </div>
                     </div>
                 </div>
 
 
                 {/* carousel */}
-                <BlurFade inView className="pt-40  h-fit relative flex justify-center items-center w-full">
+                <BlurFade inView className="pt-4  h-fit relative flex justify-center items-center w-full">
 
 
                     <Carousel className="w-full md:max-w-md  xl:max-w-6xl 2xl:max-w-full lg:max-w-4xl" opts={{ align: "start", loop: true }}>
                         <CarouselContent>
                             {dataResult.map((movie, index) => (
                                 <CarouselItem className="basis-1/8 xl:basis-1/6 md:basis-1/3 lg:basis-1/5 2xl:basis-1/6" key={movie.id}
-                                    data-index={index}
+                                data-index={index}
                                     ref={(el) => (itemRef.current[index] = el)}
-                                >
+                                    >
                                     <div
                                         className="cursor-pointer hover:-translate-y-2 transition-all duration-300 ease-in-out "
                                         onClick={() => updateCurrentMovie(movie)}>
@@ -231,8 +235,11 @@ export default function BackGroundImageGenres({ dataResult, detailsMovies }) {
                                             height={150}
                                             priority={true}
                                             loading="eager"
-                                            style={{ width: "auto", borderRadius: '2px' }}
-                                        />
+                                            style={{ 
+                                                width: "auto",
+                                                height:"auto", 
+                                                borderRadius: '2px' }}
+                                            />
                                     </div>
                                 </CarouselItem>
                             ))}
@@ -243,7 +250,9 @@ export default function BackGroundImageGenres({ dataResult, detailsMovies }) {
                         </div>
                     </Carousel>
                 </BlurFade>
+                        
             </div>
+            <ToggleButton />
         </main>
     )
 }

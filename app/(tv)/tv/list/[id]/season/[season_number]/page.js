@@ -21,15 +21,16 @@ import ToggleButton from "@/app/(movies)/Components/ToggleButton/ToggleButton"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { AlertCircle } from "lucide-react"
 import SeasonImage from "@/app/(tv)/Components/SeasonImage/SeasonImage"
-import BlurIn from "@/components/ui/blur-in"
 import Particles from "@/components/ui/particles"
-import ExternalIdsSeason from "@/app/(tv)/Components/ExternalIdsSeason/ExternalIdsSeason"
 import CreditSeasonTv from "@/app/(tv)/Components/CreditSeasonTv/CreditSeasonTv"
 import Link from "next/link"
 import { ChevronRight } from "lucide-react";
 import no_image from "../../../../../../../public/image/no_image4.webp"
-import TrailerSeason from "@/app/(tv)/Components/TrailerTV/TrailerSeason/TrailerSeason"
 import broken_image from '../../../../../../../public/image/broken-image.png'
+import dynamic from "next/dynamic"
+
+const BlurIn = dynamic(() => import("@/components/ui/blur-in"), { ssr: false })
+
 
 export async function generateMetadata({ params }) {
     const { season_number, id } = params
@@ -128,7 +129,7 @@ export default async function SeasonDetailTvSeries({ params }) {
                     <div className="flex gap-2 w-full">
 
                         {dataSeason.episodes &&
-                        dataSeason.episodes.length === 0 ?
+                            dataSeason.episodes.length === 0 ?
                             <Alert variant="destructive">
                                 <AlertCircle className="h-4 w-4" />
                                 <AlertTitle>Oops !</AlertTitle>

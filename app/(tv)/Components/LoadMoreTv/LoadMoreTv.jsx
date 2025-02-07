@@ -5,8 +5,9 @@ import { useEffect, useState } from "react"
 import InfiniteScroll from 'react-infinite-scroll-component'
 import Image from "next/image"
 import Link from "next/link"
-import { urlImageTv } from "@/app/libs/DataFetchingTv"
 import {motion} from "framer-motion"
+import no_image from '../../../../public/image/no_image4.webp'
+import { urlImageTv } from "@/app/libs/DataFetchingTv"
 
 
 async function getTvWithPage(page) {
@@ -66,7 +67,7 @@ export default function LoadMoreTv() {
             loader={<h4 className="">Loading...</h4>}
             endMessage={<p className="text-2xl text-center">No more Tv series to show</p>}
         >
-            <div className="flex items-center justify-center mt-8 text-3xl font-semibold ">
+            <div className="flex items-center justify-center mt-20 text-3xl font-bold bg-gradient-to-r from-blue-500 via-[#9c40ff] to-blue-500 bg-[length:200%_auto] bg-clip-text text-transparent animate-gradient">
                 <h1>Explore all Tv series on Magix</h1>
             </div>
             <div className="grid grid-cols-6 gap-8 p-8 md:grid-cols-3 lg:grid-cols-5">
@@ -75,13 +76,14 @@ export default function LoadMoreTv() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.2, delay: 0.2, ease: "easeInOut" }}
+                    key={tv.id + index}
                     >
 
-                        <div key={`${tv.id}-${index}`} className="relative flex flex-col items-center justify-center overflow-hidden hover:scale-110 hover:duration-300">
+                        <div key={`${tv.id} + ${index}`} className="relative flex flex-col items-center justify-center overflow-hidden hover:scale-110 hover:duration-300">
 
                             <Link href={`/tv/list/${tv.id}`} >
 
-                                <Image src={`${urlImageTv}${tv.poster_path}`}
+                                <Image src={tv.poster_path ? `${urlImageTv}${tv.poster_path}` : no_image}
                                     alt={tv.name}
                                     width={200}
                                     height={150}

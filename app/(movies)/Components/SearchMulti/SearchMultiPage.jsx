@@ -77,17 +77,12 @@ export default function SearchMultiPage() {
         }
 
         const data = await SearchMulti(query)
-        if (data.error) {
-            if (process.env.NODE_ENV === "production") {
-                setErrorMessage("An unexpected error occurred, please try again later.")
-            }else {
-                setErrorMessage(data.message)
-            }
+        if(data.error){
+            setErrorMessage("The search term contains invalid characters.")
             setIsLoading(false)
             return
+            
         }
-
-
         setMovies(data.results)
         if (data.results.length === 0) {
             setErrorMessage('No results found. Please try a different search term.')
@@ -109,6 +104,16 @@ export default function SearchMultiPage() {
         setSelectedMovie(null)
         setMovies([])
     }, [])
+
+    const ColorChangeInError = (errorMessage) => {
+        switch (errorMessage) {
+            case "The search term contains forbidden content.": return "text-red-700"
+            case "The search term contains invalid characters.": return "text-orange-700"
+            case "No results found. Please try a different search term.": return "text-yellow-500"
+            default: return "text-red-700"
+        }
+    }
+
 
     function SearchLoading(){
         return (
@@ -147,7 +152,7 @@ export default function SearchMultiPage() {
                             {/* <ChatAi /> */}
                         </form>
                         {isLoading &&  <SearchLoading />}
-                        {errorMessage && <p className="text-red-700 font-semibold pt-6 xl:text-xl 2xl:text-2xl ">{errorMessage}</p>}
+                        {errorMessage && <p className={`font-semibold pt-6 xl:text-xl 2xl:text-2xl ${ColorChangeInError(errorMessage)}`}>{errorMessage}</p>}
                     </main>
 
                     <CardResults movie={movies} handleClick={handleClick} handleClose={handleClose} isLoading={isLoading} />

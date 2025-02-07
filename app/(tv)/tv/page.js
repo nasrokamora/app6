@@ -6,7 +6,7 @@ export const metadata = {
     discription:"explore tv series on magix movies"
 
 };
-const LoadMoreTv = dynamic(() => import('@/app/(tv)/Components/LoadMoreTv/LoadMoreTv'), { ssr: true });
+const LoadMoreTv = dynamic(() => import('@/app/(tv)/Components/LoadMoreTv/LoadMoreTv'), { ssr: false });
 
 export default function Tv() {
 

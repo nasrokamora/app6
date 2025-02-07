@@ -1,12 +1,16 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import InfiniteScroll from 'react-infinite-scroll-component'
 import Image from "next/image"
 import Link from "next/link"
+import dynamic from "next/dynamic"
+import ErrorImage from "../../../public/image/errorImage.webp"
 import { urlImage } from "@/app/libs/DataFetching"
-import BlurFade from "@/components/ui/blur-fade"
-// import styles from '../../styles/LoadingAnimate.module.css'
+
+const BlurFade = dynamic(() => import("@/components/ui/blur-fade"), { ssr: false })
+
+
 async function getMoviesWithPage(page) {
     const response = await fetch(`/api/getMoviesWithPage?page=${page}`)
     if (!response.ok)
@@ -40,9 +44,9 @@ export default function LoadMovies() {
             return { error: true, message: error.message };
         }
     }
-    const fetchMoreMovies = () => {
+    const fetchMoreMovies =useCallback(() => {
         setPage((prevPage) => prevPage + 1)
-    }
+    }, [])
 
     return (
         <InfiniteScroll
@@ -53,7 +57,7 @@ export default function LoadMovies() {
             loader={<p className=" text-center font-bold text-white text-2xl ">Loading...</p>}
             endMessage={<p className="text-2xl text-center font-bold">No more movies to show</p>}
         >
-            <div className="flex items-center justify-center pt-20 text-3xl font-semibold ">
+            <div className="flex items-center justify-center pt-20 text-3xl font-bold bg-gradient-to-r from-[#b62323] via-[#9c40ff] to-[#b62323] bg-[length:200%_auto] bg-clip-text text-transparent animate-gradient">
                 <h1>Explore all movies on Magix</h1>
             </div>
             <div className="grid grid-cols-6 gap-8 p-8 md:grid-cols-3 lg:grid-cols-4">
@@ -62,7 +66,9 @@ export default function LoadMovies() {
                         <div key={index} className="relative flex flex-col items-center justify-center overflow-hidden hover:scale-110 hover:duration-300">
                             <Link href={`/movies/list/${movie.id}`} >
 
-                                <Image src={`${urlImage}/${movie.poster_path}`}
+                                <Image src={movie.poster_path ?
+                                    `${urlImage}/${movie.poster_path}`:
+                                    ErrorImage}
                                     alt={movie.title}
                                     width={200}
                                     height={150}

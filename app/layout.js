@@ -31,13 +31,6 @@ export const metadata = {
     "2024 movies", "2024 series", "movie platform", "series platform"
   ],
   author: "Nasreddine Abdellouche",
-  team: {
-    founder: "Nasreddine Abdellouche",
-    executiveDirector: "Nasreddine Abdellouche",
-    uiDesigner: "Nasreddine Abdellouche",
-    developer: "Nasreddine Abdellouche",
-    contentCurator: "Nasreddine Abdellouche",
-  },
   links: {
     portfolio: "https://nasreddine-abdellouche.vercel.app/",
     linkedIn: "https://linkedin.com/in/nasdev",

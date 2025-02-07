@@ -12,7 +12,6 @@ import {
 import { urlImageTv } from "@/app/libs/DataFetchingTv"
 import blurImage from '../../../../public/image/blurImage.webp'
 import { urlImage } from "@/app/libs/DataFetching"
-import BlurFade from "@/components/ui/blur-fade"
 import { FaRegStar } from "react-icons/fa";
 import Link from "next/link"
 
@@ -210,7 +209,7 @@ export default function BackGroundImageGenres({ dataResult, detailsMovies }) {
 
 
                 {/* carousel */}
-                <BlurFade inView className="pt-4  h-fit relative flex justify-center items-center w-full">
+                <div className="pt-4  h-fit relative flex justify-center items-center w-full">
 
 
                     <Carousel className="w-full md:max-w-md  xl:max-w-6xl 2xl:max-w-full lg:max-w-4xl" opts={{ align: "start", loop: true }}>
@@ -243,7 +242,7 @@ export default function BackGroundImageGenres({ dataResult, detailsMovies }) {
                             <CarouselNext />
                         </div>
                     </Carousel>
-                </BlurFade>
+                </div>
                         
             </div>
             <ToggleButton />

@@ -1,7 +1,5 @@
 "use client"
 
-
-import { getTrendingMovies, urlImage } from "@/app/libs/DataFetching"
 import {
     Carousel,
     CarouselContent,
@@ -14,7 +12,7 @@ import { FaRegStar } from "react-icons/fa";
 import Link from "next/link"
 import { memo, useCallback, useEffect, useReducer, useState } from "react";
 import LoadingGenreCarousel from "@/app/Components/LoadingUi/LoadingGenreCarousel";
-import { Button } from "@/components/ui/button";
+
 
 
 const initialState = {
@@ -53,7 +51,7 @@ const reducer = (state, action) => {
 
 
 export default function TrendingMovies() {
-
+    const urlImage = "https://image.tmdb.org/t/p/original"
     // const [page, setPage] = useState(1)
     // const [dataTrendingMovies, setDataTrendingMovies] = useState([])
     // const [isLoading, setIsLoading] = useState(true)

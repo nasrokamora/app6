@@ -23,9 +23,9 @@ import Profile from "@/app/libs/Profile";
 import dynamic from "next/dynamic";
 import { Loader2 } from "lucide-react"
 import { Suspense } from "react";
+import TrendingMovies from "@/app/(movies)/Components/TrendingMovies/TrendingMovies";
+import SearchMultiPage from "@/app/(movies)/Components/SearchMulti/SearchMultiPage";
 
-const SearchMultiPage = dynamic(() => import('@/app/(movies)/Components/SearchMulti/SearchMultiPage'), { ssr: false });
-const TrendingMovies = dynamic(() => import('@/app/(movies)/Components/TrendingMovies/TrendingMovies'), { ssr: false });
 export default function NavBar() {
 
   return (

@@ -24,6 +24,8 @@ This is a **work-in-progress** project for a Movies & TV Shows website, built wi
 ![Zod](https://img.shields.io/badge/Zod-FA5252?style=for-the-badge&logoColor=white)
 ![TMDB](https://img.shields.io/badge/TMDB-01B4E4?style=for-the-badge&logo=tmdb&logoColor=white)
 ![Upstash Redis](https://img.shields.io/badge/Upstash_Redis-65A30D?style=for-the-badge&logo=redis&logoColor=white)
+![Redis](https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white)
+
 ---
 
 ## 🚀 Features (Planned)

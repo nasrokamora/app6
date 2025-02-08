@@ -1,20 +1,9 @@
 import { LogoutLink } from "@kinde-oss/kinde-auth-nextjs/server";
-import {
-    Avatar,
-    AvatarFallback,
-    AvatarImage,
-} from "@/components/ui/avatar"
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+
 import { VscAccount } from "react-icons/vsc";
 import FetchUserSession from "../api/auth/UserSession/FetchUserSession";
 import LogIn from "../api/(auth)/@signUp/page";
+import Image from "next/image";
 
 
 
@@ -27,24 +16,27 @@ export default async function Profile() {
                     <LogIn />
                 </div>
             ) : (
-                <DropdownMenu>
-                    <DropdownMenuTrigger className="">
+
+                <div className="dropdown dropdown-end">
+                    <div tabIndex={0} role="button" className="m-1">
                         <VscAccount size={23} className="mb-1 hover:scale-110 transition-transform  hover:animate-pulse hover:duration-700 hover:text-green-500" />
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent className="w-auto">
+                    </div>
+                    <ul tabIndex={0} className="dropdown-content menu bg-[#09090b] rounded-box z-[1] w-52 p-2 shadow">
+                        <div className="">
+
                         {user?.picture && (
-                            <div>
-                                <DropdownMenuLabel className="flex justify-between items-center gap-4">
-                                    <Avatar>
-                                        <AvatarImage src={user?.picture} />
-                                        <AvatarFallback>
-                                            {user?.given_name.slice(0, 3)}
-                                        </AvatarFallback>
-                                    </Avatar>
-                                    {user?.given_name} {user?.family_name}
-                                </DropdownMenuLabel>
-                                <DropdownMenuSeparator />
-                                <DropdownMenuItem>
+                            <div className="flex flex-col gap-2">
+
+
+                                <div className=" w-full flex justify-start items-center gap-3 ">
+                                    <Image src={user?.picture} alt="avatar" width={48} height={48} className="rounded-full" />
+                                    <h1 className=" font-semibold">
+                                        {user?.given_name} {user?.family_name}
+                                    </h1>
+                                </div>
+
+
+                                <li>
                                     <LogoutLink className="text-subtle ">
 
                                         <button
@@ -67,11 +59,13 @@ export default async function Profile() {
                                         </button>
 
                                     </LogoutLink>
-                                </DropdownMenuItem>
+                                </li>
                             </div>
                         )}
-                    </DropdownMenuContent>
-                </DropdownMenu>
+                        </div>
+                    </ul>
+                </div>
+
             )}
         </div>
     )

@@ -24,17 +24,29 @@ export default function LoadMovies() {
     const [page, setPage] = useState(1)
     const [dataMovies, setDataMovies] = useState([])
     const [hasMore, setHasMore] = useState(true)
+    const [error, setError] = useState(null)
 
     useEffect(() => {
-        fetchMovies(page)
+        if (hasMore) fetchMovies(page)
     }, [page])
 
     const fetchMovies = async () => {
         try {
             const data = await getMoviesWithPage(page)
-            setDataMovies((prevMovies) => [...prevMovies, ...newMovies])
-            const newMovies = data.results.filter(movie => !dataMovies.some(m => m.id === movie.id))
-            if (page >= data.total_pages) {
+
+            setDataMovies((prevMovies) => {
+                const existingMovies = new Set(prevMovies.map(m => m.id))
+                const newMovies = data.results.filter(movie => !existingMovies.has(movie.id))
+                return [...prevMovies, ...newMovies]
+            })
+
+            // const existingMovies = new Set(dataMovies.map(m => m.id))
+            // const newMovies = data.results.filter(movie => !existingMovies.has(movie.id))
+            // const newMovies = data.results.filter(movie => !dataMovies.some(m => m.id === movie.id))
+            // setDataMovies((prevMovies) => [...prevMovies, ...newMovies])
+            // return [...prevMovies, ...newMovies]
+
+            if (data.page >= data.total_pages) {
                 setHasMore(false)
             }
         } catch (error) {
@@ -44,7 +56,7 @@ export default function LoadMovies() {
             return { error: true, message: error.message };
         }
     }
-    const fetchMoreMovies =useCallback(() => {
+    const fetchMoreMovies = useCallback(() => {
         setPage((prevPage) => prevPage + 1)
     }, [])
 
@@ -67,7 +79,7 @@ export default function LoadMovies() {
                             <Link href={`/movies/list/${movie.id}`} >
 
                                 <Image src={movie.poster_path ?
-                                    `${urlImage}/${movie.poster_path}`:
+                                    `${urlImage}/${movie.poster_path}` :
                                     ErrorImage}
                                     alt={movie.title}
                                     width={200}
@@ -75,7 +87,8 @@ export default function LoadMovies() {
                                     style={{ width: "auto" }}
                                     className="rounded-md "
                                     loading="eager"
-                                    priority={true}
+                                    priority={index < 6}
+                                    onError={(e) => { e.target.src = ErrorImage.src }}
                                 />
                                 <h1 className="font-bold ">
                                     {movie.title.length > 14 ? movie.title.slice(0, 14) + "..." : movie.title}

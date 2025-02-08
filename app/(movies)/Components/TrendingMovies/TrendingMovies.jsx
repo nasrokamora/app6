@@ -12,6 +12,7 @@ import { FaRegStar } from "react-icons/fa";
 import Link from "next/link"
 import { memo, useCallback, useEffect, useReducer, useState } from "react";
 import LoadingGenreCarousel from "@/app/Components/LoadingUi/LoadingGenreCarousel";
+import { urlImage } from "@/app/libs/DataFetching";
 
 
 
@@ -51,10 +52,9 @@ const reducer = (state, action) => {
 
 
 export default function TrendingMovies() {
-    const urlImage = "https://image.tmdb.org/t/p/original"
-    // const [page, setPage] = useState(1)
-    // const [dataTrendingMovies, setDataTrendingMovies] = useState([])
-    // const [isLoading, setIsLoading] = useState(true)
+    // // const [page, setPage] = useState(1)
+    // // const [dataTrendingMovies, setDataTrendingMovies] = useState([])
+    // // const [isLoading, setIsLoading] = useState(true)
 
     const [state, dispatch] = useReducer(reducer, initialState)
 

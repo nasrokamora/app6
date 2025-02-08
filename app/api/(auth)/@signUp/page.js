@@ -1,52 +1,55 @@
 
 import { RegisterLink, LoginLink } from "@kinde-oss/kinde-auth-nextjs/components";
-import { IoLogInOutline, IoPersonAddOutline } from "react-icons/io5";
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+import { IoLogInOutline} from "react-icons/io5";
+import { BiLogInCircle } from "react-icons/bi";
+import { Separator } from "@/components/ui/separator"
+
 export default function LogIn() {
 
     return (
-        <div className=" flex gap-8 md:gap-2 font-bold  w-full justify-center items-center mb-2 md:border-none">
-            <LoginLink className="flex overflow-hidden items-center text-sm font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50  bg-black shadow hover:bg-black/90 h-9 px-4 py-2 max-w-52 whitespace-pre  group relative w-full justify-center gap-2 rounded-md transition-all duration-300 ease-out hover:ring-2 hover:ring-black hover:ring-offset-2 md:hidden 2xl:font-extrabold 2xl:text-xl" >
-                <span className="absolute right-0 -mt-12 h-32 w-8 translate-x-12 rotate-12 bg-white opacity-10 transition-all duration-1000 ease-out group-hover:-translate-x-40"></span>
-                {/* <IoLogInOutline size={25} className="hover:scale-110 transition-transform duration-300" /> */}
-                <span className=" md:hidden ">Log in</span>
-            </LoginLink>
-            <RegisterLink
-                className="  flex overflow-hidden items-center text-sm font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-white text-slate-950 shadow hover:bg-white/90 h-9 px-6 py-2 max-w-52 whitespace-pre md:hidden group relative w-full justify-center gap-2 rounded-md transition-all duration-300 ease-out hover:ring-2 hover:ring-black hover:ring-offset-2 2xl:font-bold 2xl:text-xl 2xl:px-12">
-                <span className="absolute right-0 -mt-12 h-32 w-8 translate-x-12 rotate-12 bg-black opacity-10 transition-all duration-1000 ease-out group-hover:-translate-x-40"></span>
-                <span className="font-bold text-black lg:hidden xl:hidden 2xl:hidden ">
-                    <IoPersonAddOutline size={25} className=" md:hidden" />
-                </span>
-                <span className="  md:hidden">Sign up for free</span>
-            </RegisterLink>
-            <div className="lg:hidden xl:hidden 2xl:hidden">
-
-                <DropdownMenu className="" >
-                    <DropdownMenuTrigger>
-                        <IoLogInOutline size={30} className="hover:scale-110 transition-transform active:scale-95 text-white " />
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent className="w-auto">
-                        <DropdownMenuItem>
-                            <LoginLink className="text-subtle font-semibold border p-2 rounded-md active:scale-95 ">
-                                Log in
-                            </LoginLink>
-                        </DropdownMenuItem>
-                        <DropdownMenuSeparator />
-                        <DropdownMenuItem className=" ">
-                            <RegisterLink className="text-subtle font-semibold border p-2 rounded-md text-slate-950 bg-white  active:scale-95">
-                                Sign up for free
-                            </RegisterLink>
-                        </DropdownMenuItem>
-                    </DropdownMenuContent>
-                </DropdownMenu>
+        <div className=" dropdown dropdown-bottom  lg:dropdown-end xl:dropdown-end 2xl:dropdown-end  ">
+            <div tabIndex={0} role="button" className=" m-1">
+                <IoLogInOutline size={30} className="hover:scale-110 transition-transform active:scale-95 text-white " />
             </div>
+            <ul tabIndex={0} className="dropdown-content menu bg-black/70 backdrop-blur rounded-box z-[1] w-52 p-4 shadow ">
+                    <div className="flex w-full flex-col">
+                <li>
+                    <LoginLink className="group relative flex w-full max-w-52 items-center justify-center gap-3 overflow-hidden rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow transition-all duration-300 ease-out hover:bg-blue-700 hover:ring-2 hover:ring-blue-600 hover:ring-offset-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 disabled:pointer-events-none disabled:opacity-50 ">
+                        {/* Sliding animation element */}
+                        <span className="absolute right-0 -mt-12 h-32 w-8 translate-x-12 rotate-12 bg-white opacity-10 transition-all duration-1000 ease-out group-hover:-translate-x-40" />
+
+                        {/* Login icon and text */}
+                        <div className="flex items-center gap-2">
+                            <BiLogInCircle className="h-5 w-5" />
+                            <span>Login</span>
+                        </div>
+
+                        {/* User count (optional, you can remove this if not needed) */}
+                        <div className="flex items-center gap-1">
+                            <span className="font-display text-xs tabular-nums tracking-wider text-blue-200">1.2k</span>
+                        </div>
+                    </LoginLink>
+                    </li>
+                    {/* sepatator 2 button */}
+                    <Separator className="my-4" />
+                <li>
+
+                    {/*  sign up button */}
+                    <RegisterLink className="group relative flex w-full max-w-52 items-center justify-center gap-3 overflow-hidden rounded-md bg-green-600 px-4 py-2 text-sm font-medium text-white shadow transition-all duration-300 ease-out hover:bg-green-700 hover:ring-2 hover:ring-green-600 hover:ring-offset-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-600 disabled:pointer-events-none disabled:opacity-50">
+                    <span className="absolute right-0 -mt-12 h-32 w-8 translate-x-12 rotate-12 bg-white opacity-10 transition-all duration-1000 ease-out group-hover:-translate-x-40" />
+                        <div className="flex items-center gap-2">
+  
+                            <span>
+                            Sign up for free
+                            </span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                            <span className="font-display text-xs tabular-nums tracking-wider text-blue-200">10k+</span>
+                        </div>
+                    </RegisterLink>
+                </li>
+                    </div>
+            </ul>
         </div>
     )
 }

@@ -32,17 +32,19 @@ export default function LoadMoreTv() {
 
 
     useEffect(() => {
-        fetchTvLoadMore(page)
+      if(hasMore) fetchTvLoadMore(page)
     }, [page])
 
     async function fetchTvLoadMore() {
         try {
             const data = await getTvWithPage(page)
-            setDataTv((prevTv) => [...prevTv, ...newTv])
+            setDataTv((prevTv)=>{
+                const existingTv = new Set(prevTv.map(t => t.id))
+                const newTv = data.results.filter(tv => !existingTv.has(tv.id))
+                return [...prevTv, ...newTv]
+            })
 
-            const newTv = data.results.filter(tv => !dataTv.some(t => t.id === tv.id))
-
-            if (page >= data.total_pages) {
+            if (data.page >= data.total_pages) {
                 setHasMore(false)
             }
 

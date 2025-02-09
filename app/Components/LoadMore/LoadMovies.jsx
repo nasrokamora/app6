@@ -40,11 +40,6 @@ export default function LoadMovies() {
                 return [...prevMovies, ...newMovies]
             })
 
-            // const existingMovies = new Set(dataMovies.map(m => m.id))
-            // const newMovies = data.results.filter(movie => !existingMovies.has(movie.id))
-            // const newMovies = data.results.filter(movie => !dataMovies.some(m => m.id === movie.id))
-            // setDataMovies((prevMovies) => [...prevMovies, ...newMovies])
-            // return [...prevMovies, ...newMovies]
 
             if (data.page >= data.total_pages) {
                 setHasMore(false)
@@ -66,8 +61,8 @@ export default function LoadMovies() {
             dataLength={dataMovies.length}
             next={fetchMoreMovies}
             hasMore={hasMore}
-            loader={<p className=" text-center font-bold text-white text-2xl ">Loading...</p>}
-            endMessage={<p className="text-2xl text-center font-bold">No more movies to show</p>}
+            loader={<p className=" text-center font-bold text-white text-2xl flex justify-center items-center gap-2 ">Loading... <span className="w-10 h-10 border-4 border-t-red-600 border-gray-300 rounded-full animate-spin"></span></p>}
+            endMessage={<p className="text-2xl animate-ping text-center font-bold text-red-700">No more movies to show</p>}
         >
             <div className="flex items-center justify-center pt-20 text-3xl font-bold bg-gradient-to-r from-[#b62323] via-[#9c40ff] to-[#b62323] bg-[length:200%_auto] bg-clip-text text-transparent animate-gradient">
                 <h1>Explore all movies on Magix</h1>

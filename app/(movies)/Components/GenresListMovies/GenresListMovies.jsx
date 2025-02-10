@@ -17,58 +17,9 @@ import Link from "next/link";
 import { getGenreTvList } from "@/app/libs/DataFetchingTv";
 import { MdLiveTv } from "react-icons/md";
 import { cva } from "class-variance-authority";
+import { IoMdCloseCircle } from "react-icons/io";
 
 
-
-
-async function ListGenre() {
-    const dataGenreMovie = getMoviesGenreList()
-    const dataGenresTv = getGenreTvList()
-    const [dataGenres, dataGenresListTv] = await Promise.all([dataGenreMovie, dataGenresTv])
-    return (
-        <div className=" flex justify-start items-center flex-wrap gap-2">
-            {/* <div className="">
-
-                {dataGenres &&
-                    dataGenres.genres &&
-                    dataGenres.genres.length > 0 ? (
-
-                    dataGenres.genres.map((genre) => (
-                        <div asChild key={genre.id} className="m-1 flex justify-start flex-wrap gap-1">
-                            <Link href={`/movies/genre/${genre.id}`} className={buttonVariants({ variant: "outline" }, cva("hover:bg-red-800 "))}>
-                                <span className=" hover:btn-link ">{genre.name}
-                                </span>
-                            </Link>
-                        </div>
-                    ))
-                ) : (
-                    <div className="flex justify-center items-center">
-                        <h1 className="text-xl font-bold text-red-700">Oops ! No genres available at the moment.</h1>
-                    </div>
-                )
-                }
-            </div>
-            <div className="">
-
-                <div className="  text-center font-bold text-xl ">
-                    <h1>Choose your favorite TV show genre and dive into endless entertainment. <span className="inline-block lg:hidden "> <MdLiveTv size={30} className="md:hidden pt-1 " /></span></h1>
-                </div>
-
-
-                {dataGenresListTv.genres && (
-
-                    dataGenresListTv.genres.map((genre) => (
-                        <div asChild key={genre.id} className="m-1">
-                            <Link href={`/tv/genre/${genre.id}`} className={buttonVariants({ variant: "outline" })}>
-                                {genre.name}
-                            </Link>
-                        </div>
-                    ))
-                )}
-            </div> */}
-        </div>
-    )
-}
 
 export default async function GenresListMovies() {
     const dataGenreMovie = getMoviesGenreList()
@@ -87,6 +38,9 @@ export default async function GenresListMovies() {
             <div className="drawer-side ">
                 <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
                 <ul className=" bg-[#09090b] text-gray-400 h-screen w-1/2 p-4 md:w-4/5 overflow-y-scroll xl:min-h-full 2xl:min-h-full ">
+                <label htmlFor="my-drawer" aria-label="close sidebar" className=""><IoMdCloseCircle size={25} className="cursor-pointer hover:text-yellow-500 transition-all ease-in-out duration-300 md:active:scale-95 md:active:translate-y-0.5" />
+                </label>
+
                     <div className="mb-6 flex justify-center items-center flex-col mt-4">
 
                         <h1 className=" text-center text-2xl font-bold bg-gradient-to-r from-[#e0b526] via-[#9c40ff] to-[#e0b526] bg-[length:200%_auto] bg-clip-text text-transparent animate-gradient  ">Explore Movie and TV Show By Genres.</h1>
@@ -137,41 +91,36 @@ export default async function GenresListMovies() {
 
                         </div>
                     </div>
-
-                    {/* <ListGenre /> */}
-                    {/* Sidebar content here */}
-                    {/* <li><a>Sidebar Item 1</a></li>
-                    <li><a>Sidebar Item 2</a></li> */}
                 </ul>
             </div>
         </div>
-        // <div className=" h-auto">
+        // // <div className=" h-auto">
 
-        //     <Sheet>
-        //         <SheetTrigger>
-        //             <FaTheaterMasks size={25} className="2xl:size-8 hover:text-sky-500 duration-300" />
-        //         </SheetTrigger>
-        //         <SheetContent side="left" className=" h-auto overflow-y-scroll">
-        //             <SheetHeader>
-        //                 <SheetTitle>Explore Movie and TV Show By Genres.</SheetTitle>
-        //                 <SheetDescription>
-        //                     Whether you're a fan of movies or TV shows, there's something here for everyone.
-        //                 </SheetDescription>
-        //             </SheetHeader>
-        //             <div className="flex justify-start items-center gap-2 mt-6 flex-col">
+        // //     <Sheet>
+        // //         <SheetTrigger>
+        // //             <FaTheaterMasks size={25} className="2xl:size-8 hover:text-sky-500 duration-300" />
+        // //         </SheetTrigger>
+        // //         <SheetContent side="left" className=" h-auto overflow-y-scroll">
+        // //             <SheetHeader>
+        // //                 <SheetTitle>Explore Movie and TV Show By Genres.</SheetTitle>
+        // //                 <SheetDescription>
+        // //                     Whether you're a fan of movies or TV shows, there's something here for everyone.
+        // //                 </SheetDescription>
+        // //             </SheetHeader>
+        // //             <div className="flex justify-start items-center gap-2 mt-6 flex-col">
 
-        //                 <div className="flex justify-start items-center  font-bold text-xl gap-2">
-        //                     <h1>Choose your favorite genre from a wide selection of movies.
-        //                     </h1>
-        //                     <h2><BiCameraMovie size={25} className="" /></h2>
-        //                 </div>
-        //                 <div>
-        //                     <ListGenre />
-        //                 </div>
-        //             </div>
-        //         </SheetContent>
-        //     </Sheet>
+        // //                 <div className="flex justify-start items-center  font-bold text-xl gap-2">
+        // //                     <h1>Choose your favorite genre from a wide selection of movies.
+        // //                     </h1>
+        // //                     <h2><BiCameraMovie size={25} className="" /></h2>
+        // //                 </div>
+        // //                 <div>
+        // //                     <ListGenre />
+        // //                 </div>
+        // //             </div>
+        // //         </SheetContent>
+        // //     </Sheet>
 
-        // </div>
+        // // </div>
     )
 }

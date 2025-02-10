@@ -88,7 +88,7 @@ export default function TrendingMovies() {
             <div className=" flex justify-start gap-2 items-center">
                 <h1 className="text-3xl md:text-xl font-bold bg-gradient-to-r from-[#b6ac23] via-[#40b9ff] to-[#b6ac23] bg-[length:200%_auto] bg-clip-text text-transparent animate-gradient">Trending on Magix </h1>
             </div>
-            <div className="flex justify-center w-full mt-6">
+            <div className="flex justify-start w-fit mt-6">
 
                 <Carousel opts={{
                     align: "start",
@@ -128,7 +128,7 @@ const TrendingMoviesCard = memo(({ movie }) => {
                         src={`${urlImage}${movie.poster_path}`}
                         alt={movie.title}
                         width={180} height={180}
-                        className={`md:w-[200px]  lg:w-[200px] lg:h-[200px] xl:w-[150px] xl:h-[150px] 2xl:w-[250px] 2xl:h-[150px] transition-opacity duration-100 ${loaded ? "opacity-100" : "opacity-0"}  `}
+                        className={`md:w-[150px]  lg:w-[200px] lg:h-[200px] xl:w-[150px] xl:h-[150px] 2xl:w-[250px] 2xl:h-[150px] transition-opacity duration-100 ${loaded ? "opacity-100" : "opacity-0"}  `}
                         onLoad={() => setLoaded(true)}
                         style={{ height: "auto" }}
 

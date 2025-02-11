@@ -55,20 +55,20 @@ export default function NavBar() {
               </div>
               <div className="drawer-side">
                 <label htmlFor="my-drawer-4" aria-label="close sidebar" className="drawer-overlay"></label>
-                <ul className="menu bg-[#09090b] text-slate-400 min-h-full md:w-10/12 w-1/2  p-4 mt-3">
+                <ul className="menu bg-[#09090b] text-slate-400 min-h-full md:w-full w-[55%] lg:w-10/12  p-4 mt-3">
                 <label htmlFor="my-drawer-4" aria-label="close sidebar" className="">
                 <IoCloseCircleSharp />
                 </label>
 
-                  <div className="flex justify-center items-center gap-2 pb-2">
-                    <Image src={LogoIcon} alt="Magix_Movies_Logo" width={25} hieght={25} />
-                    <h1 className="text-xl text-center font-bold bg-gradient-to-r from-[#b62323] via-[#9c40ff] to-[#b62323] bg-[length:200%_auto] bg-clip-text text-transparent animate-gradient">Magix Movies</h1>
+                  <div className="flex justify-center items-center gap-2 pb-2 w-full">
+                    <Image src={LogoIcon} alt="Magix_Movies_Logo" width={25} hieght={25} className="lg:w-10 lg:h-10" />
+                    <h1 className="text-xl lg:text-2xl text-center font-bold bg-gradient-to-r from-[#b62323] via-[#9c40ff] to-[#b62323] bg-[length:200%_auto] bg-clip-text text-transparent animate-gradient">Magix Movies</h1>
                   </div>
-                  <p className="text-center fonnt-bold italic  mb-4">The Best of Movies and TV</p>
+                  <p className="text-center font-bold italic  mb-4 w-full">The Best of Movies and TV</p>
                   {/* Sidebar content here */}
-                  <div className="flex flex-col gap-2 justify-center items-center">
-                    {DataLink.map((item, index) => (
-                      <div key={item.id - index} className=" py-4 ">
+                  <div className="flex flex-col gap-2 justify-center items-center w-full">
+                    {DataLink.map((item) => (
+                      <div key={item.id} className=" py-4 ">
                         <div className=" text-white">
                           <Link href={`${item.link}`}>
                             <Button variant='outline' type='button' className="px-8">

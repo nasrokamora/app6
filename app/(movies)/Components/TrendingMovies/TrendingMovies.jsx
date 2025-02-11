@@ -71,29 +71,29 @@ export default function TrendingMovies() {
     },[])
 
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-            dispatch({type: "INCREMENT_PAGE"})
-        }, 15000)
+    // useEffect(() => {
+    //     const interval = setInterval(() => {
+    //         dispatch({type: "INCREMENT_PAGE"})
+    //     }, 15000)
 
-        return () => clearInterval(interval)
-    }, [])
+    //     return () => clearInterval(interval)
+    // }, [])
 
     useEffect(() => {
         fetchTredingMovies(state.page)
     }, [state.page, fetchTredingMovies])
 
     return (
-        <div className=" w-full">
+        <div className=" ">
             <div className=" flex justify-start gap-2 items-center">
                 <h1 className="text-3xl md:text-xl font-bold bg-gradient-to-r from-[#b6ac23] via-[#40b9ff] to-[#b6ac23] bg-[length:200%_auto] bg-clip-text text-transparent animate-gradient">Trending on Magix </h1>
             </div>
-            <div className="flex justify-start w-fit mt-6">
+            <div className="flex justify-center w-full mt-6 md:justify-start">
 
                 <Carousel opts={{
                     align: "start",
                     loop: true,
-                }} className=" md:max-w-sm xl:max-w-4xl   w-[80%] 2xl:max-w-6xl" >
+                }} className=" md:max-w-lg xl:max-w-xl lg:max-w-2xl  w-fit 2xl:max-w-xl" >
                     <CarouselContent className="   ">
                         {state.isLoading ? (
                             <div className=" flex justify-center items-center w-full">
@@ -110,8 +110,10 @@ export default function TrendingMovies() {
                         )}
 
                     </CarouselContent>
-                    <CarouselPrevious className=" md:hidden" />
-                    <CarouselNext className=" md:hidden" />
+                    <div className=" absolute top-[-2rem] left-[93%] md:hidden lg:left-[87%] text-white ">
+                        <CarouselPrevious />
+                        <CarouselNext />
+                    </div>
                 </Carousel>
             </div>
         </div>
@@ -121,21 +123,21 @@ export default function TrendingMovies() {
 const TrendingMoviesCard = memo(({ movie }) => {
     const [loaded, setLoaded] = useState(false)
     return(
-            <CarouselItem key={movie.id} className="  basis-1/5 lg:basis-1/5 md:basis-1/2 2xl:basis-1/7">
+            <CarouselItem key={movie.id} className="  basis-1/3 lg:basis-1/4 md:basis-1/4 ">
                 <Link className=" hover:grayscale hover:duration-500" href={`/movies/list/${movie.id}`}>
 
                     <Image
                         src={`${urlImage}${movie.poster_path}`}
                         alt={movie.title}
                         width={180} height={180}
-                        className={`md:w-[150px]  lg:w-[200px] lg:h-[200px] xl:w-[150px] xl:h-[150px] 2xl:w-[250px] 2xl:h-[150px] transition-opacity duration-100 ${loaded ? "opacity-100" : "opacity-0"}  `}
+                        className={`md:w-[120px] md:h-[120px]  lg:w-[200px] lg:h-[200px] xl:w-[150px] xl:h-[150px] 2xl:w-[250px] 2xl:h-[150px] transition-opacity duration-100 ${loaded ? "opacity-100" : "opacity-0"}  `}
                         onLoad={() => setLoaded(true)}
                         style={{ height: "auto" }}
 
                     />
-                    <p className=" font-bold flex justify-start  pt-2 mb-1">{movie.title.length > 14 ? movie.title.slice(0, 14) + "..." : movie.title}
+                    <p className=" font-bold flex justify-start  pt-2 mb-1 md:hidden">{movie.title.length > 14 ? movie.title.slice(0, 14) + "..." : movie.title}
                     </p>
-                    <div className=" flex justify-between items-center w-full font-semibold">
+                    <div className=" flex justify-between items-center w-full font-semibold ">
                         <p className=" fonb flex justify-between items-center w-full">
                             {new Date(movie.release_date).getFullYear()}
                         </p>

@@ -11,9 +11,16 @@ import Profile from "@/app/libs/Profile";
 import dynamic from "next/dynamic";
 import { Loader2 } from "lucide-react"
 import { Suspense } from "react";
-import TrendingMovies from "@/app/(movies)/Components/TrendingMovies/TrendingMovies";
+// import TrendingMovies from "@/app/(movies)/Components/TrendingMovies/TrendingMovies";
 import SearchMultiPage from "@/app/(movies)/Components/SearchMulti/SearchMultiPage";
 import { IoCloseCircleSharp } from "react-icons/io5";
+import Footer from "../Footer/Footer";
+import FooterMenu from "../Footer/FooterMenu";
+
+const TrendingMovies = dynamic(() => import("@/app/(movies)/Components/TrendingMovies/TrendingMovies"), {
+  ssr: false,
+});
+
 export default function NavBar() {
 
   return (
@@ -50,15 +57,15 @@ export default function NavBar() {
               <div className="drawer-content">
 
                 <label htmlFor="my-drawer-4" className="drawer-button">
-                  <TfiMenu size={25} className="2xl:size-8 hover:text-red-700 hover:scale-110 duration-300" />
+                  <TfiMenu size={25} className="2xl:size-8 hover:text-red-700 hover:scale-110 duration-300 cursor-pointer" />
                 </label>
               </div>
               <div className="drawer-side">
                 <label htmlFor="my-drawer-4" aria-label="close sidebar" className="drawer-overlay"></label>
-                <ul className="menu bg-[#09090b] text-slate-400 min-h-full md:w-full w-[55%] lg:w-10/12  p-4 mt-3">
-                <label htmlFor="my-drawer-4" aria-label="close sidebar" className="">
-                <IoCloseCircleSharp />
-                </label>
+                <ul className="menu bg-[#09090b] text-slate-400 min-h-full md:w-full w-[55%] lg:w-10/12  p-4 mt-3 ">
+                  <label htmlFor="my-drawer-4" aria-label="close sidebar" className="">
+                    <IoCloseCircleSharp size={25} className="cursor-pointer hover:text-red-500 transition-all ease-in-out duration-300 md:active:scale-95 md:active:translate-y-0.5" />
+                  </label>
 
                   <div className="flex justify-center items-center gap-2 pb-2 w-full">
                     <Image src={LogoIcon} alt="Magix_Movies_Logo" width={25} hieght={25} className="lg:w-10 lg:h-10" />
@@ -70,8 +77,8 @@ export default function NavBar() {
                     {DataLink.map((item) => (
                       <div key={item.id} className=" py-4 ">
                         <div className=" text-white">
-                          <Link href={`${item.link}`}>
-                            <Button variant='outline' type='button' className="px-8">
+                          <Link href={`${item.link}`} className="">
+                            <Button variant='outline' type='button' className="px-8 font-bold">
                               {item.name}
                             </Button>
                           </Link>
@@ -80,44 +87,15 @@ export default function NavBar() {
                     ))}
                   </div>
                   <div className="pt-10">
-                  <TrendingMovies />
+                    <TrendingMovies />
                   </div>
-                  {/* <li><a>Sidebar Item 1</a></li>
-                  <li><a>Sidebar Item 2</a></li> */}
+                    <div className="w-fit">
+
+                    <FooterMenu />
+                    </div>
                 </ul>
               </div>
             </div>
-
-            {/* 
-            <Sheet className="">
-              <SheetTrigger><TfiMenu size={25} className="2xl:size-8 hover:text-red-700 hover:scale-110 duration-300" /></SheetTrigger>
-              <SheetContent>
-                <SheetHeader>
-                  <SheetTitle className="bg-gradient-to-r from-[#b62323] via-[#9c40ff] to-[#b62323] bg-[length:200%_auto] bg-clip-text text-transparent animate-gradient">Magix Movies</SheetTitle>
-                  <SheetDescription>The Best of Movies and TV</SheetDescription>
-                </SheetHeader>
-                <div className="w-full pt-5">
-                  <SheetFooter>
-                    {DataLink.map((item, index) => (
-                      <ul key={item.id - index} className=" py-4 ">
-                        <li className=" flex justify-center w-full">
-                          <SheetClose asChild >
-                            <Link href={`${item.link}`} rel="noreferrer" className="  w-1/2  flex flex-col" >
-                              <Button variant='outline' type='button'>
-                                {item.name}
-                              </Button>
-                            </Link>
-                          </SheetClose>
-                        </li>
-                      </ul>
-                    ))}
-                  </SheetFooter>
-                  <div className="mt-8">
-                    <TrendingMovies />
-                  </div>
-                </div>
-              </SheetContent>
-            </Sheet> */}
           </div>
         </div>
       </div>

@@ -1,13 +1,4 @@
 
-import {
-    Sheet,
-    SheetClose,
-    SheetContent,
-    SheetDescription,
-    SheetHeader,
-    SheetTitle,
-    SheetTrigger,
-} from "@/components/ui/sheet"
 import Image from "next/image"
 import { FaTheaterMasks } from "react-icons/fa";
 import { BiCameraMovie } from "react-icons/bi";
@@ -37,7 +28,7 @@ export default async function GenresListMovies() {
             </div>
             <div className="drawer-side ">
                 <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
-                <ul className=" bg-[#09090b] text-gray-400 h-screen w-1/2 p-4 md:w-4/5 overflow-y-scroll xl:min-h-full 2xl:min-h-full ">
+                <ul className=" bg-[#09090b] text-gray-400 h-screen  w-1/2 p-4 md:w-4/5 overflow-y-scroll  ">
                 <label htmlFor="my-drawer" aria-label="close sidebar" className=""><IoMdCloseCircle size={25} className="cursor-pointer hover:text-yellow-500 transition-all ease-in-out duration-300 md:active:scale-95 md:active:translate-y-0.5" />
                 </label>
 

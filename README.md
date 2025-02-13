@@ -55,7 +55,7 @@ This project is currently under development. Updates will be shared regularly.
 ---
 
 ## 🔗 TMDB API
-This project utilizes the [TMDB API](https://www.themoviedb.org/documentation/api) to fetch real-time data about movies and TV shows.
+This project utilizes the [TMDB API](https://www.themoviedb.org/documentation/api) to fetch real-time data about movies and TV shows
 
 ---
 

@@ -21,6 +21,7 @@ import {
     AlertTitle,
 } from "@/components/ui/alert"
 import BlurFade from "@/components/ui/blur-fade"
+import { urlImage } from "@/app/libs/UrlImage"
 
 
 
@@ -45,7 +46,7 @@ const MoviesList = React.memo(({ movieList }) => {
                     <div className="relative overflow-hidden lg:hover:scale-90 md:active:scale-110 hover:scale-90 duration-500 ">
                         <Link href={`/movies/list/${movie.id}`} >
                             <Image
-                                src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
+                                src={`${urlImage}${movie.poster_path}`}
                                 alt="movie poster"
                                 width={300} height={250}
                                 className="rounded-md hover:sepia hover:duration-500"

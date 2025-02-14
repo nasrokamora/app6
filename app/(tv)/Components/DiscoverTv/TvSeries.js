@@ -8,10 +8,9 @@ import {
 import Link from "next/link"
 import Image from "next/image"
 import { FaRegStar } from "react-icons/fa6"
-import BlurFade from "@/components/ui/blur-fade"
 import no_image from '../../../../public/image/no_image4.webp'
-import { urlImageTv } from "@/app/libs/DataFetchingTv"
 import CarouselAutoshow from "@/app/Animations/CarouselAuto/AutoCarousel"
+import { urlImage } from "@/app/libs/UrlImage"
 
 export const dynamic = 'force-dynamic';
 
@@ -22,10 +21,7 @@ export default function TvSeries({ dataTv }) {
             <CarouselAutoshow  >
                 <CarouselContent className="   ">
                     {dataTv.map((tv, index) => (
-
                         <CarouselItem key={tv.id} className="md:basis-1/2 basis-1/6 lg:basis-1/5">
-                            <BlurFade key={tv.id} delay={0.5 + index * 0.05} inView>
-
                                 <div className="hover:duration-500 hover:scale-90 ">
 
                                     <Link className="" href={`/tv/list/${tv.id}`}>
@@ -33,7 +29,7 @@ export default function TvSeries({ dataTv }) {
 
                                             <Image
                                                 src={tv.poster_path ?
-                                                    `${urlImageTv}${tv.poster_path}` : no_image}
+                                                    `${urlImage}${tv.poster_path}` : no_image}
                                                 alt="image_tv_Show"
                                                 width={300} height={250}
                                                 className="rounded-lg"
@@ -63,7 +59,6 @@ export default function TvSeries({ dataTv }) {
 
                                     </Link>
                                 </div>
-                            </BlurFade>
                         </CarouselItem>
                     ))}
                 </CarouselContent>

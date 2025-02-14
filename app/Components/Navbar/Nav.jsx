@@ -25,7 +25,7 @@ export default function NavBar() {
 
   return (
     <NavMenu>
-      <div className="w-full flex justify-between items-center pt-2">
+      <div className="w-full flex justify-between items-center pt-2 ">
         <Link href={'/'} className=" flex justify-center items-center ">
           <Image
             src={LogoIcon}
@@ -62,7 +62,7 @@ export default function NavBar() {
               </div>
               <div className="drawer-side">
                 <label htmlFor="my-drawer-4" aria-label="close sidebar" className="drawer-overlay"></label>
-                <ul className="menu bg-[#09090b] text-slate-400 min-h-full md:w-full w-[55%] lg:w-10/12  p-4 mt-3 ">
+                <ul className="menu bg-[#09090b] text-slate-400 min-h-full md:w-full w-[55%] lg:w-10/12  p-4 pt-3 ">
                   <label htmlFor="my-drawer-4" aria-label="close sidebar" className="">
                     <IoCloseCircleSharp size={25} className="cursor-pointer hover:text-red-500 transition-all ease-in-out duration-300 md:active:scale-95 md:active:translate-y-0.5" />
                   </label>
@@ -89,7 +89,7 @@ export default function NavBar() {
                   <div className="pt-10">
                     <TrendingMovies />
                   </div>
-                    <div className="w-fit">
+                    <div className="md:hidden">
 
                     <FooterMenu />
                     </div>

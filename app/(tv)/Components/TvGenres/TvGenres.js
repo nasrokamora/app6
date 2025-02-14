@@ -21,7 +21,8 @@ import { FaRegStar } from "react-icons/fa"
 import LoadingGenreCarousel from "@/app/Components/LoadingUi/LoadingGenreCarousel"
 import { AlertCircle } from "lucide-react"
 import no_image from "../../../../public/image/no_image4.webp"
-import { urlImageTv } from "@/app/libs/DataFetchingTv"
+import { urlImage } from "@/app/libs/UrlImage"
+
 
 
 
@@ -144,7 +145,7 @@ export default function TvGenres() {
                                                 <Image
                                                     src={tv.poster_path ?
                                                         
-                                                        `${urlImageTv}${tv.poster_path}`
+                                                        `${urlImage}${tv.poster_path}`
                                                         :
                                                         no_image
                                                     }

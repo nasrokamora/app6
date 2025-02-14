@@ -1,6 +1,6 @@
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { urlImageTv } from "@/app/libs/DataFetchingTv"
+
 import PersonDetailsTv from "./PersonDetailsTv/PersonDetailsTv"
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 import ImageTvSeries from "../ImageTV/ImageTvSeries"
@@ -11,6 +11,7 @@ import {
     AlertDescription,
     AlertTitle,
 } from "@/components/ui/alert"
+import { urlImage } from "@/app/libs/UrlImage"
 
 export default function CreditsDetailsTv({ credits, dataImageTv, seasons, seriesId }) {
     return (
@@ -32,15 +33,15 @@ export default function CreditsDetailsTv({ credits, dataImageTv, seasons, series
                                         <PersonDetailsTv
                                             person_id={credit.id}
                                             key={credit.id}
-                                            urlImageTv={urlImageTv}
+                                            urlImageTv={urlImage}
                                             character={credit.character}
                                         />
                                     ))
                                 ) : (
                                     <Alert variant="destructive">
                                         <AlertCircle className="h-4 w-4" />
-                                        <AlertTitle>Oops!</AlertTitle>
-                                        <AlertDescription>
+                                        <AlertTitle className=" font-bold">Oops!</AlertTitle>
+                                        <AlertDescription className=" font-semibold text-xl">
                                             An error has occurred, please try again later.
                                         </AlertDescription>
                                     </Alert>
@@ -55,7 +56,7 @@ export default function CreditsDetailsTv({ credits, dataImageTv, seasons, series
                 {/* Image tv */}
                 <TabsContent value="image" className="  pt-4  items-center rounded-md h-auto w-full ">
                     <ImageTvSeries
-                        urlImageTv={urlImageTv}
+                        urlImageTv={urlImage}
                         dataImage={dataImageTv.backdrops}
                     />
                 </TabsContent>

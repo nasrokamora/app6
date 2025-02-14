@@ -24,11 +24,8 @@ export default async function PersonDetailsTv({ person_id, urlImageTv, character
     const data =  getPersonsIdTv(person_id)
     const extPersonId =  getExtPersonsIdTv(person_id)
     const [dataPerson, dataExtPerson] = await Promise.all([data, extPersonId])
-    // console.log(dataExtPerson)
-
 
     return (
-
         <div className=" w-full ">
             <div className="p-1 ">
                 <Card className=" h-96 md:h-auto ">

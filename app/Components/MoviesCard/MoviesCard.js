@@ -1,4 +1,4 @@
-import { urlImage } from "@/app/libs/DataFetching"
+
 import { AlertCircle } from "lucide-react"
 import {
     Alert,
@@ -16,7 +16,7 @@ import {
     CarouselPrevious,
 } from "@/components/ui/carousel"
 import Rating from "../Rated/Rating"
-import TransitionCom from "@/app/Animations/Transition/TransitionCom"
+import { urlImage } from "@/app/libs/UrlImage"
 
 
 export default async function MoviesCard({ dataDiscoverMovies }) {

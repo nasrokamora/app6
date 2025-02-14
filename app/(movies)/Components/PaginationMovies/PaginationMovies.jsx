@@ -27,8 +27,9 @@ import {
 import Link from 'next/link'
 import LoadingPaginationMovies from "./LoadingPaginationMovies";
 import { FaRegStar } from "react-icons/fa"
-import BlurFade from "@/components/ui/blur-fade"
-import { urlImage } from "@/app/libs/DataFetching";
+import { urlImage } from "@/app/libs/UrlImage";
+
+
 
 
 async function fetchPagination({cachRef,setDataMovies, setIsLoading, setError, page}) {
@@ -104,7 +105,7 @@ export default function PaginationMovies() {
                             {dataMovies && dataMovies.length > 0 ? (
                                 dataMovies.map((movie,index) => (
                                     <CarouselItem key={movie.id} className="p-2 md:basis-1/2 basis-1/6 lg:basis-1/5">
-                                        <BlurFade delay={0.10} inView>
+                                        
                                         <div className="relative overflow-hidden md:active:scale-90 hover:scale-90 duration-500  ">
                                             <Link className=" font-bold" href={`/movies/list/${movie.id}`}>
                                                 <Image
@@ -139,7 +140,7 @@ export default function PaginationMovies() {
                                                 </div>
                                             </Link>
                                         </div>
-                                                    </BlurFade>
+
                                     </CarouselItem>
                                 ))
                             ) : (

@@ -29,11 +29,7 @@ import { MdOutlineTransitEnterexit } from "react-icons/md";
 import WordPullUp from "@/components/ui/word-pull-up";
 import BlurFade from "@/components/ui/blur-fade";
 import TextAnimate from "@/app/Animations/TextAurora/TextAnimate";
-
-
-
-
-
+import { urlImage } from "@/app/libs/UrlImage";
 
 
 export async function generateMetadata({ params }) {
@@ -43,9 +39,6 @@ export async function generateMetadata({ params }) {
         title: data.name ? data.name : data.original_name,
     }
 }
-
-
-
 
 export default async function DynamicTvListPage({ params }) {
     const { id } = params
@@ -72,7 +65,7 @@ export default async function DynamicTvListPage({ params }) {
             </div>
             <div className="flex items-start justify-start gap-4 mt-8 md:flex-col">
                 <div className=" w-[70%] xl:w-full  flex justify-center items-center flex-col   relative md:w-full  overflow-hidden md:flex md:justify-center md:items-center">
-                    <Image src={detailTv.poster_path ? `${urlImageTv}${detailTv.poster_path}` : no_image}
+                    <Image src={detailTv.poster_path ? `${urlImage}${detailTv.poster_path}` : no_image}
                         priority
                         width={400}
                         height={400}
@@ -249,7 +242,7 @@ export default async function DynamicTvListPage({ params }) {
             <Separator className="mt-4" />
 
             {/* Last Episode to air */}
-            <BlurFade delay={0.25} inView>
+
                 <div className="mt-6 ">
                     <strong className="text-2xl font-bold text-[#3f7eab] md:text-xl">Last episode to air :</strong>
                 </div>
@@ -259,7 +252,7 @@ export default async function DynamicTvListPage({ params }) {
                         <div className="relative flex items-start justify-between w-full gap-2 mt-6 ">
                             <div className=" overflow-hidden relative  h-[20rem] w-full ">
                                 <Image
-                                    src={detailTv.last_episode_to_air.still_path ? `${urlImageTv}${detailTv.last_episode_to_air.still_path}` : no_image}
+                                    src={detailTv.last_episode_to_air.still_path ? `${urlImage}${detailTv.last_episode_to_air.still_path}` : no_image}
                                     fill
                                     alt="image_last_air_date"
                                     priority
@@ -270,7 +263,7 @@ export default async function DynamicTvListPage({ params }) {
                             </div>
 
                             {/* last air date name */}
-                            <div className=" flex justify-center w-full md:h-auto md:top-0  flex-col gap-2 z-50 absolute  rounded-md  p-2 bg-black bg-opacity-30 backdrop-blur-sm h-[20rem]">
+                            <div className=" flex justify-center w-full md:h-auto md:top-0  flex-col gap-2 z-40 absolute  rounded-md  p-2 bg-black bg-opacity-30 backdrop-blur-sm h-[20rem]">
                                 <div className="flex flex-wrap items-center justify-start order-2 gap-3 ">
                                     <strong className="text-2xl font-bold text-zinc-400 md:text-xl">Last Air Date :</strong>
                                     <h1 className="text-xl font-semibold text-transparent scroll-m-20 xl:text-2xl bg-clip-text bg-gradient-to-tr from-red-800 to-red-700"> {detailTv.last_episode_to_air.air_date ? detailTv.last_air_date.replace(/-/g, "/") : <span className="text-2xl font-bold text-error rounded-xl md:text-xl">unknown !</span>} </h1>
@@ -313,7 +306,7 @@ export default async function DynamicTvListPage({ params }) {
                     </div>
                 )}
 
-            </BlurFade>
+
             {/* Credits  and cast and crew  and people && Reviews , season and episode */}
             <div>
                 <CreditsDetailsTv

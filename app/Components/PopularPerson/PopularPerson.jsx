@@ -14,10 +14,10 @@ import {
     CarouselNext,
     CarouselPrevious,
 } from "@/components/ui/carousel"
-import { urlImage } from "@/app/libs/DataFetching"
 import { Card } from "@/components/ui/card"
 import { FaRegStar } from "react-icons/fa"
 import CarouselPerson from "./CarouselPerson"
+import { urlImage } from "@/app/libs/UrlImage"
 export default function PopularPerson({ dataPersonPopular }) {
 
     return (
@@ -54,16 +54,6 @@ export default function PopularPerson({ dataPersonPopular }) {
                                     </Link>
                                 </Card>
                             </CarouselItem>
-
-
-
-
-
-
-
-
-
-
                         ))
                     ) : (
                         <Alert variant="destructive" className=" bg-black/30 backdrop-blur">

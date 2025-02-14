@@ -16,6 +16,7 @@ import {
 import { FaRegStar } from "react-icons/fa";
 import Link from "next/link";
 import BlurFade from "@/components/ui/blur-fade";
+import { urlImage } from "@/app/libs/UrlImage";
 
 
 export default function MoviePopular({ dataPopular }) {
@@ -39,7 +40,7 @@ export default function MoviePopular({ dataPopular }) {
                                         <Link className=" " href={`/movies/list/${movie.id}`}>
 
                                             <Image
-                                                src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
+                                                src={`${urlImage}${movie.poster_path}`}
                                                 alt={movie.title}
                                                 width={300} height={200}
                                                 className=" hover:saturate-50 hover:duration-500 rounded-md   "

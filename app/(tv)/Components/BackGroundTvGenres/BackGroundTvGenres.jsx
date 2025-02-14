@@ -30,6 +30,7 @@ import { buttonVariants } from "@/components/ui/button"
 // import { useMediaContext } from "@/app/Context/MediaContext"
 // import { useContextMedia } from "@/app/Context/ContextMedia"
 import errorImage from '../../../../public/image/error_image.webp'
+import { urlImage } from "@/app/libs/UrlImage"
 
 
 const initialState = {
@@ -79,7 +80,7 @@ export default function BackGroundTvGenres({ resultTvGenres,detailsTv }) {
         dispatch({type: "SET_LOADING", payload: true})
         
 
-        const newImage = tv.backdrop_path ? `${urlImageTv}${tv.backdrop_path}` : errorImage
+        const newImage = tv.backdrop_path ? `${urlImage}${tv.backdrop_path}` : errorImage
         const img = new window.Image()
         img.src = newImage
         img.onload =  () => {
@@ -242,7 +243,7 @@ export default function BackGroundTvGenres({ resultTvGenres,detailsTv }) {
                                 >
                                     <Image
                                         src={tv.poster_path ?
-                                            `${urlImageTv}${tv.poster_path}` : blurImage}
+                                            `${urlImage}${tv.poster_path}` : blurImage}
                                         alt="tv poster"
                                         width={150}
                                         height={100}

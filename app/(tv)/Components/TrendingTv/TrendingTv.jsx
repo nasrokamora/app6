@@ -14,6 +14,7 @@ import {
   AlertDescription,
   AlertTitle,
 } from "@/components/ui/alert"
+import { urlImage } from "@/app/libs/UrlImage"
 
 
 export default function TrendingTv({ dataTrending }) {
@@ -35,8 +36,8 @@ export default function TrendingTv({ dataTrending }) {
                     <div className=" ">
                       <div className=" overflow-hidden relative">
                         <Image
-                          src={`${urlImageTv}${data.poster_path}`}
-                          alt={data.name}
+                          src={`${urlImage}${data.poster_path}`}
+                          alt={data.name ? data.name : data.original_name || "Magix Movies"} 
                           width={300}
                           height={250}
                           style={{ width: "auto" }}

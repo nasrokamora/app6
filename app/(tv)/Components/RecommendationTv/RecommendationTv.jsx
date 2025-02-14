@@ -1,4 +1,3 @@
-import { urlImageTv } from "@/app/libs/DataFetchingTv"
 import {
   CarouselContent,
   CarouselItem,
@@ -15,8 +14,8 @@ import {
 } from "@/components/ui/alert"
 import { AlertCircle } from "lucide-react"
 import { PiShootingStarLight } from "react-icons/pi";
-import BlurFade from "@/components/ui/blur-fade"
 import AutoReccomendCarousel from "./RecommendAutoCarousel"
+import { urlImage } from "@/app/libs/UrlImage"
 
 export default function RecommendationTv({ dataRecommend }) {
   return (
@@ -24,35 +23,34 @@ export default function RecommendationTv({ dataRecommend }) {
       <AutoReccomendCarousel>
         <CarouselContent className="-mt-1 ">
           {dataRecommend && dataRecommend.length > 0 ? (
-            dataRecommend.map((data, idx) => (
+            dataRecommend.map((data) => (
               <CarouselItem key={data.id} className="md:basis-1/2 basis-1/6 lg:basis-1/5">
-                <BlurFade key={data.id} delay={0.25 + idx * 0.05} inView>
-                  <div className="p-1 hover:scale-90 hover:duration-500 hover:hue-rotate-30">
-                    <Link href={`/tv/list/${data.id}`}>
-                      <div className=" overflow-hidden  relative">
-                        <Image
-                          src={data.poster_path ? `${urlImageTv}${data.poster_path}` : no_image}
-                          alt={data.name}
-                          width={300}
-                          height={250}
-                          style={{ width: "auto", borderRadius: "0.5rem" }}
-                          loading="eager"
-                          priority
-                        />
-                      </div>
-                    </Link>
-                    <div className="flex justify-between items-center font-bold">
 
-                      <div className=" flex justify-start gap-1 items-center">
-                        <span><PiShootingStarLight className=" text-[#ffe533]" /></span>
-                        <h1> {data.vote_average.toFixed(1)} </h1>
-                      </div>
-                      <div>
-                        <h1> {data.first_air_date ? data.first_air_date.split("-")[0] : "Unknown"} </h1>
-                      </div>
+                <div className="p-1 hover:scale-90 hover:duration-500 hover:hue-rotate-30">
+                  <Link href={`/tv/list/${data.id}`}>
+                    <div className=" overflow-hidden  relative">
+                      <Image
+                        src={data.poster_path ? `${urlImage}${data.poster_path}` : no_image}
+                        alt={data.name ? data.name : data.original_name || "Magix Movies_poster"}
+                        width={300}
+                        height={250}
+                        style={{ width: "auto", borderRadius: "0.5rem" }}
+                        loading="eager"
+                        priority
+                      />
+                    </div>
+                  </Link>
+                  <div className="flex justify-between items-center font-bold">
+
+                    <div className=" flex justify-start gap-1 items-center">
+                      <span><PiShootingStarLight className=" text-[#ffe533]" /></span>
+                      <h1> {data.vote_average.toFixed(1)} </h1>
+                    </div>
+                    <div>
+                      <h1> {data.first_air_date ? data.first_air_date.split("-")[0] : "Unknown"} </h1>
                     </div>
                   </div>
-                </BlurFade>
+                </div>
               </CarouselItem>
             ))
           ) : (
@@ -60,7 +58,7 @@ export default function RecommendationTv({ dataRecommend }) {
               <AlertCircle className="h-6 w-6" />
               <AlertTitle className=" text-xl">Oops!</AlertTitle>
               <AlertDescription className=" text-xl font-bold">
-               We couldn’t find any recommended content.
+                We couldn’t find any recommended content.
               </AlertDescription>
             </Alert>
           )

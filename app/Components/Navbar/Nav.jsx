@@ -11,10 +11,8 @@ import Profile from "@/app/libs/Profile";
 import dynamic from "next/dynamic";
 import { Loader2 } from "lucide-react"
 import { Suspense } from "react";
-// import TrendingMovies from "@/app/(movies)/Components/TrendingMovies/TrendingMovies";
 import SearchMultiPage from "@/app/(movies)/Components/SearchMulti/SearchMultiPage";
 import { IoCloseCircleSharp } from "react-icons/io5";
-import Footer from "../Footer/Footer";
 import FooterMenu from "../Footer/FooterMenu";
 
 const TrendingMovies = dynamic(() => import("@/app/(movies)/Components/TrendingMovies/TrendingMovies"), {
@@ -87,7 +85,9 @@ export default function NavBar() {
                     ))}
                   </div>
                   <div className="pt-10">
+                    <Suspense fallback={<Loader2 className="animate-spin" />}>
                     <TrendingMovies />
+                    </Suspense>
                   </div>
                     <div className="md:hidden">
 

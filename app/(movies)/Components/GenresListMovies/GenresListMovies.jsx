@@ -60,7 +60,7 @@ export default async function GenresListMovies() {
                             )}
                         </div>
 
-                        {/* content genres tv ooooaaaaAA *-*  */}
+                        {/* content genres tv *-*  */}
                         <div className="text-center mb-3">
                             <h1 className="text-xl font-bold">Choose your favorite TV show genre and dive into endless entertainment.</h1>
                         </div>
@@ -85,33 +85,5 @@ export default async function GenresListMovies() {
                 </ul>
             </div>
         </div>
-        // // <div className=" h-auto">
-
-        // //     <Sheet>
-        // //         <SheetTrigger>
-        // //             <FaTheaterMasks size={25} className="2xl:size-8 hover:text-sky-500 duration-300" />
-        // //         </SheetTrigger>
-        // //         <SheetContent side="left" className=" h-auto overflow-y-scroll">
-        // //             <SheetHeader>
-        // //                 <SheetTitle>Explore Movie and TV Show By Genres.</SheetTitle>
-        // //                 <SheetDescription>
-        // //                     Whether you're a fan of movies or TV shows, there's something here for everyone.
-        // //                 </SheetDescription>
-        // //             </SheetHeader>
-        // //             <div className="flex justify-start items-center gap-2 mt-6 flex-col">
-
-        // //                 <div className="flex justify-start items-center  font-bold text-xl gap-2">
-        // //                     <h1>Choose your favorite genre from a wide selection of movies.
-        // //                     </h1>
-        // //                     <h2><BiCameraMovie size={25} className="" /></h2>
-        // //                 </div>
-        // //                 <div>
-        // //                     <ListGenre />
-        // //                 </div>
-        // //             </div>
-        // //         </SheetContent>
-        // //     </Sheet>
-
-        // // </div>
     )
 }

@@ -9,11 +9,10 @@ import {
     CarouselNext,
     CarouselPrevious,
 } from "@/components/ui/carousel"
-import { urlImageTv } from "@/app/libs/DataFetchingTv"
 import blurImage from '../../../../public/image/blurImage.webp'
-import { urlImage } from "@/app/libs/DataFetching"
 import { FaRegStar } from "react-icons/fa";
 import Link from "next/link"
+import { urlImage } from "@/app/libs/UrlImage"
 
 
 
@@ -223,7 +222,7 @@ export default function BackGroundImageGenres({ dataResult, detailsMovies }) {
                                         className="cursor-pointer hover:-translate-y-2 transition-all duration-300 ease-in-out "
                                         onClick={() => updateCurrentMovie(movie)}>
                                         <Image
-                                            src={`${urlImageTv}${movie.poster_path}`}
+                                            src={`${urlImage}${movie.poster_path}`}
                                             alt="movie poster"
                                             width={150}
                                             height={150}

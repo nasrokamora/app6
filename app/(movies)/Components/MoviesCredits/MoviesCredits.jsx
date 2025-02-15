@@ -24,7 +24,6 @@ import {
     AvatarImage,
 } from "@/components/ui/avatar"
 import CreditsId from "./CreditsId"
-import { buttonVariants } from "@/components/ui/button"
 import Link from "next/link"
 
 

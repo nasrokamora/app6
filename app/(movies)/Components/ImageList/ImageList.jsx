@@ -7,7 +7,8 @@ import {
     AlertTitle,
 } from "@/components/ui/alert"
 import { AlertCircle } from "lucide-react"
-import { urlImage } from "@/app/libs/DataFetching"
+import { urlImage } from "@/app/libs/UrlImage"
+
 
 
 export default function ImageList({ dataImageList }) {
@@ -38,8 +39,8 @@ export default function ImageList({ dataImageList }) {
 
                     <Alert variant="destructive">
                         <AlertCircle className="h-4 w-4" />
-                        <AlertTitle>Error</AlertTitle>
-                        <AlertDescription>
+                        <AlertTitle className=" font-bold">Oops !</AlertTitle>
+                        <AlertDescription className=" font-semibold text-xl">
                             There are no images in this movie.
                         </AlertDescription>
                     </Alert>

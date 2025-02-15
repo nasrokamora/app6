@@ -1,4 +1,4 @@
-import { urlImageTv } from "@/app/libs/DataFetchingTv"
+
 import {
   Carousel,
   CarouselContent,
@@ -11,6 +11,7 @@ import Link from "next/link"
 import no_image from '../../../../public/image/no_image4.webp'
 import { FaRegStar } from "react-icons/fa"
 import { MdOutlineMovieFilter } from "react-icons/md";
+import { urlImage } from "@/app/libs/UrlImage"
 
 
 export default function RecommendationMovies({ dataRecommend }) {
@@ -33,14 +34,14 @@ export default function RecommendationMovies({ dataRecommend }) {
           <CarouselContent className="-mt-1 ">
             {dataRecommend && dataRecommend.length > 0 ? (
               dataRecommend.map((data, index) => (
-                <CarouselItem key={index} className="md:basis-1/2 basis-1/6 lg:basis-1/5">
+                <CarouselItem key={data.id} className="md:basis-1/2 basis-1/6 lg:basis-1/5">
                   <div className="p-1 hover:scale-90 hover:duration-500">
                     <Link href={`/movies/list/${data.id}`}>
                       <div className=" ">
                         <div className=" overflow-hidden relative">
                           <Image
                             src={data.poster_path ?
-                              `${urlImageTv}${data.poster_path}`
+                              `${urlImage}${data.poster_path}`
                               :
                               no_image
                             }

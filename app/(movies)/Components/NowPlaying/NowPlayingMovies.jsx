@@ -1,4 +1,4 @@
-import { urlImageTv } from "@/app/libs/DataFetchingTv"
+
 import { Card, CardContent } from "@/components/ui/card"
 import {
   Carousel,
@@ -20,6 +20,7 @@ import no_image from '../../../../public/image/no_image4.webp'
 import AutoCarousel from "@/app/Components/AutoCarousel/AutoCarousel"
 import { FaRegStarHalf } from "react-icons/fa"
 import { IoStarSharp } from "react-icons/io5"
+import { urlImage } from "@/app/libs/UrlImage"
 
 export default function NowPlayingMovies({ dataPlaying }) {
 
@@ -42,7 +43,7 @@ export default function NowPlayingMovies({ dataPlaying }) {
                       <div className="relative overflow-hidden ">
                         <Image
                           src={data.poster_path ?
-                            `${urlImageTv}${data.poster_path}`
+                            `${urlImage}${data.poster_path}`
                             :
                             no_image
                           }
@@ -82,8 +83,8 @@ export default function NowPlayingMovies({ dataPlaying }) {
             ) : (
               <Alert variant="destructive" className=" bg-black/30 backdrop-blur">
                 <AlertCircle className="w-4 h-4" />
-                <AlertTitle>Oops!</AlertTitle>
-                <AlertDescription>
+                <AlertTitle className="font-bold">Oops!</AlertTitle>
+                <AlertDescription  className="xl:text-xl 2xl:text-2xl font-semibold">
                   Something went wrong.
                 </AlertDescription>
               </Alert>

@@ -9,8 +9,6 @@ import {
     getReleasDateMovies,
     getReviewsMovies,
     getTrailer,
-    headers,
-    urlImage
 } from "@/app/libs/DataFetching"
 import { Badge } from "@/components/ui/badge"
 import { cn } from "@/lib/utils"
@@ -35,6 +33,7 @@ import { BsTwitterX } from "react-icons/bs"
 import { SlSocialInstagram } from "react-icons/sl"
 import ErrorMessage from "@/app/(tv)/Components/Error/ErrorMessage"
 import dynamic from "next/dynamic"
+import { urlImage } from "@/app/libs/UrlImage"
 
 
 const ToggleButton = dynamic(() => import('@/app/(movies)/Components/ToggleButton/ToggleButton'), { ssr: false })

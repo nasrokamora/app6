@@ -9,6 +9,7 @@ import Image from "next/image"
 import { FaRegStar } from "react-icons/fa";
 import Link from "next/link"
 import no_image from '../../../../public/image/no_image4.webp'
+import { urlImage } from "@/app/libs/UrlImage";
 
 export default function MoviesSimilar({ similar }) {
 
@@ -32,7 +33,7 @@ export default function MoviesSimilar({ similar }) {
                                         <Link className="" href={`/movies/list/${movie.id}`} rel="noopener noreferrer">
                                             <div className=" relative overflow-hidden">
                                                 <Image
-                                                    src={movie.poster_path ? `https://image.tmdb.org/t/p/original${movie.poster_path}` : no_image}
+                                                    src={movie.poster_path ? `${urlImage}${movie.poster_path}` : no_image}
                                                     alt="movie poster"
                                                     width={250} height={180}
                                                     className=" rounded-md "

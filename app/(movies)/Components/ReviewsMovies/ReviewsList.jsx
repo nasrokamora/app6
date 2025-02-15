@@ -5,13 +5,14 @@ import {
 } from "@/components/ui/alert"
 import { AlertCircle } from "lucide-react"
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
-import { urlImage } from "@/app/libs/DataFetching"
+
 import {
     Avatar,
     AvatarFallback,
     AvatarImage,
 } from "@/components/ui/avatar"
 import ReviewContent from "./ReviewsContent/ReviewsContent"
+import { urlImage } from "@/app/libs/UrlImage"
 export default function ReviewsList({ dataReview }) {
 
     return (

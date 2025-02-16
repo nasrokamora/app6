@@ -18,7 +18,6 @@ import { urlImage } from "@/app/libs/UrlImage"
 
 const initialState = {
     currentMovie: {
-        id: null,
         image: "",
         title: "",
         releaseDate: null,
@@ -58,7 +57,6 @@ export default function BackGroundImageGenres({ dataResult, detailsMovies }) {
 
     const [state, dispatch] = useReducer(MoviesReducer, initialState)
     const itemRef = useRef([])
-    const [isLoaded, setIsLoaded] = useState(false)
 
 
     const updateCurrentMovie = useCallback((movie) => {
@@ -71,7 +69,6 @@ export default function BackGroundImageGenres({ dataResult, detailsMovies }) {
             dispatch({
                 type: "SET_CURRENT_MOVIE",
                 payload: {
-                    id: movie.id ? movie.id : "Unknown",
                     image: newImage,
                     title: movie.title ? movie.title : "Unknown",
                     releaseDate: movie.release_date.replace(/-/g, "/") ? movie.release_date.replace(/-/g, "/") : "Unknown",
@@ -244,7 +241,7 @@ export default function BackGroundImageGenres({ dataResult, detailsMovies }) {
                 </div>
                         
             </div>
-            <ToggleButton />
+
         </main>
     )
 }

@@ -20,7 +20,7 @@ export default function PersonImage({ ImagePerson }) {
                                     alt={image.file_path}
                                     width={100}
                                     height={100}
-                                    priority
+                                    
                                     className="rounded-md"
                                     style={{ width: "auto" }}
                                 />

@@ -34,7 +34,7 @@ export default function PopularPerson({ dataPersonPopular }) {
                                                 alt={person.name ? person.name : "No name"}
                                                 width={150}
                                                 height={150}
-                                                priority={true}
+                                                loading="lazy"
                                                 className="rounded-md"
                                                 style={{ width: 'auto' }}
                                             />

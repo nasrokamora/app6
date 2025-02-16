@@ -124,8 +124,7 @@ export default function PopularPersonDetails() {
                                                             className="rounded-md  "
                                                             style={{  width: 'auto' }}
                                                             draggable={false}
-                                                            priority
-                                                            loading="eager"
+                                                            loading="lazy"
                                                         />
                                                     </div>
                                                     <h2 className="pt-2  font-semibold">

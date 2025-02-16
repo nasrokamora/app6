@@ -49,10 +49,13 @@ export default function TrailerEpisodes({trailerEpisodes}) {
                                     className=" object-fill rounded-md"
                                 />
 
-                                <AlertDialogFooter>
-                                    <AlertDialogCancel>Cancel</AlertDialogCancel>
-
-                                </AlertDialogFooter>
+<div className="  flex justify-center items-center flex-col">
+                            <AlertDialogTitle>Opps !</AlertDialogTitle>
+                            <AlertDialogDescription className="text-xl font-bold text-error">
+                                Undefined
+                            </AlertDialogDescription>
+                            <AlertDialogCancel>Cancel</AlertDialogCancel>
+                        </div>
                             </div>
                         ))
                     ) : (

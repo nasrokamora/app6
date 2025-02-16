@@ -53,7 +53,10 @@ export default async function TrailerMovies({ dataTrailer }) {
                     ))
                     ):(
                         <div className="  flex justify-center items-center flex-col">
-                            <h1 className="text-xl font-bold text-error">Undefined</h1>
+                            <AlertDialogTitle>Opps !</AlertDialogTitle>
+                            <AlertDialogDescription className="text-xl font-bold text-error">
+                                Undefined
+                            </AlertDialogDescription>
                             <AlertDialogCancel>Cancel</AlertDialogCancel>
                         </div>
                     )

@@ -67,6 +67,7 @@ export default function Footer() {
                     but is not endorsed or certified by TMDB.
                 </p>
                 <div className="flex justify-center mt-2">
+                    <Link href={"https://www.themoviedb.org/"}>
                     <Image
                         src={TmdbIcon}
                         alt="TMDB Logo"
@@ -75,7 +76,8 @@ export default function Footer() {
                         className="mx-auto"
                         priority
                         style={{ width: "auto", height: "auto" }}
-                    />
+                        />
+                        </Link>
                 </div>
             </section>
         </footer>

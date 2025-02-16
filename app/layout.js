@@ -20,21 +20,23 @@ const inter = Inter({
 
 
 export const metadata = {
-  title: "Magix Movies ",
-  description: 
-    "Magix Movies is a premium platform designed by Nasreddine Abdellouche, offering curated content for movie and series enthusiasts. Dive into detailed reviews, ratings, and recommendations tailored to your taste.",
+  title: "Magix Movies - Your Ultimate Movie & Series Hub",
+  description:
+    "Magix Movies, crafted by Nasreddine Abdellouche, is your go-to platform for premium movie and series insights. Explore in-depth reviews, ratings, and personalized recommendations tailored to your preferences.",
   keywords: [
-    "Magix Movies", "Nasreddine Abdellouche", "movies", 
-    "series", "entertainment", "movie reviews", "series reviews", 
-    "top movies", "top series", "Nasreddine AB","nasreddine AB", "movie ratings", 
-    "series ratings", "customized recommendations", 
-    "2024 movies", "2024 series", "movie platform", "series platform"
+    "Magix Movies", "Nasreddine Abdellouche", "movies", "series",
+    "entertainment", "film reviews", "TV show reviews", "best movies",
+    "best series", "cinema ratings", "custom recommendations",
+    "top-rated films", "binge-worthy series", "movie streaming",
+    "latest movies 2024", "trending series 2024", "online movie platform",
+    "TV show platform"
   ],
   author: "Nasreddine Abdellouche",
   links: {
     portfolio: "https://nasreddine-abdellouche.vercel.app/",
     linkedIn: "https://linkedin.com/in/nasdev",
     github: "https://github.com/nasrokamora",
+    linktree: "https://linktr.ee/nasreddine_ab",
   },
   
   icons: {

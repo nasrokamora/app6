@@ -18,6 +18,7 @@ import { urlImage } from "@/app/libs/UrlImage"
 
 const initialState = {
     currentMovie: {
+        id: null,
         image: "",
         title: "",
         releaseDate: null,
@@ -69,6 +70,7 @@ export default function BackGroundImageGenres({ dataResult, detailsMovies }) {
             dispatch({
                 type: "SET_CURRENT_MOVIE",
                 payload: {
+                    id: movie.id,
                     image: newImage,
                     title: movie.title ? movie.title : "Unknown",
                     releaseDate: movie.release_date.replace(/-/g, "/") ? movie.release_date.replace(/-/g, "/") : "Unknown",
@@ -149,9 +151,9 @@ export default function BackGroundImageGenres({ dataResult, detailsMovies }) {
 
     return (
         <main className="w-full h-screen md:h-auto ">
-                <ImageMoviesCover state={state} blurImage={blurImage} />
-                <div className={`   h-screen w-full md:h-auto relative`}>
-            
+            <ImageMoviesCover state={state} blurImage={blurImage} />
+            <div className={`   h-screen w-full md:h-auto relative`}>
+
 
 
                 {/* loading */}
@@ -196,7 +198,7 @@ export default function BackGroundImageGenres({ dataResult, detailsMovies }) {
                     <div className=" border-l-2 pt-2 border-l-red-600  font-bold text-xl  flex-col flex justify-start items-start text-gray-300 gap-1">
                         <div className=" pl-2 ">
                             <Button asChild variant='secondary'>
-                        <Link className="" href={`/movies/list/${state.currentMovie.id}`} >More details</Link>
+                                <Link className="" href={`/movies/list/${state.currentMovie.id}`} >More details</Link>
                             </Button>
 
                         </div>
@@ -212,9 +214,9 @@ export default function BackGroundImageGenres({ dataResult, detailsMovies }) {
                         <CarouselContent>
                             {dataResult.map((movie, index) => (
                                 <CarouselItem className="basis-1/8 xl:basis-1/6 md:basis-1/3 lg:basis-1/5 2xl:basis-1/6" key={movie.id}
-                                data-index={index}
+                                    data-index={index}
                                     ref={(el) => (itemRef.current[index] = el)}
-                                    >
+                                >
                                     <div
                                         className="cursor-pointer hover:-translate-y-2 transition-all duration-300 ease-in-out "
                                         onClick={() => updateCurrentMovie(movie)}>
@@ -224,11 +226,12 @@ export default function BackGroundImageGenres({ dataResult, detailsMovies }) {
                                             width={150}
                                             height={150}
                                             priority
-                                            style={{ 
+                                            style={{
                                                 width: "auto",
-                                                height:"auto", 
-                                                borderRadius: '2px' }}
-                                            />
+                                                height: "auto",
+                                                borderRadius: '2px'
+                                            }}
+                                        />
                                     </div>
                                 </CarouselItem>
                             ))}
@@ -239,7 +242,7 @@ export default function BackGroundImageGenres({ dataResult, detailsMovies }) {
                         </div>
                     </Carousel>
                 </div>
-                        
+
             </div>
 
         </main>

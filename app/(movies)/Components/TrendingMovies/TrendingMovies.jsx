@@ -15,7 +15,6 @@ import LoadingGenreCarousel from "@/app/Components/LoadingUi/LoadingGenreCarouse
 import { urlImage } from "@/app/libs/UrlImage";
 import { ChevronRight } from "lucide-react"
 import { ChevronLeft } from "lucide-react"
-
 import { Button } from "@/components/ui/button"
 
 
@@ -81,13 +80,13 @@ export default function TrendingMovies() {
     }, [])
 
 
-    // useEffect(() => {
-    //     const interval = setInterval(() => {
-    //         dispatch({type: "INCREMENT_PAGE"})
-    //     }, 15000)
+    // // useEffect(() => {
+    // //     const interval = setInterval(() => {
+    // //         dispatch({type: "INCREMENT_PAGE"})
+    // //     }, 15000)
 
-    //     return () => clearInterval(interval)
-    // }, [])
+    // //     return () => clearInterval(interval)
+    // // }, [])
 
     useEffect(() => {
         fetchTredingMovies(state.page)

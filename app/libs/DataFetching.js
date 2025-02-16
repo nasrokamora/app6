@@ -113,22 +113,26 @@ export async function getMoviesGenreList() {
 
 //Popular Movies
 export async function getPopularMovies() {
-  try {
-    const response = await fetch(`${process.env.TMDB_BASE_URL}/movie/popular?page=2`, {
-      ...Options,
-      next: {
-        revalidate: 3600
+  return handleRedisCache("popularMovies", 7200, async () => {
+    
+    try {
+      const response = await fetch(`${process.env.TMDB_BASE_URL}/movie/popular?page=2`, {
+        ...Options,
+        next: {
+          revalidate: 3600
+        }
       }
+      )
+      if (!response.ok) {
+        throw new Error('failed to fetch data popular')
+      }
+      return response.json()
+  
+    } catch (error) {
+      return HandleErrors(error, "failed to fetch data popular")
     }
-    )
-    if (!response.ok) {
-      throw new Error('failed to fetch data popular')
-    }
-    return response.json()
+  })
 
-  } catch (error) {
-    return HandleErrors(error, "failed to fetch data popular")
-  }
 }
 
 

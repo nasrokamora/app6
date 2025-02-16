@@ -17,11 +17,13 @@ import { FaRegStar } from "react-icons/fa";
 import Link from "next/link";
 import BlurFade from "@/components/ui/blur-fade";
 import { urlImage } from "@/app/libs/UrlImage";
+import AnimationAllComponents from "@/app/Animations/FadeIn/AnimationAllComponents";
 
 
 export default function MoviePopular({ dataPopular }) {
 
     return (
+
 
         <div className=" mt-10 flex justify-center w-full bg-gradient-to-br from-[black] to-[red] p-6 ">
             <Carousel opts={{
@@ -33,7 +35,7 @@ export default function MoviePopular({ dataPopular }) {
                         dataPopular.results.map((movie, idx) => (
 
                             <CarouselItem key={movie.id} className="  basis-1/5 lg:basis-1/4 md:basis-1/2 2xl:basis-1/7">
-                                <BlurFade key={movie.id} delay={0.25 + idx * 0.05} inView>
+
 
                                     <div className="hover:scale-105  duration-500 w-full ">
 
@@ -67,7 +69,7 @@ export default function MoviePopular({ dataPopular }) {
 
                                         </Link>
                                     </div>
-                                </BlurFade>
+
                             </CarouselItem>
                         ))
                     ) : (
@@ -79,7 +81,7 @@ export default function MoviePopular({ dataPopular }) {
                             </AlertDescription>
                         </Alert>
                     )
-                    }
+                }
                 </CarouselContent>
                 <div className=" absolute top-[-2rem] left-[93%] md:left-[80%] text-white ">
                     <CarouselPrevious />

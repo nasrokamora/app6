@@ -15,7 +15,8 @@ import SearchMultiPage from "@/app/(movies)/Components/SearchMulti/SearchMultiPa
 import { IoCloseCircleSharp } from "react-icons/io5";
 import FooterMenu from "../Footer/FooterMenu";
 
-const TrendingMovies = dynamic(() => import("@/app/(movies)/Components/TrendingMovies/TrendingMovies"), {
+
+const TrendingMoviesLoad = dynamic(() => import("@/app/(movies)/Components/TrendingMovies/TrendingMoviesLoad"), {
   ssr: false,
 });
 
@@ -84,11 +85,12 @@ export default function NavBar() {
                       </div>
                     ))}
                   </div>
-                  <div className="pt-10">
-                    <Suspense fallback={<Loader2 className="animate-spin" />}>
-                    <TrendingMovies />
-                    </Suspense>
+                  {/* Trending Movies */}
+                  {/* Trending Movies */}
+                  <div className="">
+                    <TrendingMoviesLoad />
                   </div>
+                  {/* Footer */}
                     <div className="md:hidden">
 
                     <FooterMenu />

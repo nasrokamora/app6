@@ -13,7 +13,13 @@ import {ClapperboardIcon } from 'lucide-react';
 import { GiPopcorn } from "react-icons/gi";
 import { GiFilmProjector } from "react-icons/gi";
 import { TbHeartUp } from "react-icons/tb";
-export const dynamic = 'force-dynamic';
+import AnimationAllComponents from "./Animations/FadeIn/AnimationAllComponents"
+import dynamic from "next/dynamic";
+
+// export const dynamic = 'force-dynamic';
+// const AnimationAllComponents = dynamic(() => import("./Animations/FadeIn/AnimationAllComponents"), {
+//   ssr: false
+// })
 
 //metadata for SEO
 export const metadata = {
@@ -26,11 +32,12 @@ export const metadata = {
 
 export default async function Home() {
   const data = await getDiscoverMovies()
-  const popularData = getPopularMovies()
+  const popularData = await getPopularMovies()
   const tvData = getDiscoverTv()
   const personPopular = await getPersonPopular()
 const dataDiscoverMovies = data
-  const [ dataPopular, dataTv, dataPersonPopular] = await Promise.all([ popularData, tvData, personPopular]);
+const dataPopular = popularData
+  const [ dataTv, dataPersonPopular] = await Promise.all([  tvData, personPopular]);
 
   return (
     <main className={`w-full h-auto text-white pt-24 `}>
@@ -41,7 +48,9 @@ const dataDiscoverMovies = data
           <span className="bg-gradient-to-r from-[#911818] via-[#ffae00] to-[#911818]  bg-[length:200%_auto] bg-clip-text text-transparent animate-gradient">Magix</span> </h1>
       </div>
       <section className="">
+
         <MoviesCard dataDiscoverMovies={dataDiscoverMovies.results} />
+
       </section>
 
       {/* section highest rated movies */}
@@ -61,7 +70,9 @@ const dataDiscoverMovies = data
         <h1 className="md:pb-4"> <span className="bg-gradient-to-r from-[#850000] via-black to-[#850000] bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient">Top</span> <span className="text-white">Picks</span>  <span className="bg-gradient-to-r from-[#850000] via-black to-[#850000] bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient">on</span> Magix</h1>
       </div>
       <section>
+
         <MoviePopular dataPopular={dataPopular} />
+
       </section>
 
       {/* section Genres Movies */}

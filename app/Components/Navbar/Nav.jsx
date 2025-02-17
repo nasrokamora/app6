@@ -5,7 +5,6 @@ import { DataLink } from "@/app/libs/DataLink";
 import LogoIcon from '../../../public/icon/Icon.png'
 import Image from "next/image"
 import { cn } from "@/lib/utils";
-import GenresListMovies from "@/app/(movies)/Components/GenresListMovies/GenresListMovies";
 import NavMenu from "./NavBar";
 import Profile from "@/app/libs/Profile";
 import dynamic from "next/dynamic";
@@ -41,10 +40,7 @@ export default function NavBar() {
 
         <div className=" flex justify-between items-center gap-6">
           <Profile />
-          {/* Genres */}
-          <div>
-            <GenresListMovies />
-          </div>
+
 
           {/* Search */}
           <Suspense fallback={<Loader2 className="animate-spin" />}>
@@ -75,9 +71,9 @@ export default function NavBar() {
                   <div className="flex flex-col gap-2 justify-center items-center w-full">
                     {DataLink.map((item) => (
                       <div key={item.id} className=" py-4 ">
-                        <div className=" text-white">
-                          <Link href={`${item.link}`} className="">
-                            <Button variant='outline' type='button' className="px-8 font-bold">
+                        <div  className=" text-white">
+                          <Link href={`${item.link}`} className="" htmlFor="my-drawer-4" aria-label="close sidebar">
+                            <Button variant='outline' type='button' className="px-8 font-bold" >
                               {item.name}
                             </Button>
                           </Link>

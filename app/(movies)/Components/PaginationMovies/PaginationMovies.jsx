@@ -31,9 +31,18 @@ import { urlImage } from "@/app/libs/UrlImage";
 
 
 
+const MAX_PAGE = 5
 
 async function fetchPagination({cachRef,setDataMovies, setIsLoading, setError, page}) {
     try {
+
+        if(page > MAX_PAGE) {
+            setError("You have reached the maximum number of pages")
+            setIsLoading(false)
+            return
+        }
+
+
         if (cachRef.current[page]) {
             setDataMovies(cachRef.current[page])
             setIsLoading(false)
@@ -58,7 +67,7 @@ async function fetchPagination({cachRef,setDataMovies, setIsLoading, setError, p
                 details: process.env.NODE_ENV !== "production" ? error.stack : undefined 
             }
         }
-        setError(error)
+        
     }
     setIsLoading(false)
 }
@@ -77,10 +86,14 @@ export default function PaginationMovies() {
         fetchPagination({cachRef,setDataMovies, setIsLoading, setError, page: currentPage})
     }, [currentPage])
     
-    const  handlePageChange = useCallback((newPage)=> {
-        if (newPage < 1) return
-        setCurrentPage(newPage)
-    },[])
+    const handlePageChange = useCallback((newPage) => {
+        if (newPage < 1) return;
+        if (newPage > MAX_PAGE) {
+            setCurrentPage(1)
+        } else {
+            setCurrentPage(newPage);
+        }
+    }, []);
 
     return (
         <div className=" w-full ">
@@ -181,19 +194,18 @@ const PaginationPageMovies = ({handlePageChange, currentPage}) => {
                         className="cursor-pointer 2xl:text-xl font-semibold"
                         onClick={() => handlePageChange(index + 1)}
                         isActive={currentPage === index + 1}
+
                     >
                         {index + 1}
                     </PaginationLink>
                 </PaginationItem>
             ))}
 
-            <PaginationItem >
-                <PaginationEllipsis />
-            </PaginationItem>
             <PaginationItem className="2xl:text-xl">
                 <PaginationNext
                     className="cursor-pointer font-semibold"
                     onClick={() => handlePageChange(currentPage + 1)}
+
                 />
             </PaginationItem>
         </PaginationContent>
@@ -214,8 +226,8 @@ const ErrorAlert = () => {
 }
 const ErrorMessageAndRetry = ({fetchPagination, error, currentPage, cachRef, setDataMovies, setIsLoading, setError}) => {
     return(
-        <div className="text-center">
-        <h1>Error: {error}</h1>
+        <div className="text-center flex justify-center items-center flex-col gap-3">
+        <h1 className="font-bold">{error} </h1>
         <button
             onClick={() => fetchPagination({cachRef,setDataMovies, setIsLoading, setError, page: currentPage})}
             className="px-4 py-2 mt-2 text-white bg-red-500 rounded text-xl"

@@ -11,7 +11,9 @@ export async function GET(req) {
                     Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
                     accept: "application/json"
                 },
-                cache:'force-cache'
+                next: {
+                    revalidate: 7200
+                }
             }
         )
         if (!response.ok) {
@@ -22,7 +24,7 @@ export async function GET(req) {
             {
                 status: 200,
                 headers: {
-                    'cache-control': 'sm-max-age=3600, stale-while-revalidate'
+                    'cache-control': 'sm-max-age=7200, stale-while-revalidate'
                 }
             }
         )

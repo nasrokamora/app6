@@ -16,6 +16,7 @@ import { urlImage } from "@/app/libs/UrlImage"
 
 export default function DetailsSeasonTv({ season, id }) {
     const sortSeason = season.sort((a, b) => a.season_number - b.season_number)
+    
     return (
         <div className="w-full">
             <div className="  mt-5 flex justify-center items-center w-full rounded-md ">

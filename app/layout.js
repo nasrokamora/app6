@@ -7,8 +7,7 @@ import { Inter } from "next/font/google"
 import { cn } from "@/lib/utils";
 import Nav from "./Components/Navbar/Nav";
 import NextTopLoader from "nextjs-toploader";
-import { MediaProvider } from "./Context/MediaContext";
-import { ContextProvider, MediasProvider } from "./Context/ContextMedia";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 
 
@@ -62,6 +61,7 @@ export default function RootLayout({ children }) {
         />
         <Nav />
         {children}
+        <SpeedInsights />
         <Footer />
       </body>
     </html>

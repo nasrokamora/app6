@@ -6,19 +6,21 @@ import {
   AlertTitle,
 } from "@/components/ui/alert"
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
+import { urlImage } from "@/app/libs/UrlImage"
 
-const urlImageTv = process.env.TMDB_IMAGES_ORIGINAL_URL
+
 
 export default function SeasonImage({ seasonImage }) {
+    const seasonImageSlice = seasonImage.slice(0, 5)
     return (
         <div className=" w-full h-auto flex justify-center items-center">
                 <ScrollArea className="max-w-3xl whitespace-nowrap rounded-md  bg-cyan-500/30 backdrop-blur-md">
             <div className="flex w-max space-x-4 p-4">
-                {seasonImage.length > 0 ? (
-                    seasonImage.map((image,index) => (
+                {seasonImageSlice.length > 0 ? (
+                    seasonImageSlice.map((image,index) => (
                         <div key={image.file_path + index}>
                             <div className=" overflow-hidden relative">
-                                <Image src={`${urlImageTv}${image.file_path}`} 
+                                <Image src={`${urlImage}${image.file_path}`} 
                                 width={100} 
                                 height={100} 
                                 className=" rounded-md"

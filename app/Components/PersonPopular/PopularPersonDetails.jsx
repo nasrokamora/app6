@@ -31,6 +31,7 @@ import BlurFade from "@/components/ui/blur-fade"
 
 
 
+
 const LoadingPagination = () => {
     return (
         <div className="flex justify-center items-center w-full h-[200px] relative">
@@ -45,7 +46,7 @@ const LoadingPagination = () => {
 
 export default function PopularPersonDetails() {
     const [currentPage, setCurrentPage] = useState(2)
-    const [totalPages, setTotalPages] = useState(20)
+    const [totalPages, setTotalPages] = useState(7)
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState(null)
     const [dataPersonPopular, setDataPersonPopular] = useState([])
@@ -81,8 +82,13 @@ export default function PopularPersonDetails() {
 
 
     const handleChangePage = (newPage) => {
-        if (newPage < 1 || newPage > totalPages) return;
-        setCurrentPage(newPage)
+        if (newPage < 1 ) return;
+        if(newPage > totalPages){
+            setCurrentPage(7)
+        }else{
+
+            setCurrentPage(newPage)
+        }
     }
 
 
@@ -173,6 +179,7 @@ export default function PopularPersonDetails() {
                                 onClick={() => handleChangePage(index + 1)}
                                 className={'cursor-pointer font-semibold 2xl:text-xl'}
                                 isActive={currentPage === index + 1}
+
                             >
                                 {index + 1}
                             </PaginationLink>
@@ -190,8 +197,9 @@ export default function PopularPersonDetails() {
                     <PaginationItem>
 
                         <PaginationNext onClick={() => handleChangePage(currentPage + 1)}
-                            isActive={currentPage === totalPages}
+                            isActive={currentPage < totalPages}
                             className="cursor-pointer font-semibold 2xl:text-xl"
+                            isDisabled={currentPage === totalPages}
                         />
                     </PaginationItem>
                 </PaginationContent>

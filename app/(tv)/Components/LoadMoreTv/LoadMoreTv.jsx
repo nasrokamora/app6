@@ -22,12 +22,13 @@ async function getTvWithPage(page) {
     }
 }
 
+const MAX_PAGE = 5
 
 export default function LoadMoreTv() {
     const [page, setPage] = useState(1)
     const [dataTv, setDataTv] = useState([])
     const [hasMore, setHasMore] = useState(true)
-    const [error, setError] = useState(null)
+
 
 
 
@@ -44,7 +45,7 @@ export default function LoadMoreTv() {
                 return [...prevTv, ...newTv]
             })
 
-            if (data.page >= data.total_pages) {
+            if (data.page >= MAX_PAGE) {
                 setHasMore(false)
             }
 
@@ -66,8 +67,8 @@ export default function LoadMoreTv() {
             dataLength={dataTv.length}
             next={fetchMoreTv}
             hasMore={hasMore}
-            loader={<h4 className="">Loading...</h4>}
-            endMessage={<p className="text-2xl text-center">No more Tv series to show</p>}
+            loader={<p className=" text-center font-bold text-white text-2xl flex justify-center items-center gap-2 ">Loading...</p>}
+            endMessage={<p className="text-2xl text-center text-yellow-500  font-semibold">You have explored all available content. Stay tuned for more updates and new additions soon!</p>}
         >
             <div className="flex items-center justify-center mt-20 text-3xl font-bold bg-gradient-to-r from-blue-500 via-[#9c40ff] to-blue-500 bg-[length:200%_auto] bg-clip-text text-transparent animate-gradient">
                 <h1>Explore all Tv series on Magix</h1>
@@ -78,7 +79,7 @@ export default function LoadMoreTv() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.2, delay: 0.2, ease: "easeInOut" }}
-                    key={tv.id + index}
+                    key={tv.id}
                     >
 
                         <div key={`${tv.id} + ${index}`} className="relative flex flex-col items-center justify-center overflow-hidden hover:scale-110 hover:duration-300">

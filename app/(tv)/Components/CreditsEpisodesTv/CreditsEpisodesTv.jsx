@@ -20,6 +20,7 @@ import {
   AlertDescription,
   AlertTitle,
 } from "@/components/ui/alert"
+import { urlImage } from "@/app/libs/UrlImage"
 
 const CreditsEpisodesTvGuestStars = ({ creditsEpisodes }) => {
     return (
@@ -110,7 +111,7 @@ export default function CreditsEpisodesTv({ creditsEpisodes }) {
                                         <div className="relative overflow-hidden flex justify-center items-center md:justify-start md:items-start">
                                             {cast.profile_path ? (
                                                 <Image src={
-                                                    `${urlImageTv}${cast.profile_path}`}
+                                                    `${urlImage}${cast.profile_path}`}
                                                     alt={cast.name}
                                                     width={100}
                                                     height={100}

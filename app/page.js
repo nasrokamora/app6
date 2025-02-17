@@ -23,7 +23,7 @@ import dynamic from "next/dynamic";
 
 //metadata for SEO
 export const metadata = {
-  title: 'Magix Movies | Home',
+  title: 'Magix Movies - Your Ultimate Movie & Series Hub',
   discription: "explore movies and tv series on magix movies",
 
 }

@@ -6,10 +6,16 @@ import Image from "next/image"
 import Link from "next/link"
 import dynamic from "next/dynamic"
 import ErrorImage from "../../../public/image/errorImage.webp"
-import { urlImage } from "@/app/libs/DataFetching"
+import { motion } from "framer-motion"
+import { urlImage } from "@/app/libs/UrlImage"
 
-const BlurFade = dynamic(() => import("@/components/ui/blur-fade"), { ssr: false })
 
+
+
+
+
+
+const MAX_PAGE = 5
 
 async function getMoviesWithPage(page) {
     const response = await fetch(`/api/getMoviesWithPage?page=${page}`)
@@ -31,6 +37,7 @@ export default function LoadMovies() {
     }, [page])
 
     const fetchMovies = async () => {
+
         try {
             const data = await getMoviesWithPage(page)
 
@@ -41,7 +48,7 @@ export default function LoadMovies() {
             })
 
 
-            if (data.page >= data.total_pages) {
+            if (data.page >= MAX_PAGE) {
                 setHasMore(false)
             }
         } catch (error) {
@@ -61,15 +68,19 @@ export default function LoadMovies() {
             dataLength={dataMovies.length}
             next={fetchMoreMovies}
             hasMore={hasMore}
-            loader={<p className=" text-center font-bold text-white text-2xl flex justify-center items-center gap-2 ">Loading... <span className="w-10 h-10 border-4 border-t-red-600 border-gray-300 rounded-full animate-spin"></span></p>}
-            endMessage={<p className="text-2xl animate-ping text-center font-bold text-red-700">No more movies to show</p>}
+            loader={<p className=" text-center font-bold text-white text-lg flex justify-center items-center gap-2 ">Loading...</p>}
+            endMessage={<p className="text-2xl text-center text-amber-500  font-semibold">You have explored all available content. Stay tuned for more updates and new additions soon!</p>}
         >
             <div className="flex items-center justify-center pt-20 text-3xl font-bold bg-gradient-to-r from-[#b62323] via-[#9c40ff] to-[#b62323] bg-[length:200%_auto] bg-clip-text text-transparent animate-gradient">
                 <h1>Explore all movies on Magix</h1>
             </div>
             <div className="grid grid-cols-6 gap-8 p-8 md:grid-cols-3 lg:grid-cols-4">
                 {dataMovies.map((movie, index) => (
-                    <BlurFade key={movie.id - index} delay={0.10 + index * 0.05} inView>
+                    <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.2, delay: 0.2, ease: "easeInOut" }}
+                    key={movie.id}>
                         <div key={index} className="relative flex flex-col items-center justify-center overflow-hidden hover:scale-110 hover:duration-300">
                             <Link href={`/movies/list/${movie.id}`} >
 
@@ -90,8 +101,9 @@ export default function LoadMovies() {
                                 </h1>
                             </Link>
                         </div>
-                    </BlurFade>
+                    </motion.div>
                 ))}
+
             </div>
         </InfiniteScroll>
     )

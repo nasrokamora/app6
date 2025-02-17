@@ -16,7 +16,7 @@ const Options = {
 // getDiscoverMovies
 
 export async function getDiscoverMovies() {
-  return handleRedisCache('discoverMovies', 3600, async () => {
+
     try {
       const res = await fetch(`${process.env.TMDB_BASE_URL}/discover/movie`, {
         ...Options,
@@ -31,7 +31,7 @@ export async function getDiscoverMovies() {
     } catch (error) {
       return HandleErrors(error, "failed to fetch data discover")
     }
-  })
+
 }
 
 
@@ -113,8 +113,7 @@ export async function getMoviesGenreList() {
 
 //Popular Movies
 export async function getPopularMovies() {
-  return handleRedisCache("popularMovies", 7200, async () => {
-    
+ 
     try {
       const response = await fetch(`${process.env.TMDB_BASE_URL}/movie/popular?page=2`, {
         ...Options,
@@ -131,8 +130,6 @@ export async function getPopularMovies() {
     } catch (error) {
       return HandleErrors(error, "failed to fetch data popular")
     }
-  })
-
 }
 
 
@@ -288,7 +285,7 @@ export async function getMoviesNowPlaying() {
 
 // Person Popular
 export async function getPersonPopular() {
-  return handleRedisCache("personPopular", 7200, async () => {
+
     try {
       const response = await fetch(`${process.env.TMDB_BASE_URL}/person/popular`, {
         ...Options,
@@ -300,7 +297,7 @@ export async function getPersonPopular() {
     } catch (error) {
       return HandleErrors(error, "failed to fetch data Person")
     }
-  })
+
 
 
   // try {

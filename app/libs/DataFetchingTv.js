@@ -242,7 +242,7 @@ export async function getGenreTvList() {
 //genres tv by id
 
 export async function getGenreTv(id) {
-    return handleRedisCache(`genreTv:${id}`, 86400, async () => {
+
     try {
         const res = await fetch(`${process.env.TMDB_BASE_URL}/discover/tv?with_genres=${id}`,
             {
@@ -261,7 +261,7 @@ export async function getGenreTv(id) {
     } catch (error) {
         return HandleErrors(error, "failed to fetch data GenreTv")
     }
-    })
+
 }
 
 /** end fetching  */
@@ -555,7 +555,7 @@ export async function grtTrailerSeason(id, season_number) {
 }
 
 export async function getAllTrending() {
-    return handleRedisCache("trendingTvAll", 86400, async () => {
+
     try {
         const response = await fetch(`${process.env.TMDB_BASE_URL}/trending/tv/week?api_key=${process.env.NEXT_API_KEY}`, {
             headers: {
@@ -573,7 +573,7 @@ export async function getAllTrending() {
     } catch (error) {
         return HandleErrors(error, "failed to fetch data TrailerSeason")
     }
-    })
+
 }
 
 

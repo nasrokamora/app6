@@ -50,7 +50,7 @@ export default function CardResults({ movie, handleClick, handleClose }) {
                                                 className=" rounded-md "
                                                 
                                             />
-                                            <p className="font-semibold pt-1 ">{(movie.title || movie.name).length > 14 ? (movie.title || movie.name).slice(0, 14) + "..." : (movie.title || movie.name)}</p>
+                                            <p className="font-semibold pt-1 md:hidden">{(movie.title || movie.name).length > 14 ? (movie.title || movie.name).slice(0, 14) + "..." : (movie.title || movie.name)}</p>
                                         </div>
                                     </Link>
                                 </div>

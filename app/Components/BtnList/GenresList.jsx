@@ -50,7 +50,8 @@ const MoviesList = React.memo(({ movieList }) => {
                                 alt="movie poster"
                                 width={300} height={250}
                                 className="rounded-md hover:sepia hover:duration-500"
-                                priority={true}
+                                priority
+                                unoptimized={true}
                                 style={{ width: "auto" }}
                             />
                             <p className="flex justify-start pt-2 mb-1 font-bold ">{movie.title.length > 14 ? movie.title.slice(0, 14) + "..." : movie.title}</p>

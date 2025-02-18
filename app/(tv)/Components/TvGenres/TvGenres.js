@@ -154,6 +154,7 @@ export default function TvGenres() {
                                                     className="rounded-md "
                                                     style={{ width: "auto" }}
                                                     priority
+                                                    unoptimized={true}
                                                 />
                                                 <p className="flex justify-start pt-2 mb-1 font-bold ">{tv.original_name.length > 14 ? tv.original_name.slice(0, 14) + "..." : tv.original_name}</p>
                                                 <div className="flex items-center justify-between w-full ">

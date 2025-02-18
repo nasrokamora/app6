@@ -34,8 +34,10 @@ export default function PopularPerson({ dataPersonPopular }) {
                                                 alt={person.name ? person.name : "No name"}
                                                 width={150}
                                                 height={150}
-                                                loading="lazy"
+                                                loading="eager"
                                                 className="rounded-md"
+                                                unoptimized={true}
+                                                priority
                                                 style={{ width: 'auto' }}
                                             />
                                         </div>

@@ -47,7 +47,7 @@ export default function MoviePopular({ dataPopular }) {
                                                 width={300} height={200}
                                                 className=" hover:saturate-50 hover:duration-500 rounded-md   "
                                                 style={{ width: "auto" }}
-                                                priority={true}
+                                                priority
                                                 unoptimized={true}
 
                                             />

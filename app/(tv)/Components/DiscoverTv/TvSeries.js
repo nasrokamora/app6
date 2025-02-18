@@ -34,10 +34,10 @@ export default function TvSeries({ dataTv }) {
                                                 width={300} height={250}
                                                 className="rounded-lg"
                                                 style={{ width: "auto" }}
-                                                priority={true}
-                                                loading="lazy"
+                                                priority
+                                                loading="eager"
                                                 draggable="false"
-
+                                                unoptimized={true}
 
                                             />
                                         </div>

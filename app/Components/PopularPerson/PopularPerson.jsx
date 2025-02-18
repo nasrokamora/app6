@@ -25,7 +25,7 @@ export default function PopularPerson({ dataPersonPopular }) {
             <CarouselPerson>
                 <CarouselContent className='-ml-1'>
                     {dataPersonPopular && dataPersonPopular.length > 0 ? (
-                        dataPersonPopular.map((person) => (
+                        dataPersonPopular.slice(0,9).map((person) => (
                             <CarouselItem key={person.id} className="md:basis-1/2 basis-1/6 lg:basis-1/6 2xl:basis-1/6">
                                 <Card className=" flex flex-col justify-center w-full font-bold border-none md:mt-6">
                                     <Link href={`/person/${person.id}`} className="hover:scale-90 hover:duration-500 md:active:scale-90">

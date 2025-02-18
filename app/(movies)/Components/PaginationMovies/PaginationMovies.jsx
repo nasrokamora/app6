@@ -116,7 +116,7 @@ export default function PaginationMovies() {
                         }}>
                         <CarouselContent className="-ml-1">
                             {dataMovies && dataMovies.length > 0 ? (
-                                dataMovies.map((movie,index) => (
+                                dataMovies.slice(0,10).map((movie,index) => (
                                     <CarouselItem key={movie.id} className="p-2 md:basis-1/2 basis-1/6 lg:basis-1/5">
                                         
                                         <div className="relative overflow-hidden md:active:scale-90 hover:scale-90 duration-500  ">

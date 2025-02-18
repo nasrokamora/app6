@@ -106,7 +106,7 @@ export default function TrendingMovies() {
                                 <h1>{state.error}</h1>
                             </div>
                         ) : (
-                            state.data.slice(0, 10).map((movie) => (
+                            state.data.map((movie) => (
                                 <TrendingMoviesCard movie={movie} key={movie.id} />
                             ))
                         )}
@@ -146,6 +146,7 @@ const TrendingMoviesCard = memo(({ movie }) => {
                     alt={movie.title}
                     width={180} height={180}
                     className={`md:w-[120px] md:h-[120px]  lg:w-[200px] lg:h-[200px] xl:w-[150px] xl:h-[150px] 2xl:w-[250px] 2xl:h-[150px] transition-opacity duration-100  `}
+                    unoptimized
 
                     style={{ height: "auto" }}
 

@@ -20,6 +20,9 @@ export async function getDiscoverMovies() {
     try {
       const res = await fetch(`${process.env.TMDB_BASE_URL}/discover/movie`, {
         ...Options,
+        next: {
+          revalidate: 3600
+        }
       })
       if (!res.ok) {
         throw new Error('failed to fetch data discover')
@@ -38,6 +41,9 @@ export async function getMoviesId(id) {
   try {
     const response = await fetch(`${process.env.TMDB_BASE_URL}/movie/${id}`, {
       ...Options,
+      next: {
+        revalidate: 3600
+      }
     })
 
     if (!response.ok) {
@@ -57,6 +63,9 @@ export async function getReleasDateMovies({ id }) {
   try {
     const response = await fetch(`${process.env.TMDB_BASE_URL}/movie/${id}/release_dates`, {
       ...Options,
+      next: {
+        revalidate: 3600
+      }
     })
     if (!response.ok) {
       throw new Error('failed to fetch data release')
@@ -72,6 +81,9 @@ export async function getMoviesGenre(id) {
   try {
     const response = await fetch(`${process.env.TMDB_BASE_URL}/discover/movie?with_genres=${id}`, {
       ...Options,
+      next: {
+        revalidate: 7200
+      }
     }
     )
     if (!response.ok) {

@@ -94,6 +94,7 @@ export default function LoadMoreTv() {
                                     style={{ width: "auto" }}
                                     className="rounded-md "
                                     loading="eager"
+                                    unoptimized={true}
 
                                 />
                                 <h1 className="font-bold  md:hidden">

@@ -57,7 +57,7 @@ export default function CombinedCreditsPerson({ dataCombined }) {
                                                 loading="eager"
                                                 priority
                                                 className=" rounded-md"
-                                                style={{ height: "auto", width: "auto" }}
+                                                style={{ width: "auto" }}
                                                 unoptimized={true}
                                             />
                                         </div>

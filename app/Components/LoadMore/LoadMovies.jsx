@@ -93,6 +93,7 @@ export default function LoadMovies() {
                                     style={{ width: "auto" }}
                                     className="rounded-md "
                                     loading="eager"
+                                    unoptimized={true}
                                     priority={index < 6}
                                     onError={(e) => { e.target.src = ErrorImage.src }}
                                 />

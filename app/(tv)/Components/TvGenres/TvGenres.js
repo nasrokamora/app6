@@ -137,7 +137,7 @@ export default function TvGenres() {
                                 <LoadingGenreCarousel />
                             </div>
                             : TvList && TvList.length > 0 ? (
-                                TvList.slice(0,13).map((tv) => (
+                                TvList.slice(0,10).map((tv) => (
 
                                     <CarouselItem key={tv.id} className="p-2 md:basis-1/2 basis-1/6 lg:basis-1/5">
                                         <div className="relative overflow-hidden lg:hover:scale-90 lg:hover:duration-500 xl:hover:scale-90 xl:hover:duration-500 2xl:hover:scale-90 2xl:hover:duration-500">

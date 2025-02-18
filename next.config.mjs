@@ -15,7 +15,7 @@ const nextConfig = {
             }
 
         ],
-        unoptimized: true,
+        unoptimized: false,
     }
 };
 

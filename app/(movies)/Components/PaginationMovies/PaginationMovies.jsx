@@ -134,6 +134,7 @@ export default function PaginationMovies() {
                                                     draggable={false}
                                                     style={{ width: 'auto' }}
                                                     priority
+                                                    unoptimized={true}
                                                     loading="eager"
                                                 />
                                                 <p className=" pt-2 font-bold  mb-1">{movie.title.length > 11 ? movie.title.slice(0, 11) + "..." : movie.title}</p>

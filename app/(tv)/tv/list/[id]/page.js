@@ -171,13 +171,7 @@ export default async function DynamicTvListPage({ params }) {
                             </h1>
                         </div>
                         <AnimateNumber vote_count={detailTv.vote_count.toFixed(0)} />
-                        {/* <div className="flex items-center justify-start gap-2 ">
-                        <strong className="text-2xl font-bold text-zinc-600 md:text-xl">Vote Count: </strong>
-                        <h1 className="flex items-center justify-center gap-2 text-xl font-semibold text-amber-400 scroll-m-20 xl:text-2xl">
-                            {(detailTv.vote_count /10 *100)}
-                            <span><MdOutlineInsertChartOutlined   size={28} className=" size-10" /></span>
-                        </h1>
-                    </div> */}
+
                     </div>
 
                     <Separator className="mt-4" />
@@ -209,9 +203,7 @@ export default async function DynamicTvListPage({ params }) {
                         </ul>
                     </div>
                     {/* companies */}
-                    <div>
-                        <strong></strong>
-                    </div>
+
 
                     {/* created by */}
                     <div className="flex flex-wrap items-center justify-start gap-2 mt-6 ">
@@ -229,11 +221,7 @@ export default async function DynamicTvListPage({ params }) {
                     </div>
 
                     <Separator className="mt-4" />
-                    {/* rating */}
-                    {/* <div>
-                        <h1 className="pb-2 text-2xl font-bold text-slate-600">Rate this series</h1>
-                        <RatingTvShow id={detailTv.id} />
-                    </div> */}
+
 
                         {/* toggle button */}
                     <ToggleButton />

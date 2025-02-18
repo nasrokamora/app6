@@ -31,7 +31,7 @@ import { urlImage } from "@/app/libs/UrlImage";
 
 
 
-const MAX_PAGE = 5
+const MAX_PAGE = 3
 
 async function fetchPagination({cachRef,setDataMovies, setIsLoading, setError, page}) {
     try {
@@ -138,7 +138,7 @@ export default function PaginationMovies() {
                                                 />
                                                 <p className=" pt-2 font-bold  mb-1">{movie.title.length > 11 ? movie.title.slice(0, 11) + "..." : movie.title}</p>
                                                 <div className="flex items-center justify-between w-full ">
-                                                    <p className="flex items-center justify-between w-full font-bold 2xl:text-2xl">
+                                                    <p className="flex items-center justify-between w-full font-bold 2xl:text-2xl text-[#FFC300]">
                                                         {new Date(movie.release_date).getFullYear()}
                                                     </p>
                                                     <div className=" 2xl:font-bold 2xl:text-2xl">
@@ -188,7 +188,7 @@ const PaginationPageMovies = ({handlePageChange, currentPage}) => {
                 />
             </PaginationItem>
 
-            {[...Array(5).keys()].map((index) => (
+            {[...Array(3).keys()].map((index) => (
                 <PaginationItem key={index} className=" md:hidden">
                     <PaginationLink
                         className="cursor-pointer 2xl:text-xl font-semibold"

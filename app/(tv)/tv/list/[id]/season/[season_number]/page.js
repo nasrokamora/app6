@@ -48,12 +48,12 @@ export default async function SeasonDetailTvSeries({ params }) {
     const { season_number, id } = params
 
     const seasonData = getDetailsSeasonTv(id, season_number)
-    const imageSeason = getSeasonImagesTv(id, season_number)
     const dataExtIds = getSeasonExternalIdsTv(id, season_number)
     const seasonCredit = getDetailsSeasonCreditsTv(id, season_number)
-    const dataTrailer = grtTrailerSeason(id, season_number)
-    const [dataSeason, seasonImage, ExtSeason, dataCreditSeason, dataTrailerSeason] = await Promise.all([seasonData, imageSeason, dataExtIds, seasonCredit, dataTrailer])
+
+    const [dataSeason, dataCreditSeason] = await Promise.all([seasonData, dataExtIds, seasonCredit])
     const color = "#ffffff"
+
 
     return (
         <div className="w-full h-auto pt-20 p-5 font-semibold">
@@ -104,16 +104,11 @@ export default async function SeasonDetailTvSeries({ params }) {
                     <div>
                         <CreditSeasonTv dataCreditSeason={dataCreditSeason} />
                     </div>
+
                     {/* Season images */}
-                    <div className="">
-                        <div className="text-2xl font-bold pb-2 text-[#1cccc3]">
-                            <h1>
-                                Season backdrops gallery :
-                            </h1>
-                        </div>
-                        <SeasonImage seasonImage={seasonImage.posters} />
-                    </div>
-                    {/* External Ids season */}
+                    
+                    {/* delete */}
+
 
                 </div>
 
@@ -128,7 +123,8 @@ export default async function SeasonDetailTvSeries({ params }) {
                 <ScrollArea className="max-w-5xl whitespace-nowrap ">
                     <div className="flex gap-2 w-full">
 
-                        {dataSeason.episodes &&
+                        {dataSeason &&
+                        dataSeason.episodes &&
                             dataSeason.episodes.length === 0 ?
                             <Alert variant="destructive">
                                 <AlertCircle className="h-4 w-4" />
@@ -142,37 +138,12 @@ export default async function SeasonDetailTvSeries({ params }) {
                                 <Card key={episode.id} className=" hover:shadow-2xl hover:shadow-[#29cdc3] hover:duration-200 hover:border-[#1a7771]">
                                     <CardHeader>
                                         <div className="flex justify-center items-center font-bold text-xl underline decoration-cyan-500 text-zinc-500">
-
                                             {episode.name}
                                         </div>
-                                        <CardTitle> Episode  {episode.episode_number}</CardTitle>
-                                        <CardDescription>
-                                            {episode.air_date}
-                                        </CardDescription>
+
                                     </CardHeader>
-                                    <CardContent className=" ">
-
-                                        <div className=" relative overflow-hidden w-max">
-                                            {episode.still_path ? (
-                                                <Image src={`${urlImageTv}${episode.still_path}`}
-                                                    width={250} height={200}
-                                                    priority
-                                                    draggable="false"
-                                                    style={{ borderRadius: "2px", width: "auto" }}
-                                                    className=" md:h-[100px] md:w-[180px] "
-                                                    alt={episode.name} />
-
-                                            ) : (
-                                                <Image src={broken_image}
-                                                    width={100} height={100}
-                                                    priority
-                                                    draggable="false"
-                                                    style={{ borderRadius: "2px", }}
-                                                    className=" xl:w-[150px] xl:h-[145px]"
-                                                    placeholder="blur"
-                                                    alt={episode.name} />
-                                            )}
-                                        </div>
+                                    <CardContent className=" flex justify-center items-center  ">
+                                    {episode.air_date ? episode.air_date : "Unknown"}
 
                                     </CardContent>
                                     <CardFooter>

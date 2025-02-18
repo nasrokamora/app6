@@ -1,5 +1,5 @@
 import ToggleButton from "@/app/(movies)/Components/ToggleButton/ToggleButton";
-import { getDetailsEpisodesTv, getEpisodesCreditsTv, getEpisodesImagesTv, getTrailerEpisodesTv, urlImageTv } from "@/app/libs/DataFetchingTv"
+import { getDetailsEpisodesTv, getEpisodesCreditsTv, getEpisodesImagesTv, getTrailerEpisodesTv} from "@/app/libs/DataFetchingTv"
 import { Button } from "@/components/ui/button"
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 import {
@@ -25,10 +25,9 @@ import {
 import { AlertCircle } from "lucide-react"
 import CreditsEpisodesTv from "@/app/(tv)/Components/CreditsEpisodesTv/CreditsEpisodesTv";
 import Link from "next/link";
-import { buttonVariants } from "@/components/ui/button"
-import { cn } from "@/lib/utils";
 import { Separator } from "@/components/ui/separator"
 import TrailerEpisodes from "@/app/(tv)/Components/TrailerTV/TrailerEpisodes/TrailerEpisodes";
+import { urlImage } from "@/app/libs/UrlImage";
 
 
 export async function generateMetadata({ params }) {
@@ -50,7 +49,7 @@ export default async function EpisodeDetailsTv({ params }) {
     const dataCreditsEpisodes = getEpisodesCreditsTv(id, season_number, episode_number)
     const dataTrailerepisodes = getTrailerEpisodesTv(id, season_number, episode_number)
     const [data, episodeImage, creditsEpisodes, trailerEpisodes] = await Promise.all([dataEpisodes, imageEpisodes, dataCreditsEpisodes, dataTrailerepisodes])
-    // console.log(data);
+
     const color = "#fffc40"
 
     return (
@@ -92,7 +91,7 @@ export default async function EpisodeDetailsTv({ params }) {
                                     <Card className=" relative group  overflow-hidden " key={item.id}>
                                         <CardHeader className=" flex flex-col items-center justify-center">
                                             <Avatar className="h-[4rem] w-[4rem]">
-                                                <AvatarImage src={`${urlImageTv}${item.profile_path}`} alt={item.name ?? <span className=" text-error">Undefined</span>} />
+                                                <AvatarImage src={`${urlImage}${item.profile_path}`} alt={item.name ?? <span className=" text-error">Undefined</span>} />
                                                 <AvatarFallback> {item.name.slice(0, 3)} </AvatarFallback>
                                             </Avatar>
                                             <CardTitle> {item.name ?? <p className=" text-error">Undefined</p>} </CardTitle>

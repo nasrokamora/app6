@@ -8,10 +8,11 @@ import {
     AlertTitle,
 } from "@/components/ui/alert"
 import no_image from "../../../../public/image/no_image4.webp"
+import { urlImage } from "@/app/libs/UrlImage"
 
 
 
-export default function ImageTvSeries({ urlImageTv, dataImage }) {
+export default function ImageTvSeries({dataImage }) {
 
 
     return (
@@ -19,12 +20,12 @@ export default function ImageTvSeries({ urlImageTv, dataImage }) {
             <ScrollArea className="max-w-4xl whitespace-nowrap rounded-md border">
                 <div className="flex w-max space-x-4 p-4">
                     {dataImage.length > 0 ? (
-                        dataImage.slice(0, 5).map((imgs, index) => (
+                        dataImage.slice(0, 2).map((imgs, index) => (
                             <figure key={index} className="shrink-0">
                                 <div className="overflow-hidden rounded-md">
                                     <Image
                                         src={imgs.file_path ?
-                                            `${urlImageTv}${imgs.file_path}` : no_image}
+                                            `${urlImage}${imgs.file_path}` : no_image}
                                         alt={`Photo by ${imgs.artist}`}
 
                                         width={300}

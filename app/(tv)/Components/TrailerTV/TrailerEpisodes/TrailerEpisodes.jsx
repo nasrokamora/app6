@@ -15,17 +15,17 @@ import { YouTubeEmbed } from '@next/third-parties/google'
 
 
 
-export default function TrailerEpisodes({trailerEpisodes}) {
+export default function TrailerEpisodes({ trailerEpisodes }) {
     const dataTrailerEpisodes = trailerEpisodes.slice(0, 1);
 
 
-    return(
+    return (
         <div className="  w-full  md:flex md:justify-center md:items-center">
             <AlertDialog >
                 <AlertDialogTrigger className=" border border-[#fffc40] p-2 rounded-md flex justify-center items-center gap-2   hover:scale-110 duration-300 " >
-                <h1 className="mt-10 scroll-m-20  text-2xl font-bold tracking-tight transition-colors first:mt-0 bg-gradient-to-r from-[#a0ff58] via-[#fffc40] to-[#a0ff58] bg-[length:200%_auto] bg-clip-text text-transparent animate-gradient">
-                Trailer
-                </h1>
+                    <h1 className="mt-10 scroll-m-20  text-2xl font-bold tracking-tight transition-colors first:mt-0 bg-gradient-to-r from-[#a0ff58] via-[#fffc40] to-[#a0ff58] bg-[length:200%_auto] bg-clip-text text-transparent animate-gradient">
+                        Trailer
+                    </h1>
                     <SiGradleplaypublisher size={28} className="text-[#a0ff58] " />
 
                 </AlertDialogTrigger>
@@ -49,13 +49,13 @@ export default function TrailerEpisodes({trailerEpisodes}) {
                                     className=" object-fill rounded-md"
                                 />
 
-<div className="  flex justify-center items-center flex-col">
-                            <AlertDialogTitle>Opps !</AlertDialogTitle>
-                            <AlertDialogDescription className="text-xl font-bold text-error">
-                                Undefined
-                            </AlertDialogDescription>
-                            <AlertDialogCancel>Cancel</AlertDialogCancel>
-                        </div>
+                                <div className="  flex justify-center items-center flex-col">
+                                    <AlertDialogTitle>Opps !</AlertDialogTitle>
+                                    <AlertDialogDescription className="text-xl font-bold text-error">
+                                        Undefined
+                                    </AlertDialogDescription>
+                                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                                </div>
                             </div>
                         ))
                     ) : (

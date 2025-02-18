@@ -15,6 +15,7 @@ import {
   AlertTitle,
 } from "@/components/ui/alert"
 import { urlImage } from "@/app/libs/UrlImage"
+import { PiShootingStarLight } from "react-icons/pi"
 
 
 export default function TrendingTv({ dataTrending }) {
@@ -37,7 +38,7 @@ export default function TrendingTv({ dataTrending }) {
                       <div className=" overflow-hidden relative">
                         <Image
                           src={`${urlImage}${data.poster_path}`}
-                          alt={data.name ? data.name : data.original_name || "Magix Movies"} 
+                          alt={data.name ? data.name : data.original_name || "Magix Movies"}
                           width={300}
                           height={250}
                           style={{ width: "auto" }}
@@ -47,6 +48,15 @@ export default function TrendingTv({ dataTrending }) {
                       </div>
                     </div>
                   </Link>
+                  <div className="flex justify-between items-center font-bold">
+                    <div className=" flex justify-start gap-1 items-center">
+                      <span><PiShootingStarLight className=" text-[#ff3333]" /></span>
+                      <h1> {data.vote_average.toFixed(1)} </h1>
+                    </div>
+                    <div>
+                      <h1> {data.first_air_date ? data.first_air_date.split("-")[0] : "Unknown"} </h1>
+                    </div>
+                  </div>
                 </div>
               </CarouselItem>
             ))

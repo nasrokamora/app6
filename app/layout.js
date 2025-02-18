@@ -36,6 +36,7 @@ export const metadata = {
     linkedIn: "https://linkedin.com/in/nasdev",
     github: "https://github.com/nasrokamora",
     linktree: "https://linktr.ee/nasreddine_ab",
+    website:"https://magix-movies.vercel.app/"
   },
   
   icons: {
@@ -61,7 +62,7 @@ export default function RootLayout({ children }) {
         />
         <Nav />
         {children}
-        <SpeedInsights />
+        {/* <SpeedInsights /> */}
         <Footer />
       </body>
     </html>

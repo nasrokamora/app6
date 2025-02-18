@@ -46,7 +46,7 @@ const LoadingPagination = () => {
 
 export default function PopularPersonDetails() {
     const [currentPage, setCurrentPage] = useState(2)
-    const [totalPages, setTotalPages] = useState(7)
+    const [totalPages, setTotalPages] = useState(3)
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState(null)
     const [dataPersonPopular, setDataPersonPopular] = useState([])
@@ -83,8 +83,8 @@ export default function PopularPersonDetails() {
 
     const handleChangePage = (newPage) => {
         if (newPage < 1 ) return;
-        if(newPage > totalPages){
-            setCurrentPage(7)
+        if(newPage > 3){
+            setCurrentPage(1)
         }else{
 
             setCurrentPage(newPage)
@@ -172,7 +172,7 @@ export default function PopularPersonDetails() {
                             onClick={() => handleChangePage(currentPage - 1)} />
                     </PaginationItem>
 
-                    {[...Array(5).keys()].map((_, index) => (
+                    {[...Array(3).keys()].map((_, index) => (
                         <PaginationItem key={index} className="md:hidden 2xl:text-xl ">
                             <PaginationLink
 
@@ -190,16 +190,12 @@ export default function PopularPersonDetails() {
                             {currentPage}
                         </h1>
                     </div>
-
-                    <PaginationItem className="md:hidden 2xl:text-xl">
-                        <PaginationEllipsis  />
-                    </PaginationItem>
                     <PaginationItem>
 
                         <PaginationNext onClick={() => handleChangePage(currentPage + 1)}
                             isActive={currentPage < totalPages}
                             className="cursor-pointer font-semibold 2xl:text-xl"
-                            isDisabled={currentPage === totalPages}
+
                         />
                     </PaginationItem>
                 </PaginationContent>

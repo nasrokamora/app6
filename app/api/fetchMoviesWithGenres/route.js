@@ -13,6 +13,9 @@ export async function GET(req){
             headers:{
                 Authorization: `Bearer ${process.env.NEXT_API_TOKEN}`,
                 accept: "application/json"
+            },
+            next:{
+                revalidate:7200
             }
         })
         if (!response.ok) {

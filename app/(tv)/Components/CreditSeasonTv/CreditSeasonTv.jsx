@@ -3,7 +3,6 @@ import {
     AvatarFallback,
     AvatarImage,
 } from "@/components/ui/avatar"
-import Image from "next/image";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 import {
     Card,
@@ -19,10 +18,13 @@ import { buttonVariants } from "@/components/ui/button"
 import { cn } from "@/lib/utils";
 import { AlertCircle } from "lucide-react"
 import {
-  Alert,
-  AlertDescription,
-  AlertTitle,
+    Alert,
+    AlertDescription,
+    AlertTitle,
 } from "@/components/ui/alert"
+
+
+
 
 export default function CreditSeasonTv({ dataCreditSeason }) {
     return (
@@ -43,15 +45,15 @@ export default function CreditSeasonTv({ dataCreditSeason }) {
                                     <div className="flex gap-2 items-center justify-start">
 
                                         <Avatar>
-                                            <AvatarImage src={`${urlImageTv}${cast.profile_path}`} alt={cast.name} />
+   
                                             <AvatarFallback> {cast.name.slice(0, 3)} </AvatarFallback>
                                         </Avatar>
-                                        <CardTitle> {cast.name? cast.name : "Unknown"} </CardTitle>
+                                        <CardTitle> {cast.name ? cast.name : "Unknown"} </CardTitle>
                                     </div>
                                     <CardDescription> Character : {cast.character} </CardDescription>
                                     <CardContent>
-                                        <Link href={`/person/${cast.id}`}  className={buttonVariants({ variant: "outline",className:cn("text-[#2ce2c6]" )})}>
-                                        See More
+                                        <Link href={`/person/${cast.id}`} className={buttonVariants({ variant: "outline", className: cn("text-[#2ce2c6]") })}>
+                                            See More
                                         </Link>
                                     </CardContent>
                                 </CardHeader>
@@ -59,58 +61,58 @@ export default function CreditSeasonTv({ dataCreditSeason }) {
                         ))
                     ) : (
                         <Alert variant="destructive" className=" ml-4 ">
-                        <AlertCircle className="h-6 w-6" />
-                        <AlertTitle className=" text-xl">Oops!</AlertTitle>
-                        <AlertDescription className=" text-lg font-bold">
-                        No cast details available right now. Please check back later.
-                        </AlertDescription>
-                      </Alert>
+                            <AlertCircle className="h-6 w-6" />
+                            <AlertTitle className=" text-xl">Oops!</AlertTitle>
+                            <AlertDescription className=" text-lg font-bold">
+                                No cast details available right now. Please check back later.
+                            </AlertDescription>
+                        </Alert>
                     )}
-                    </div>
-                    <ScrollBar orientation="horizontal" />
-                </ScrollArea>
+                </div>
+                <ScrollBar orientation="horizontal" />
+            </ScrollArea>
 
-                    {/* Crew */}
-                <div className="text-[#1977cd] font-bold text-xl pb-2 mt-4">
+            {/* Crew */}
+            <div className="text-[#1977cd] font-bold text-xl pb-2 mt-4">
                 <h1>Crew :</h1>
             </div>
-                <ScrollArea className="max-w-4xl whitespace-nowrap ">
-                    <div className="flex w-max gap-2 ">
+            <ScrollArea className="max-w-4xl whitespace-nowrap ">
+                <div className="flex w-max gap-2 ">
 
                     {dataCreditSeason.crew && dataCreditSeason.crew.length > 0 ? (
                         dataCreditSeason.crew.map((crew) => (
                             <Card key={crew.id}>
                                 <CardHeader>
-                                <div className="flex gap-2 items-center justify-start">
+                                    <div className="flex gap-2 items-center justify-start">
 
-                                <Avatar>
-                                    <AvatarImage src={`${urlImageTv}${crew.profile_path}`} alt={crew.name? crew.name : "Unknown"} />
-                                    <AvatarFallback> {crew.name.slice(0, 3)} </AvatarFallback>
-                                </Avatar>
-                                <CardTitle> {crew.name} </CardTitle>
-                                </div>
-                                <CardDescription> Known For Department : {crew.known_for_department} </CardDescription>
+                                        <Avatar>
+                                            <AvatarImage src={`${urlImageTv}${crew.profile_path}`} alt={crew.name ? crew.name : "Unknown"} />
+                                            <AvatarFallback> {crew.name.slice(0, 3)} </AvatarFallback>
+                                        </Avatar>
+                                        <CardTitle> {crew.name} </CardTitle>
+                                    </div>
+                                    <CardDescription> Known For Department : {crew.known_for_department} </CardDescription>
                                 </CardHeader>
                                 <CardContent>
-                                <CardDescription> Job : {crew.job} </CardDescription>
-                                <Link href={`/person/${crew.id}`}  className={buttonVariants({ variant: "outline",className:cn("border-none mt-1 text-[#2ce2c6]" )})}>
-                                See More
-                                </Link>
+                                    <CardDescription> Job : {crew.job} </CardDescription>
+                                    <Link href={`/person/${crew.id}`} className={buttonVariants({ variant: "outline", className: cn("border-none mt-1 text-[#2ce2c6]") })}>
+                                        See More
+                                    </Link>
                                 </CardContent>
                             </Card>
                         ))
                     ) : (
                         <Alert variant="destructive">
-                        <AlertCircle className="h-4 w-4" />
-                        <AlertTitle>Error</AlertTitle>
-                        <AlertDescription>
-                          No Crew Found.
-                        </AlertDescription>
-                      </Alert>
+                            <AlertCircle className="h-4 w-4" />
+                            <AlertTitle>Error</AlertTitle>
+                            <AlertDescription>
+                                No Crew Found.
+                            </AlertDescription>
+                        </Alert>
                     )}
-                    </div>
-                    <ScrollBar orientation="horizontal" />
-                    </ScrollArea>
+                </div>
+                <ScrollBar orientation="horizontal" />
+            </ScrollArea>
         </div>
     )
 }

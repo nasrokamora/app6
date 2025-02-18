@@ -10,7 +10,7 @@ import {
 import Image from "next/image"
 import { FaRegStar } from "react-icons/fa";
 import Link from "next/link"
-import { memo, useCallback, useEffect, useReducer, useState } from "react";
+import { memo, useCallback, useEffect, useReducer, useRef } from "react";
 import LoadingGenreCarousel from "@/app/Components/LoadingUi/LoadingGenreCarousel";
 import { urlImage } from "@/app/libs/UrlImage";
 import { ChevronRight } from "lucide-react"
@@ -28,7 +28,7 @@ const initialState = {
 
 const reducer = (state, action) => {
     switch (action.type) {
-        case "FETCH SEUCCESS":
+        case "FETCH_SUCCESS":
             return {
                 ...state,
                 data: action.payload,
@@ -37,15 +37,15 @@ const reducer = (state, action) => {
         case "INCREMENT_PAGE":
             return {
                 ...state,
-                page: state.page < 30 ? state.page + 1 : 1,
+                page: state.page < 4 ? state.page + 1 : 1,
                 isLoading: false
             }
-            case "DECREMENT_PAGE":
-                return {
-                    ...state,
-                    page: state.page > 1 ? state.page - 1 : 30,
-                    isLoading: false
-                }
+        case "DECREMENT_PAGE":
+            return {
+                ...state,
+                page: state.page > 1 ? state.page - 1 : 4,
+                isLoading: false
+            }
         case "FETCH_ERROR":
             return {
                 ...state,
@@ -57,36 +57,29 @@ const reducer = (state, action) => {
     }
 }
 
-
-
-
 export default function TrendingMovies() {
-    // // const [page, setPage] = useState(1)
-    // // const [dataTrendingMovies, setDataTrendingMovies] = useState([])
-    // // const [isLoading, setIsLoading] = useState(true)
 
     const [state, dispatch] = useReducer(reducer, initialState)
-
+    const cacheRef = useRef({})
 
     const fetchTredingMovies = useCallback(async (page) => {
+
+        if (cacheRef.current[page]) {
+            dispatch({ type: "FETCH_SUCCESS", payload: cacheRef.current[page] })
+            return
+        }
 
         try {
             const response = await fetch(`/api/getTrendingMovies?page=${page}`)
             const data = await response.json()
-            dispatch({ type: "FETCH SEUCCESS", payload: data.results })
+
+            cacheRef.current[page] = data.results
+
+            dispatch({ type: "FETCH_SUCCESS", payload: data.results })
         } catch (error) {
             dispatch({ type: "FETCH_ERROR", payload: error.message })
         }
     }, [])
-
-
-    // // useEffect(() => {
-    // //     const interval = setInterval(() => {
-    // //         dispatch({type: "INCREMENT_PAGE"})
-    // //     }, 15000)
-
-    // //     return () => clearInterval(interval)
-    // // }, [])
 
     useEffect(() => {
         fetchTredingMovies(state.page)
@@ -113,15 +106,15 @@ export default function TrendingMovies() {
                                 <h1>{state.error}</h1>
                             </div>
                         ) : (
-                            state.data.map((movie) => (
+                            state.data.slice(0, 10).map((movie) => (
                                 <TrendingMoviesCard movie={movie} key={movie.id} />
                             ))
                         )}
 
                     </CarouselContent>
                     <div className=" absolute top-[-2rem] left-[93%] md:hidden  lg:left-[87%] text-white ">
-                        <CarouselPrevious /> 
-                        
+                        <CarouselPrevious />
+
                         <CarouselNext />
                     </div>
                 </Carousel>
@@ -132,7 +125,7 @@ export default function TrendingMovies() {
                     <ChevronLeft />
                 </Button>
                 <h1 className="font-semibold">
-                {state.page}
+                    {state.page}
                 </h1>
                 <Button variant="outline" size="icon" onClick={() => dispatch({ type: "INCREMENT_PAGE" })}>
                     <ChevronRight />
@@ -143,7 +136,7 @@ export default function TrendingMovies() {
 }
 
 const TrendingMoviesCard = memo(({ movie }) => {
-    const [loaded, setLoaded] = useState(false)
+
     return (
         <CarouselItem key={movie.id} className="  basis-1/3 lg:basis-1/4 md:basis-1/3 ">
             <Link className=" hover:grayscale hover:duration-500" href={`/movies/list/${movie.id}`}>
@@ -152,8 +145,8 @@ const TrendingMoviesCard = memo(({ movie }) => {
                     src={`${urlImage}${movie.poster_path}`}
                     alt={movie.title}
                     width={180} height={180}
-                    className={`md:w-[120px] md:h-[120px]  lg:w-[200px] lg:h-[200px] xl:w-[150px] xl:h-[150px] 2xl:w-[250px] 2xl:h-[150px] transition-opacity duration-100 ${loaded ? "opacity-100" : "opacity-0"}  `}
-                    onLoad={() => setLoaded(true)}
+                    className={`md:w-[120px] md:h-[120px]  lg:w-[200px] lg:h-[200px] xl:w-[150px] xl:h-[150px] 2xl:w-[250px] 2xl:h-[150px] transition-opacity duration-100  `}
+
                     style={{ height: "auto" }}
 
                 />

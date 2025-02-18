@@ -56,7 +56,6 @@ export default function CreditsDetailsTv({ credits, dataImageTv, seasons, series
                 {/* Image tv */}
                 <TabsContent value="image" className="  pt-4  items-center rounded-md h-auto w-full ">
                     <ImageTvSeries
-                        urlImageTv={urlImage}
                         dataImage={dataImageTv.backdrops}
                     />
                 </TabsContent>

@@ -101,7 +101,7 @@ export default function CombinedCreditsPerson({ dataCombined }) {
                                     <AlertCircle className="h-4 w-4" />
                                     <AlertTitle>Oops !</AlertTitle>
                                     <AlertDescription>
-                                    Sorry, no information is available for this person.
+                                        Sorry, no information is available for this person.
                                     </AlertDescription>
                                 </Alert>
                             </div>

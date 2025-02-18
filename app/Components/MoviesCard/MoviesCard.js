@@ -44,7 +44,7 @@ export default async function MoviesCard({ dataDiscoverMovies }) {
                                                         style={{ width: "auto", borderRadius: "4px" }}
                                                         draggable={false}
                                                         loading="eager"
-                                                        unoptimized={false}
+                                                        unoptimized={true}
                                                     />
                                                 </div>
                                                 <div className="flex items-center justify-between xl:pt-4 xl:text-xl">

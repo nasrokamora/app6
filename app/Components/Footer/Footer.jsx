@@ -76,6 +76,7 @@ export default function Footer() {
                         className="mx-auto"
                         priority
                         style={{ width: "auto", height: "auto" }}
+                        unoptimized={false}
                         />
                         </Link>
                 </div>

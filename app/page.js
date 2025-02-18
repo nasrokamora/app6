@@ -83,14 +83,14 @@ export default async function Home() {
       </section>
 
       {/*   section Tv & series & season */}
-      <div className="ml-6 md:ml-0  mt-7 md:flex md:justify-center md:items-center ">
+      {/* <div className="ml-6 md:ml-0  mt-7 md:flex md:justify-center md:items-center ">
         <h1 className="text-4xl font-extrabold  scroll-m-20 lg:text-3xl md:text-2xl ">
           <span className=" text-[#1977cd]">Must <span><ClapperboardIcon className=" inline text-[#1977cd] md:size-6" /> </span>Watch</span>   TV Shows
         </h1>
       </div>
       <section className="mt-7">
         <TvSeries dataTv={dataTv.results} />
-      </section>
+      </section> */}
 
 
       {/* section tv genres */}

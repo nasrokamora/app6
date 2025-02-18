@@ -71,8 +71,8 @@ export default function Footer() {
                     <Image
                         src={TmdbIcon}
                         alt="TMDB Logo"
-                        width={15}
-                        height={15}
+                        width={80}
+                        height={40}
                         className="mx-auto"
                         priority
                         style={{ width: "auto", height: "auto" }}

@@ -35,9 +35,9 @@ export default function TvSeries({ dataTv }) {
                                                 className="rounded-lg"
                                                 style={{ width: "auto" }}
                                                 priority={true}
-                                                loading="eager"
+                                                loading="lazy"
                                                 draggable="false"
-                                                unoptimized={false}
+
 
                                             />
                                         </div>

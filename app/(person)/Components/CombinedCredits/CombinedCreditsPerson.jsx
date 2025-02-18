@@ -54,9 +54,11 @@ export default function CombinedCreditsPerson({ dataCombined }) {
                                                 alt={item.title ? item.title : item.name || "No Title"}
                                                 width={120}
                                                 height={100}
-                                                loading="lazy"
+                                                loading="eager"
+                                                priority
                                                 className=" rounded-md"
                                                 style={{ height: "auto", width: "auto" }}
+                                                unoptimized={true}
                                             />
                                         </div>
 

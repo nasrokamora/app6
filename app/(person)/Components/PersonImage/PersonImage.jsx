@@ -23,6 +23,8 @@ export default function PersonImage({ ImagePerson }) {
                                     priority
                                     className="rounded-md"
                                     style={{ width: "auto" }}
+                                    unoptimized={true}
+                                    loading="eager"
                                 />
                             </div>
                         ))) : (

@@ -37,6 +37,7 @@ export default function RecommendationTv({ dataRecommend }) {
                         style={{ width: "auto", borderRadius: "0.5rem" }}
                         loading="eager"
                         priority
+                        unoptimized={true}
                       />
                     </div>
                   </Link>

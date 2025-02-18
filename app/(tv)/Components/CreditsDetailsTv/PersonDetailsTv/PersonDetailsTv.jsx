@@ -38,10 +38,11 @@ export default async function PersonDetailsTv({ person_id, urlImageTv, character
                                 no_image
                                 }
                                     width={100} height={100}
-                                    priority={true}
+                                    priority
                                     alt={dataPerson.name}
                                     style={{ width: 'auto',borderRadius:"12px" }}
                                     loading="eager"
+                                    unoptimized={true}
                                     
                                 />
                             </div>

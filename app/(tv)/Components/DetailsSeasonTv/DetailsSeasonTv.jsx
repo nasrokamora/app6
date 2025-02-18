@@ -36,6 +36,8 @@ export default function DetailsSeasonTv({ season, id }) {
                                                     style={{ width: 'auto' }}
                                                     alt={item.name}
                                                     draggable="false"
+                                                    unoptimized={true}
+                                                    loading="eager"
                                                 />
                                             </div>
 

@@ -44,6 +44,7 @@ export default function TrendingTv({ dataTrending }) {
                           style={{ width: "auto" }}
                           className="rounded-md "
                           loading="eager"
+                          unoptimized={true}
                         />
                       </div>
                     </div>

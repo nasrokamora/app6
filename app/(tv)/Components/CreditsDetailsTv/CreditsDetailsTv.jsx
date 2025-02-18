@@ -19,7 +19,6 @@ export default function CreditsDetailsTv({ credits, dataImageTv, seasons, series
             <Tabs defaultValue="cast" className="w-full flex justify-center flex-col">
                 <TabsList>
                     <TabsTrigger value="cast">Cast</TabsTrigger>
-                    <TabsTrigger value="image">Images</TabsTrigger>
                     <TabsTrigger value="seasons">Seasons</TabsTrigger>
                 </TabsList>
 
@@ -54,11 +53,7 @@ export default function CreditsDetailsTv({ credits, dataImageTv, seasons, series
                 </TabsContent>
 
                 {/* Image tv */}
-                <TabsContent value="image" className="  pt-4  items-center rounded-md h-auto w-full ">
-                    <ImageTvSeries
-                        dataImage={dataImageTv.backdrops}
-                    />
-                </TabsContent>
+
 
 
                 {/* Season */}

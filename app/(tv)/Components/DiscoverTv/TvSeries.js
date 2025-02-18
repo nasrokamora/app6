@@ -37,7 +37,7 @@ export default function TvSeries({ dataTv }) {
                                                 priority={true}
                                                 loading="eager"
                                                 draggable="false"
-                                                unoptimized={true}
+                                                unoptimized={false}
 
                                             />
                                         </div>

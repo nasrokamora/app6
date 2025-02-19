@@ -42,7 +42,7 @@ export default async function PersonDetailsTv({ person_id, urlImageTv, character
                                     alt={dataPerson.name}
                                     style={{ width: 'auto',borderRadius:"12px" }}
                                     loading="eager"
-                                    unoptimized={true}
+
                                     
                                 />
                             </div>

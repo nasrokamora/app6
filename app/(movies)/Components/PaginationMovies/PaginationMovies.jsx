@@ -120,7 +120,7 @@ export default function PaginationMovies() {
                                     <CarouselItem key={movie.id} className="p-2 md:basis-1/2 basis-1/6 lg:basis-1/5">
                                         
                                         <div className="relative overflow-hidden md:active:scale-90 hover:scale-90 duration-500  ">
-                                            <Link className=" font-bold" href={`/movies/list/${movie.id}`}>
+                                            <Link className=" font-bold rounded-md" href={`/movies/list/${movie.id}`}>
                                                 <Image
                                                     src={
                                                         movie.poster_path
@@ -130,11 +130,10 @@ export default function PaginationMovies() {
                                                     alt="poster movies"
                                                     width={300}
                                                     height={250}
-                                                    className="rounded-md "
                                                     draggable={false}
                                                     style={{ width: 'auto' }}
                                                     priority
-                                                    unoptimized={true}
+                                                    // unoptimized={true}
                                                     loading="eager"
                                                 />
                                                 <p className=" pt-2 font-bold  mb-1">{movie.title.length > 11 ? movie.title.slice(0, 11) + "..." : movie.title}</p>

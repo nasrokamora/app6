@@ -131,7 +131,7 @@ export default function PopularPersonDetails() {
                                                             style={{  width: 'auto' }}
                                                             draggable={false}
                                                             loading="eager"
-                                                            unoptimized={true}
+
                                                             priority
                                                         />
                                                     </div>

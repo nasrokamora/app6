@@ -36,7 +36,6 @@ export default function PopularPerson({ dataPersonPopular }) {
                                                 height={150}
                                                 loading="eager"
                                                 className="rounded-md"
-                                                unoptimized={true}
                                                 priority
                                                 style={{ width: 'auto' }}
                                             />

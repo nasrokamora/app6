@@ -20,7 +20,7 @@ export default function TvSeries({ dataTv }) {
         <div className=" mt-12 flex justify-center w-full bg-gradient-to-br from-[black] to-[#318ffa] p-6 2xl:text-lg ">
             <CarouselAutoshow  >
                 <CarouselContent className="   ">
-                    {dataTv.map((tv, index) => (
+                    {dataTv.map((tv) => (
                         <CarouselItem key={tv.id} className="md:basis-1/2 basis-1/6 lg:basis-1/5">
                                 <div className="hover:duration-500 hover:scale-90 ">
 
@@ -32,12 +32,11 @@ export default function TvSeries({ dataTv }) {
                                                     `${urlImage}${tv.poster_path}` : no_image}
                                                 alt="image_tv_Show"
                                                 width={300} height={250}
-                                                className="rounded-lg"
-                                                style={{ width: "auto" }}
+                                                style={{ width: "auto",borderRadius:"4px" }}
                                                 priority
                                                 loading="eager"
                                                 draggable="false"
-                                                unoptimized={true}
+
 
                                             />
                                         </div>

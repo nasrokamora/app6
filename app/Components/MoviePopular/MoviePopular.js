@@ -48,7 +48,7 @@ export default function MoviePopular({ dataPopular }) {
                                                 className=" hover:saturate-50 hover:duration-500 rounded-md   "
                                                 style={{ width: "auto" }}
                                                 priority
-                                                unoptimized={true}
+                                                // unoptimized={true}
 
                                             />
                                             <p className=" font-bold flex justify-start  pt-2 mb-1 2xl:text-2xl ">{movie.title.length > 14 ? movie.title.slice(0, 14) + "..." : movie.title}

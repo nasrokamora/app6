@@ -32,20 +32,30 @@ export default async function MoviesCard({ dataDiscoverMovies }) {
                                         <div className="flex flex-col w-full p-1 hover:scale-90 duration-1000">
                                             <Link varient="link" className="hover:grayscale  hover:duration-700 hover:translate-x-6" href={`/movies/list/${movie.id}`}>
                                                 <div className='relative rounded-md  '>
-                                                    <Image
-                                                        src={movie.poster_path ?
-                                                            `${urlImage}/${movie.poster_path}`
-                                                            :
-                                                            no_image
-                                                        }
-                                                        alt={movie.title ? movie.title : movie.original_title || "Unknown"}
-                                                        width={300} height={200}
-                                                        priority
-                                                        style={{ width: "auto", borderRadius: "4px" }}
-                                                        draggable={false}
-                                                        loading="eager"
-                                                        unoptimized={true}
-                                                    />
+                                                    {movie.poster_path.length > 0 ?(
+
+                                                        <Image
+                                                            src={`${urlImage}/${movie.poster_path}`}
+                                                            alt={movie.title ? movie.title : movie.original_title || "Unknown"}
+                                                            width={300} height={200}
+                                                            priority
+                                                            style={{ width: "auto", borderRadius: "4px" }}
+                                                            draggable={false}
+                                                            loading="eager"
+                                                            />
+                                                    ):(
+                                                        <Image
+                                                            src={no_image}
+                                                            alt={movie.title ? movie.title : movie.original_title || "Unknown"}
+                                                            width={300} height={200}
+                                                            priority
+                                                            style={{ width: "auto", borderRadius: "4px" }}
+                                                            draggable={false}
+                                                            loading="eager"
+                                                        />
+                                                    )}
+
+
                                                 </div>
                                                 <div className="flex items-center justify-between xl:pt-4 xl:text-xl">
                                                     <Rating rating={Math.round(movie.vote_average / 2)} className="" />

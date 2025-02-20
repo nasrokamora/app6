@@ -28,7 +28,7 @@ import { urlImage } from "@/app/libs/UrlImage"
 const GenresButton = React.memo(({ selectedGenre, handleClick, genres }) => {
     return (
         genres.map((genre, index) => (
-            <CarouselItem key={index} className="p-1 basis-1/7 lg:basis-1/8 md:basis-1/7">
+            <CarouselItem key={index} className="p-1 basis-1/7 lg:basis-1/8 md:basis-1/7 ">
                 <Button variant="outline" className={`2xl:text-xl  ${selectedGenre === genre.id ? 'text-red-700' : ' text-zinc-500'}`}
                     onClick={() => handleClick(genre.id)}>{genre.name}</Button>
             </CarouselItem>
@@ -38,22 +38,22 @@ const GenresButton = React.memo(({ selectedGenre, handleClick, genres }) => {
 })
 const MoviesList = React.memo(({ movieList }) => {
     return (
-        movieList.map((movie, index) => (
-            <CarouselItem key={index} className="p-2 md:basis-1/2 basis-1/6 lg:basis-1/5">
+        movieList.slice(0, 6).map((movie, index) => (
+            <CarouselItem key={index} className="p-2 md:basis-1/2  lg:basis-1/5 2xl:basis-1/1 xl:basis-1/1">
                 <BlurFade key={movie.id} delay={0.2 + index * 0.02} inView>
 
 
-                    <div className="relative overflow-hidden lg:hover:scale-90 md:active:scale-110 hover:scale-90 duration-500 ">
+                    <div className="relative overflow-hidden lg:hover:scale-90 md:active:scale-110 hover:scale-90 duration-500  order-1 h-52">
                         <Link href={`/movies/list/${movie.id}`} >
                             <Image
                                 src={`${urlImage}${movie.poster_path}`}
                                 alt="movie poster"
-                                width={300} height={250}
-                                className="rounded-md hover:sepia hover:duration-500"
+                                fill
+                                className="rounded-md hover:sepia hover:duration-500 blur-left"
                                 priority
-                                style={{ width: "auto" }}
+                                style={{ objectFit: "cover" }}
                             />
-                            <p className="flex justify-start pt-2 mb-1 font-bold ">{movie.title.length > 14 ? movie.title.slice(0, 14) + "..." : movie.title}</p>
+                            {/* <p className="flex justify-start pt-2 mb-1 font-bold ">{movie.title.length > 14 ? movie.title.slice(0, 14) + "..." : movie.title}</p>
                             <div className="flex items-center justify-between w-full ">
                                 <p className="flex items-center justify-between w-full font-semibold 2xl:text-2xl">
                                     {new Date(movie.release_date).getFullYear()}
@@ -67,7 +67,7 @@ const MoviesList = React.memo(({ movieList }) => {
                                     </div>
                                 </div>
 
-                            </div>
+                            </div> */}
                         </Link>
 
                     </div>
@@ -101,7 +101,7 @@ export default function GenresList() {
 
             }
         } catch (error) {
-            if(process.env.NODE_ENV !== "production") {
+            if (process.env.NODE_ENV !== "production") {
                 console.error(error, "Error fetch data Genres")
             }
             return { error: true, message: process.env.NODE_ENV === "production" ? "An unexpected error occurred, please try again." : error.message };
@@ -114,7 +114,7 @@ export default function GenresList() {
             setMovieList(data.results)
             setIsLoading(false)
         } catch (error) {
-            if(process.env.NODE_ENV !== "production") {
+            if (process.env.NODE_ENV !== "production") {
                 console.error(error, "Error fetch data MoviesWithGenres")
             }
             return { error: true, message: process.env.NODE_ENV === "production" ? "An unexpected error occurred, please try again." : error.message };
@@ -132,14 +132,14 @@ export default function GenresList() {
 
     return (
 
-        <div className=" md:mt-16">
-            <div className="flex justify-center ">
+        <div className=" md:mt-16 h-screen ">
+            <div className="flex justify-center order-1">
                 <Carousel
                     opts={{
                         align: "start",
                         loop: true,
                     }}
-                    className="w-full max-w-5xl md:max-w-xl 2xl:max-w-7xl lg:max-w-4xl">
+                    className="w-full max-w-5xl md:max-w-xl  2xl:max-w-7xl lg:max-w-4xl">
                     <CarouselContent className="-ml-1">
                         {isLoadingGenres ? (
                             <div className='flex items-center justify-center w-full'>
@@ -161,11 +161,11 @@ export default function GenresList() {
                 </Carousel>
             </div>
 
-            <div className="flex items-center justify-center w-full mt-8 md:mt-12 2xl:text-lg">
+            <div className="flex items-center justify-center w-full mt-8 md:mt-12  ">
                 <Carousel opts={{
                     align: "center",
                     loop: true,
-                }} className="w-full max-w-5xl md:max-w-md 2xl:max-w-7xl lg:max-w-4xl" >
+                }} className="w-full max-w-5xl md:max-w-md 2xl:max-w-7xl lg:max-w-4xl xl:max-w-full" >
                     <CarouselContent className="-ml-1 ">
                         {isLoading ? (
                             <div className="flex items-center justify-center w-full ">
@@ -195,5 +195,5 @@ export default function GenresList() {
             </div>
         </div>
     )
-    //    Nas@Dev nassreddine abdellouche 
+
 }

@@ -123,8 +123,8 @@ export default function GenresList() {
 
     const handleClick = useCallback(async (genreId) => {
         setIsLoading(true)
-        setSelectedGenre(genreId)
         fetchMovies(genreId)
+        setSelectedGenre(genreId)
         setIsLoadingGenres(false)
     }, [fetchMovies])
 

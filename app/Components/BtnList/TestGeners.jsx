@@ -1,5 +1,5 @@
 "use client"
-
+import { IoStarSharp } from "react-icons/io5";
 import Image from "next/image";
 import React, { memo, useCallback, useEffect, useState } from "react";
 import {
@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/carousel"
 import { Button } from "@/components/ui/button";
 import LoadingGenreButton from "../LoadingUi/LoadingGenreList";
+import { MovieCarouselSkeleton } from "./LoadingSkeletonMovies";
 
 export default function TestGeners() {
     const [genres, setGenres] = useState([]);
@@ -19,6 +20,16 @@ export default function TestGeners() {
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
     const [selectedGenre, setSelectedGenre] = useState(null)
+
+    const [api, setApi] = useState();
+    const [current, setCurrent] = useState(0);
+    const [count, setCount] = useState(0);
+
+
+
+    useEffect(() => {
+        fetchGenres()
+    }, [])
 
     const fetchGenres = async () => {
         try {
@@ -30,6 +41,7 @@ export default function TestGeners() {
             setGenres(data.genres)
             if (data.genres.length > 0) {
                 fetchMovies(data.genres[0].id)
+                fetchMoviesDetails(data.genres[0].id)
                 setSelectedGenre(data.genres[0].id)
                 setIsLoadingGenre(false)
             }
@@ -61,18 +73,52 @@ export default function TestGeners() {
         }
     }, [])
 
-    useEffect(() => {
-        fetchGenres()
+    const fetchMoviesDetails = useCallback(async (movieId) => {
+        try {
+            const response = await fetch(`/api/getMoviesById?movieId=${movieId}`,)
+            if (!response.ok) {
+                throw new Error(data.message || "An error occurred while fetching data.")
+            }
+
+            const data = await response.json()
+            setMovieList(data)
+            setIsLoading(false)
+            setError(null)
+
+
+        } catch (error) {
+            if (process.env.NODE_ENV !== "production") {
+                console.error(error, "Error fetch data Genres")
+            }
+            setError(error.message || "An unexpected error occurred");
+        }
     }, [])
+
+
 
     const handleClick = useCallback(async (genreId) => {
         setIsLoading(true)
         fetchMovies(genreId)
+        fetchMoviesDetails(genreId)
         setSelectedGenre(genreId)
-        setIsLoading(false)
+        setIsLoadingGenre(false)
     }, [fetchMovies])
 
+    // console.log(movieList)
 
+    useEffect(() => {
+        if (!api) {
+            return
+        }
+
+        setCount(api.scrollSnapList().length)
+        setCurrent(api.selectedScrollSnap() + 1)
+
+        api.on("select", () => {
+            setCurrent(api.selectedScrollSnap() + 1)
+        })
+    }, [api])
+    // console.log(movieList)
     return (
         <div className="w-full h-screen">
 
@@ -82,46 +128,81 @@ export default function TestGeners() {
                     align: "center",
                     loop: true,
                 }}
-            >
+                setApi={setApi}>
 
-                <div className=" border border-red-700 w-full h-[50vh]  ">
+                <div className=" border border-red-700 w-full h-[50vh] md:h-screen">
                     {/* content of details movies */}
-                    <CarouselContent className="-ml-1">
+                    <CarouselContent className="">
+                        {isLoading ? (
+                            <MovieCarouselSkeleton />
+                        ) : (
+                            movieList.length > 0 ? (
+                                movieList.map((movie) => (
+                                    <CarouselItem className="max-w-full  h-[50vh] w-full md:h-screen " key={movie.id} >
+                                        <div className="flex justify-between h-[50vh] w-full ">
 
-                        {movieList.length > 0 ? (
-                            movieList.map((movie, index) => (
-                                <CarouselItem className="max-w-full  h-[50vh] w-full " key={index} >
-                                <div className="flex justify-between h-[50vh] w-full ">
+                                            <div className=" bg-transparent w-[60%]   p-4">
+                                                <h1 className="text-3xl font-bold text-center ">
+                                                    {movie.title ? movie.title : movie.original_title || " Unknown"}
+                                                </h1>
+                                                <div className=" pt-4 font-bold">
+                                                    <div className=" flex justify-start gap-3 items-center">
+                                                        <div className="bg-white/50 backdrop-blur w-fit p-1 rounded-md flex justify-center gap-2 items-center">
 
-                                <div className=" ">
-                                    <h1>
-                                        goo
-                                    </h1>
+                                                            <h1 className=" font-bold text-yellow-500 ">
+                                                                {movie.vote_average ? movie.vote_average.toFixed(1) : "No rating available"}
+                                                            </h1>
+                                                            <span className=" text-yellow-500">
+                                                                <IoStarSharp />
+                                                            </span>
+                                                        </div>
+                                                        {/* release date */}
+                                                        <div className="bg-white/50 backdrop-blur w-fit p-1 rounded-md">
+                                                            <h1>{new Date(movie.release_date).getFullYear()}</h1>
+                                                        </div>
+                                                        <div>
+                                                            <h1 className="bg-white/50 backdrop-blur w-fit p-1 rounded-md">
+                                                                {movie.original_language}
+                                                            </h1>
+                                                        </div>
+                                                    </div>
+                                                    <p className="text-sm text-center text-muted-foreground font-semibold pt-4">
+                                                        {movie.overview ? movie.overview : "No description available"}
+                                                    </p>
+
+
+                                                </div>
+                                            </div>
+
+                                            <div className=" h-[50vh]  border  blur-right w-[100%] overflow-hidden relative">
+                                                <Image
+                                                    src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
+                                                    alt={movie.title}
+                                                    layout="fill"
+                                                    fill
+                                                    style={{ objectFit: "cover" }}
+
+                                                />
+                                            </div>
+                                        </div>
+
+                                    </CarouselItem>
+                                ))
+                            ) : (
+                                <div>
+
                                 </div>
-
-                                <div className=" h-[50vh] border  blur-right w-[50%] overflow-hidden relative">
-                                    <Image
-                                        src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
-                                        alt={movie.title}
-                                        layout="fill"
-                                        fill
-                                        style={{ objectFit: "cover" }}
-                                        
-                                    />
-                                </div>
-                                </div>
-
-                            </CarouselItem>
-                            ))
-                        ):(
-                            <div>
-                                
-                            </div>
+                            )
                         )}
 
                     </CarouselContent>
                 </div>
             </Carousel>
+            <div className="py-2 text-center text-sm text-muted-foreground">
+                {current}
+            </div>
+
+
             <div className="flex justify-center mt-20">
                 <Carousel
                     opts={{

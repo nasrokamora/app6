@@ -1,7 +1,7 @@
 "use client"
 import { IoStarSharp } from "react-icons/io5";
 import Image from "next/image";
-import React, { memo, useCallback, useEffect, useState } from "react";
+import React, { cache, memo, useCallback, useEffect, useRef, useState } from "react";
 import {
     Carousel,
     CarouselContent,
@@ -20,18 +20,21 @@ export default function TestGeners() {
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
     const [selectedGenre, setSelectedGenre] = useState(null)
+    const [movieDetails, setMovieDetails] = useState([])
 
     const [api, setApi] = useState();
     const [current, setCurrent] = useState(0);
     const [count, setCount] = useState(0);
 
-
+    const cacheRef = useRef({})
 
     useEffect(() => {
         fetchGenres()
     }, [])
 
     const fetchGenres = async () => {
+
+
         try {
             const response = await fetch(`/api/fetchGetGenresList`,)
             const data = await response.json()
@@ -41,7 +44,6 @@ export default function TestGeners() {
             setGenres(data.genres)
             if (data.genres.length > 0) {
                 fetchMovies(data.genres[0].id)
-                fetchMoviesDetails(data.genres[0].id)
                 setSelectedGenre(data.genres[0].id)
                 setIsLoadingGenre(false)
             }
@@ -55,13 +57,30 @@ export default function TestGeners() {
 
 
     const fetchMovies = useCallback(async (genreId) => {
+        if(cacheRef.current[genreId]) {
+            setMovieList(cacheRef.current[genreId])
+            return
+        }
         try {
             const response = await fetch(`/api/fetchMoviesWithGenres?genreId=${genreId}`,)
+            const data = await response.json()
+
             if (!response.ok) {
                 throw new Error(data.message || "An error occurred while fetching data.")
             }
-            const data = await response.json()
             setMovieList(data.results)
+            cacheRef.current[genreId] = data.results
+            const details = await Promise.all(data.results.map(async (movie) => {
+                const response = await fetch(`/api/getMoviesById?movieId=${movie.id}`,)
+                const dataDetails = await response.json()
+                if(!response.ok) {
+                    throw new Error(dataDetails.message || "An error occurred while fetching data.")
+                }
+                return dataDetails
+            }))
+
+            setMovieDetails(details)
+
             setIsLoading(false)
             setError(null)
 
@@ -73,38 +92,38 @@ export default function TestGeners() {
         }
     }, [])
 
-    const fetchMoviesDetails = useCallback(async (movieId) => {
-        try {
-            const response = await fetch(`/api/getMoviesById?movieId=${movieId}`,)
-            if (!response.ok) {
-                throw new Error(data.message || "An error occurred while fetching data.")
-            }
+    // const fetchMoviesDetails = useCallback(async (movieId) => {
+    //     try {
+    //         const response = await fetch(`/api/getMoviesById?movieId=${movieId}`,)
+    //         const data = await response.json()
+    //         if (!response.ok) {
+    //             throw new Error(data.message || "An error occurred while fetching data.")
+    //         }
 
-            const data = await response.json()
-            setMovieList(data)
-            setIsLoading(false)
-            setError(null)
+    //         setMovieDetails(data)
+    //         setIsLoading(false)
+    //         setError(null)
 
 
-        } catch (error) {
-            if (process.env.NODE_ENV !== "production") {
-                console.error(error, "Error fetch data Genres")
-            }
-            setError(error.message || "An unexpected error occurred");
-        }
-    }, [])
+    //     } catch (error) {
+    //         if (process.env.NODE_ENV !== "production") {
+    //             console.error(error, "Error fetch data Genres")
+    //         }
+    //         setError(error.message || "An unexpected error occurred");
+    //     }
+    // }, [])
 
 
 
     const handleClick = useCallback(async (genreId) => {
         setIsLoading(true)
         fetchMovies(genreId)
-        fetchMoviesDetails(genreId)
+        // fetchMoviesDetails(genreId)
         setSelectedGenre(genreId)
         setIsLoadingGenre(false)
     }, [fetchMovies])
 
-    // console.log(movieList)
+    console.log(movieDetails)
 
     useEffect(() => {
         if (!api) {
@@ -165,6 +184,16 @@ export default function TestGeners() {
                                                                 {movie.original_language}
                                                             </h1>
                                                         </div>
+
+                                                        {/* details movies */}
+
+                                                        {movieDetails && movieDetails.length > 0 && movieDetails.some(detail => detail.id === movie.id) && (
+                                                            <div className="" key={movie.id}>
+                                                                <h1>home page {movieDetails.find(detail => detail.id === movie.id).homepage}</h1>
+                                                            </div>
+                                                        )}
+
+
                                                     </div>
                                                     <p className="text-sm text-center text-muted-foreground font-semibold pt-4">
                                                         {movie.overview ? movie.overview : "No description available"}

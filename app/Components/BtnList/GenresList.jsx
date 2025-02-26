@@ -22,6 +22,7 @@ import {
 } from "@/components/ui/alert"
 import BlurFade from "@/components/ui/blur-fade"
 import { urlImage } from "@/app/libs/UrlImage"
+import ImagePosterPath from "@/app/libs/ImagePosterPath"
 
 
 
@@ -45,15 +46,24 @@ const MoviesList = React.memo(({ movieList }) => {
 
                     <div className="relative overflow-hidden lg:hover:scale-90 md:active:scale-110 hover:scale-90 duration-500  order-1 h-52">
                         <Link href={`/movies/list/${movie.id}`} >
-                            <Image
+                            
+                            <ImagePosterPath
+                            index={index} 
+                            tmdbPath={movie.poster_path} 
+                            width={300} 
+                            height={200} 
+                            className="rounded-md hover:sepia hover:duration-500 blur-left" />
+                            
+                            {/* <Image
                                 src={`${urlImage}${movie.poster_path}`}
                                 alt="movie poster"
-                                fill
+                                width={300} height={200}
                                 className="rounded-md hover:sepia hover:duration-500 blur-left"
                                 priority
-                                style={{ objectFit: "cover" }}
-                            />
-                            {/* <p className="flex justify-start pt-2 mb-1 font-bold ">{movie.title.length > 14 ? movie.title.slice(0, 14) + "..." : movie.title}</p>
+                                style={{ width: "auto", borderRadius: "4px" }}
+                                draggable={false}
+                            /> */}
+                            <p className="flex justify-start pt-2 mb-1 font-bold ">{movie.title.length > 14 ? movie.title.slice(0, 14) + "..." : movie.title}</p>
                             <div className="flex items-center justify-between w-full ">
                                 <p className="flex items-center justify-between w-full font-semibold 2xl:text-2xl">
                                     {new Date(movie.release_date).getFullYear()}
@@ -67,7 +77,7 @@ const MoviesList = React.memo(({ movieList }) => {
                                     </div>
                                 </div>
 
-                            </div> */}
+                            </div>
                         </Link>
 
                     </div>

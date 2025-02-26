@@ -18,6 +18,7 @@ import Link from "next/link";
 import BlurFade from "@/components/ui/blur-fade";
 import { urlImage } from "@/app/libs/UrlImage";
 import AnimationAllComponents from "@/app/Animations/FadeIn/AnimationAllComponents";
+import ImagePosterPath from "@/app/libs/ImagePosterPath";
 
 
 export default function MoviePopular({ dataPopular }) {
@@ -40,17 +41,23 @@ export default function MoviePopular({ dataPopular }) {
                                     <div className="hover:scale-105  duration-500 w-full ">
 
                                         <Link className=" " href={`/movies/list/${movie.id}`}>
-
-                                            <Image
+                                            <ImagePosterPath
+                                            index={idx} 
+                                            tmdbPath={movie.poster_path} 
+                                            width={300} 
+                                            height={200} 
+                                            className=" hover:saturate-50 hover:duration-500 rounded-md   " 
+                                            />
+                                            {/* <Image
                                                 src={`${urlImage}${movie.poster_path}`}
                                                 alt={movie.title}
                                                 width={300} height={200}
                                                 className=" hover:saturate-50 hover:duration-500 rounded-md   "
                                                 style={{ width: "auto" }}
                                                 priority
-                                                // unoptimized={true}
+                                          
 
-                                            />
+                                            /> */}
                                             <p className=" font-bold flex justify-start  pt-2 mb-1 2xl:text-2xl ">{movie.title.length > 14 ? movie.title.slice(0, 14) + "..." : movie.title}
                                             </p>
                                             <div className=" flex justify-between items-center w-full font-semibold 2xl:text-2xl 2xl:font-bold">

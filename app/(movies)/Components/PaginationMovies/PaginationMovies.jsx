@@ -28,6 +28,7 @@ import Link from 'next/link'
 import LoadingPaginationMovies from "./LoadingPaginationMovies";
 import { FaRegStar } from "react-icons/fa"
 import { urlImage } from "@/app/libs/UrlImage";
+import ImagePosterPath from "@/app/libs/ImagePosterPath";
 
 
 
@@ -121,7 +122,14 @@ export default function PaginationMovies() {
                                         
                                         <div className="relative overflow-hidden md:active:scale-90 hover:scale-90 duration-500  ">
                                             <Link className=" font-bold rounded-md" href={`/movies/list/${movie.id}`}>
-                                                <Image
+                                               <ImagePosterPath
+                                               index={index} 
+                                               tmdbPath={movie.poster_path} 
+                                               width={300} 
+                                               height={250} 
+                                               className="rounded-md" />
+
+                                                {/* <Image
                                                     src={
                                                         movie.poster_path
                                                         ? `${urlImage}${movie.poster_path}`
@@ -133,9 +141,9 @@ export default function PaginationMovies() {
                                                     draggable={false}
                                                     style={{ width: 'auto' }}
                                                     priority
-                                                    // unoptimized={true}
+                                   
                                                     loading="eager"
-                                                />
+                                                /> */}
                                                 <p className=" pt-2 font-bold  mb-1">{movie.title.length > 11 ? movie.title.slice(0, 11) + "..." : movie.title}</p>
                                                 <div className="flex items-center justify-between w-full ">
                                                     <p className="flex items-center justify-between w-full font-bold 2xl:text-2xl text-[#FFC300]">

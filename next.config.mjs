@@ -10,12 +10,20 @@ const nextConfig = {
             },
             {
                 protocol: 'https',
+                hostname: 'res.cloudinary.com',
+                pathname: '**',
+            },
+            {
+                protocol: 'https',
                 hostname: 'lh3.googleusercontent.com',
                 pathname: '**',
             }
 
         ],
+
         minimumCacheTTL: 2592000,
+        loader: 'custom',
+        path:'',
 
 
 

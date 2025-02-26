@@ -43,10 +43,10 @@ export default async function Home() {
     <main className={`w-full h-auto text-white pt-24 `}>
       {/* section Discover */}
       <AnimateScroll />
-      <section>
+      {/* <section>
         <TestGeners />
-      </section>
-      {/* <div className={`md:text-3xl scroll-m-20 text-4xl  tracking-tight lg:text-3xl ml-6 md:ml-0 font-extrabold md:flex md:justify-center md:items-center   mt-7 md:mt-3  `}>
+      </section> */}
+      <div className={`md:text-3xl scroll-m-20 text-4xl  tracking-tight lg:text-3xl ml-6 md:ml-0 font-extrabold md:flex md:justify-center md:items-center   mt-7 md:mt-3  `}>
         <h1 className={'  bg-gradient-to-r from-[#ffae00] via-[#911818] to-[#ffae00] bg-[length:200%_auto] bg-clip-text text-transparent animate-gradient'}>Discover<GiFilmProjector className="inline-block text-red-700 mb-4 " size={42} />
           <span className="bg-gradient-to-r from-[#911818] via-[#ffae00] to-[#911818]  bg-[length:200%_auto] bg-clip-text text-transparent animate-gradient">Magix</span> </h1>
       </div>
@@ -54,7 +54,7 @@ export default async function Home() {
 
         <MoviesCard dataDiscoverMovies={dataDiscoverMovies.results} />
 
-      </section> */}
+      </section>
 
       {/* section highest rated movies */}
       {/* <section className="mt-8  ">

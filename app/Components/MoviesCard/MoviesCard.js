@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/carousel"
 import Rating from "../Rated/Rating"
 import { urlImage } from "@/app/libs/UrlImage"
+import ImagePosterPath from "@/app/libs/ImagePosterPath"
 
 
 export default async function MoviesCard({ dataDiscoverMovies }) {
@@ -34,15 +35,21 @@ export default async function MoviesCard({ dataDiscoverMovies }) {
                                                 <div className='relative rounded-md  '>
                                                     {movie.poster_path.length > 0 ?(
 
-                                                        <Image
-                                                            src={`${urlImage}/${movie.poster_path}`}
-                                                            alt={movie.title ? movie.title : movie.original_title || "Unknown"}
-                                                            width={300} height={200}
-                                                            priority
-                                                            style={{ width: "auto", borderRadius: "4px" }}
-                                                            draggable={false}
-                                                            loading="eager"
-                                                            />
+                                                            <ImagePosterPath
+                                                            
+                                                            index={movie.id}
+                                                            tmdbPath={movie.poster_path}
+                                                            className="rounded-md"
+                                                            />    
+                                                            // <Image
+                                                        //     src={`${urlImage}/${movie.poster_path}`}
+                                                        //     alt={movie.title ? movie.title : movie.original_title || "Unknown"}
+                                                        //     width={300} height={200}
+                                                        //     priority
+                                                        //     style={{ width: "auto", borderRadius: "4px" }}
+                                                        //     draggable={false}
+                                                        //     loading="eager"
+                                                        //     />
                                                     ):(
                                                         <Image
                                                             src={no_image}

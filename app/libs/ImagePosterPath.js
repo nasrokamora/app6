@@ -15,7 +15,7 @@ export default function ImagePosterPath({
   return (
     <Image
       loader={ImageCloudinaryLoader}
-      src={`https://image.tmdb.org/t/p/original/${tmdbPath}`}
+      src={`https://image.tmdb.org/t/p/original${tmdbPath}`}
       width={200}
       height={200}
       alt="Movie Poster"

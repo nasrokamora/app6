@@ -13,6 +13,7 @@ import { Suspense } from "react";
 import SearchMultiPage from "@/app/(movies)/Components/SearchMulti/SearchMultiPage";
 import { IoCloseCircleSharp } from "react-icons/io5";
 import FooterMenu from "../Footer/FooterMenu";
+import ImageCloudinaryLoader from "@/app/libs/loader";
 
 
 const TrendingMoviesLoad = dynamic(() => import("@/app/(movies)/Components/TrendingMovies/TrendingMoviesLoad"), {
@@ -31,6 +32,7 @@ export default function NavBar() {
             hieght={32}
             alt="Magix_Movies_Logo"
             className=""
+
           />
           <h1
             className={cn('text-center text-2xl font-bold   md:hidden  bg-gradient-to-r from-[#b62323] via-[#9c40ff] to-[#b62323] bg-[length:200%_auto] bg-clip-text text-transparent animate-gradient')}
@@ -83,9 +85,9 @@ export default function NavBar() {
                   </div>
                   {/* Trending Movies */}
                   {/* Trending Movies */}
-                  <div className="">
+                  {/* <div className="">
                     <TrendingMoviesLoad />
-                  </div>
+                  </div> */}
                   {/* Footer */}
                     <div className="md:hidden">
 

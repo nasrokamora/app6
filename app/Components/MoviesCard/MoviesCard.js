@@ -20,7 +20,7 @@ import { urlImage } from "@/app/libs/UrlImage"
 import ImagePosterPath from "@/app/libs/ImagePosterPath"
 
 
-export default async function MoviesCard({ dataDiscoverMovies }) {
+export default function MoviesCard({ dataDiscoverMovies }) {
     return (
         <>
             <div className="  w-full 2xl:text-2xl h-fit xl:h-[21rem]  ">

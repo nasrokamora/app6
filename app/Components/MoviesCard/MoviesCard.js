@@ -36,10 +36,13 @@ export default function MoviesCard({ dataDiscoverMovies }) {
                                                     {movie.poster_path.length > 0 ?(
 
                                                             <ImagePosterPath
-                                                            
+                                                            width={300}
+                                                            height={200}
                                                             index={movie.id}
                                                             tmdbPath={movie.poster_path}
                                                             className="rounded-md"
+                                                            quality={75}
+                                                            unoptimized
                                                             />    
                                                             // <Image
                                                         //     src={`${urlImage}/${movie.poster_path}`}

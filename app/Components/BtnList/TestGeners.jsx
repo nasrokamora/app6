@@ -71,18 +71,6 @@ export default function TestGeners() {
 
     const [state, dispatch] = useReducer(reducer, initialState)
 
-
-
-
-
-    // const [genres, setGenres] = useState([]);
-    // const [isLoadingGenre, setIsLoadingGenre] = useState(true);
-    // const [movieList, setMovieList] = useState([]);
-    // const [error, setError] = useState(null);
-    // const [isLoading, setIsLoading] = useState(true);
-    // const [selectedGenre, setSelectedGenre] = useState(null)
-    // const [movieDetails, setMovieDetails] = useState([])
-
     const [api, setApi] = useState();
     const [current, setCurrent] = useState(0);
     const [count, setCount] = useState(0);

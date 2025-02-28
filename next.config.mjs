@@ -4,12 +4,6 @@ const nextConfig = {
         remotePatterns: [
             {
                 protocol: 'https',
-                hostname: 'image.tmdb.org',
-                pathname: '**',
-                port: ''
-            },
-            {
-                protocol: 'https',
                 hostname: 'res.cloudinary.com',
                 pathname: '**',
             },
@@ -27,8 +21,7 @@ const nextConfig = {
         ],
 
         minimumCacheTTL: 2592000,
-        loader: 'custom',
-        path:'',
+
 
 
 

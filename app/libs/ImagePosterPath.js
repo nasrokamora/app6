@@ -8,19 +8,22 @@ export default function ImagePosterPath({
   width,
   height,
   className = "",
-}) {
+  quality,
+  style,
 
-  const originalTMDBUrl = `https://image.tmdb.org/t/p/original/${tmdbPath}`;
+}) {
 
   return (
     <Image
       loader={ImageCloudinaryLoader}
-      src={`https://image.tmdb.org/t/p/original${tmdbPath}`}
-      width={200}
-      height={200}
+      src={`https://image.tmdb.org/t/p/w500${tmdbPath}`}
+      width={width}
+      height={height}
       alt="Movie Poster"
       className={className}
       priority={index === 6}
+      quality={quality}
+      style={style}
     />
   );
 }

@@ -126,7 +126,8 @@ export default function PaginationMovies() {
                                                index={index} 
                                                tmdbPath={movie.poster_path} 
                                                width={300} 
-                                               height={250} 
+                                               height={250}
+                                               quality={75}
                                                className="rounded-md" />
 
                                                 {/* <Image

@@ -45,9 +45,7 @@ export default function NavBar() {
 
 
           {/* Search */}
-          <Suspense fallback={<Loader2 className="animate-spin" />}>
             <SearchMultiPage />
-          </Suspense>
           <div className=" ">
             <div className="drawer drawer-end">
               <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />

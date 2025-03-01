@@ -42,7 +42,9 @@ export default function MoviesCard({ dataDiscoverMovies }) {
                                                             tmdbPath={movie.poster_path}
                                                             className="rounded-md"
                                                             quality={75}
+                                                            alt={movie.title ? movie.title : movie.original_title || "Unknown"}
                                                             unoptimized
+                                                            
                                                             />    
                                                             // <Image
                                                         //     src={`${urlImage}/${movie.poster_path}`}

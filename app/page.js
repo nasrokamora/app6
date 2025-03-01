@@ -65,9 +65,10 @@ export default async function Home() {
           <PaginationMovies />
         </div>
       </section>
-            {/* <section>
+
+            <section className="mt-7 md:hidden">
         <TestGeners />
-      </section> */}
+      </section>
 
       {/* section Popular */}
       {/* <div className=" ml-6 md:ml-0  scroll-m-20 text-3xl font-extrabold  lg:text-3xl md:text-4xl mt-14  bg-gradient-to-r from-[#850000] via-[#ff0000] to-[#850000] bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient md:p-2 md:text-center  md:flex md:justify-center md:items-center items-center  lg:mt-11 md:mt-11">

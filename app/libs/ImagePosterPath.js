@@ -10,6 +10,10 @@ export default function ImagePosterPath({
   className = "",
   quality,
   style,
+  alt = "",
+  fill,
+  priority = false,
+  unoptimized
 
 }) {
 
@@ -19,11 +23,13 @@ export default function ImagePosterPath({
       src={`https://image.tmdb.org/t/p/w500${tmdbPath}`}
       width={width}
       height={height}
-      alt="Movie Poster"
+      alt={alt}
       className={className}
-      priority={index === 6}
+      priority={priority}
       quality={quality}
       style={style}
+      fill={fill}
+      unoptimized={unoptimized}
     />
   );
 }

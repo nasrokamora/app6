@@ -11,8 +11,52 @@ import {
 } from "@/components/ui/carousel"
 import { Button } from "@/components/ui/button";
 import LoadingGenreButton from "../LoadingUi/LoadingGenreList";
-import { MovieCarouselSkeleton } from "./LoadingSkeletonMovies";
+// import { MovieCarouselSkeleton } from "./LoadingSkeletonMovies";
 import { FaLink } from "react-icons/fa6";
+import ImagePosterPath from "@/app/libs/ImagePosterPath";
+import DialogMoviesOverwiew from "./DialogMoviesOverwiew";
+import { Skeleton } from "@/components/ui/skeleton";
+import MovieCarouselSkeleton from "./MovieCarouselSkeleton";
+
+// const MovieCarouselSkeleton = () => {
+//     return (
+//       <>
+//         {Array(3)
+//           .fill(0)
+//           .map((_, index) => (
+//             <CarouselItem className="max-w-full h-[50vh] w-full md:h-screen" key={index}>
+//               <div className="flex justify-between h-[50vh] w-full">
+//                 <div className="bg-transparent w-[60%] p-4">
+//                   <Skeleton className="h-10 w-3/4 mx-auto rounded-md mb-4" />
+//                   <div className="pt-4">
+//                     <div className="flex justify-start gap-3 items-center">
+//                       <Skeleton className="h-8 w-16 rounded-md" />
+//                       <Skeleton className="h-8 w-16 rounded-md" />
+//                       <Skeleton className="h-8 w-12 rounded-md" />
+//                       <Skeleton className="h-8 w-24 rounded-md" />
+//                     </div>
+//                     <div className="flex justify-start items-center gap-2 flex-wrap pt-4">
+//                       {Array(4)
+//                         .fill(0)
+//                         .map((_, i) => (
+//                           <Skeleton key={i} className="h-8 w-20 rounded-md" />
+//                         ))}
+//                     </div>
+//                     <div className="pt-4 md:hidden">
+//                       <Skeleton className="h-24 w-full rounded-md" />
+//                     </div>
+//                   </div>
+//                 </div>
+//                 <div className="h-[50vh] border blur-right w-[100%] overflow-hidden relative">
+//                   <Skeleton className="h-full w-full" />
+//                 </div>
+//               </div>
+//             </CarouselItem>
+//           ))}
+//       </>
+//     )
+//   }
+
 
 
 const initialState = {
@@ -217,6 +261,7 @@ export default function TestGeners() {
         }
     }
 
+
     return (
         <div className="w-full h-screen">
 
@@ -228,7 +273,7 @@ export default function TestGeners() {
                 }}
                 setApi={setApi}>
 
-                <div className=" border border-red-700 w-full h-[50vh] md:h-screen">
+                <div className="   w-full h-[50vh] md:h-screen">
                     {/* content of details movies */}
                     <CarouselContent className="">
                         {state.isLoading ? (
@@ -238,6 +283,7 @@ export default function TestGeners() {
                             state.movieList.map((movie, index) => {
 
                                 const details = state.movieDetails[index];
+                                // console.log(details)
                                 return (
                                     <CarouselItem className="max-w-full  h-[50vh] w-full md:h-screen " key={movie.id} >
                                         <div className="flex justify-between h-[50vh] w-full ">
@@ -267,8 +313,8 @@ export default function TestGeners() {
                                                             </h1>
                                                         </div>
                                                         {/* status */}
-                                                        <div className={`${ColorTypes(details.status)} bg-white/30 backdrop-blur w-fit p-1 rounded-md`}>
-                                                            <h1>{details.status}</h1>
+                                                        <div className={`${ColorTypes(details?.status)} bg-white/30 backdrop-blur w-fit p-1 rounded-md`}>
+                                                            <h1>{details?.status || "Unknown"}</h1>
                                                         </div>
                                                     </div>
                                                     {/* details movies */}
@@ -277,7 +323,7 @@ export default function TestGeners() {
                                                         <div className=" flex justify-start gap-2 items-center pt-4">
 
                                                             {/* genres */}
-                                                            <div className=" flex justify-start items-center gap-2">
+                                                            <div className=" flex justify-start items-center gap-2 flex-wrap">
                                                                 {details.genres.map((genre) => (
                                                                     <div key={genre.id} className="bg-white/30 backdrop-blur w-fit p-1 rounded-md">
                                                                         <h1 className={``}>{genre.name}</h1>
@@ -286,22 +332,22 @@ export default function TestGeners() {
                                                             </div>
                                                         </div>
                                                     }
-                                                    <p className="text-sm text-center text-muted-foreground font-semibold pt-4">
+                                                    <p className="text-sm text-center text-muted-foreground font-semibold pt-4 md:hidden ">
                                                         {movie.overview || "No description available"}
                                                     </p>
-
-
                                                 </div>
                                             </div>
 
-                                            <div className=" h-[50vh]  border  blur-right w-[100%] overflow-hidden relative">
-                                                <Image
-                                                    src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
-                                                    alt={movie.title}
-                                                    layout="fill"
-                                                    fill
+                                            <div className=" h-[50vh] blur-right w-[100%] overflow-hidden relative">
+                                                <ImagePosterPath
+                                                    index={movie.id}
+                                                    tmdbPath={movie.backdrop_path}
+                                                    quality={75}
+                                                  alt={movie.title ? movie.title : movie.original_title || "Unknown"}
                                                     style={{ objectFit: "cover" }}
-
+                                                    unoptimized
+                                                    fill
+                                                    priority={true}
                                                 />
                                             </div>
                                         </div>
@@ -313,18 +359,18 @@ export default function TestGeners() {
                     </CarouselContent>
                 </div>
             </Carousel>
-            <div className="py-2 text-center text-sm text-muted-foreground">
+            {/* <div className="py-2 text-center text-sm text-muted-foreground">
                 {current}
-            </div>
+            </div> */}
 
 
-            <div className="flex justify-center mt-20">
+            <div className="flex justify-center pt-2">
                 <Carousel
                     opts={{
                         align: "start",
                         loop: true,
                     }}
-                    className="w-full max-w-5xl md:max-w-xl  2xl:max-w-7xl lg:max-w-4xl">
+                    className="w-full max-w-5xl md:max-w-sm  2xl:max-w-7xl lg:max-w-4xl">
                     <CarouselContent className="-ml-1">
                         {state.isLoadingGenre ? (
                             <div className='flex items-center justify-center w-full'>
@@ -339,7 +385,7 @@ export default function TestGeners() {
                         )
                         }
                     </CarouselContent>
-                    <div className=" absolute top-[-2rem] left-[93%] md:left-[81%] ">
+                    <div className=" ">
                         <CarouselPrevious />
                         <CarouselNext />
                     </div>

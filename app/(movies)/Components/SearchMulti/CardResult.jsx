@@ -49,7 +49,8 @@ export default function CardResults({ movie, handleClick, handleClose }) {
                                                     tmdbPath={movie.poster_path}
                                                     className="rounded-md"
                                                     quality={75}
-                                                    style={{ width: "auto" }}
+                                                    style={{ height: "auto" }}
+                                                    alt={movie.title || movie.name}
                                                     unoptimized
                                                 />
 

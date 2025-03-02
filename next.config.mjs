@@ -19,8 +19,8 @@ const nextConfig = {
               },
 
         ],
-
         minimumCacheTTL: 2592000,
+        unoptimized: true,
 
 
 

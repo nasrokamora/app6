@@ -1,10 +1,12 @@
-import LoadMovies from "@/app/Components/LoadMore/LoadMovies";
+// import LoadMovies from "@/app/Components/LoadMore/LoadMovies";
+import dynamic from "next/dynamic";
 import ToggleButton from "../Components/ToggleButton/ToggleButton";
 
 export const metadata = {
     title: 'Magix | Movies',
 }
-export const dynamic = 'force-dynamic';
+
+const LoadMovies = dynamic(() => import('@/app/Components/LoadMore/LoadMovies'), { ssr: false });
 
 
 

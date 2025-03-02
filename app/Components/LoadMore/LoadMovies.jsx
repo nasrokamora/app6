@@ -8,6 +8,7 @@ import dynamic from "next/dynamic"
 import ErrorImage from "../../../public/image/errorImage.webp"
 import { motion } from "framer-motion"
 import { urlImage } from "@/app/libs/UrlImage"
+import ImagePosterPath from "@/app/libs/ImagePosterPath"
 
 
 
@@ -15,7 +16,7 @@ import { urlImage } from "@/app/libs/UrlImage"
 
 
 
-const MAX_PAGE = 5
+const MAX_PAGE = 8
 
 async function getMoviesWithPage(page) {
     const response = await fetch(`/api/getMoviesWithPage?page=${page}`)
@@ -77,14 +78,26 @@ export default function LoadMovies() {
             <div className="grid grid-cols-6 gap-8 p-8 md:grid-cols-3 lg:grid-cols-4">
                 {dataMovies.map((movie, index) => (
                     <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.2, delay: 0.2, ease: "easeInOut" }}
-                    key={movie.id}>
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.2, delay: 0.2, ease: "easeInOut" }}
+                        key={movie.id}>
                         <div key={index} className="relative flex flex-col items-center justify-center overflow-hidden hover:scale-110 hover:duration-300">
                             <Link href={`/movies/list/${movie.id}`} >
 
-                                <Image src={movie.poster_path ?
+                                <ImagePosterPath
+                                    width={200}
+                                    height={150}
+                                    index={movie.id}
+                                    tmdbPath={movie.poster_path}
+                                    style={{ width: "auto" }}
+                                    quality={75}
+                                    alt={movie.title ? movie.title : movie.original_title || "Unknown"}
+                                    unoptimized
+                                    priority={index < 6}
+
+                                />
+                                {/* <Image src={movie.poster_path ?
                                     `${urlImage}/${movie.poster_path}` :
                                     ErrorImage}
                                     alt={movie.title}
@@ -96,7 +109,7 @@ export default function LoadMovies() {
                                     unoptimized={true}
                                     priority={index < 6}
                                     onError={(e) => { e.target.src = ErrorImage.src }}
-                                />
+                                /> */}
                                 <h1 className="font-bold ">
                                     {movie.title.length > 14 ? movie.title.slice(0, 14) + "..." : movie.title}
                                 </h1>

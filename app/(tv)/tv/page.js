@@ -1,4 +1,5 @@
 
+import SkeletonLoadMoreTv from '@/app/Components/LoadingUi/SkeletonLoadMoreTv';
 import dynamic from 'next/dynamic';
 
 export const metadata = {
@@ -13,9 +14,11 @@ export default function Tv() {
 
     return (
         <div className="w-full h-auto">
-            <LoadMoreTv />
-
-            <ToggleButton />
+            {<SkeletonLoadMoreTv /> &&(
+                <LoadMoreTv />    
+            )
+        }
+        <ToggleButton />
         </div>
     )
 }

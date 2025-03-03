@@ -10,13 +10,14 @@ import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 import Link from "next/link"
 import no_image from '../../../../public/image/no_image4.webp'
 import { urlImage } from "@/app/libs/UrlImage"
+import ImagePosterPath from "@/app/libs/ImagePosterPath"
 
 
 
 
 export default function DetailsSeasonTv({ season, id }) {
     const sortSeason = season.sort((a, b) => a.season_number - b.season_number)
-    
+
     return (
         <div className="w-full">
             <div className="  mt-5 flex justify-center items-center w-full rounded-md ">
@@ -28,16 +29,18 @@ export default function DetailsSeasonTv({ season, id }) {
                                     <Card className="  md:h-auto w-full border-blue-600 shadow-md shadow-blue-800 bg-black/30 backdrop-blur">
                                         <CardContent className=" pt-2  ">
                                             <div className=" relative lg:order-2 w-full ">
-                                                <Image src={item.poster_path ?
-                                                    `${urlImage}${item.poster_path}` : no_image}
-                                                    width={100} height={100}
+                                                <ImagePosterPath
+                                                    width={100}
+                                                    height={100}
+                                                    index={item.id}
+                                                    tmdbPath={item.poster_path}
+                                                    className="rounded-md"
+                                                    quality={75}
+                                                    alt={item.name ? item.name : "Unknown"}
+
+                                                    draggable={false}
                                                     priority
-                                                    className=" rounded-md "
-                                                    style={{ width: 'auto' }}
-                                                    alt={item.name}
-                                                    draggable="false"
-                                                    unoptimized={true}
-                                                    loading="eager"
+                                                    unoptimized
                                                 />
                                             </div>
 

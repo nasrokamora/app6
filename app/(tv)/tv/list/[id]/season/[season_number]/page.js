@@ -2,32 +2,25 @@ import {
     getDetailsSeasonCreditsTv,
     getDetailsSeasonTv,
     getSeasonExternalIdsTv,
-    getSeasonImagesTv,
-    grtTrailerSeason,
-    urlImageTv
 } from "@/app/libs/DataFetchingTv"
-import Image from "next/image"
+
 import {
     Card,
     CardContent,
-    CardDescription,
     CardFooter,
     CardHeader,
-    CardTitle,
 } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 import ToggleButton from "@/app/(movies)/Components/ToggleButton/ToggleButton"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { AlertCircle } from "lucide-react"
-import SeasonImage from "@/app/(tv)/Components/SeasonImage/SeasonImage"
 import Particles from "@/components/ui/particles"
 import CreditSeasonTv from "@/app/(tv)/Components/CreditSeasonTv/CreditSeasonTv"
 import Link from "next/link"
 import { ChevronRight } from "lucide-react";
-import no_image from "../../../../../../../public/image/no_image4.webp"
-import broken_image from '../../../../../../../public/image/broken-image.png'
 import dynamic from "next/dynamic"
+import ImagePosterPath from "@/app/libs/ImagePosterPath"
 
 const BlurIn = dynamic(() => import("@/components/ui/blur-in"), { ssr: false })
 
@@ -36,7 +29,7 @@ export async function generateMetadata({ params }) {
     const { season_number, id } = params
     const data = await getDetailsSeasonTv(id, season_number)
     return {
-        title: data.name ? data.name : "Magix Movies",
+        title: data.name ? data.name : "Magix Movies" 
     }
 }
 
@@ -53,7 +46,7 @@ export default async function SeasonDetailTvSeries({ params }) {
 
     const [dataSeason, dataCreditSeason] = await Promise.all([seasonData, dataExtIds, seasonCredit])
     const color = "#ffffff"
-
+    // console.log(dataSeason)
 
     return (
         <div className="w-full h-auto pt-20 p-5 font-semibold">
@@ -76,14 +69,21 @@ export default async function SeasonDetailTvSeries({ params }) {
 
             <div className=" flex justify-evenly  gap-2 mt-4   p-2 md:flex-col md:items-center">
                 <div className=" lg:hidden  overflow-hidden relative">
-                    <Image src={dataSeason.poster_path ? `${urlImageTv}${dataSeason.poster_path}` : no_image}
+                    <ImagePosterPath
                         width={200}
                         height={200}
+                        index={dataSeason.id}
+                        tmdbPath={dataSeason.poster_path}
+                        className="rounded-md"
+                        quality={75}
+                        alt={dataSeason.name ? dataSeason.name :  "Unknown"}
+                        unoptimized
+                        draggable={false}
                         priority
-                        alt={dataSeason.name}
-                        style={{ width: "auto", height: "auto" }}
-                        className=" rounded-md  "
+
+
                     />
+
                 </div>
 
                 <div className=" flex justify-center flex-col w-full gap-2">
@@ -106,7 +106,7 @@ export default async function SeasonDetailTvSeries({ params }) {
                     </div>
 
                     {/* Season images */}
-                    
+
                     {/* delete */}
 
 
@@ -124,7 +124,7 @@ export default async function SeasonDetailTvSeries({ params }) {
                     <div className="flex gap-2 w-full">
 
                         {dataSeason &&
-                        dataSeason.episodes &&
+                            dataSeason.episodes &&
                             dataSeason.episodes.length === 0 ?
                             <Alert variant="destructive">
                                 <AlertCircle className="h-4 w-4" />
@@ -143,7 +143,7 @@ export default async function SeasonDetailTvSeries({ params }) {
 
                                     </CardHeader>
                                     <CardContent className=" flex justify-center items-center  ">
-                                    {episode.air_date ? episode.air_date : "Unknown"}
+                                        {episode.air_date ? episode.air_date : "Unknown"}
 
                                     </CardContent>
                                     <CardFooter>

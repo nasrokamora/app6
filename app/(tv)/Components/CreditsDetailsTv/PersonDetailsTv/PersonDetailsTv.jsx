@@ -10,19 +10,18 @@ import {
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 import { Card, CardContent } from "@/components/ui/card"
-import Image from "next/image"
 import { LiaImdb } from "react-icons/lia";
 import { FaXTwitter } from "react-icons/fa6";
 import { FaInstagram } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
 import Link from "next/link"
-import no_image from '../../../../../public/image/no_image4.webp'
 import { buttonVariants } from "@/components/ui/button"
+import ImagePosterPath from "@/app/libs/ImagePosterPath";
 
-export default async function PersonDetailsTv({ person_id, urlImageTv, character }) {
+export default async function PersonDetailsTv({ person_id,  character }) {
 
-    const data =  getPersonsIdTv(person_id)
-    const extPersonId =  getExtPersonsIdTv(person_id)
+    const data = getPersonsIdTv(person_id)
+    const extPersonId = getExtPersonsIdTv(person_id)
     const [dataPerson, dataExtPerson] = await Promise.all([data, extPersonId])
 
     return (
@@ -32,18 +31,17 @@ export default async function PersonDetailsTv({ person_id, urlImageTv, character
                     <CardContent className="-ml-1">
                         <div className="flex justify-start gap-2 pt-4 ">
                             <div className=''>
-                                <Image src={dataPerson.profile_path ?
-                                    `${urlImageTv}${dataPerson.profile_path}`
-                                :
-                                no_image
-                                }
-                                    width={100} height={100}
+                                <ImagePosterPath
+                                    width={100}
+                                    height={100}
+                                    index={dataPerson.id}
+                                    tmdbPath={dataPerson.profile_path}
+                                    style={{ borderRadius:"12px" }}
+                                    quality={75}
+                                    alt={dataPerson.name ? dataPerson.name : dataPerson.original_name || "Unknown"}
+                                    unoptimized
+                                    draggable={false}
                                     priority
-                                    alt={dataPerson.name}
-                                    style={{ width: 'auto',borderRadius:"12px" }}
-                                    loading="eager"
-
-                                    
                                 />
                             </div>
                             <div className="">
@@ -90,7 +88,7 @@ export default async function PersonDetailsTv({ person_id, urlImageTv, character
                                                 </ul>
 
                                             </div>
-                                        ):(
+                                        ) : (
                                             <div>
                                                 <p className=" text-red-700 border-red-700 font-bold text-xl">Social links not found.</p>
                                             </div>
@@ -104,7 +102,7 @@ export default async function PersonDetailsTv({ person_id, urlImageTv, character
                                         <AlertDialogTrigger className="hover:bg-info hover:duration-300 alert-info text-white hover:text-slate-950 border p-2 font-bold rounded-lg">Biography</AlertDialogTrigger>
                                         <AlertDialogContent className="md:h-screen  max-w-2xl xl:max-w-5xl">
                                             <AlertDialogHeader>
-                                                <AlertDialogTitle> {dataPerson.name? dataPerson.name : "Name is not found"}</AlertDialogTitle>
+                                                <AlertDialogTitle> {dataPerson.name ? dataPerson.name : "Name is not found"}</AlertDialogTitle>
                                                 <AlertDialogDescription>
                                                     {dataPerson && dataPerson.biography && dataPerson.biography.length > 0
                                                         ? dataPerson.biography
@@ -116,7 +114,7 @@ export default async function PersonDetailsTv({ person_id, urlImageTv, character
                                             </AlertDialogFooter>
                                         </AlertDialogContent>
                                     </AlertDialog>
-                                    <Link href={`/person/${dataPerson.id}`} className={buttonVariants({ variant: "outline",color:"red" })}>More Details</Link>
+                                    <Link href={`/person/${dataPerson.id}`} className={buttonVariants({ variant: "outline", color: "red" })}>More Details</Link>
 
                                 </div>
 

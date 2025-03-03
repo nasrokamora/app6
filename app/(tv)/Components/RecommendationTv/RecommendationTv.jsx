@@ -16,6 +16,7 @@ import { AlertCircle } from "lucide-react"
 import { PiShootingStarLight } from "react-icons/pi";
 import AutoReccomendCarousel from "./RecommendAutoCarousel"
 import { urlImage } from "@/app/libs/UrlImage"
+import ImagePosterPath from "@/app/libs/ImagePosterPath"
 
 export default function RecommendationTv({ dataRecommend }) {
   return (
@@ -29,15 +30,17 @@ export default function RecommendationTv({ dataRecommend }) {
                 <div className="p-1 hover:scale-90 hover:duration-500 hover:hue-rotate-30">
                   <Link href={`/tv/list/${data.id}`}>
                     <div className=" overflow-hidden  relative">
-                      <Image
-                        src={data.poster_path ? `${urlImage}${data.poster_path}` : no_image}
-                        alt={data.name ? data.name : data.original_name || "Magix Movies_poster"}
+                      <ImagePosterPath
                         width={300}
                         height={250}
+                        index={data.id}
+                        tmdbPath={data.poster_path}
+                        quality={75}
                         style={{ width: "auto", borderRadius: "0.5rem" }}
-                        loading="eager"
+                        alt={data.name ? data.name : "Magix Movies_poster"}
+                        unoptimized
+                        draggable={false}
                         priority
-                        unoptimized={true}
                       />
                     </div>
                   </Link>

@@ -44,6 +44,9 @@ export default function MoviesCard({ dataDiscoverMovies }) {
                                                             quality={75}
                                                             alt={movie.title ? movie.title : movie.original_title || "Unknown"}
                                                             unoptimized
+                                                            draggable={false}
+                                                            priority
+
                                                             
                                                             />    
                                                             // <Image

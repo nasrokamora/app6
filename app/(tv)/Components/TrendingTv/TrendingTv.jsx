@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/alert"
 import { urlImage } from "@/app/libs/UrlImage"
 import { PiShootingStarLight } from "react-icons/pi"
+import ImagePosterPath from "@/app/libs/ImagePosterPath"
 
 
 export default function TrendingTv({ dataTrending }) {
@@ -36,7 +37,23 @@ export default function TrendingTv({ dataTrending }) {
                   <Link href={`/tv/list/${data.id}`}>
                     <div className=" ">
                       <div className=" overflow-hidden relative">
-                        <Image
+                        <ImagePosterPath
+                          width={300}
+                          height={250}
+                          index={data.id}
+                          tmdbPath={data.poster_path}
+                          className="rounded-md"
+                          quality={75}
+                          alt={data.name ? data.name : "Unknown"}
+                          unoptimized
+                          style={{ width: "auto" }}
+                          draggable={false}
+                          priority
+
+
+                        />
+
+                        {/* <Image
                           src={`${urlImage}${data.poster_path}`}
                           alt={data.name ? data.name : data.original_name || "Magix Movies"}
                           width={300}
@@ -45,7 +62,7 @@ export default function TrendingTv({ dataTrending }) {
                           className="rounded-md "
                           loading="eager"
                           unoptimized={true}
-                        />
+                        /> */}
                       </div>
                     </div>
                   </Link>

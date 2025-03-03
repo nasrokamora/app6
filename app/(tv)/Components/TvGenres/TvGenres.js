@@ -16,12 +16,13 @@ import {
     Alert,
     AlertDescription,
     AlertTitle,
-  } from "@/components/ui/alert"
+} from "@/components/ui/alert"
 import { FaRegStar } from "react-icons/fa"
 import LoadingGenreCarousel from "@/app/Components/LoadingUi/LoadingGenreCarousel"
 import { AlertCircle } from "lucide-react"
 import no_image from "../../../../public/image/no_image4.webp"
 import { urlImage } from "@/app/libs/UrlImage"
+import ImagePosterPath from "@/app/libs/ImagePosterPath"
 
 
 
@@ -32,7 +33,7 @@ export default function TvGenres() {
     const [selected, setSelected] = useState(null)
     const [TvList, setTvList] = useState([])
     const [isLoading, setIsLoading] = useState(true)
-    const[isLoadingGenre,setIsLoadingGenre] = useState(true)
+    const [isLoadingGenre, setIsLoadingGenre] = useState(true)
 
     useEffect(() => {
         fetchTvWithGenres()
@@ -43,11 +44,11 @@ export default function TvGenres() {
         try {
             const response = await fetch(`/api/fetchGenresTvList`)
             const data = await response.json()
-           
+
             if (!response.ok) {
                 throw new Error('Failed to fetch data')
             }
-           
+
             setGenres(data.genres)
             if (data.genres.length > 0) {
                 getTv(data.genres[0].id)
@@ -55,9 +56,9 @@ export default function TvGenres() {
                 setIsLoadingGenre(false)
 
             }
-            
+
         } catch (error) {
-            if(process.env.NODE_ENV !== "production") {
+            if (process.env.NODE_ENV !== "production") {
                 console.error(error, "Error fetch data Genres")
             }
             return { error: true, message: process.env.NODE_ENV === 'production' ? "An unexpected error occurred." : error.message };
@@ -66,31 +67,31 @@ export default function TvGenres() {
 
     // Fetch tv shows with genres
     const getTv = useCallback(async (genreId) => {
-        setIsLoading(true); 
+        setIsLoading(true);
         try {
-          const response = await fetch(`/api/fetchTvWithGenres?genreId=${genreId}`);    
-          if (!response.ok) {
-            throw new Error("Failed to fetch TV shows");
-          }
-    
-          const data = await response.json();
-          setTvList(data.results);
+            const response = await fetch(`/api/fetchTvWithGenres?genreId=${genreId}`);
+            if (!response.ok) {
+                throw new Error("Failed to fetch TV shows");
+            }
+
+            const data = await response.json();
+            setTvList(data.results);
         } catch (error) {
-            if(process.env.NODE_ENV !== "production"){
+            if (process.env.NODE_ENV !== "production") {
 
                 console.error(error.message, "Error fetching genres TV");
             }
         } finally {
-          setIsLoading(false); 
+            setIsLoading(false);
         }
 
-      }, []);
+    }, []);
 
-      // Handle click event for genres button
-    const handleClick = useCallback( async(genreId) =>{
+    // Handle click event for genres button
+    const handleClick = useCallback(async (genreId) => {
         setIsLoading(true)
         setSelected(genreId)
-       await getTv(genreId)
+        await getTv(genreId)
         setIsLoadingGenre(false)
     }, [getTv])
 
@@ -107,10 +108,10 @@ export default function TvGenres() {
                     className="w-full max-w-5xl md:max-w-xl 2xl:max-w-7xl lg:max-w-4xl">
                     <CarouselContent className="-ml-1">
                         {isLoadingGenre ? (
-                        <div className='flex items-center justify-center w-full'>
-                            <LoadingGenreButton />
-                        </div>
-                        ):(                     
+                            <div className='flex items-center justify-center w-full'>
+                                <LoadingGenreButton />
+                            </div>
+                        ) : (
                             genres.map((genre, index) => (
                                 <CarouselItem key={index} className="p-1 basis-1/7 lg:basis-1/8 md:basis-1/7 ">
                                     <Button variant="outline" className={`2xl:text-xl ${selected === genre.id ? 'text-[#1b83e3]' : ' text-zinc-500'}`}
@@ -137,12 +138,27 @@ export default function TvGenres() {
                                 <LoadingGenreCarousel />
                             </div>
                             : TvList && TvList.length > 0 ? (
-                                TvList.slice(0,10).map((tv) => (
+                                TvList.map((tv) => (
 
                                     <CarouselItem key={tv.id} className="p-2 md:basis-1/2 basis-1/6 lg:basis-1/5">
                                         <div className="relative overflow-hidden lg:hover:scale-90 lg:hover:duration-500 xl:hover:scale-90 xl:hover:duration-500 2xl:hover:scale-90 2xl:hover:duration-500">
-                                            <Link href={`/tv/list/${tv.id}`}  as={`/tv/list/${tv.id}`}>
-                                                <Image
+                                            <Link href={`/tv/list/${tv.id}`} as={`/tv/list/${tv.id}`}>
+
+                                                <ImagePosterPath
+                                                    width={300}
+                                                    height={250}
+                                                    index={tv.id}
+                                                    tmdbPath={tv.poster_path}
+                                                    priority
+                                                    style={{ width: "auto" }}
+                                                    quality={75}
+                                                    alt={tv.original_name ? tv.original_name : tv.name || "Unknown"}
+                                                    unoptimized
+
+                                                />
+
+
+                                                {/* <Image
                                                     src={tv.poster_path ?
                                                         
                                                         `${urlImage}${tv.poster_path}`
@@ -155,7 +171,7 @@ export default function TvGenres() {
                                                     style={{ width: "auto" }}
                                                     priority
 
-                                                />
+                                                /> */}
                                                 <p className="flex justify-start pt-2 mb-1 font-bold ">{tv.original_name.length > 14 ? tv.original_name.slice(0, 14) + "..." : tv.original_name}</p>
                                                 <div className="flex items-center justify-between w-full ">
                                                     <p className="flex items-center justify-between w-full 2xl:font-bold font-semibold ">
@@ -178,12 +194,12 @@ export default function TvGenres() {
                                 ))
                             ) : (
                                 <Alert variant="destructive">
-                                <AlertCircle className="w-4 h-4" />
-                                <AlertTitle>Error</AlertTitle>
-                                <AlertDescription>
-                                  Something went wrong.
-                                </AlertDescription>
-                              </Alert>
+                                    <AlertCircle className="w-4 h-4" />
+                                    <AlertTitle>Error</AlertTitle>
+                                    <AlertDescription>
+                                        Something went wrong.
+                                    </AlertDescription>
+                                </Alert>
                             )
                         }
                     </CarouselContent>

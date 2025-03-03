@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import ImageCloudinaryLoader from "./loader";
-
+import no_image from '../../public/image/no_image4.webp';
 export default function ImagePosterPath({
   index,
   tmdbPath,
@@ -12,15 +12,17 @@ export default function ImagePosterPath({
   style,
   alt = "",
   fill,
-  priority = false,
-  unoptimized
+  priority = true,
+  loading = "eager",
+  unoptimized,
+  draggable = false
 
 }) {
 
   return (
     <Image
       loader={ImageCloudinaryLoader}
-      src={`https://image.tmdb.org/t/p/w500${tmdbPath}`}
+      src={`https://image.tmdb.org/t/p/w500${tmdbPath}` }
       width={width}
       height={height}
       alt={alt}
@@ -29,7 +31,9 @@ export default function ImagePosterPath({
       quality={quality}
       style={style}
       fill={fill}
+      loading={loading}
       unoptimized={unoptimized}
+      draggable={draggable}
     />
   );
 }

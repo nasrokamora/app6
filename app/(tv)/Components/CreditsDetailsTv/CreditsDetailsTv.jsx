@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/alert"
 import { urlImage } from "@/app/libs/UrlImage"
 
-export default function CreditsDetailsTv({ credits, dataImageTv, seasons, seriesId }) {
+export default function CreditsDetailsTv({ credits, seasons, seriesId }) {
     return (
         <div className=" flex justify-center items-center mt-6  md:mt-8">
             <Tabs defaultValue="cast" className="w-full flex justify-center flex-col">
@@ -32,7 +32,6 @@ export default function CreditsDetailsTv({ credits, dataImageTv, seasons, series
                                         <PersonDetailsTv
                                             person_id={credit.id}
                                             key={credit.id}
-                                            urlImageTv={urlImage}
                                             character={credit.character}
                                         />
                                     ))

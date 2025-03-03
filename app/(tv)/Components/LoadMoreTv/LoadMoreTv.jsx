@@ -8,7 +8,7 @@ import Link from "next/link"
 import { motion } from "framer-motion"
 import no_image from '../../../../public/image/no_image4.webp'
 import ImagePosterPath from "@/app/libs/ImagePosterPath"
-import SkeletonLoadMoreTv from "@/app/Components/LoadingUi/SkeletonLoadMoreTv"
+
 
 
 async function getTvWithPage(page) {
@@ -29,7 +29,7 @@ export default function LoadMoreTv() {
     const [page, setPage] = useState(1)
     const [dataTv, setDataTv] = useState([])
     const [hasMore, setHasMore] = useState(true)
-    const [loading, setLoading] = useState(true)
+
 
 
 
@@ -39,7 +39,7 @@ export default function LoadMoreTv() {
     }, [page])
 
     async function fetchTvLoadMore() {
-        setLoading(true)
+
         try {
             const data = await getTvWithPage(page)
             setDataTv((prevTv) => {
@@ -59,13 +59,14 @@ export default function LoadMoreTv() {
             }
             return { error: true, message: error.message };
         }
-        setLoading(false)
+
     }
 
     const fetchMoreTv = () => {
         setPage(prevPage => prevPage + 1)
 
     }
+
     return (
         <InfiniteScroll
 
@@ -78,10 +79,9 @@ export default function LoadMoreTv() {
             <div className="flex items-center justify-center mt-24 text-3xl font-bold bg-gradient-to-r from-blue-500 via-[#9c40ff] to-blue-500 bg-[length:200%_auto] bg-clip-text text-transparent animate-gradient relative">
                 <h1>Explore all Tv series on Magix</h1>
             </div>
-            {loading && (
-                <SkeletonLoadMoreTv />
-            )}
-            <div className="grid grid-cols-6 gap-8 p-8 md:grid-cols-3 lg:grid-cols-5">
+
+
+                <div className="grid grid-cols-6 gap-8 p-8 md:grid-cols-3 lg:grid-cols-5">
                 {dataTv.map((tv, index) => (
                     <motion.div
                         initial={{ opacity: 0 }}
@@ -99,12 +99,12 @@ export default function LoadMoreTv() {
                                     height={150}
                                     index={tv.id}
                                     tmdbPath={tv.poster_path ?? no_image}
-                                    
+                                    priority
                                     quality={75}
                                     alt={tv.name ? tv.name : tv.original_name || "Unknown"}
                                     unoptimized
 
-                                />
+                                    />
                                 <h1 className="font-bold  md:hidden">
                                     {tv.name.length > 10 ? tv.name.slice(0, 10) + "..." : tv.name}
                                 </h1>

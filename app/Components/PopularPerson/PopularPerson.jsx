@@ -18,6 +18,7 @@ import { Card } from "@/components/ui/card"
 import { FaRegStar } from "react-icons/fa"
 import CarouselPerson from "./CarouselPerson"
 import { urlImage } from "@/app/libs/UrlImage"
+import ImagePosterPath from "@/app/libs/ImagePosterPath"
 export default function PopularPerson({ dataPersonPopular }) {
 
     return (
@@ -25,12 +26,25 @@ export default function PopularPerson({ dataPersonPopular }) {
             <CarouselPerson>
                 <CarouselContent className='-ml-1'>
                     {dataPersonPopular && dataPersonPopular.length > 0 ? (
-                        dataPersonPopular.slice(0,9).map((person) => (
+                        dataPersonPopular.slice(0, 9).map((person) => (
                             <CarouselItem key={person.id} className="md:basis-1/2 basis-1/6 lg:basis-1/6 2xl:basis-1/6">
                                 <Card className=" flex flex-col justify-center w-full font-bold border-none md:mt-6">
                                     <Link href={`/person/${person.id}`} className="hover:scale-90 hover:duration-500 md:active:scale-90">
                                         <div className=" relative overflow-hidden">
-                                            <Image src={person.profile_path ? `${urlImage}${person.profile_path}` : no_image}
+                                            <ImagePosterPath
+                                                width={150}
+                                                height={150}
+                                                index={person.id}
+                                                tmdbPath={person.profile_path}
+                                                style={{ width: 'auto', borderRadius: '4px' }}
+                                                quality={75}
+                                                alt={person.name ? person.name : "Unknown"}
+                                                unoptimized
+
+                                            />
+
+
+                                            {/* <Image src={person.profile_path ? `${urlImage}${person.profile_path}` : no_image}
                                                 alt={person.name ? person.name : "No name"}
                                                 width={150}
                                                 height={150}
@@ -38,7 +52,7 @@ export default function PopularPerson({ dataPersonPopular }) {
                                                 className="rounded-md"
                                                 priority
                                                 style={{ width: 'auto' }}
-                                            />
+                                            /> */}
                                         </div>
                                         <h2 className="pt-2 mb-1 ">
                                             {person.name ? person.name.length > 12 ? person.name.slice(0, 12) + "..." : person.name : "No name"}

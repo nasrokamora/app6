@@ -16,6 +16,7 @@ import {
   AlertTitle,
 } from "@/components/ui/alert"
 import { FaRegStar } from "react-icons/fa"
+import ImagePosterPath from "@/app/libs/ImagePosterPath"
 
 
 export default async function TrendingTvAll() {
@@ -48,7 +49,21 @@ export default async function TrendingTvAll() {
                     <Link href={`/tv/list/${item.id}`}>
                       <div className=" ">
                         <div className=" overflow-hidden relative">
-                          <Image
+                          <ImagePosterPath
+                            width={300}
+                            height={250}
+                            index={item.id}
+                            tmdbPath={item.poster_path}
+                            className="rounded-md"
+                            quality={75}
+                            alt={item.name ? item.name : "Unknown"}
+                            unoptimized
+                            draggable={false}
+                            priority
+
+
+                          />
+                          {/* <Image
                             src={`${urlImageTv}${item.poster_path}`}
                             alt={item.name}
                             width={300}
@@ -56,7 +71,7 @@ export default async function TrendingTvAll() {
                             style={{ width: "auto" }}
                             className="rounded-md md:w-[200px] md:h-[200px]"
                             loading="eager"
-                          />
+                          /> */}
                         </div>
                         <div>
                           <h1 className=" font-bold flex justify-start  pt-2 mb-1">{item.name ? item.name.slice(0, 11) + "..." : item.original_name ? item.original_name.slice(0, 11) + "..." : "N/A"}

@@ -21,6 +21,7 @@ import AutoCarousel from "@/app/Components/AutoCarousel/AutoCarousel"
 import { FaRegStarHalf } from "react-icons/fa"
 import { IoStarSharp } from "react-icons/io5"
 import { urlImage } from "@/app/libs/UrlImage"
+import ImagePosterPath from "@/app/libs/ImagePosterPath"
 
 export default function NowPlayingMovies({ dataPlaying }) {
 
@@ -41,21 +42,19 @@ export default function NowPlayingMovies({ dataPlaying }) {
                   <div className="p-1 hover:scale-90 hover:duration-500 hover:saturate-50">
                     <Link href={`/movies/list/${data.id}`}>
                       <div className="relative overflow-hidden ">
-                        <Image
-                          src={data.poster_path ?
-                            `${urlImage}${data.poster_path}`
-                            :
-                            no_image
-                          }
-                          alt="image now_playing"
+                        <ImagePosterPath
                           width={300}
                           height={250}
-                          style={{ width: "auto" }}
+                          index={data.id}
+                          tmdbPath={data.poster_path}
                           className="rounded-md"
-                          loading="eager"
-                          priority
+                          quality={75}
+                          alt={data.title ? data.title : data.original_title || "Unknown"}
+                          unoptimized
                           draggable={false}
+                          priority
                         />
+
                       </div>
                       <div>
                         <h1 className=" font-bold flex justify-start  pt-2 mb-1">{data.title ? data.title.slice(0, 11) + "..." : <h1 className=" text-red-700 font-bold">No title</h1>}
@@ -84,7 +83,7 @@ export default function NowPlayingMovies({ dataPlaying }) {
               <Alert variant="destructive" className=" bg-black/30 backdrop-blur">
                 <AlertCircle className="w-4 h-4" />
                 <AlertTitle className="font-bold">Oops!</AlertTitle>
-                <AlertDescription  className="xl:text-xl 2xl:text-2xl font-semibold">
+                <AlertDescription className="xl:text-xl 2xl:text-2xl font-semibold">
                   Something went wrong.
                 </AlertDescription>
               </Alert>

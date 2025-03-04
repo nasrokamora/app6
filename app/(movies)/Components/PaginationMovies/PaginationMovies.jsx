@@ -127,24 +127,8 @@ export default function PaginationMovies() {
                                                tmdbPath={movie.poster_path} 
                                                width={300} 
                                                height={250}
-                                               quality={75}
-                                               className="rounded-md" />
+                                               quality={75} />
 
-                                                {/* <Image
-                                                    src={
-                                                        movie.poster_path
-                                                        ? `${urlImage}${movie.poster_path}`
-                                                        : no_image
-                                                    }
-                                                    alt="poster movies"
-                                                    width={300}
-                                                    height={250}
-                                                    draggable={false}
-                                                    style={{ width: 'auto' }}
-                                                    priority
-                                   
-                                                    loading="eager"
-                                                /> */}
                                                 <p className=" pt-2 font-bold  mb-1">{movie.title.length > 11 ? movie.title.slice(0, 11) + "..." : movie.title}</p>
                                                 <div className="flex items-center justify-between w-full ">
                                                     <p className="flex items-center justify-between w-full font-bold 2xl:text-2xl text-[#FFC300]">

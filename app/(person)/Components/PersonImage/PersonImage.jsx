@@ -1,6 +1,5 @@
-import Image from "next/image"
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
-import { urlImagesPerson } from "@/app/libs/DataFetchingPerson"
+import ImagePosterPath from "@/app/libs/ImagePosterPath"
 
 
 export default function PersonImage({ ImagePerson }) {
@@ -14,21 +13,24 @@ export default function PersonImage({ ImagePerson }) {
                 <div className="flex w-max space-x-4 p-4 ">
 
                     {ImagePerson && ImagePerson.length > 0 ? (
-                        ImagePerson.slice(0,1).map((image) => (
+                        ImagePerson.map((image) => (
                             <div className=" overflow-hidden" key={image.file_path} >
-                                <Image src={`${urlImagesPerson}${image.file_path}`}
-                                    alt={image.file_path}
+
+                                <ImagePosterPath
                                     width={100}
                                     height={100}
-                                    priority
+                                    index={image.id}
+                                    tmdbPath={image.poster_path}
                                     className="rounded-md"
-                                    style={{ width: "auto" }}
-                                    unoptimized={true}
-                                    loading="eager"
+                                    quality={75}
+                                    alt={"image person" || "Unknown"}
+                                    unoptimized
+                                    draggable={false}
+                                    priority
                                 />
                             </div>
                         ))) : (
-                        <p className="text-error">
+                        <p className="text-error text-center font-bold">
                             No images found.
                         </p>
 

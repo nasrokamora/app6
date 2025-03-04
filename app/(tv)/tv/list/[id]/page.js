@@ -37,7 +37,7 @@ export async function generateMetadata({ params }) {
     const { id } = params
     const data = await getDetailsTv(id)
     return {
-        title: data.name ? data.name : data.original_name,
+        title: data.name ? data.name : data.original_name || "Magix Movies",
     }
 }
 
@@ -77,20 +77,7 @@ export default async function DynamicTvListPage({ params }) {
                         unoptimized
                         draggable={false}
                         priority
-
-
                     />
-
-                    {/* <Image src={detailTv.poster_path ? `${urlImage}${detailTv.poster_path}` : no_image}
-                        priority
-                        width={400}
-                        height={400}
-                        stryle={{ height: "auto", width: "auto" }}
-                        className="rounded-md  md:w-[200px] lg:w-[350px]  "
-                        draggable="false"
-                        alt={data.name ? data.name : data.original_name || <h1 className="">Image Tv</h1>}
-
-                    /> */}
                     {/* trailer */}
                     <div className="flex items-center justify-center w-full gap-6 mt-6 ">
                         <TrailerTv dataVideos={dataVideosTv && dataVideosTv.results.length > 0 ? dataVideosTv.results.slice(0, 1) : []} />
@@ -267,16 +254,6 @@ export default async function DynamicTvListPage({ params }) {
                                 priority
 
                             />
-
-                            {/* <Image
-                                    src={detailTv.last_episode_to_air.still_path ? `${urlImage}${detailTv.last_episode_to_air.still_path}` : no_image}
-                                    fill
-                                    alt="image_last_air_date"
-                                    priority
-                                    style={{ objectFit: "cover", objectPosition: "center" }}
-                                    // loading="eager"
-                                    className="rounded-md blur-right"
-                                /> */}
                         </div>
 
                         {/* last air date name */}

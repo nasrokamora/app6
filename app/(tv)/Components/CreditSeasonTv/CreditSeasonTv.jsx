@@ -86,7 +86,7 @@ export default function CreditSeasonTv({ dataCreditSeason }) {
                                     <div className="flex gap-2 items-center justify-start">
 
                                         <Avatar>
-                                            <AvatarImage src={`${urlImageTv}${crew.profile_path}`} alt={crew.name ? crew.name : "Unknown"} />
+                                            <AvatarImage unoptimized={false} src={`${urlImageTv}${crew.profile_path}`} alt={crew.name ? crew.name : "Unknown"} />
                                             <AvatarFallback> {crew.name.slice(0, 3)} </AvatarFallback>
                                         </Avatar>
                                         <CardTitle> {crew.name} </CardTitle>

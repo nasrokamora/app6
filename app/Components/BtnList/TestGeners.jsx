@@ -1,7 +1,6 @@
 "use client"
 import { IoStarSharp } from "react-icons/io5";
-import Image from "next/image";
-import React, { cache, memo, useCallback, useEffect, useReducer, useRef, useState } from "react";
+import React, { useCallback, useEffect, useReducer, useRef, useState } from "react";
 import {
     Carousel,
     CarouselContent,
@@ -11,51 +10,10 @@ import {
 } from "@/components/ui/carousel"
 import { Button } from "@/components/ui/button";
 import LoadingGenreButton from "../LoadingUi/LoadingGenreList";
-// import { MovieCarouselSkeleton } from "./LoadingSkeletonMovies";
-import { FaLink } from "react-icons/fa6";
+
 import ImagePosterPath from "@/app/libs/ImagePosterPath";
-import DialogMoviesOverwiew from "./DialogMoviesOverwiew";
-import { Skeleton } from "@/components/ui/skeleton";
 import MovieCarouselSkeleton from "./MovieCarouselSkeleton";
 
-// const MovieCarouselSkeleton = () => {
-//     return (
-//       <>
-//         {Array(3)
-//           .fill(0)
-//           .map((_, index) => (
-//             <CarouselItem className="max-w-full h-[50vh] w-full md:h-screen" key={index}>
-//               <div className="flex justify-between h-[50vh] w-full">
-//                 <div className="bg-transparent w-[60%] p-4">
-//                   <Skeleton className="h-10 w-3/4 mx-auto rounded-md mb-4" />
-//                   <div className="pt-4">
-//                     <div className="flex justify-start gap-3 items-center">
-//                       <Skeleton className="h-8 w-16 rounded-md" />
-//                       <Skeleton className="h-8 w-16 rounded-md" />
-//                       <Skeleton className="h-8 w-12 rounded-md" />
-//                       <Skeleton className="h-8 w-24 rounded-md" />
-//                     </div>
-//                     <div className="flex justify-start items-center gap-2 flex-wrap pt-4">
-//                       {Array(4)
-//                         .fill(0)
-//                         .map((_, i) => (
-//                           <Skeleton key={i} className="h-8 w-20 rounded-md" />
-//                         ))}
-//                     </div>
-//                     <div className="pt-4 md:hidden">
-//                       <Skeleton className="h-24 w-full rounded-md" />
-//                     </div>
-//                   </div>
-//                 </div>
-//                 <div className="h-[50vh] border blur-right w-[100%] overflow-hidden relative">
-//                   <Skeleton className="h-full w-full" />
-//                 </div>
-//               </div>
-//             </CarouselItem>
-//           ))}
-//       </>
-//     )
-//   }
 
 
 
@@ -370,7 +328,7 @@ export default function TestGeners() {
                         align: "start",
                         loop: true,
                     }}
-                    className="w-full max-w-5xl md:max-w-sm  2xl:max-w-7xl lg:max-w-4xl">
+                    className="w-full max-w-5xl md:max-w-sm  2xl:max-w-full lg:max-w-3xl">
                     <CarouselContent className="-ml-1">
                         {state.isLoadingGenre ? (
                             <div className='flex items-center justify-center w-full'>
@@ -385,7 +343,7 @@ export default function TestGeners() {
                         )
                         }
                     </CarouselContent>
-                    <div className=" ">
+                    <div className="lg:hidden">
                         <CarouselPrevious />
                         <CarouselNext />
                     </div>

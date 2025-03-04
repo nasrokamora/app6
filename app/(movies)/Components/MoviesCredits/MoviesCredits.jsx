@@ -50,7 +50,7 @@ export default async function MoviesCredits({ credits }) {
                                                     {item.name}
                                                     <div className="md:pt-4">
                                                         <Avatar className=" h-15 w-15 ">
-                                                            <AvatarImage src={`https://image.tmdb.org/t/p/original${item.profile_path}`}
+                                                            <AvatarImage src={`https://image.tmdb.org/t/p/original${item.profile_path}`} unoptimized={false}
                                                                 className=" size-12" />
                                                             <AvatarFallback>
                                                                 {item.name.slice(0, 3)}

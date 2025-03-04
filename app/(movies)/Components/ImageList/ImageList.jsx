@@ -1,13 +1,11 @@
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
-import Image from "next/image"
-import no_image from '../../../../public/image/no_image4.webp'
 import {
     Alert,
     AlertDescription,
     AlertTitle,
 } from "@/components/ui/alert"
 import { AlertCircle } from "lucide-react"
-import { urlImage } from "@/app/libs/UrlImage"
+import ImagePosterPath from "@/app/libs/ImagePosterPath"
 
 
 
@@ -21,20 +19,22 @@ export default function ImageList({ dataImageList }) {
                 {dataImageList.backdrops && dataImageList.backdrops.length > 0 ? (
                     dataImageList.backdrops.slice(0, 5).map((data) => (
                         <div key={data.file_path} className=" rounded-md relative overflow-hidden " >
-                            <Image src={data.file_path ?
-                                `${urlImage}${data.file_path}`
-                                :
-                                no_image
-                            }
+
+                            <ImagePosterPath
                                 width={250}
                                 height={150}
-                                className="  rounded-md  "
-                                priority
-                                style={{ width: "auto" }}
+                                index={data.id}
+                                tmdbPath={data.file_path}
+                                className="rounded-md"
+                                quality={75}
+                                alt={data.title ? data.title : data.original_title || "Unknown"}
+                                unoptimized
                                 draggable={false}
-                                alt={"backGround image"}
-                                loading="eager"
+                                priority
+
+
                             />
+
                         </div>
                     ))
                 ) : (
@@ -47,7 +47,7 @@ export default function ImageList({ dataImageList }) {
                         </AlertDescription>
                     </Alert>
                 )
-            }
+                }
             </div>
             <ScrollBar orientation="horizontal" />
         </ScrollArea>

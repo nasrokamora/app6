@@ -1,9 +1,7 @@
-import { Button } from "@/components/ui/button"
 import {
     Card,
     CardContent,
     CardDescription,
-    CardFooter,
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
@@ -21,16 +19,12 @@ import { BiBarChart } from "react-icons/bi";
 import { FaGripfire } from "react-icons/fa";
 import { buttonVariants } from "@/components/ui/button"
 import Link from "next/link";
-import no_image from "../../../../public/image/no_image4.webp"
+import ImagePosterPath from "@/app/libs/ImagePosterPath";
 
 
 export default function CombinedCreditsPerson({ dataCombined }) {
-    // console.log(dataCombined)
-
 
     return (
-
-
         <div className=" pt-3">
             <div className="lg:text-xl text-2xl mb-3">
                 <h1 className="font-bold border-l pl-2 border-yellow-600">Known For:</h1>
@@ -50,16 +44,19 @@ export default function CombinedCreditsPerson({ dataCombined }) {
                                     </CardHeader>
                                     <CardContent className=" flex justify-start gap-2 ">
                                         <div className=" w-max ">
-                                            <Image src={item.poster_path ? `https://image.tmdb.org/t/p/original${item.poster_path}` : no_image}
-                                                alt={item.title ? item.title : item.name || "No Title"}
+                                            <ImagePosterPath
                                                 width={120}
                                                 height={100}
-                                                loading="eager"
+                                                index={item.id}
+                                                tmdbPath={item.poster_path}
+                                                className="rounded-md"
+                                                quality={75}
+                                                alt={item.title ? item.title : item.name || "No Title"}
+                                                unoptimized
+                                                draggable={false}
                                                 priority
-                                                className=" rounded-md"
-                                                style={{ width: "auto" }}
-                                                unoptimized={true}
                                             />
+
                                         </div>
 
                                         {/* vote average vote count popularity media type */}

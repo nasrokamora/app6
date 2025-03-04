@@ -5,22 +5,21 @@ import {
     Card,
     CardContent,
     CardDescription,
-    CardFooter,
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
-import { urlImageTv } from "@/app/libs/DataFetchingTv"
+
 import { Separator } from "@/components/ui/separator"
 import { BsStars } from "react-icons/bs";
 import { buttonVariants } from "@/components/ui/button"
 import Link from "next/link"
 import { AlertCircle } from "lucide-react"
 import {
-  Alert,
-  AlertDescription,
-  AlertTitle,
+    Alert,
+    AlertDescription,
+    AlertTitle,
 } from "@/components/ui/alert"
-import { urlImage } from "@/app/libs/UrlImage"
+import ImagePosterPath from "@/app/libs/ImagePosterPath"
 
 const CreditsEpisodesTvGuestStars = ({ creditsEpisodes }) => {
     return (
@@ -42,17 +41,19 @@ const CreditsEpisodesTvGuestStars = ({ creditsEpisodes }) => {
                                     <CardContent>
                                         <div className="relative overflow-hidden flex justify-center items-center md:justify-start md:items-start">
                                             {item.profile_path ? (
-                                                <Image src={
-                                                    `${urlImageTv}${item.profile_path}`}
-                                                    alt={item.name}
+                                                <ImagePosterPath
                                                     width={100}
                                                     height={100}
+                                                    index={item.id}
+                                                    tmdbPath={item.profile_path}
                                                     className="rounded-md"
-                                                    draggable="false"
-                                                    loading="eager"
+                                                    quality={75}
+                                                    alt={item.name ? item.name :  "Unknown"}
+                                                    unoptimized
+                                                    draggable={false}
                                                     priority
-                                                    style={{ width: "auto" }}
                                                 />
+
                                             ) : (
                                                 <div className="relative overflow-hidden">
                                                     <Image src={broken_Image}
@@ -60,7 +61,7 @@ const CreditsEpisodesTvGuestStars = ({ creditsEpisodes }) => {
                                                         width={150}
                                                         height={150}
                                                         className="rounded-md"
-                                                        draggable="false" loading="eager" priority />
+                                                        draggable="false" loading="eager" priority unoptimized={false} />
                                                 </div>
                                             )
                                             }
@@ -74,12 +75,12 @@ const CreditsEpisodesTvGuestStars = ({ creditsEpisodes }) => {
                         ) : (
 
                             <Alert variant="destructive" className=" ml-4 ">
-                            <AlertCircle className="h-6 w-6" />
-                            <AlertTitle className=" text-xl">Oops!</AlertTitle>
-                            <AlertDescription className=" text-lg font-bold">
-                            We couldn’t find any guest star details.
-                            </AlertDescription>
-                          </Alert>
+                                <AlertCircle className="h-6 w-6" />
+                                <AlertTitle className=" text-xl">Oops!</AlertTitle>
+                                <AlertDescription className=" text-lg font-bold">
+                                    We couldn’t find any guest star details.
+                                </AlertDescription>
+                            </Alert>
                         )
                         }
                     </div>
@@ -110,16 +111,20 @@ export default function CreditsEpisodesTv({ creditsEpisodes }) {
                                     <CardContent>
                                         <div className="relative overflow-hidden flex justify-center items-center md:justify-start md:items-start">
                                             {cast.profile_path ? (
-                                                <Image src={
-                                                    `${urlImage}${cast.profile_path}`}
-                                                    alt={cast.name}
+
+                                                <ImagePosterPath
                                                     width={100}
                                                     height={100}
+                                                    index={cast.id}
+                                                    tmdbPath={cast.profile_path}
                                                     className="rounded-md"
-                                                    draggable="false"
-                                                    loading="eager"
+                                                    quality={75}
+                                                    alt={cast.name ? cast.name : "Unknown"}
+                                                    unoptimized
+                                                    draggable={false}
                                                     priority
-                                                    style={{ width: "auto" }}
+
+
                                                 />
                                             ) : (
                                                 <div className="relative overflow-hidden">
@@ -128,7 +133,7 @@ export default function CreditsEpisodesTv({ creditsEpisodes }) {
                                                         width={150}
                                                         height={150}
                                                         className="rounded-md"
-                                                        draggable="false" loading="eager" priority />
+                                                        draggable="false" loading="eager" priority unoptimized={false} />
                                                 </div>
                                             )
                                             }
@@ -142,13 +147,13 @@ export default function CreditsEpisodesTv({ creditsEpisodes }) {
                         ) : (
 
                             <Alert variant="destructive" className=" ml-4  border-none">
-                            <AlertCircle className="h-6 w-6" />
-                            <AlertTitle className=" text-xl">Oops!</AlertTitle>
-                            <AlertDescription className=" text-lg font-bold">
-                            No cast details available right now. Please check back later.
-                            </AlertDescription>
-                          </Alert>
-  
+                                <AlertCircle className="h-6 w-6" />
+                                <AlertTitle className=" text-xl">Oops!</AlertTitle>
+                                <AlertDescription className=" text-lg font-bold">
+                                    No cast details available right now. Please check back later.
+                                </AlertDescription>
+                            </Alert>
+
                         )
                         }
                     </div>

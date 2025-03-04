@@ -10,6 +10,7 @@ import { FaRegStar } from "react-icons/fa";
 import Link from "next/link"
 import no_image from '../../../../public/image/no_image4.webp'
 import { urlImage } from "@/app/libs/UrlImage";
+import ImagePosterPath from "@/app/libs/ImagePosterPath";
 
 export default function MoviesSimilar({ similar }) {
 
@@ -32,13 +33,27 @@ export default function MoviesSimilar({ similar }) {
                                     <div className="  hover:scale-105 hover:duration-500  hover:grayscale  ">
                                         <Link className="" href={`/movies/list/${movie.id}`} rel="noopener noreferrer">
                                             <div className=" relative overflow-hidden">
-                                                <Image
+                                                <ImagePosterPath
+                                                    width={250}
+                                                    height={180}
+                                                    index={movie.id}
+                                                    tmdbPath={movie.poster_path}
+                                                    className="rounded-md"
+                                                    quality={75}
+                                                    alt={movie.title ? movie.title : movie.original_title || "Unknown"}
+                                                    unoptimized
+                                                    draggable={false}
+                                                    priority
+
+
+                                                />
+                                                {/* <Image
                                                     src={movie.poster_path ? `${urlImage}${movie.poster_path}` : no_image}
                                                     alt="movie poster"
                                                     width={250} height={180}
                                                     className=" rounded-md "
                                                     style={{ width: "auto" }}
-                                                />
+                                                /> */}
                                             </div>
                                             <div>
                                                 <h1 className=" font-bold flex justify-start  pt-2 mb-1">{movie.title.slice(0, 11) + "..."}

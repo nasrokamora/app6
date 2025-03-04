@@ -34,6 +34,7 @@ import { SlSocialInstagram } from "react-icons/sl"
 import ErrorMessage from "@/app/(tv)/Components/Error/ErrorMessage"
 import dynamic from "next/dynamic"
 import { urlImage } from "@/app/libs/UrlImage"
+import ImagePosterPath from "@/app/libs/ImagePosterPath"
 
 
 const ToggleButton = dynamic(() => import('@/app/(movies)/Components/ToggleButton/ToggleButton'), { ssr: false })
@@ -79,14 +80,26 @@ export default async function DynamicMoviesList({ params }) {
             <div className="w-full flex items-center justify-start gap-3 p-4 mt-4 rounded-md shadow-xl md:flex-col shadow-black/30 bg-black/50 backdrop-blur 2xl:justify-evenly">
 
                 <div className=" w-[65%] flex flex-col items-center justify-center ">
+                    <ImagePosterPath
+                        width={250}
+                        height={250}
+                        index={data.id}
+                        tmdbPath={data.poster_path}
+                        quality={75}
+                        alt={data.title ? data.title : data.original_title || "Unknown"}
+                        unoptimized
+                        draggable={false}
+                        priority
 
-                    <Image src={data.poster_path ? `${urlImage}${data.poster_path || data.backdrop_path}` : no_image}
+
+                    />
+                    {/* <Image src={data.poster_path ? `${urlImage}${data.poster_path || data.backdrop_path}` : no_image}
                         width={250}
                         height={250}
                         className="rounded-md  "
                         style={{ width: "auto", height: 'auto' }}
                         priority
-                        alt={data.title ? data.title : "Title image not found"} />
+                        alt={data.title ? data.title : "Title image not found"} /> */}
 
                     <div className="flex justify-center gap-3 pt-5 ">
                         <TrailerMovies dataTrailer={dataTrailer} />

@@ -11,7 +11,7 @@ export default function ImagePosterPath({
   quality,
   style,
   alt = "",
-  fill,
+  fill ,
   priority = true,
   loading = "eager",
   unoptimized,

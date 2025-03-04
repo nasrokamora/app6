@@ -12,6 +12,7 @@ import no_image from '../../../../public/image/no_image4.webp'
 import { FaRegStar } from "react-icons/fa"
 import { MdOutlineMovieFilter } from "react-icons/md";
 import { urlImage } from "@/app/libs/UrlImage"
+import ImagePosterPath from "@/app/libs/ImagePosterPath"
 
 
 export default function RecommendationMovies({ dataRecommend }) {
@@ -39,20 +40,19 @@ export default function RecommendationMovies({ dataRecommend }) {
                     <Link href={`/movies/list/${data.id}`}>
                       <div className=" ">
                         <div className=" overflow-hidden relative">
-                          <Image
-                            src={data.poster_path ?
-                              `${urlImage}${data.poster_path}`
-                              :
-                              no_image
-                            }
-                            alt="image_recommend"
+                          <ImagePosterPath
                             width={300}
                             height={250}
-                            style={{ width: "auto" }}
-                            className="rounded-md "
-                            loading="eager"
+                            index={data.id}
+                            tmdbPath={data.poster_path}
+                            className="rounded-md"
+                            quality={75}
+                            alt={data.title ? data.title : data.original_title || "Unknown"}
+                            unoptimized
+                            draggable={false}
                             priority
                           />
+
                         </div>
                         <div>
                           <h1 className=" font-bold flex justify-start  pt-2 mb-1">{data.title.slice(0, 11) + "..."}

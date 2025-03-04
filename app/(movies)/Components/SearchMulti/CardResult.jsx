@@ -47,22 +47,11 @@ export default function CardResults({ movie, handleClick, handleClose }) {
                                                     height={100}
                                                     index={movie.id}
                                                     tmdbPath={movie.poster_path}
-                                                    className="rounded-md"
                                                     quality={75}
                                                     style={{ height: "auto" }}
                                                     alt={movie.title || movie.name}
                                                     unoptimized
                                                 />
-
-                                                {/* <Image src={movie.poster_path ? `${urlImage}${movie.poster_path}`: movie.profile_path ? `${urlImage}${movie.profile_path}`: no_image}
-                                                alt={movie.title || movie.name }
-                                                width={100}
-                                                height={100}
-                                                priority
-                                                style={{ width: "auto" }}
-                                                className=" rounded-md "
-                                                
-                                            /> */}
                                                 <p className="font-semibold pt-1 md:hidden">{(movie.title || movie.name).length > 14 ? (movie.title || movie.name).slice(0, 14) + "..." : (movie.title || movie.name)}</p>
                                             </div>
                                         </Link>

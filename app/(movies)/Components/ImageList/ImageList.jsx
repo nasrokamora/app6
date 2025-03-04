@@ -25,12 +25,11 @@ export default function ImageList({ dataImageList }) {
                                 height={150}
                                 index={data.id}
                                 tmdbPath={data.file_path}
-                                className="rounded-md"
                                 quality={75}
                                 alt={data.title ? data.title : data.original_title || "Unknown"}
                                 unoptimized
                                 draggable={false}
-                                priority
+                                style={{height:"auto"}}
 
 
                             />

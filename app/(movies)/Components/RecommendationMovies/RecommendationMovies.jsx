@@ -45,7 +45,6 @@ export default function RecommendationMovies({ dataRecommend }) {
                             height={250}
                             index={data.id}
                             tmdbPath={data.poster_path}
-                            className="rounded-md"
                             quality={75}
                             alt={data.title ? data.title : data.original_title || "Unknown"}
                             unoptimized

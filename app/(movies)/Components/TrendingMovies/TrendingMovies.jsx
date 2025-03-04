@@ -16,6 +16,7 @@ import { urlImage } from "@/app/libs/UrlImage";
 import { ChevronRight } from "lucide-react"
 import { ChevronLeft } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import ImagePosterPath from "@/app/libs/ImagePosterPath";
 
 
 
@@ -141,15 +142,17 @@ const TrendingMoviesCard = memo(({ movie }) => {
         <CarouselItem key={movie.id} className="  basis-1/3 lg:basis-1/4 md:basis-1/3 ">
             <Link className=" hover:grayscale hover:duration-500" href={`/movies/list/${movie.id}`}>
 
-                <Image
-                    src={`${urlImage}${movie.poster_path}`}
-                    alt={movie.title}
-                    width={180} height={180}
-                    className={`md:w-[120px] md:h-[120px]  lg:w-[200px] lg:h-[200px] xl:w-[150px] xl:h-[150px] 2xl:w-[250px] 2xl:h-[150px] transition-opacity duration-100  `}
+                <ImagePosterPath
+                    width={180}
+                    height={180}
+                    index={movie.id}
+                    tmdbPath={movie.poster_path}
+                    quality={75}
+                    alt={movie.title ? movie.title : movie.original_title || "Unknown"}
                     unoptimized
-
                     style={{ height: "auto" }}
-
+                    draggable={false}
+                    priority
                 />
                 <p className=" font-bold flex justify-start  pt-2 mb-1 md:hidden">{movie.title.length > 14 ? movie.title.slice(0, 14) + "..." : movie.title}
                 </p>

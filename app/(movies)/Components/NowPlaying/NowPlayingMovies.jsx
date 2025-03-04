@@ -16,11 +16,11 @@ import {
   AlertDescription,
   AlertTitle,
 } from "@/components/ui/alert"
-import no_image from '../../../../public/image/no_image4.webp'
+
 import AutoCarousel from "@/app/Components/AutoCarousel/AutoCarousel"
-import { FaRegStarHalf } from "react-icons/fa"
+
 import { IoStarSharp } from "react-icons/io5"
-import { urlImage } from "@/app/libs/UrlImage"
+
 import ImagePosterPath from "@/app/libs/ImagePosterPath"
 
 export default function NowPlayingMovies({ dataPlaying }) {
@@ -47,7 +47,6 @@ export default function NowPlayingMovies({ dataPlaying }) {
                           height={250}
                           index={data.id}
                           tmdbPath={data.poster_path}
-                          className="rounded-md"
                           quality={75}
                           alt={data.title ? data.title : data.original_title || "Unknown"}
                           unoptimized

@@ -83,9 +83,9 @@ export default function NavBar() {
                   </div>
                   {/* Trending Movies */}
                   {/* Trending Movies */}
-                  {/* <div className="">
+                  <div className="">
                     <TrendingMoviesLoad />
-                  </div> */}
+                  </div>
                   {/* Footer */}
                     <div className="md:hidden">
 

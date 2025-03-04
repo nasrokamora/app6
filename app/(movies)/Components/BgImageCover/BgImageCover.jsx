@@ -13,7 +13,6 @@ export default function BgImageCover({ dataImageList }) {
                         fill
                         index={data.id}
                         tmdbPath={data.file_path}
-                        className="rounded-md"
                         quality={75}
                         style={{ objectFit: "cover" }}
                         alt={data.file_path ? data.file_path : "Unknown"}

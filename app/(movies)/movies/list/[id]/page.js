@@ -33,7 +33,6 @@ import { BsTwitterX } from "react-icons/bs"
 import { SlSocialInstagram } from "react-icons/sl"
 import ErrorMessage from "@/app/(tv)/Components/Error/ErrorMessage"
 import dynamic from "next/dynamic"
-import { urlImage } from "@/app/libs/UrlImage"
 import ImagePosterPath from "@/app/libs/ImagePosterPath"
 
 
@@ -56,13 +55,12 @@ export default async function DynamicMoviesList({ params }) {
     const dataLoad = getMoviesId(id)
     const similarData = getMoviesSimilar(id)
     const dataImage = getImageMoviesId(id)
-    const reviewData = getReviewsMovies(id)
     const dataCreditsId = getCriditsMovies(id)
     const recommendMovies = getRecommendationMovies(id)
     const nowData = getMoviesNowPlaying()
     const trailer = getTrailer(id)
     const dataExt = getExternalIdMovies(id)
-    const [data, similar, dataImageList, dataReview, credits, dataRecommend, dataPlaying, dataTrailer, extData] = await Promise.all([dataLoad, similarData, dataImage, reviewData, dataCreditsId, recommendMovies, nowData, trailer, dataExt])
+    const [data, similar, dataImageList, credits, dataRecommend, dataPlaying, dataTrailer, extData] = await Promise.all([dataLoad, similarData, dataImage, dataCreditsId, recommendMovies, nowData, trailer, dataExt])
 
 
     return (
@@ -86,23 +84,16 @@ export default async function DynamicMoviesList({ params }) {
                         index={data.id}
                         tmdbPath={data.poster_path}
                         quality={75}
+                        style={{height: "auto"}}
                         alt={data.title ? data.title : data.original_title || "Unknown"}
                         unoptimized
                         draggable={false}
                         priority
-
-
                     />
-                    {/* <Image src={data.poster_path ? `${urlImage}${data.poster_path || data.backdrop_path}` : no_image}
-                        width={250}
-                        height={250}
-                        className="rounded-md  "
-                        style={{ width: "auto", height: 'auto' }}
-                        priority
-                        alt={data.title ? data.title : "Title image not found"} /> */}
+
 
                     <div className="flex justify-center gap-3 pt-5 ">
-                        <TrailerMovies dataTrailer={dataTrailer} />
+                        <TrailerMovies dataTrailer={dataTrailer} data={data} />
                         <div>
                             <Link target="_blank" rel="noopener noreferrer" href={data.homepage ? data.homepage : "https://www.themoviedb.org/"}>
                                 <TbExternalLink size={45} className="text-[#f8e325] hover:scale-110 duration-300" />
@@ -229,10 +220,10 @@ export default async function DynamicMoviesList({ params }) {
             </div>
 
             {/* section reviews of movies */}
-            <div className="mt-5">
-                <ReviewsList dataReview={dataReview && dataReview.results && dataReview.results.length > 0 ? dataReview : []} />
+            {/* <div className="mt-5">
+                <ReviewsList dataReview={dataReview.results } />
 
-            </div>
+            </div> */}
             <Separator className="my-4 " />
 
             {/* section Recommendation Movies */}

@@ -31,7 +31,7 @@ export default function ReviewsList({ dataReview }) {
                                     <div className="  border p-4 rounded-md border-zinc-800 bg-black/30 backdrop-blur">
                                         <div className="flex items-center justify-start gap-2">
                                             <Avatar>
-                                                <AvatarImage src={`${urlImage}${review.author_details.avatar_path}`} alt="users_logo"  />
+                                                <AvatarImage src={`${urlImage}${review.author_details.avatar_path}`} alt="users_logo" unoptimized="false"  />
                                                 <AvatarFallback>
                                                     {review.author.slice(0, 3)}
                                                 </AvatarFallback>

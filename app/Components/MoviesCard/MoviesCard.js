@@ -45,8 +45,6 @@ export default function MoviesCard({ dataDiscoverMovies }) {
                                                             unoptimized
                                                             draggable={false}
                                                             priority
-
-                                                            
                                                             />    
                                                             // <Image
                                                         //     src={`${urlImage}/${movie.poster_path}`}

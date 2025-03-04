@@ -38,22 +38,12 @@ export default function MoviesSimilar({ similar }) {
                                                     height={180}
                                                     index={movie.id}
                                                     tmdbPath={movie.poster_path}
-                                                    className="rounded-md"
                                                     quality={75}
                                                     alt={movie.title ? movie.title : movie.original_title || "Unknown"}
                                                     unoptimized
                                                     draggable={false}
                                                     priority
-
-
                                                 />
-                                                {/* <Image
-                                                    src={movie.poster_path ? `${urlImage}${movie.poster_path}` : no_image}
-                                                    alt="movie poster"
-                                                    width={250} height={180}
-                                                    className=" rounded-md "
-                                                    style={{ width: "auto" }}
-                                                /> */}
                                             </div>
                                             <div>
                                                 <h1 className=" font-bold flex justify-start  pt-2 mb-1">{movie.title.slice(0, 11) + "..."}

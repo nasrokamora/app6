@@ -34,6 +34,7 @@ import { SlSocialInstagram } from "react-icons/sl"
 import ErrorMessage from "@/app/(tv)/Components/Error/ErrorMessage"
 import dynamic from "next/dynamic"
 import ImagePosterPath from "@/app/libs/ImagePosterPath"
+import MoviesSource from "@/app/Source/MoviesSource"
 
 
 const ToggleButton = dynamic(() => import('@/app/(movies)/Components/ToggleButton/ToggleButton'), { ssr: false })
@@ -203,9 +204,18 @@ export default async function DynamicMoviesList({ params }) {
                                     </Link>
                                 </li>
                             </ul>
+
                         </div>
+                        <Separator className="mt-4 bg-red-700" />
+
+                            <div className='w-full flex justify-start gap-4 items-center pt-4 '>
+                                <h1 className="font-bold text-2xl text-amber-600 scroll-m-20 md:text-lg">Source</h1>
+                                <div>
+                                    <MoviesSource data={data} />
+                                </div>
+                            </div>
                     </div>
-                    <Separator className="mt-4" />
+                    <Separator className="mt-4 bg-red-700" />
                 </div>
             </div>
             {/* section images scroll */}

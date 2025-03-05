@@ -28,7 +28,7 @@ import Link from "next/link"
 
 
 export default async function MoviesCredits({ credits }) {
-    const dataCredit = credits.cast
+    // const dataCredit = credits.cast
 
     return (
         <div className=" h-auto w-full mt-6 ">
@@ -40,8 +40,8 @@ export default async function MoviesCredits({ credits }) {
                 <Carousel className="w-full md:max-w-sm max-w-5xl 2xl:max-w-full " opts={{ loop: true, align: "start" }}>
                     <CarouselContent className="-ml-1 ">
 
-                        {dataCredit && dataCredit.length > 0 ? (
-                            dataCredit.map((item) => (
+                        {credits && credits.cast && credits.cast.length > 0 ? (
+                            credits.cast.map((item) => (
                                 <CarouselItem className="md:basis-1/1 lg:basis-1/3 xl:basis-1/3 2xl:basis-1/4 " key={item.credit_id}>
                                     <div>
                                         <Card className=" xl:aspect-[3/2]  shadow-md  overflow-hidden aspect-auto border-r bg-black/30 backdrop-blur">
@@ -50,7 +50,7 @@ export default async function MoviesCredits({ credits }) {
                                                     {item.name}
                                                     <div className="md:pt-4">
                                                         <Avatar className=" h-15 w-15 ">
-                                                            <AvatarImage src={`https://image.tmdb.org/t/p/original${item.profile_path}`} unoptimized="false"
+                                                            <AvatarImage src={`https://image.tmdb.org/t/p/original${item.profile_path}`}
                                                                 className=" size-12" />
                                                             <AvatarFallback>
                                                                 {item.name.slice(0, 3)}

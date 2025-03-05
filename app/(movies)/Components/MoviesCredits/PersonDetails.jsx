@@ -1,10 +1,5 @@
-import { getPersonId, urlImage } from "@/app/libs/DataFetching"
-import {
-  Alert,
-  AlertDescription,
-  AlertTitle,
-} from "@/components/ui/alert"
-import { AlertCircle } from "lucide-react"
+import { getPersonId} from "@/app/libs/DataFetching"
+
 import Image from "next/image"
 import no_image from '../../../../public/image/no_image4.webp'
 import {
@@ -47,6 +42,7 @@ export default async function PersonDetails({ person_id }) {
             <div className=" relative overflow-hidden">
               {data.profile_path ? (
                 <ImagePosterPath
+                  style={{height:"auto"}}
                   width={300}
                   height={300}
                   index={data.id}

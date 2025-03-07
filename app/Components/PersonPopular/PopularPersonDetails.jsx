@@ -105,13 +105,12 @@ export default function PopularPersonDetails() {
                                         <BlurFade key={item.id} delay={0.25 + idx * 0.05} inView>
                                             <Card className="border-t-[#a03bf7] border-b-[#f23e5e] border-r-[#a83ce4] border-l-[#c42e4a] p-3 hover:scale-105 hover:duration-500 md:active:shadow-lg md:active:border-indigo-800 md:active:scale-90 md:active:shadow-indigo-800">
                                                 <Link href={`/person/${item.id}`} >
-                                                    <div className=" overflow-hidden  relative ">
+                                                    <div className=" overflow-hidden  relative  rounded-md">
                                                         <ImagePosterPath
                                                             width={120}
                                                             height={300}
                                                             index={item.id}
                                                             tmdbPath={item.profile_path}
-                                                            className="rounded-md"
                                                             quality={75}
                                                             alt={item.name ? item.name : "Unknown"}
                                                             unoptimized

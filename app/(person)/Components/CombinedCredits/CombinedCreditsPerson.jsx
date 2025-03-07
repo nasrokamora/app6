@@ -20,6 +20,7 @@ import { FaGripfire } from "react-icons/fa";
 import { buttonVariants } from "@/components/ui/button"
 import Link from "next/link";
 import ImagePosterPath from "@/app/libs/ImagePosterPath";
+import no_image from '../../../../public/image/no_image4.webp'
 
 
 export default function CombinedCreditsPerson({ dataCombined }) {
@@ -44,18 +45,30 @@ export default function CombinedCreditsPerson({ dataCombined }) {
                                     </CardHeader>
                                     <CardContent className=" flex justify-start gap-2 ">
                                         <div className=" w-max ">
-                                            <ImagePosterPath
-                                                width={120}
-                                                height={100}
-                                                index={item.id}
-                                                tmdbPath={item.poster_path}
-                                                className="rounded-md"
-                                                quality={75}
-                                                alt={item.title ? item.title : item.name || "No Title"}
-                                                unoptimized
-                                                draggable={false}
-                                                priority
-                                            />
+                                            {item.poster_path ? (
+                                                <ImagePosterPath
+                                                    width={120}
+                                                    height={100}
+                                                    index={item.id}
+                                                    tmdbPath={item.poster_path}
+                                                    className="rounded-md"
+                                                    quality={75}
+                                                    alt={item.title ? item.title : item.name || "No Title"}
+                                                    unoptimized
+                                                    draggable={false}
+                                                    priority
+                                                />
+                                            ) : (
+                                                <Image src={no_image} alt="No image available"
+                                                    width={120}
+                                                    height={100}
+                                                    priority
+                                                    quality={75}
+                                                    unoptimized={false}
+                                                    draggable={false}
+                                                />
+
+                                            )}
 
                                         </div>
 

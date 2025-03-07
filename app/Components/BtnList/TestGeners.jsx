@@ -221,7 +221,7 @@ export default function TestGeners() {
 
 
     return (
-        <div className="w-full h-screen">
+        <div className="w-full h-fit">
 
             {/* content image fill and blur */}
             <Carousel className="w-full h-[50vh] xl:max-w-full"
@@ -283,14 +283,14 @@ export default function TestGeners() {
                                                             {/* genres */}
                                                             <div className=" flex justify-start items-center gap-2 flex-wrap">
                                                                 {details.genres.map((genre) => (
-                                                                    <div key={genre.id} className="bg-white/30 backdrop-blur w-fit p-1 rounded-md">
+                                                                    <div key={genre.id} className={`${ColorTypesGenres(genre.name)} `}>
                                                                         <h1 className={``}>{genre.name}</h1>
                                                                     </div>
                                                                 ))}
                                                             </div>
                                                         </div>
                                                     }
-                                                    <p className="text-sm text-center text-muted-foreground font-semibold pt-4 md:hidden ">
+                                                    <p className="text-sm text-center text-muted-foreground font-semibold pt-4 md:hidden  pl-8">
                                                         {movie.overview || "No description available"}
                                                     </p>
                                                 </div>
@@ -315,6 +315,10 @@ export default function TestGeners() {
                             })
                         )}
                     </CarouselContent>
+                    <div className="lg:hidden absolute top-0 left-16 right-20 flex justify-around items-center inset-0 md:left-[82%] md:top-[-1rem] md:hidden">
+                        <CarouselPrevious />
+                        <CarouselNext />
+                    </div>
                 </div>
             </Carousel>
             {/* <div className="py-2 text-center text-sm text-muted-foreground">
@@ -343,7 +347,7 @@ export default function TestGeners() {
                         )
                         }
                     </CarouselContent>
-                    <div className="lg:hidden">
+                    <div className="lg:hidden absolute top-[-1.8rem] left-[93%] md:left-[82%] md:top-[-1rem] md:hidden">
                         <CarouselPrevious />
                         <CarouselNext />
                     </div>

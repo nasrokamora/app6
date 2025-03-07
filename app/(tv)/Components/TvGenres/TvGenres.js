@@ -150,7 +150,7 @@ export default function TvGenres() {
                                                     index={tv.id}
                                                     tmdbPath={tv.poster_path}
                                                     priority
-                                                    style={{ width: "auto" }}
+                                                    // style={{ width: "auto" }}
                                                     quality={75}
                                                     alt={tv.original_name ? tv.original_name : tv.name || "Unknown"}
                                                     unoptimized

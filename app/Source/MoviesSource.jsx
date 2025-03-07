@@ -17,20 +17,20 @@ export default function MoviesSource({ data }) {
         <div className="w-full ">
 
 
-            {/* <button className="border p-1 border-zinc-600 rounded-md font-bold hover:text-red-700 hover:border-red-700 duration-500" onClick={() => document.getElementById('my_modal_3').showModal()}>VidSrc.to</button>
+            <button className="border p-1 border-zinc-600 rounded-md font-bold hover:text-red-700 hover:border-red-700 duration-500" onClick={() => document.getElementById('my_modal_3').showModal()}>VidSrc.to</button>
             <dialog id="my_modal_3" className="modal">
-                <div className="modal-box max-w-full xl:max-w-7xl w-11/12">
+                <div className="modal-box max-w-full xl:max-w-7xl w-11/12 max-h-full">
                     <form method="dialog">
 
                         <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                     </form>
                     <h3 className="font-bold text-lg"> {data.title ? data.title : "Unknown"} </h3>
 
+                    <VideoPlayerMovies movieId={data.id} />
                 </div>
-            </dialog> */}
+            </dialog>
 
 
-            <VideoPlayerMovies movieId={data.id} />
 
             {/* <AlertDialog>
                 <AlertDialogTrigger className=" border p-1 border-zinc-600 rounded-md font-bold hover:text-red-700 hover:border-red-700 duration-500">VidSrc.to</AlertDialogTrigger>

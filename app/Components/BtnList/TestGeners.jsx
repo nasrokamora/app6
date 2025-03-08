@@ -10,9 +10,10 @@ import {
 } from "@/components/ui/carousel"
 import { Button } from "@/components/ui/button";
 import LoadingGenreButton from "../LoadingUi/LoadingGenreList";
-
+import no_image from '../../../public/image/no_image4.webp'
 import ImagePosterPath from "@/app/libs/ImagePosterPath";
 import MovieCarouselSkeleton from "./MovieCarouselSkeleton";
+import Image from "next/image";
 
 
 
@@ -297,16 +298,30 @@ export default function TestGeners() {
                                             </div>
 
                                             <div className=" h-[50vh] blur-right w-[100%] overflow-hidden relative">
-                                                <ImagePosterPath
-                                                    index={movie.id}
-                                                    tmdbPath={movie.backdrop_path}
-                                                    quality={75}
-                                                  alt={movie.title ? movie.title : movie.original_title || "Unknown"}
-                                                    style={{ objectFit: "cover" }}
-                                                    unoptimized
-                                                    fill
-                                                    priority={true}
-                                                />
+                                                {movie.poster_path.length > 0 ? (
+                                                    <ImagePosterPath
+                                                        index={movie.id}
+                                                        tmdbPath={movie.backdrop_path}
+                                                        quality={75}
+                                                        alt={movie.title ? movie.title : movie.original_title || "Unknown"}
+                                                        style={{ objectFit: "cover" }}
+                                                        unoptimized
+                                                        fill
+                                                        priority={true}
+                                                    />
+                                                ) : (
+                                                    <Image
+                                                        src={no_image}
+                                                        fill
+                                                        quality={75}
+                                                        unoptimized={false}
+                                                        priority
+                                                        draggable={false}
+                                                        alt="no image"
+                                                        className=" blur-md"
+                                                    />
+                                                )}
+
                                             </div>
                                         </div>
 

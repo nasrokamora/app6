@@ -2,7 +2,21 @@
 
 import Link from "next/link";
 
-const VideoPlayer = ({ movieId }) => {
+export const VideoPlayerSRCTo = ({ movieId }) => {
+  return (
+    <div className="w-full flex justify-center items-center py-10">
+      <iframe
+        src={`https://player.vidsrc.co/embed/movie/${movieId}`}
+        width="100%"
+        height="500px"
+        allowFullScreen
+        className="rounded-lg shadow-lg"
+      />
+    </div>
+  )
+}
+
+export const VideoPlayerMovies = ({ movieId }) => {
   return (
     <div className="w-full flex justify-center items-center py-10">
       <iframe
@@ -13,21 +27,19 @@ const VideoPlayer = ({ movieId }) => {
         className="rounded-lg shadow-lg"
       />
     </div>
-  );
-};
+  )
+}
 
-export default VideoPlayer;
-
-
-
-export const VideoPlayerMovies = ({ movieId }) => {
-    return(
-        <div className="w-full flex justify-center items-center py-10">
-            <Link href={`/Source`} >
-
-
-          VidSrc.to
-          </Link>
-      </div>
-    )
+export const VideoPlayerMoviesSRC = ({ movieId }) => {
+  return (
+    <div className="w-full flex justify-center items-center py-10">
+      <iframe
+        src={`https://vidsrc.xyz/embed/movie/${movieId}`}
+        width="100%"
+        height="500px"
+        allowFullScreen
+        className="rounded-lg shadow-lg"
+      />
+    </div>
+  )
 }

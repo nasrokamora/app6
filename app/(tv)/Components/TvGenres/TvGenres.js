@@ -21,7 +21,6 @@ import { FaRegStar } from "react-icons/fa"
 import LoadingGenreCarousel from "@/app/Components/LoadingUi/LoadingGenreCarousel"
 import { AlertCircle } from "lucide-react"
 import no_image from "../../../../public/image/no_image4.webp"
-import { urlImage } from "@/app/libs/UrlImage"
 import ImagePosterPath from "@/app/libs/ImagePosterPath"
 
 
@@ -144,34 +143,30 @@ export default function TvGenres() {
                                         <div className="relative overflow-hidden lg:hover:scale-90 lg:hover:duration-500 xl:hover:scale-90 xl:hover:duration-500 2xl:hover:scale-90 2xl:hover:duration-500">
                                             <Link href={`/tv/list/${tv.id}`} as={`/tv/list/${tv.id}`}>
 
-                                                <ImagePosterPath
-                                                    width={300}
-                                                    height={250}
-                                                    index={tv.id}
-                                                    tmdbPath={tv.poster_path}
-                                                    priority
-                                                    // style={{ width: "auto" }}
-                                                    quality={75}
-                                                    alt={tv.original_name ? tv.original_name : tv.name || "Unknown"}
-                                                    unoptimized
+                                                {tv.poster_path.length > 0 ? (
+                                                    <ImagePosterPath
+                                                        width={300}
+                                                        height={250}
+                                                        index={tv.id}
+                                                        tmdbPath={tv.poster_path}
+                                                        priority
+                                                        quality={75}
+                                                        alt={tv.original_name ? tv.original_name : tv.name || "Unknown"}
+                                                        unoptimized
 
-                                                />
-
-
-                                                {/* <Image
-                                                    src={tv.poster_path ?
-                                                        
-                                                        `${urlImage}${tv.poster_path}`
-                                                        :
-                                                        no_image
-                                                    }
-                                                    alt={tv.original_name}
-                                                    width={300} height={250}
-                                                    className="rounded-md "
-                                                    style={{ width: "auto" }}
-                                                    priority
-
-                                                /> */}
+                                                    />
+                                                ) : (
+                                                    <Image
+                                                        src={no_image}
+                                                        width={300}
+                                                        height={250}
+                                                        // quality={75}
+                                                        unoptimized={false}
+                                                        priority
+                                                        draggable={false}
+                                                        alt="no image"
+                                                    />
+                                                )}
                                                 <p className="flex justify-start pt-2 mb-1 font-bold ">{tv.original_name.length > 14 ? tv.original_name.slice(0, 14) + "..." : tv.original_name}</p>
                                                 <div className="flex items-center justify-between w-full ">
                                                     <p className="flex items-center justify-between w-full 2xl:font-bold font-semibold ">

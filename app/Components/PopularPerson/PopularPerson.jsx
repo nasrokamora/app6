@@ -8,7 +8,6 @@ import Image from "next/image"
 import Link from "next/link"
 import no_image from "../../../public/image/no_image4.webp"
 import {
-    Carousel,
     CarouselContent,
     CarouselItem,
     CarouselNext,
@@ -17,7 +16,6 @@ import {
 import { Card } from "@/components/ui/card"
 import { FaRegStar } from "react-icons/fa"
 import CarouselPerson from "./CarouselPerson"
-import { urlImage } from "@/app/libs/UrlImage"
 import ImagePosterPath from "@/app/libs/ImagePosterPath"
 export default function PopularPerson({ dataPersonPopular }) {
 
@@ -31,28 +29,30 @@ export default function PopularPerson({ dataPersonPopular }) {
                                 <Card className=" flex flex-col justify-center w-full font-bold border-none md:mt-6">
                                     <Link href={`/person/${person.id}`} className="hover:scale-90 hover:duration-500 md:active:scale-90">
                                         <div className=" relative overflow-hidden">
-                                            <ImagePosterPath
-                                                width={150}
-                                                height={150}
-                                                index={person.id}
-                                                tmdbPath={person.profile_path}
-                                                style={{ width: 'auto', borderRadius: '4px' }}
-                                                quality={75}
-                                                alt={person.name ? person.name : "Unknown"}
-                                                unoptimized
+                                            {person.profile_path.length > 0 ? (
+                                                <ImagePosterPath
+                                                    width={150}
+                                                    height={150}
+                                                    index={person.id}
+                                                    tmdbPath={person.profile_path}
+                                                    style={{ width: 'auto', borderRadius: '4px' }}
+                                                    quality={75}
+                                                    alt={person.name ? person.name : "Unknown"}
+                                                    unoptimized
 
-                                            />
-
-
-                                            {/* <Image src={person.profile_path ? `${urlImage}${person.profile_path}` : no_image}
-                                                alt={person.name ? person.name : "No name"}
-                                                width={150}
-                                                height={150}
-                                                loading="eager"
-                                                className="rounded-md"
-                                                priority
-                                                style={{ width: 'auto' }}
-                                            /> */}
+                                                />
+                                            ) : (
+                                                <Image
+                                                    src={no_image}
+                                                    width={150}
+                                                    height={150}
+                                                    quality={75}
+                                                    unoptimized={false}
+                                                    priority
+                                                    draggable={false}
+                                                    alt="no image"
+                                                />
+                                            )}
                                         </div>
                                         <h2 className="pt-2 mb-1 ">
                                             {person.name ? person.name.length > 12 ? person.name.slice(0, 12) + "..." : person.name : "No name"}

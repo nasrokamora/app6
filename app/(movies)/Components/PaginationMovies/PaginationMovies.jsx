@@ -27,17 +27,16 @@ import {
 import Link from 'next/link'
 import LoadingPaginationMovies from "./LoadingPaginationMovies";
 import { FaRegStar } from "react-icons/fa"
-import { urlImage } from "@/app/libs/UrlImage";
 import ImagePosterPath from "@/app/libs/ImagePosterPath";
 
 
 
 const MAX_PAGE = 3
 
-async function fetchPagination({cachRef,setDataMovies, setIsLoading, setError, page}) {
+async function fetchPagination({ cachRef, setDataMovies, setIsLoading, setError, page }) {
     try {
 
-        if(page > MAX_PAGE) {
+        if (page > MAX_PAGE) {
             setError("You have reached the maximum number of pages")
             setIsLoading(false)
             return
@@ -52,7 +51,7 @@ async function fetchPagination({cachRef,setDataMovies, setIsLoading, setError, p
         setIsLoading(true)
         setError(null)
 
-        const response = await fetch(`/api/fetchTopRated?page=${page}`, )
+        const response = await fetch(`/api/fetchTopRated?page=${page}`,)
 
         if (!response.ok) {
             throw new Error("failed fetch top rated movie")
@@ -62,13 +61,14 @@ async function fetchPagination({cachRef,setDataMovies, setIsLoading, setError, p
         setDataMovies(data.results)
         cachRef.current[page] = data.results
     } catch (error) {
-        if(process.env.NODE_ENV !== "production") {
+        if (process.env.NODE_ENV !== "production") {
             console.log(error.message)
-            return {error:true, message: process.env.NODE_ENV === "production" ? "Something went wrong" : error.message,
-                details: process.env.NODE_ENV !== "production" ? error.stack : undefined 
+            return {
+                error: true, message: process.env.NODE_ENV === "production" ? "Something went wrong" : error.message,
+                details: process.env.NODE_ENV !== "production" ? error.stack : undefined
             }
         }
-        
+
     }
     setIsLoading(false)
 }
@@ -84,9 +84,9 @@ export default function PaginationMovies() {
 
     useEffect(() => {
         setIsLoading(true)
-        fetchPagination({cachRef,setDataMovies, setIsLoading, setError, page: currentPage})
+        fetchPagination({ cachRef, setDataMovies, setIsLoading, setError, page: currentPage })
     }, [currentPage])
-    
+
     const handlePageChange = useCallback((newPage) => {
         if (newPage < 1) return;
         if (newPage > MAX_PAGE) {
@@ -104,10 +104,10 @@ export default function PaginationMovies() {
                     <LoadingPaginationMovies />
                 </div>
             ) : error ? (
-                <ErrorMessageAndRetry error={error} fetchPagination={fetchPagination} currentPage={currentPage} cachRef={cachRef} 
-                setDataMovies={setDataMovies} 
-                setIsLoading={setIsLoading} 
-                setError={setError} />
+                <ErrorMessageAndRetry error={error} fetchPagination={fetchPagination} currentPage={currentPage} cachRef={cachRef}
+                    setDataMovies={setDataMovies}
+                    setIsLoading={setIsLoading}
+                    setError={setError} />
             ) : (
                 <div className="w-full gap-2 flex justify-center md:mt-6  h-max">
                     <Carousel className="w-full max-w-5xl md:max-w-sm 2xl:max-w-full lg:max-w-4xl"
@@ -117,17 +117,31 @@ export default function PaginationMovies() {
                         }}>
                         <CarouselContent className="-ml-1">
                             {dataMovies && dataMovies.length > 0 ? (
-                                dataMovies.slice(0,10).map((movie,index) => (
+                                dataMovies.slice(0, 10).map((movie, index) => (
                                     <CarouselItem key={movie.id} className="p-2 md:basis-1/2 basis-1/6 lg:basis-1/5">
-                                        
+
                                         <div className="relative overflow-hidden md:active:scale-90 hover:scale-90 duration-500  ">
                                             <Link className=" font-bold rounded-md" href={`/movies/list/${movie.id}`}>
-                                               <ImagePosterPath
-                                               index={index} 
-                                               tmdbPath={movie.poster_path} 
-                                               width={300} 
-                                               height={250}
-                                               quality={75} />
+                                                {movie.poster_path.length > 0 ? (
+                                                    <ImagePosterPath
+                                                        index={index}
+                                                        tmdbPath={movie.poster_path}
+                                                        width={300}
+                                                        height={250}
+                                                        quality={75}
+                                                        unoptimized
+                                                        />
+                                                ) : (
+                                                    <Image src={no_image}
+                                                        width={300}
+                                                        height={250}
+                                                        alt="no image"
+                                                        priority
+                                                        unoptimized={false}
+                                                        draggable={false}
+                                                    />
+                                                )}
+
 
                                                 <p className=" pt-2 font-bold  mb-1">{movie.title.length > 11 ? movie.title.slice(0, 11) + "..." : movie.title}</p>
                                                 <div className="flex items-center justify-between w-full ">
@@ -160,73 +174,73 @@ export default function PaginationMovies() {
                     </Carousel>
                 </div>
             )}
-                {/* pagination movies */}
-                <PaginationPageMovies 
-                handlePageChange={handlePageChange} 
+            {/* pagination movies */}
+            <PaginationPageMovies
+                handlePageChange={handlePageChange}
                 currentPage={currentPage} />
         </div>
     )
 }
 
 
-const PaginationPageMovies = ({handlePageChange, currentPage}) => {
-    return(
+const PaginationPageMovies = ({ handlePageChange, currentPage }) => {
+    return (
         <Pagination className="mt-4">
-        <PaginationContent >
-            <PaginationItem >
-                <PaginationPrevious
-                    className='cursor-pointer font-semibold'
-                    onClick={() => handlePageChange(currentPage - 1)}
-                    disabled={currentPage === 1}
-                />
-            </PaginationItem>
-
-            {[...Array(3).keys()].map((index) => (
-                <PaginationItem key={index} className=" md:hidden">
-                    <PaginationLink
-                        className="cursor-pointer 2xl:text-xl font-semibold"
-                        onClick={() => handlePageChange(index + 1)}
-                        isActive={currentPage === index + 1}
-
-                    >
-                        {index + 1}
-                    </PaginationLink>
+            <PaginationContent >
+                <PaginationItem >
+                    <PaginationPrevious
+                        className='cursor-pointer font-semibold'
+                        onClick={() => handlePageChange(currentPage - 1)}
+                        disabled={currentPage === 1}
+                    />
                 </PaginationItem>
-            ))}
 
-            <PaginationItem className="2xl:text-xl">
-                <PaginationNext
-                    className="cursor-pointer font-semibold"
-                    onClick={() => handlePageChange(currentPage + 1)}
+                {[...Array(3).keys()].map((index) => (
+                    <PaginationItem key={index} className=" md:hidden">
+                        <PaginationLink
+                            className="cursor-pointer 2xl:text-xl font-semibold"
+                            onClick={() => handlePageChange(index + 1)}
+                            isActive={currentPage === index + 1}
 
-                />
-            </PaginationItem>
-        </PaginationContent>
-    </Pagination>
+                        >
+                            {index + 1}
+                        </PaginationLink>
+                    </PaginationItem>
+                ))}
+
+                <PaginationItem className="2xl:text-xl">
+                    <PaginationNext
+                        className="cursor-pointer font-semibold"
+                        onClick={() => handlePageChange(currentPage + 1)}
+
+                    />
+                </PaginationItem>
+            </PaginationContent>
+        </Pagination>
     )
 }
 
 const ErrorAlert = () => {
-    return(
+    return (
         <Alert variant="destructive">
-        <AlertCircle className="h-4 w-4" />
-        <AlertTitle>Oops !</AlertTitle>
-        <AlertDescription>
-            There are no movies in this page.
-        </AlertDescription>
-    </Alert>
+            <AlertCircle className="h-4 w-4" />
+            <AlertTitle>Oops !</AlertTitle>
+            <AlertDescription>
+                There are no movies in this page.
+            </AlertDescription>
+        </Alert>
     )
 }
-const ErrorMessageAndRetry = ({fetchPagination, error, currentPage, cachRef, setDataMovies, setIsLoading, setError}) => {
-    return(
+const ErrorMessageAndRetry = ({ fetchPagination, error, currentPage, cachRef, setDataMovies, setIsLoading, setError }) => {
+    return (
         <div className="text-center flex justify-center items-center flex-col gap-3">
-        <h1 className="font-bold">{error} </h1>
-        <button
-            onClick={() => fetchPagination({cachRef,setDataMovies, setIsLoading, setError, page: currentPage})}
-            className="px-4 py-2 mt-2 text-white bg-red-500 rounded text-xl"
-        >
-            Retry
-        </button>
-    </div>
+            <h1 className="font-bold">{error} </h1>
+            <button
+                onClick={() => fetchPagination({ cachRef, setDataMovies, setIsLoading, setError, page: currentPage })}
+                className="px-4 py-2 mt-2 text-white bg-red-500 rounded text-xl"
+            >
+                Retry
+            </button>
+        </div>
     )
 }

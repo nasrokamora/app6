@@ -6,8 +6,6 @@ import {
     getMoviesNowPlaying,
     getMoviesSimilar,
     getRecommendationMovies,
-    getReleasDateMovies,
-    getReviewsMovies,
     getTrailer,
 } from "@/app/libs/DataFetching"
 import { Badge } from "@/components/ui/badge"
@@ -77,21 +75,31 @@ export default async function DynamicMoviesList({ params }) {
                 <h1 className="scroll-m-20 text-4xl text-white font-extrabold tracking-tight lg:text-5xl md:text-3xl   drop-shadow-[0_5px_10px_rgba(255,145,0,10.25)]">{data.original_title ? data.original_title : data.title}</h1>
             </div>
             <div className="w-full flex items-center justify-start gap-3 p-4 mt-4 rounded-md shadow-xl md:flex-col shadow-black/30 bg-black/50 backdrop-blur 2xl:justify-evenly">
-
                 <div className=" w-[65%] flex flex-col items-center justify-center ">
-                    <ImagePosterPath
-                        width={250}
-                        height={250}
-                        index={data.id}
-                        tmdbPath={data.poster_path}
-                        quality={75}
-                        style={{height: "auto"}}
-                        alt={data.title ? data.title : data.original_title || "Unknown"}
-                        unoptimized
-                        draggable={false}
-                        priority
-                    />
-
+                    {data.poster_path.length > 0 ? (
+                        <ImagePosterPath
+                            width={250}
+                            height={250}
+                            index={data.id}
+                            tmdbPath={data.poster_path}
+                            quality={75}
+                            style={{ height: "auto" }}
+                            alt={data.title ? data.title : data.original_title || "Unknown"}
+                            unoptimized
+                            draggable={false}
+                            priority
+                        />
+                    ) : (
+                        <Image
+                            src={no_image}
+                            width={250}
+                            height={250}
+                            unoptimized={false}
+                            priority
+                            draggable={false}
+                            alt="no image"
+                        />
+                    )}
 
                     <div className="flex justify-center gap-3 pt-5 ">
                         <TrailerMovies dataTrailer={dataTrailer} data={data} />
@@ -208,14 +216,14 @@ export default async function DynamicMoviesList({ params }) {
                         </div>
                         <Separator className="mt-4 bg-red-700" />
 
-                            <div className='w-full flex justify-start gap-4 items-center pt-4 '>
-                                <h1 className="font-bold text-2xl text-amber-600 scroll-m-20 md:text-lg">Source</h1>
-                                <div>
-                                    <MoviesSource data={data} />
-                                </div>
+                        <div className='w-full flex justify-start gap-4 items-center pt-4 bg-black/80 backdrop-blur p-2'>
+                            <h1 className="font-bold text-2xl text-amber-600 scroll-m-20 md:text-lg">Source</h1>
+                            <div>
+                                <MoviesSource data={data} />
                             </div>
+                        </div>
                     </div>
-                    <Separator className="mt-4 bg-red-700" />
+                    <Separator className=" bg-red-700" />
                 </div>
             </div>
             {/* section images scroll */}

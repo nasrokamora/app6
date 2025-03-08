@@ -9,7 +9,6 @@ import Image from "next/image"
 import { FaRegStar } from "react-icons/fa6"
 import no_image from '../../../../public/image/no_image4.webp'
 import CarouselAutoshow from "@/app/Animations/CarouselAuto/AutoCarousel"
-import { urlImage } from "@/app/libs/UrlImage"
 import ImagePosterPath from "@/app/libs/ImagePosterPath"
 
 export const dynamic = 'force-dynamic';
@@ -23,36 +22,35 @@ export default function TvSeries({ dataTv }) {
                     {dataTv.map((tv) => (
                         <CarouselItem key={tv.id} className="md:basis-1/2 basis-1/6 lg:basis-1/5">
                             <div className="hover:duration-500 hover:scale-90 ">
-
                                 <Link className="" href={`/tv/list/${tv.id}`}>
                                     <div className="relative overflow-hidden  ">
-                                        <ImagePosterPath
-                                            width={300}
-                                            height={250}
-                                            index={tv.id}
-                                            tmdbPath={tv.poster_path}
-                                            style={{ width: "auto", borderRadius: "4px" }}
-                                            quality={75}
-                                            alt={tv.name ? tv.name : tv.original_name || "Unknown"}
-                                            loading="eager"
-                                            unoptimized
 
-                                        />
-
-
-
-                                        {/* <Image
-                                                src={tv.poster_path ?
-                                                    `${urlImage}${tv.poster_path}` : no_image}
-                                                alt="image_tv_Show"
-                                                width={300} height={250}
-                                                style={{ width: "auto",borderRadius:"4px" }}
-                                                priority
+                                        {tv.poster_path.length > 0 ? (
+                                            <ImagePosterPath
+                                                width={300}
+                                                height={250}
+                                                index={tv.id}
+                                                tmdbPath={tv.poster_path}
+                                                style={{ width: "auto", borderRadius: "4px" }}
+                                                quality={75}
+                                                alt={tv.name ? tv.name : tv.original_name || "Unknown"}
                                                 loading="eager"
-                                                draggable="false"
+                                                unoptimized
 
+                                            />
+                                        ) : (
+                                            <Image
+                                                src={no_image}
+                                                width={300}
+                                                height={250}
+                                                quality={75}
+                                                unoptimized={false}
+                                                priority
+                                                draggable={false}
+                                                alt="no image"
+                                            />
+                                        )}
 
-                                            /> */}
                                     </div>
                                     <p className=" font-bold flex justify-start  pt-2 mb-1">{tv.original_name.length > 14 ? tv.original_name.slice(0, 14) + "..." : tv.original_name}
                                     </p>

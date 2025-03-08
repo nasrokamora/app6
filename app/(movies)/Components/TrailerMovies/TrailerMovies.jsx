@@ -28,11 +28,7 @@ export default async function TrailerMovies({ dataTrailer,data }) {
                 <AlertDialogTrigger asChild>
                 <IoPlayCircleOutline size={48} className="text-[#f82525] hover:scale-110 duration-300 cursor-pointer" />
                 </AlertDialogTrigger>
-                <AlertDialogContent className=" max-w-full lg:max-w-xl md:h-screen md:max-w-3xl md:flex md:justify-center md:items-center md:gap-2">
-
-                {/* <Link href={`https://vidsrc.dev/embed/movie/${data.id}`} className="pb-10">
-                                Source
-                                </Link> */}
+                <AlertDialogContent className=" lg:max-w-xl md:h-screen md:max-w-3xl md:flex md:justify-center md:items-center md:gap-2">
 
 
                     {dataTrailermovies && dataTrailermovies.length > 0 ?(
@@ -48,16 +44,14 @@ export default async function TrailerMovies({ dataTrailer,data }) {
                                 </AlertDialogDescription>
                             </AlertDialogHeader>
                             <div>
-                            {/* <VideoPlayer movieId={data.id} /> */}
-                            <VideoPlayerMovies movieId={data.id} />
                             </div>
-                            {/* <YouTubeEmbed
+                            <YouTubeEmbed
                                 videoId={item.key}
                                 height={300}
                                 params='controls=1'
                                 style=""
                                 className=" object-fill rounded-md"
-                            /> */}
+                            />
 
 
 

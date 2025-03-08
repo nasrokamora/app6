@@ -12,7 +12,7 @@ import { FaRegStar } from "react-icons/fa";
 import Link from "next/link"
 import { memo, useCallback, useEffect, useReducer, useRef } from "react";
 import LoadingGenreCarousel from "@/app/Components/LoadingUi/LoadingGenreCarousel";
-import { urlImage } from "@/app/libs/UrlImage";
+import no_image from "../../../../public/image/no_image4.webp"
 import { ChevronRight } from "lucide-react"
 import { ChevronLeft } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -141,19 +141,30 @@ const TrendingMoviesCard = memo(({ movie }) => {
     return (
         <CarouselItem key={movie.id} className="  basis-1/3 lg:basis-1/4 md:basis-1/3 ">
             <Link className=" hover:grayscale hover:duration-500" href={`/movies/list/${movie.id}`}>
-
-                <ImagePosterPath
-                    width={180}
-                    height={180}
-                    index={movie.id}
-                    tmdbPath={movie.poster_path}
-                    quality={75}
-                    alt={movie.title ? movie.title : movie.original_title || "Unknown"}
-                    unoptimized
-                    style={{ height: "auto" }}
-                    draggable={false}
-                    priority
-                />
+                {movie.poster_path.length > 0 ? (
+                    <ImagePosterPath
+                        width={180}
+                        height={180}
+                        index={movie.id}
+                        tmdbPath={movie.poster_path}
+                        quality={75}
+                        alt={movie.title ? movie.title : movie.original_title || "Unknown"}
+                        unoptimized
+                        style={{ height: "auto" }}
+                        draggable={false}
+                        priority
+                    />
+                ) : (
+                    <Image
+                        src={no_image}
+                        width={180}
+                        height={180}
+                        unoptimized={false}
+                        priority
+                        draggable={false}
+                        alt="no image"
+                    />
+                )}
                 <p className=" font-bold flex justify-start  pt-2 mb-1 md:hidden">{movie.title.length > 14 ? movie.title.slice(0, 14) + "..." : movie.title}
                 </p>
                 <div className=" flex justify-between items-center w-full font-semibold ">

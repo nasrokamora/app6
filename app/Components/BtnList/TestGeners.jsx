@@ -14,6 +14,9 @@ import no_image from '../../../public/image/no_image4.webp'
 import ImagePosterPath from "@/app/libs/ImagePosterPath";
 import MovieCarouselSkeleton from "./MovieCarouselSkeleton";
 import Image from "next/image";
+import { buttonVariants } from "@/components/ui/button"
+import Link from "next/link";
+
 
 
 
@@ -74,9 +77,7 @@ export default function TestGeners() {
 
     const [state, dispatch] = useReducer(reducer, initialState)
 
-    const [api, setApi] = useState();
-    const [current, setCurrent] = useState(0);
-    const [count, setCount] = useState(0);
+
 
     const cacheRef = useRef({})
 
@@ -155,20 +156,18 @@ export default function TestGeners() {
 
     }, [fetchMovies, state.selectedGenre])
 
+    // // useEffect(() => {
+    // //     if (!api) {
+    // //         return
+    // //     }
 
+    // //     setCount(api.scrollSnapList().length)
+    // //     setCurrent(api.selectedScrollSnap() + 1)
 
-    useEffect(() => {
-        if (!api) {
-            return
-        }
-
-        setCount(api.scrollSnapList().length)
-        setCurrent(api.selectedScrollSnap() + 1)
-
-        api.on("select", () => {
-            setCurrent(api.selectedScrollSnap() + 1)
-        })
-    }, [api])
+    // //     api.on("select", () => {
+    // //         setCurrent(api.selectedScrollSnap() + 1)
+    // //     })
+    // // }, [api])
 
 
     const ColorTypes = (status) => {
@@ -229,8 +228,7 @@ export default function TestGeners() {
                 opts={{
                     align: "center",
                     loop: true,
-                }}
-                setApi={setApi}>
+                }}>
 
                 <div className="   w-full h-[50vh] md:h-screen">
                     {/* content of details movies */}
@@ -294,6 +292,17 @@ export default function TestGeners() {
                                                     <p className="text-sm text-center text-muted-foreground font-semibold pt-4 md:hidden  pl-8">
                                                         {movie.overview || "No description available"}
                                                     </p>
+                                                    <div className=" w-full pt-4 flex justify-center items-center">
+                                                        {/* <Link className="px-8 py-2 text-white font-bold text-lg rounded-full shadow-lg transition-transform transform bg-transparent border-2 border-white hover:scale-105 hover:border-green-600 hover:shadow-green-500/50 hover:shadow-2xl focus:outline-none"  href={`/movie/${movie.id}`}>Details</Link> */}
+
+                                                        <Link href={`/movies/list/${movie.id}`} className="cursor-pointer font-semibold overflow-hidden relative z-100 border border-red-700 rounded-md group  px-8 py-1">
+                                                            <span className="relative z-10 text-slate-500 group-hover:text-white  duration-500">More details</span>
+                                                            <span className="absolute w-full h-full bg-red-700 -left-32 top-0 -rotate-45 group-hover:rotate-0 group-hover:left-0 duration-500"></span>
+                                                            <span className="absolute w-full h-full bg-red-700 -right-32 top-0 -rotate-45 group-hover:rotate-0 group-hover:right-0 duration-500"></span>
+                                                        </Link>
+
+
+                                                    </div>
                                                 </div>
                                             </div>
 
@@ -330,7 +339,7 @@ export default function TestGeners() {
                             })
                         )}
                     </CarouselContent>
-                    <div className="lg:hidden absolute top-0 left-16 right-20 flex justify-around items-center inset-0 md:left-[82%] md:top-[-1rem] md:hidden">
+                    <div className="lg:hidden absolute top-[13rem] left-16 right-20 flex justify-around items-center inset-0 md:left-[82%] md:top-[-1rem] md:hidden h-fit">
                         <CarouselPrevious />
                         <CarouselNext />
                     </div>

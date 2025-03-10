@@ -44,7 +44,8 @@ export default function Footer() {
                         height={40}
                         className="mx-auto"
                         priority
-                        unoptimized
+                        style={{height:'auto'}}
+                        unoptimized={false}
                         
                         
                         />

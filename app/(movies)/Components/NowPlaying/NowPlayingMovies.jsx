@@ -1,5 +1,4 @@
 
-import { Card, CardContent } from "@/components/ui/card"
 import {
   Carousel,
   CarouselContent,
@@ -8,7 +7,6 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel"
 import Image from "next/image"
-// import { Suspense } from "react"
 import Link from "next/link"
 import { AlertCircle } from "lucide-react"
 import {
@@ -16,11 +14,9 @@ import {
   AlertDescription,
   AlertTitle,
 } from "@/components/ui/alert"
-
 import AutoCarousel from "@/app/Components/AutoCarousel/AutoCarousel"
-
 import { IoStarSharp } from "react-icons/io5"
-
+import no_image from '../../../../public/image/no_image4.webp'
 import ImagePosterPath from "@/app/libs/ImagePosterPath"
 
 export default function NowPlayingMovies({ dataPlaying }) {
@@ -42,17 +38,32 @@ export default function NowPlayingMovies({ dataPlaying }) {
                   <div className="p-1 hover:scale-90 hover:duration-500 hover:saturate-50">
                     <Link href={`/movies/list/${data.id}`}>
                       <div className="relative overflow-hidden ">
-                        <ImagePosterPath
-                          width={300}
-                          height={250}
-                          index={data.id}
-                          tmdbPath={data.poster_path}
-                          quality={75}
-                          alt={data.title ? data.title : data.original_title || "Unknown"}
-                          unoptimized
-                          draggable={false}
-                          priority
-                        />
+                        {data.backdrop_path ? (
+                          <ImagePosterPath
+                            width={300}
+                            height={250}
+                            index={data.id}
+                            tmdbPath={data.poster_path}
+                            quality={75}
+                            alt={data.title ? data.title : data.original_title || "Unknown"}
+                            unoptimized
+                            draggable={false}
+                            priority
+                          />
+                        ) : (
+                          <Image
+                            src={no_image}
+                            width={300} height={250}
+                            quality={75}
+                            unoptimized={false}
+                            priority
+                            draggable={false}
+                            alt="no image found"
+                            style={{height:'auto'}}
+                            placeholder="blur"
+                          />
+                        )}
+
 
                       </div>
                       <div>

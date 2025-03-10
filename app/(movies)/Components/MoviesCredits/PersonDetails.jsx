@@ -53,15 +53,7 @@ export default async function PersonDetails({ person_id }) {
                   draggable={false}
                   priority
                 />
-                // <Image
-                //   src={`${urlImage}${data.profile_path}`}
-                //   width={300}
-                //   height={300}
-                //   alt={data.name ? data.name : "No name found."}
-                //   className="rounded-md"
-                //   priority="true"
-                //   loading='eager'
-                // />
+
               ) : (
                 <Image
                   alt="no_image"
@@ -70,6 +62,8 @@ export default async function PersonDetails({ person_id }) {
                   priority
                   placeholder="blur"
                   src={no_image}
+                  unoptimized={false}
+                  draggable={false}
 
                 />
 

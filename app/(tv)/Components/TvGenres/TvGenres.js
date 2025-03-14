@@ -143,7 +143,7 @@ export default function TvGenres() {
                                         <div className="relative overflow-hidden lg:hover:scale-90 lg:hover:duration-500 xl:hover:scale-90 xl:hover:duration-500 2xl:hover:scale-90 2xl:hover:duration-500">
                                             <Link href={`/tv/list/${tv.id}`} as={`/tv/list/${tv.id}`}>
 
-                                                {tv.poster_path.length > 0 ? (
+                                                {tv.poster_path &&  tv.poster_path.length > 0 ? (
                                                     <ImagePosterPath
                                                         width={300}
                                                         height={250}
@@ -160,7 +160,6 @@ export default function TvGenres() {
                                                         src={no_image}
                                                         width={300}
                                                         height={250}
-                                                        // quality={75}
                                                         unoptimized={false}
                                                         priority
                                                         draggable={false}

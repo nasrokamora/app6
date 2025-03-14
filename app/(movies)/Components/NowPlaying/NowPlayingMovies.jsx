@@ -29,7 +29,12 @@ export default function NowPlayingMovies({ dataPlaying }) {
 
 
       <div className="relative flex items-center justify-center w-full pt-10 md:mt-4">
-        <AutoCarousel
+        <Carousel
+          opts={{
+            align: "center",
+            loop: true,
+          }}
+          className="w-full md:max-w-sm max-w-5xl 2xl:max-w-full bg-gradient-to-tr from-black via-purple-700 to-red-800"
         >
           <CarouselContent className="-mt-1 ">
             {dataPlaying && dataPlaying.length > 0 ? (
@@ -38,7 +43,8 @@ export default function NowPlayingMovies({ dataPlaying }) {
                   <div className="p-1 hover:scale-90 hover:duration-500 hover:saturate-50">
                     <Link href={`/movies/list/${data.id}`}>
                       <div className="relative overflow-hidden ">
-                        {data.backdrop_path ? (
+                        {data.poster_path &&
+                          data.backdrop_path ? (
                           <ImagePosterPath
                             width={300}
                             height={250}
@@ -59,7 +65,7 @@ export default function NowPlayingMovies({ dataPlaying }) {
                             priority
                             draggable={false}
                             alt="no image found"
-                            style={{height:'auto'}}
+                            style={{ height: 'auto' }}
                             placeholder="blur"
                           />
                         )}
@@ -104,7 +110,7 @@ export default function NowPlayingMovies({ dataPlaying }) {
             <CarouselPrevious />
             <CarouselNext />
           </div>
-        </AutoCarousel>
+        </Carousel>
       </div>
 
     </div>

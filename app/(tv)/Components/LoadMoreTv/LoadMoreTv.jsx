@@ -81,7 +81,7 @@ export default function LoadMoreTv() {
             </div>
 
 
-                <div className="grid grid-cols-6 gap-8 p-8 md:grid-cols-3 lg:grid-cols-5">
+            <div className="grid grid-cols-6 gap-8 p-8 md:grid-cols-3 lg:grid-cols-5">
                 {dataTv.map((tv, index) => (
                     <motion.div
                         initial={{ opacity: 0 }}
@@ -90,21 +90,33 @@ export default function LoadMoreTv() {
                         key={tv.id}
                     >
 
-                        <div key={`${tv.id} + ${index}`} className="relative flex flex-col items-center justify-center overflow-hidden hover:scale-110 hover:duration-300">
+                        <div key={`${tv.id}`} className="relative flex flex-col items-center justify-center overflow-hidden hover:scale-110 hover:duration-300">
 
                             <Link href={`/tv/list/${tv.id}`} className="rounded-md" >
-
-                                <ImagePosterPath
-                                    width={200}
-                                    height={150}
-                                    index={tv.id}
-                                    tmdbPath={tv.poster_path ?? no_image}
-                                    priority
-                                    quality={75}
-                                    alt={tv.name ? tv.name : tv.original_name || "Unknown"}
-                                    unoptimized
+                                {tv.poster_path ? (
+                                    <ImagePosterPath
+                                        width={200}
+                                        height={150}
+                                        index={tv.id}
+                                        tmdbPath={tv.poster_path}
+                                        priority
+                                        quality={75}
+                                        alt={tv.name ? tv.name : tv.original_name || "Unknown"}
+                                        unoptimized
 
                                     />
+                                ) : (
+                                    <Image
+                                        src={no_image}
+                                        alt={"No image"}
+                                        width={300} height={200}
+                                        priority
+                                        style={{ width: "auto", borderRadius: "4px" }}
+                                        draggable={false}
+                                        loading="eager"
+                                    />
+                                )}
+
                                 <h1 className="font-bold  md:hidden">
                                     {tv.name.length > 10 ? tv.name.slice(0, 10) + "..." : tv.name}
                                 </h1>

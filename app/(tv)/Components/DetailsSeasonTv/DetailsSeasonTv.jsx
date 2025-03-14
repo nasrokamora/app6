@@ -9,7 +9,6 @@ import {
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 import Link from "next/link"
 import no_image from '../../../../public/image/no_image4.webp'
-import { urlImage } from "@/app/libs/UrlImage"
 import ImagePosterPath from "@/app/libs/ImagePosterPath"
 
 
@@ -29,19 +28,32 @@ export default function DetailsSeasonTv({ season, id }) {
                                     <Card className="  md:h-auto w-full border-blue-600 shadow-md shadow-blue-800 bg-black/30 backdrop-blur">
                                         <CardContent className=" pt-2  ">
                                             <div className=" relative lg:order-2 w-full ">
-                                                <ImagePosterPath
-                                                    width={100}
-                                                    height={100}
-                                                    index={item.id}
-                                                    tmdbPath={item.poster_path}
-                                                    className="rounded-md"
-                                                    quality={75}
-                                                    alt={item.name ? item.name : "Unknown"}
+                                                {item.poster_path ? (
+                                                    <ImagePosterPath
+                                                        width={100}
+                                                        height={100}
+                                                        index={item.id}
+                                                        tmdbPath={item.poster_path}
+                                                        className="rounded-md"
+                                                        quality={75}
+                                                        alt={item.name ? item.name : "Unknown"}
 
-                                                    draggable={false}
-                                                    priority
-                                                    unoptimized
-                                                />
+                                                        draggable={false}
+                                                        priority
+                                                        unoptimized
+                                                    />
+                                                ) : (
+                                                    <Image
+                                                        src={no_image}
+                                                        alt={"no_image"}
+                                                        width={300} height={200}
+                                                        priority
+                                                        style={{borderRadius: "4px" }}
+                                                        draggable={false}
+                                                        loading="eager"
+                                                    />
+                                                )}
+
                                             </div>
 
                                             <div className=" flex justify-center items-center flex-col ">

@@ -11,7 +11,6 @@ import Link from "next/link"
 import no_image from '../../../../public/image/no_image4.webp'
 import { FaRegStar } from "react-icons/fa"
 import { MdOutlineMovieFilter } from "react-icons/md";
-import { urlImage } from "@/app/libs/UrlImage"
 import ImagePosterPath from "@/app/libs/ImagePosterPath"
 
 
@@ -40,17 +39,31 @@ export default function RecommendationMovies({ dataRecommend }) {
                     <Link href={`/movies/list/${data.id}`}>
                       <div className=" ">
                         <div className=" overflow-hidden relative">
-                          <ImagePosterPath
-                            width={300}
-                            height={250}
-                            index={data.id}
-                            tmdbPath={data.poster_path}
-                            quality={75}
-                            alt={data.title ? data.title : data.original_title || "Unknown"}
-                            unoptimized
-                            draggable={false}
-                            priority
-                          />
+                          {data.poster_path &&
+                          data.poster_path ? (
+                            <ImagePosterPath
+                              width={300}
+                              height={250}
+                              index={data.id}
+                              tmdbPath={data.poster_path}
+                              quality={75}
+                              alt={data.title ? data.title : data.original_title || "Unknown"}
+                              unoptimized
+                              draggable={false}
+                              priority
+                            />
+                          ) : (
+                            <Image
+                              src={no_image}
+                              alt={movie.title ? movie.title : movie.original_title || "Unknown"}
+                              width={300} height={200}
+                              priority
+                              style={{ width: "auto", borderRadius: "4px" }}
+                              draggable={false}
+                              loading="eager"
+                            />
+                          )}
+
 
                         </div>
                         <div>

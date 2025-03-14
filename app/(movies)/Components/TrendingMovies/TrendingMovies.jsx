@@ -141,7 +141,8 @@ const TrendingMoviesCard = memo(({ movie }) => {
     return (
         <CarouselItem key={movie.id} className="  basis-1/3 lg:basis-1/4 md:basis-1/3 ">
             <Link className=" hover:grayscale hover:duration-500" href={`/movies/list/${movie.id}`}>
-                {movie.poster_path.length > 0 ? (
+                {movie.poster_path &&
+                movie.poster_path.length > 0 ? (
                     <ImagePosterPath
                         width={180}
                         height={180}

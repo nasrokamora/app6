@@ -17,8 +17,9 @@ import { FaFacebook } from "react-icons/fa";
 import Link from "next/link"
 import { buttonVariants } from "@/components/ui/button"
 import ImagePosterPath from "@/app/libs/ImagePosterPath";
-
-export default async function PersonDetailsTv({ person_id,  character }) {
+import no_image from '../../../../../public/image/no_image4.webp'
+import Image from "next/image";
+export default async function PersonDetailsTv({ person_id, character }) {
 
     const data = getPersonsIdTv(person_id)
     const extPersonId = getExtPersonsIdTv(person_id)
@@ -31,18 +32,31 @@ export default async function PersonDetailsTv({ person_id,  character }) {
                     <CardContent className="-ml-1">
                         <div className="flex justify-start gap-2 pt-4 ">
                             <div className=''>
-                                <ImagePosterPath
-                                    width={100}
-                                    height={100}
-                                    index={dataPerson.id}
-                                    tmdbPath={dataPerson.profile_path}
-                                    style={{ borderRadius:"12px" }}
-                                    quality={75}
-                                    alt={dataPerson.name ? dataPerson.name : dataPerson.original_name || "Unknown"}
-                                    unoptimized
-                                    draggable={false}
-                                    priority
-                                />
+                                {dataPerson.profile_path ? (
+                                    <ImagePosterPath
+                                        width={100}
+                                        height={100}
+                                        index={dataPerson.id}
+                                        tmdbPath={dataPerson.profile_path}
+                                        style={{ borderRadius: "12px" }}
+                                        quality={75}
+                                        alt={dataPerson.name ? dataPerson.name : dataPerson.original_name || "Unknown"}
+                                        unoptimized
+                                        draggable={false}
+                                        priority
+                                    />
+                                ) : (
+                                    <Image
+                                        src={no_image}
+                                        alt={"no_image"}
+                                        width={100} height={100}
+                                        priority
+                                        unoptimized={false}
+                                        style={{ height: "auto", borderRadius: "4px" }}
+                                        loading="eager"
+                                    />
+                                )}
+
                             </div>
                             <div className="">
 

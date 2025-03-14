@@ -246,11 +246,11 @@ export default function TestGeners() {
                                         <div className="flex justify-between h-[50vh] w-full ">
 
                                             <div className=" bg-transparent w-[60%]   p-4">
-                                                <h1 className="text-3xl font-bold text-center ">
+                                                <h1 className="text-3xl font-bold text-center md:text-2xl">
                                                     {movie.original_title || " Unknown"}
                                                 </h1>
                                                 <div className=" pt-4 font-bold ">
-                                                    <div className=" flex justify-start gap-3 items-center">
+                                                    <div className=" flex justify-start gap-3 items-center md:flex-wrap">
                                                         <div className="bg-white/30 backdrop-blur w-fit p-1 rounded-md flex justify-center gap-2 items-center">
 
                                                             <h1 className=" font-bold text-yellow-500 ">
@@ -265,7 +265,7 @@ export default function TestGeners() {
                                                             <h1>{new Date(movie.release_date).getFullYear() || "Unknown"}</h1>
                                                         </div>
                                                         <div>
-                                                            <h1 className="bg-white/30 backdrop-blur w-fit p-1 rounded-md">
+                                                            <h1 className="bg-white/30 backdrop-blur w-fit p-1 rounded-md md:hidden">
                                                                 {movie.original_language}
                                                             </h1>
                                                         </div>
@@ -277,7 +277,7 @@ export default function TestGeners() {
                                                     {/* details movies */}
 
                                                     {details &&
-                                                        <div className=" flex justify-start gap-2 items-center pt-4">
+                                                        <div className=" flex justify-start gap-2 items-center pt-4  md:hidden">
 
                                                             {/* genres */}
                                                             <div className=" flex justify-start items-center gap-2 flex-wrap">
@@ -292,11 +292,11 @@ export default function TestGeners() {
                                                     <p className="text-sm text-center text-muted-foreground font-semibold pt-4 md:hidden  pl-8">
                                                         {movie.overview || "No description available"}
                                                     </p>
-                                                    <div className=" w-full pt-4 flex justify-center items-center">
+                                                    <div className=" w-full pt-4 flex justify-center items-center ">
                                                         {/* <Link className="px-8 py-2 text-white font-bold text-lg rounded-full shadow-lg transition-transform transform bg-transparent border-2 border-white hover:scale-105 hover:border-green-600 hover:shadow-green-500/50 hover:shadow-2xl focus:outline-none"  href={`/movie/${movie.id}`}>Details</Link> */}
 
                                                         <Link href={`/movies/list/${movie.id}`} className="cursor-pointer font-semibold overflow-hidden relative z-100 border border-red-700 rounded-md group  px-8 py-1">
-                                                            <span className="relative z-10 text-slate-500 group-hover:text-white  duration-500">More details</span>
+                                                            <span className="relative z-10 text-slate-500 group-hover:text-white  duration-500  font-bold"> <span className=" md:hidden">More</span> details</span>
                                                             <span className="absolute w-full h-full bg-red-700 -left-32 top-0 -rotate-45 group-hover:rotate-0 group-hover:left-0 duration-500"></span>
                                                             <span className="absolute w-full h-full bg-red-700 -right-32 top-0 -rotate-45 group-hover:rotate-0 group-hover:right-0 duration-500"></span>
                                                         </Link>
@@ -307,7 +307,7 @@ export default function TestGeners() {
                                             </div>
 
                                             <div className=" h-[50vh] blur-right w-[100%] overflow-hidden relative">
-                                                {movie.poster_path.length > 0 ? (
+                                                {movie.poster_path && movie.poster_path.length > 0 ? (
                                                     <ImagePosterPath
                                                         index={movie.id}
                                                         tmdbPath={movie.backdrop_path}

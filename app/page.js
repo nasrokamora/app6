@@ -75,7 +75,7 @@ export default async function Home() {
       </section>
 
 
-      <section className="mt-7 md:hidden">
+      <section className="mt-7 ">
       <div className="ml-6 md:ml-0 mt-7 md:flex md:justify-center md:items-center pb-4">
         <h1 className="text-4xl font-extrabold  scroll-m-20 lg:text-3xl md:text-3xl">Explore by <span className="text-[#cd1919]">Genres</span> </h1>
       </div> 

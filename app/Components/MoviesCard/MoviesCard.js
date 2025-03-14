@@ -31,9 +31,10 @@ export default function MoviesCard({ dataDiscoverMovies }) {
                                 dataDiscoverMovies.map((movie) => (
                                     <CarouselItem key={movie.id} className="pl-1 md:basis-1/2 lg:basis-1/5 xl:basis-1/6 basis-1/6 ">
                                         <div className="flex flex-col w-full p-1 hover:scale-90 duration-1000">
-                                            <Link varient="link" className="hover:grayscale  hover:duration-700 hover:translate-x-6" href={`/movies/list/${movie.id}`}>
+                                            <Link varient="link" className="hover:grayscale  hover:duration-700 hover:translate-x-6 hover:scale-95" href={`/movies/list/${movie.id}`}>
                                                 <div className='relative rounded-md  '>
-                                                    {movie.poster_path.length > 0 ?(
+                                                    {movie.poster_path &&
+                                                    movie.poster_path.length > 0 ?(
 
                                                             <ImagePosterPath
                                                             width={300}
@@ -58,7 +59,7 @@ export default function MoviesCard({ dataDiscoverMovies }) {
                                                     ):(
                                                         <Image
                                                             src={no_image}
-                                                            alt={movie.title ? movie.title : movie.original_title || "Unknown"}
+                                                            alt={"no_image"}
                                                             width={300} height={200}
                                                             priority
                                                             style={{ width: "auto", borderRadius: "4px" }}

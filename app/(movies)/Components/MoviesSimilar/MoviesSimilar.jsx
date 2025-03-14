@@ -33,17 +33,31 @@ export default function MoviesSimilar({ similar }) {
                                     <div className="  hover:scale-105 hover:duration-500  hover:grayscale  ">
                                         <Link className="" href={`/movies/list/${movie.id}`} rel="noopener noreferrer">
                                             <div className=" relative overflow-hidden">
-                                                <ImagePosterPath
-                                                    width={250}
-                                                    height={180}
-                                                    index={movie.id}
-                                                    tmdbPath={movie.poster_path}
-                                                    quality={75}
-                                                    alt={movie.title ? movie.title : movie.original_title || "Unknown"}
-                                                    unoptimized
-                                                    draggable={false}
-                                                    priority
-                                                />
+                                                {movie.poster_path &&
+                                                movie.poster_path ? (
+                                                    <ImagePosterPath
+                                                        width={250}
+                                                        height={180}
+                                                        index={movie.id}
+                                                        tmdbPath={movie.poster_path}
+                                                        quality={75}
+                                                        alt={movie.title ? movie.title : movie.original_title || "Unknown"}
+                                                        unoptimized
+                                                        draggable={false}
+                                                        priority
+                                                    />
+                                                ) : (
+                                                    <Image
+                                                        src={no_image}
+                                                        alt={movie.title ? movie.title : movie.original_title || "Unknown"}
+                                                        width={300} height={200}
+                                                        priority
+                                                        style={{ width: "auto", borderRadius: "4px" }}
+                                                        draggable={false}
+                                                        loading="eager"
+                                                    />
+                                                )}
+
                                             </div>
                                             <div>
                                                 <h1 className=" font-bold flex justify-start  pt-2 mb-1">{movie.title.slice(0, 11) + "..."}

@@ -224,7 +224,9 @@ export default async function DynamicTvListPage({ params }) {
                     </div>
 
                     <Separator className="mt-4" />
-
+                        <div>
+                            <h1 className="text-2xl font-bold text-zinc-600 md:text-xl">Source : <span className="text-blue-600">Coming Soon</span> </h1>
+                        </div>
 
                     {/* toggle button */}
                     <ToggleButton />

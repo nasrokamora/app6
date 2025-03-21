@@ -29,7 +29,8 @@ export default function PopularPerson({ dataPersonPopular }) {
                                 <Card className=" flex flex-col justify-center w-full font-bold border-none md:mt-6">
                                     <Link href={`/person/${person.id}`} className="hover:scale-90 hover:duration-500 md:active:scale-90">
                                         <div className=" relative overflow-hidden">
-                                            {person.profile_path.length > 0 ? (
+                                            {person.profile_path &&
+                                            person.profile_path.length > 0 ? (
                                                 <ImagePosterPath
                                                     width={150}
                                                     height={150}

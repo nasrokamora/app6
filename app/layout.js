@@ -1,13 +1,9 @@
-
-// import { Doppio_One, Inter } from "next/font/google";
 import "./globals.css";
-// import Navbar from "./Components/Navbar/NavBar";
 import Footer from "./Components/Footer/Footer";
 import { Inter } from "next/font/google"
 import { cn } from "@/lib/utils";
 import Nav from "./Components/Navbar/Nav";
 import NextTopLoader from "nextjs-toploader";
-import { SpeedInsights } from "@vercel/speed-insights/next"
 
 
 
@@ -25,6 +21,12 @@ export const metadata = {
   keywords: [
     "Magix Movies", "Nasreddine Abdellouche", "movies", "series",
     "entertainment", "film reviews", "TV show reviews", "best movies",
+    "best movies 2024", "best series 2024", "best films",
+    "best films 2024", "best TV shows", "best TV shows 2024",
+    "top movies", "top series", "top films", "top TV shows",
+    "best movies action 2025", "best series drama 2025","best movies action 2024","best series drama 2024",
+    "best movies adventure 2025", "best movies adventure 2024",
+    "best films comedy 2025", "best TV shows horror 2025",
     "best series", "cinema ratings", "custom recommendations",
     "top-rated films", "binge-worthy series", "movie streaming",
     "latest movies 2024", "trending series 2024", "online movie platform",
@@ -62,7 +64,7 @@ export default function RootLayout({ children }) {
         />
         <Nav />
         {children}
-        {/* <SpeedInsights /> */}
+
         <Footer />
       </body>
     </html>

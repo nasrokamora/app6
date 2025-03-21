@@ -16,7 +16,8 @@ import { useEffect, useRef, useState } from "react"
 import { ScrollBar, ScrollArea } from "@/components/ui/scroll-area"
 import BlurFade from "@/components/ui/blur-fade"
 import ImagePosterPath from "@/app/libs/ImagePosterPath"
-
+import Image from "next/image"
+import no_image from '../../../public/image/no_image4.webp'
 
 
 
@@ -106,17 +107,31 @@ export default function PopularPersonDetails() {
                                             <Card className="border-t-[#a03bf7] border-b-[#f23e5e] border-r-[#a83ce4] border-l-[#c42e4a] p-3 hover:scale-105 hover:duration-500 md:active:shadow-lg md:active:border-indigo-800 md:active:scale-90 md:active:shadow-indigo-800">
                                                 <Link href={`/person/${item.id}`} >
                                                     <div className=" overflow-hidden  relative  rounded-md">
-                                                        <ImagePosterPath
-                                                            width={120}
-                                                            height={300}
-                                                            index={item.id}
-                                                            tmdbPath={item.profile_path}
-                                                            quality={75}
-                                                            alt={item.name ? item.name : "Unknown"}
-                                                            unoptimized
-                                                            draggable={false}
-                                                            priority
-                                                        />
+                                                        {item.profile_path && item.profile_path.length > 0 ? (
+                                                            <ImagePosterPath
+                                                                width={120}
+                                                                height={300}
+                                                                index={item.id}
+                                                                tmdbPath={item.profile_path}
+                                                                quality={75}
+                                                                alt={item.name ? item.name : "Unknown"}
+                                                                unoptimized
+                                                                draggable={false}
+                                                                priority
+                                                            />
+                                                        ) : (
+                                                            <Image
+                                                                src={no_image}
+                                                                width={120}
+                                                                height={300}
+                                                                quality={75}
+                                                                unoptimized={false}
+                                                                priority
+                                                                draggable={false}
+                                                                alt="no image"
+                                                            />
+                                                        )}
+
                                                     </div>
                                                     <h2 className="pt-2  font-semibold">
                                                         {item.name ? item.name.length > 12 ? item.name.slice(0, 12) + ".." : item.name : "No name"}

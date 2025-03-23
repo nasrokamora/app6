@@ -52,7 +52,7 @@ Check out the live demo: https://magix-movies.vercel.app
 ---
 
 ## 📅 Development Status
-This project is currently under development. Updates will be shared regularly.
+Movie Streaming: New! Enjoy a seamless movie streaming experience directly on the website.
 
 ---
 
@@ -84,5 +84,6 @@ Feel free to reach out for collaboration or inquiries!
 
 ---
 
-### 📢 Coming Soon!
-Stay tuned for an exciting movie and TV show browsing 
+### 📢 Live Demo
+
+Explore the project and try out the new movie streaming feature at https://magix-movies.vercel.app.

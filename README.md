@@ -1,7 +1,8 @@
-# 🎬 Movies & TV Shows Website (Coming Soon)
+# 🎬 Movies & TV Shows Website
 
-This is a **work-in-progress** project for a Movies & TV Shows website, built with modern web technologies and frameworks. Stay tuned for the full release!
+Welcome to the updated version of the Movies & TV Shows project! This project, built with modern web technologies and frameworks, has been enhanced with a brand-new movie streaming feature. Enjoy a seamless, high-quality streaming experience directly on the site.
 
+Check out the live demo: https://magix-movies.vercel.app
 ---
 
 ## 🛠️ Technologies Used
@@ -29,12 +30,13 @@ This is a **work-in-progress** project for a Movies & TV Shows website, built wi
 ---
 
 ## 🚀 Features (Planned)
+-**Movie Streaming**: New! Enjoy a seamless movie streaming experience directly on the website.
+
+
 - **Dynamic Routes** to provide seamless navigation for:
   - Movie details: `/movies/[id]`
   - TV show details: `/tv/[id]`
   - Person details: `/person/[id]`
-  - Movie genres: `/movies/genres`
-  - TV genres: `/tv/genres`
   - TV seasons: `/tv/season/[id]`
   - Season episodes: `/tv/season/[id]/episodes`
 - Browse the latest movies and TV shows using data from **TMDB API**.

@@ -18,7 +18,7 @@ export default async function Profile() {
                 </div>
             ) : (
 
-                <div className="dropdown dropdown-bottom  lg:dropdown-end xl:dropdown-end 2xl:dropdown-end ">
+                <div className="dropdown dropdown-end dropdown-bottom  ">
                     <div tabIndex={0} role="button" className="m-1">
                         <VscAccount size={23} className="mb-1 hover:scale-110 transition-transform  hover:animate-pulse hover:duration-700 hover:text-green-500" />
                     </div>

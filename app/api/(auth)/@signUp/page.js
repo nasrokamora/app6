@@ -7,7 +7,7 @@ import { Separator } from "@/components/ui/separator"
 export default function LogIn() {
 
     return (
-        <div className=" dropdown dropdown-bottom  lg:dropdown-end xl:dropdown-end 2xl:dropdown-end  ">
+        <div className=" dropdown dropdown-bottom md:dropdown-end  lg:dropdown-end xl:dropdown-end 2xl:dropdown-end  ">
             <div tabIndex={0} role="button" className=" m-1">
                 <IoLogInOutline size={30} className="hover:scale-110 transition-transform active:scale-95 text-white " />
             </div>

@@ -28,7 +28,8 @@ export default function DetailsSeasonTv({ season, id }) {
                                     <Card className="  md:h-auto w-full border-blue-600 shadow-md shadow-blue-800 bg-black/30 backdrop-blur">
                                         <CardContent className=" pt-2  ">
                                             <div className=" relative lg:order-2 w-full ">
-                                                {item.poster_path ? (
+                                                {item.poster_path &&
+                                                item.poster_path ? (
                                                     <ImagePosterPath
                                                         width={100}
                                                         height={100}
@@ -51,6 +52,7 @@ export default function DetailsSeasonTv({ season, id }) {
                                                         style={{borderRadius: "4px" }}
                                                         draggable={false}
                                                         loading="eager"
+                                                        unoptimized={false}
                                                     />
                                                 )}
 

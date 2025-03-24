@@ -25,7 +25,8 @@ export default function TvSeries({ dataTv }) {
                                 <Link className="" href={`/tv/list/${tv.id}`}>
                                     <div className="relative overflow-hidden  ">
 
-                                        {tv.poster_path.length > 0 ? (
+                                        {tv.poster_path &&
+                                        tv.poster_path.length > 0 ? (
                                             <ImagePosterPath
                                                 width={300}
                                                 height={250}

@@ -17,7 +17,7 @@ export default function MoviesSource({ data }) {
         <div className="w-full flex justify-start gap-3 items-center flex-wrap">
 
 
-            <button className="border p-1 border-zinc-600 rounded-md font-bold hover:text-red-700 hover:border-red-700 duration-500" onClick={() => document.getElementById('my_modal_3').showModal()}>VidSrc.to</button>
+            <button className="border p-1 border-zinc-600 rounded-md font-bold hover:text-red-700 hover:border-red-700 duration-500" onClick={() => document.getElementById('my_modal_3').showModal()}>VidSrc.pro</button>
             <dialog id="my_modal_3" className="modal">
                 <div className="modal-box max-w-full xl:max-w-7xl w-11/12 max-h-full bg-black/70 backdrop-blur">
                     <form method="dialog">

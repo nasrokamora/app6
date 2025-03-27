@@ -6,7 +6,7 @@ export const VideoPlayerSRCTo = ({ movieId }) => {
   return (
     <div className="w-full flex justify-center items-center py-10">
       <iframe
-        src={`https://player.vidsrc.co/embed/movie/${movieId}`}
+        src={`https://embed.su/embed/movie/${movieId}`}
         width="100%"
         height="500px"
         allowFullScreen

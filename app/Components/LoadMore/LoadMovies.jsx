@@ -5,7 +5,7 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 import Image from "next/image"
 import Link from "next/link"
 import dynamic from "next/dynamic"
-import ErrorImage from "../../../public/image/errorImage.webp"
+import ErrorImage from "../../../public/image/no_image4.webp"
 import { motion } from "framer-motion"
 import { urlImage } from "@/app/libs/UrlImage"
 import ImagePosterPath from "@/app/libs/ImagePosterPath"
@@ -16,7 +16,7 @@ import ImagePosterPath from "@/app/libs/ImagePosterPath"
 
 
 
-const MAX_PAGE = 8
+const MAX_PAGE = 20 // Maximum number of pages to fetch
 
 async function getMoviesWithPage(page) {
     const response = await fetch(`/api/getMoviesWithPage?page=${page}`)
@@ -84,19 +84,33 @@ export default function LoadMovies() {
                         key={movie.id}>
                         <div key={index} className="relative flex flex-col items-center justify-center overflow-hidden hover:scale-110 hover:duration-300">
                             <Link href={`/movies/list/${movie.id}`} >
+                                {movie.poster_path && movie.poster_path.length > 0 ? (
+                                    <ImagePosterPath
+                                        width={200}
+                                        height={150}
+                                        index={movie.id}
+                                        tmdbPath={movie.poster_path}
+                                        style={{ width: "auto" }}
+                                        quality={75}
+                                        alt={movie.title ? movie.title : movie.original_title || "Unknown"}
+                                        unoptimized
+                                        priority={index < 6}
+    
+                                    />
 
-                                <ImagePosterPath
-                                    width={200}
-                                    height={150}
-                                    index={movie.id}
-                                    tmdbPath={movie.poster_path}
-                                    style={{ width: "auto" }}
-                                    quality={75}
-                                    alt={movie.title ? movie.title : movie.original_title || "Unknown"}
-                                    unoptimized
-                                    priority={index < 6}
-
-                                />
+                                ):(
+                                    <Image
+                                        src={ErrorImage}
+                                        alt="No Image"
+                                        width={200}
+                                        height={150}
+                                        style={{ width: "auto" }}
+                                        className="rounded-md "
+                                        loading="eager"
+                                        unoptimized={false}
+                                        placeholder="blur"
+                                    />
+                                )}
                                 {/* <Image src={movie.poster_path ?
                                     `${urlImage}/${movie.poster_path}` :
                                     ErrorImage}

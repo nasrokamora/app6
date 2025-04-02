@@ -24,7 +24,7 @@ export default function NowPlayingMovies({ dataPlaying }) {
   return (
     <div className=" mt-3 ">
       <div className="relative flex gap-2 items-center justify-start md:justify-center rounded-r-full bg-black/50 backdrop-blur border-r-2 border-r-[#b02d74]  w-fit">
-        <h1 className=" border-l-2 border-l-[#ae2f76] bg-gradient-to-r from-[#340b53] via-[#db2777] to-[#340b53] bg-clip-text text-transparent bg-[length:200%] animate-gradient p-4  scroll-m-20 text-4xl font-extrabold lg:text-3xl"> Now playing <span className="text-white">on</span> Magix</h1>
+        <h1 className=" border-l-2 border-l-[#ae2f76] bg-gradient-to-r from-[#340b53] via-[#db2777] to-[#340b53] bg-clip-text text-transparent  p-4  scroll-m-20 text-4xl font-extrabold lg:text-3xl"> Now playing <span className="text-white">on</span> Magix</h1>
       </div>
 
 

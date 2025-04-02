@@ -1,4 +1,4 @@
-import VideoPlayer, { VideoPlayerMovies } from "@/app/Source/VideoPlayer"
+
 import {
     AlertDialog,
     AlertDialogCancel,
@@ -9,16 +9,13 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
-import { Button } from "@/components/ui/button"
 import { YouTubeEmbed } from '@next/third-parties/google'
-import Link from "next/link"
-
 import { IoPlayCircleOutline } from "react-icons/io5"
 
 
 
 
-export default async function TrailerMovies({ dataTrailer,data }) {
+export default function TrailerMovies({ dataTrailer }) {
     const dataTrailermovies = dataTrailer.results.slice(0, 1)
     // console.log(dataVideos)
     return (

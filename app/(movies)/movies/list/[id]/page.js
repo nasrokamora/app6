@@ -76,7 +76,8 @@ export default async function DynamicMoviesList({ params }) {
             </div>
             <div className="w-full flex items-center justify-start gap-3 p-4 mt-4 rounded-md shadow-xl md:flex-col shadow-black/30 bg-black/50 backdrop-blur 2xl:justify-evenly">
                 <div className=" w-[65%] flex flex-col items-center justify-center ">
-                    {data.poster_path.length > 0 ? (
+                    {data.poster_path &&
+                    data.poster_path.length > 0 ? (
                         <ImagePosterPath
                             width={250}
                             height={250}
@@ -217,7 +218,8 @@ export default async function DynamicMoviesList({ params }) {
                         <div className='w-full flex justify-start gap-4 items-center pt-4 bg-black/80 backdrop-blur p-2'>
                             <h1 className="font-bold text-2xl text-amber-600 scroll-m-20 md:text-lg">Source</h1>
                             <div>
-                                <MoviesSource data={data} />
+                                <h1 className="font-bold text-2xl text-cyan-600 scroll-m-20 md:text-lg">Coming soon</h1>
+                                {/* <MoviesSource data={data} /> */}
                             </div>
                         </div>
                     </div>

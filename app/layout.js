@@ -21,6 +21,12 @@ export const metadata = {
   keywords: [
     "Magix Movies",
     "Nasreddine Abdellouche",
+    "nasreddine abdellouche",
+    "nasreddine AB",
+    "Nasreddine ab",
+    "Nas@Dev",
+    "nasrokamora",
+    "nasdev",
     "movies",
     "series",
     "entertainment",

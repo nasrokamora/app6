@@ -1,6 +1,11 @@
 User-agent: *
 Allow: /home
-
-Disallow: /movies/*
-Disallow: /tv/*
-Disallow: /person/*
+Allow: /movies
+Allow: /movies/
+Allow: /movies/*
+Allow: /tv
+Allow: /tv/
+Allow: /tv/*
+Allow: /person
+Allow: /person/
+Allow: /person/*

@@ -6,14 +6,12 @@ import LogoIcon from '../../../public/icon/Icon.png'
 import Image from "next/image"
 import { cn } from "@/lib/utils";
 import NavMenu from "./NavBar";
-import Profile from "@/app/libs/Profile";
+// import Profile from "@/app/libs/Profile";
 import dynamic from "next/dynamic";
-import { Loader2 } from "lucide-react"
-import { Suspense } from "react";
 import SearchMultiPage from "@/app/(movies)/Components/SearchMulti/SearchMultiPage";
 import { IoCloseCircleSharp } from "react-icons/io5";
 import FooterMenu from "../Footer/FooterMenu";
-import ImageCloudinaryLoader from "@/app/libs/loader";
+
 
 
 const TrendingMoviesLoad = dynamic(() => import("@/app/(movies)/Components/TrendingMovies/TrendingMoviesLoad"), {
@@ -41,7 +39,7 @@ export default function NavBar() {
         </Link>
 
         <div className=" flex justify-between items-center gap-6">
-          <Profile />
+          {/* <Profile /> */}
 
 
           {/* Search */}

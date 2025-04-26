@@ -134,7 +134,8 @@ export default function RootLayout({ children }) {
           shadow="0 0 10px #a632aa,0 0 5px #9c39ed"
         />
         <JsonLdSchema />
-        <Nav />
+        <Nav /> 
+        
         {children}
 
         <Footer />

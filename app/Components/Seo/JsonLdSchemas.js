@@ -12,7 +12,7 @@ const JsonLdSchemas = () => {
           "name": "Nasreddine Abdellouche",
           "url": "https://nasreddine-abdellouche.vercel.app/"
         },
-        "description": "Magix Movies, crafted by Nasreddine Abdellouche, is your go-to platform for premium movie and series insights. Explore in-depth reviews, ratings, and personalized recommendations tailored to your preferences.",
+        "description": "Magix Movies stands as the ultimate hub for premium movie and series insights, delivering in-depth reviews, ratings, and tailored recommendations for every enthusiast.",
         "keywords": [
           "Magix Movies",
           "Movies",

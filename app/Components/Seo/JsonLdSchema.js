@@ -1,5 +1,5 @@
 
-const JsonLdSchema = () => {
+const JsonLDSchema = () => {
 const schema = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
@@ -56,4 +56,4 @@ const schema = {
     );
 }
 
-export default JsonLdSchema;
+export default JsonLDSchema;

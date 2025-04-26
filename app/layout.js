@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import Nav from "./Components/Navbar/Nav";
 import NextTopLoader from "nextjs-toploader";
 import openGraph from "../public/opengraph-image.jpg"
+import JsonLdSchema from "./Components/Seo/JsonLDSchema";
 
 
 const inter = Inter({
@@ -17,7 +18,7 @@ const inter = Inter({
 export const metadata = {
   title: "Magix Movies - Your Ultimate Movie & Series Hub",
   description:
-    "Magix Movies, crafted by Nasreddine Abdellouche, is your go-to platform for premium movie and series insights. Explore in-depth reviews, ratings, and personalized recommendations tailored to your preferences.",
+    "Magix Movies stands as the ultimate hub for premium movie and series insights, delivering in-depth reviews, ratings, and tailored recommendations for every enthusiast.",
   keywords: [
     "Magix Movies",
     "Nasreddine Abdellouche",
@@ -77,7 +78,7 @@ export const metadata = {
     type: "website",
     images: [
       {
-        url: openGraph.src, 
+        url: openGraph.src,
         width: 1200,
         height: 630,
         alt: "Magix Movies"
@@ -89,7 +90,7 @@ export const metadata = {
     title: "Magix Movies - Your Ultimate Movie & Series Hub",
     description:
       "Discover premium movie and series insights with in-depth reviews, ratings, and personalized recommendations at Magix Movies.",
-    site: "", 
+    site: "",
     creator: "",
     images: [
       {
@@ -101,11 +102,11 @@ export const metadata = {
   icons: {
     icon: "/favicon.ico"
   },
-  // روابط خارجية
+
   alternates: {
     canonical: "https://magix-movies.vercel.app/"
   },
- 
+
   metadataBase: new URL("https://magix-movies.vercel.app/"),
 
   other: {
@@ -132,6 +133,7 @@ export default function RootLayout({ children }) {
           speed={200}
           shadow="0 0 10px #a632aa,0 0 5px #9c39ed"
         />
+        <JsonLdSchema />
         <Nav />
         {children}
 

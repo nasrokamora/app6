@@ -5,7 +5,8 @@ import { cn } from "@/lib/utils";
 import Nav from "./Components/Navbar/Nav";
 import NextTopLoader from "nextjs-toploader";
 import openGraph from "../public/opengraph-image.jpg"
-import JsonLDSchema from "./Components/Seo/JsonLDSchema";
+import JsonLdSchemas from "./Components/Seo/JsonLdSchemas";
+
 
 
 
@@ -134,7 +135,7 @@ export default function RootLayout({ children }) {
           speed={200}
           shadow="0 0 10px #a632aa,0 0 5px #9c39ed"
         />
-        <JsonLDSchema />
+        <JsonLdSchemas />
         <Nav /> 
 
         {children}

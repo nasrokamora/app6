@@ -13,7 +13,7 @@ export default function Footer() {
     return (
         <footer className="font-semibold relative footer-center gap-2 p-10 bg-[#09090b] text-base-100 rounded z-40 w-full footer">
 
-            <aside className="text-center text-base">
+            <aside className="text-center text-gray-200">
                 <p className="font-semibold text-slate-400">
                     Copyright © 2024 - All rights reserved by Nas@Dev, Nasreddine Abdellouche.
                 </p>
@@ -23,7 +23,7 @@ export default function Footer() {
             </aside>
 
             <section className="flex justify-start gap-3 items-center ">
-                <p className="text-sm text-base-content">
+                <p className="text-sm text-gray-400">
                     This product uses the{" "}
                     <Link
                         href="https://www.themoviedb.org/"

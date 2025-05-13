@@ -1,6 +1,6 @@
 # 🎬 Movies & TV Shows Website
 
-Welcome to the updated version of the Movies & TV Shows project! This project, built with modern web technologies and frameworks, has been enhanced with a brand-new movie streaming feature. Enjoy a seamless, high-quality streaming experience directly on the site.
+Welcome to the Movies & TV Shows project! This project, built with modern web technologies and frameworks, has been enhanced with a brand-new movie streaming feature. Enjoy a seamless, high-quality streaming experience directly on the site.
 
 Check out the live demo: https://magix-movies.vercel.app
 ---

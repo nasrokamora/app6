@@ -87,3 +87,8 @@ Feel free to reach out for collaboration or inquiries!
 ### 📢 Live Demo
 
 Explore the project and try out the new movie streaming feature at https://magix-movies.vercel.app.
+
+> **Note:**  
+> The current deployment on Vercel is temporarily suspended due to reaching the free usage limit for Edge Functions.  
+> A new version of the project will be redeployed soon using another hosting platform with better scalability and performance.  
+> Meanwhile, the full source code is available here on GitHub
